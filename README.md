@@ -39,6 +39,7 @@ Then, copy settings_example.py to settings.py, and configure parameters.
 python mEGAdata.py
 ```
 
+Start by adding donors, then add samples, and finally, datasets, by double-clicking on a sample-experiment cell.
 
 ###Documentation
 
