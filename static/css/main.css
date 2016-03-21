@@ -1,0 +1,13 @@
+body {
+	padding-left: 10px;
+}
+
+.roCell {
+	color: black;
+	background-color: #F5F5F5 !important;
+}
+
+
+.angucomplete_highlight {
+	color: red;
+}

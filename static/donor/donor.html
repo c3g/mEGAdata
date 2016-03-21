@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Donors</title>
+  <link rel="stylesheet" media="screen" href="/css/main.css">
+  
+  <!-- jQuery -->
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  
+  <!-- Handsontable -->
+  <script src="../bower_components/handsontable/dist/handsontable.full.js"></script>
+  <link rel="stylesheet" media="screen" href="../bower_components/handsontable/dist/handsontable.full.css">
+  
+  <!-- Bootstrap -->
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  
+  <!-- Angular -->
+  <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+
+  <!-- Angular angucomplete-alt, for auto-completion -->
+  <script src="../bower_components/angucomplete-alt/dist/angucomplete-alt.min.js"></script>
+  <link rel="stylesheet" media="screen" href="../bower_components/angucomplete-alt/angucomplete-alt.css">
+
+  <!-- Donor application Angular controller -->
+  <script type="text/javascript" src="./donor.js"></script>
+
+  <script src="../bower_components/ngHandsontable/dist/ngHandsontable.js"></script>
+
+</head>
+
+<body data-ng-app="DonorApp" data-ng-controller="DonorCtrl as ctrl">
+  <h2><a href="/"><img src="/img/EMC.png"> mEGAdata</a> : Donors</h2>
+  <hr>
+  <p>
+    <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#donorModal">
+      <span class="glyphicon glyphicon-plus" style="color: green;"></span> Add Donor
+    </button>
+  </p>
+
+  <hot-table
+          col-headers="true"
+          row-headers="false"
+          column-sorting="true"
+          sort-indicator="true"
+          manual-column-resize="true"
+          min-spare-rows="minSpareRows"
+          datarows="donors"
+          width="700"
+          columns="columns"
+          settings="settings"
+  >
+  </hot-table>
+
+  <!-- Donor creation modal dialog -->
+  <div class="modal fade" id="donorModal" tabindex="-1" role="dialog" aria-labelledby="donorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="donorModalLabel">Add Donor</h4>
+        </div>
+        <div class="modal-body">
+          <p><b>Enter donor information</b></p>
+          <table class="table table-hover">
+            <tr>
+              <td>Donor Public Name:</td>
+              <td><input type="text" data-ng-model="donor.public_name"></td>
+            </tr>
+            <tr>
+              <td>Donor Private Name:</td>
+              <td><input type="text" data-ng-model="donor.private_name"></td>
+            </tr>
+            <tr>
+              <td>Species:</td>
+              <td>
+                <select data-ng-model="donor.taxon_id" ng-options="species.taxon_id as species.common_name for species in speciesList">
+                    <option value="">Select Species</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Phenotype:</td>
+              <td><input type="text" data-ng-model="donor.phenotype"></td>
+            </tr>
+            <tr>
+              <td>Is Pool:</td>
+              <td><input type="checkbox" data-ng-model="donor.is_pool"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" data-ng-click="ctrl.cancel()">Cancel</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" data-ng-click="ctrl.save()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

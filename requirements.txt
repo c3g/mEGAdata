@@ -1,0 +1,15 @@
+#To install everything:
+#
+#sudo apt-get install libmysqlclient-dev
+#pip install -r requirements.txt
+
+Flask
+requests
+flask_peewee
+MySQL-python
+
+RDFLib
+
+jmespath
+
+Flask-Stormpath

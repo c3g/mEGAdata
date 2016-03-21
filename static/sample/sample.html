@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Samples</title>
+  <link rel="stylesheet" media="screen" href="/css/main.css">
+  
+  <!-- jQuery -->
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  
+  <!-- Handsontable -->
+  <script src="../bower_components/handsontable/dist/handsontable.full.js"></script>
+  <link rel="stylesheet" media="screen" href="../bower_components/handsontable/dist/handsontable.full.css">
+  
+  <!-- Bootstrap -->
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  
+  <!-- Angular -->
+  <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+
+  <!-- Angular angucomplete-alt, for auto-completion -->
+  <script src="../bower_components/angucomplete-alt/dist/angucomplete-alt.min.js"></script>
+  <link rel="stylesheet" media="screen" href="../bower_components/angucomplete-alt/angucomplete-alt.css">
+  
+  <!-- Sample application Angular controller -->
+  <script type="text/javascript" src="./sample.js"></script>
+
+  <script src="../bower_components/ngHandsontable/dist/ngHandsontable.js"></script>
+
+</head>
+
+<body data-ng-app="SampleApp" data-ng-controller="SampleCtrl as ctrl">
+  <h2><a href="/"><img src="/img/EMC.png"> mEGAdata</a> : Samples <span id="donorName"></span></h2>
+  <hr>
+  <p>
+    <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#addSampleModal">
+      <span class="glyphicon glyphicon-plus" style="color: green;"></span> Add Sample
+    </button>
+    &nbsp;&nbsp;&nbsp;
+    <button class="btn btn-sm" data-ng-click="ctrl.collapseMetadata();">Expand/Collapse Metadata</button>
+  </p>
+
+  <hot-table
+          col-headers="true"
+          row-headers="false"
+          column-sorting="true"
+          sort-indicator="true"
+          manual-column-resize="true"
+          min-spare-rows="minSpareRows"
+          datarows="samples"
+          width="700"
+          columns="columns"
+          settings="settings"
+  >
+  </hot-table>
+
+  <!-- Add sample modal dialog -->
+  <div class="modal fade" id="addSampleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Add Sample</h4>
+        </div>
+        <div class="modal-body">
+          <p><b>Enter sample information:</b></p>
+          <table class="table table-hover form-group">
+            <tr>
+              <td>Sample Private Name:</td>
+              <td><input type="text" data-ng-model="sample.private_name"></td>
+            </tr>
+            <tr>
+              <td>Sample Public Name:</td>
+              <td><input type="text" data-ng-model="sample.public_name"></td>
+            </tr>
+            <tr>
+              <td>Donor:</td>
+              <td>
+                <angucomplete-alt id="donorAc"
+                  placeholder="Search donors"
+                  pause="400"
+                  selected-object="sample.donor"
+                  remote-url="/api/donors/"
+                  title-field="private_name"
+                  match-class="angucomplete_highlight"
+                  minlength="1"/>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" data-ng-click="ctrl.cancel()">Cancel</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" data-ng-click="ctrl.save()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+    <div style="font-size: 9px; position: absolute; top: 10px; left: 1000px;">
+    <b>Datasets Legend:</b>
+    <table>
+      <tr>
+        <td style="padding: 1px;"><div style="border: 1px solid #ccc; background-color: white; color: green; font-weight: 900; text-align: center; width: 40px;">R1</div></td>
+        <td>Released in R1</td>
+      </tr>
+      <tr>
+        <td style="padding: 1px;"><div style="border: 1px solid #ccc; background-color: #c2e0c2; color: green; font-weight: 900; text-align: center; width: 40px;">P</div></td>
+        <td>Pending Release</td>
+      </tr>
+      <tr>
+        <td style="padding: 1px;"><div style="border: 1px solid #ccc; background-color: #ff6666; font-weight: 900; text-align: center; width: 40px;">R_1_2</div></td>
+        <td>Released in R1, removed in R2</td>
+      </tr>
+    </table>
+
+    <br />
+
+  </div>
+
+  
+</body>
+</html>

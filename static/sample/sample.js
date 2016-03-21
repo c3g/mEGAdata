@@ -1,0 +1,259 @@
+/*jslint browser: true*/
+/*global console, alert, d3, $, angular, Handsontable*/
+
+var app = angular.module('SampleApp', ["angucomplete-alt", 'ngHandsontable']);
+app.controller('SampleCtrl', function($scope, $http) {
+	"use strict";
+	var that = this;
+    that.is_metadata_collapsed = false;
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Handsontable Renderers
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    this.releaseStatusRenderer = function(instance, td, row, col, prop, value, cellProperties) {
+		Handsontable.renderers.TextRenderer.apply(this, arguments);
+		td.style.fontWeight = "900";
+		td.style.textAlign = "center";
+
+		if (value === null) {
+			cellProperties.readOnly = false;
+			return;
+		}
+		else if (value.slice(0,2) === "R_") {
+			td.style.backgroundColor = '#FF6666';
+			cellProperties.readOnly = true;
+		}
+		else if (value.charAt(0) === "R") {
+			td.style.color = 'green';
+			cellProperties.readOnly = true;
+		}
+		else if (value.charAt(0) === "P") {
+			td.style.color = 'green';
+			td.style.backgroundColor = '#C2E0C2';
+			cellProperties.readOnly = true;
+		}
+    };
+
+
+    this.sampleMetadataHtmlRenderer = function(instance, td, row, col, prop, value, cellProperties) {
+		Handsontable.renderers.HtmlRenderer.apply(this, arguments);
+        var rowData = $scope.samples[cellProperties.row];
+        if (rowData.public_name === null) {
+            td.style.backgroundColor = '#CCE0EB';
+        }
+    };
+
+
+	this.sampleMetadataUriRenderer = function(instance, td, row, col, prop, value, cellProperties) {
+        Handsontable.renderers.HtmlRenderer.apply(this, arguments);
+        var rowData = $scope.samples[cellProperties.row];
+        if (rowData.public_name === null) {
+            td.style.backgroundColor = '#CCE0EB';
+        }
+        if (value !== null) {
+            td.innerHTML="<a target='_blank' href='" + value + "'>" + value + "</a>";
+        }
+    };
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Handsontable Editors
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  	//CustomEditor will ask if an unreleased dataset should be released
+    this.DatasetEditor = Handsontable.editors.BaseEditor.prototype.extend();
+    this.DatasetEditor.prototype.getValue = function() {};
+    this.DatasetEditor.prototype.setValue = function(newValue) {};
+    this.DatasetEditor.prototype.open = function() {this.finishEditing();};
+    this.DatasetEditor.prototype.close = function() {};
+    this.DatasetEditor.prototype.focus = function() {};
+
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Methods
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    this.load = function() {
+        $http({
+            method: 'GET',
+            url: '/api/samples'
+        }).then(drawGrid);
+
+        //Fill the grid with all existing donors
+        function drawGrid(result) {
+            $scope.samples = result.data;
+        }
+    };
+
+	//Add a sample in the database
+    this.save = function() {
+        $scope.sample.donor_id = $scope.sample.donor.originalObject.id;
+    	var data = $scope.sample;
+
+    	$http.post('/api/sample', data)
+    		.success(function(data, status, headers, config) {
+                alert("Success.");
+                $scope.sample = {};
+                that.load();
+    		})
+        	.error(function(data, status, headers, config) {
+        		alert("Sample creation failed.");
+        	});
+    };
+
+
+    this.cancel = function() {
+    	//Nothing to do!
+    };
+
+	//Add sample metadata in the database
+    this.saveCell = function(change, source) {
+        if (source === "loadData") {
+            return;
+        }
+
+        var row = change[0][0];
+        var col = change[0][1];
+        var before = change[0][2];
+        var after = change[0][3];
+
+		var experiments = $scope.experimentList.reduce(function(a, b) { a[b.name] = b; return a; }, {});
+		var properties = $scope.samplePropertiesList.reduce(function(a, b) { a[b.property] = b; return a; }, {});
+
+		if (col in properties) {
+			that._saveMetadata(source, row, col, before, after);
+		}
+		if (col in experiments) {
+			that._saveDataset(source, row, col, before, after);
+		}
+
+    };
+
+
+    this.collapseMetadata = function() {
+        that.is_metadata_collapsed = !that.is_metadata_collapsed;
+        var colwidth = 150;
+        if (that.is_metadata_collapsed) {
+            colwidth = 20;
+        }
+
+        for (var c_idx in $scope.columns) {
+            var col = $scope.columns[c_idx];
+            if (col.is_metadata_column) {
+                col.width = colwidth;
+            }
+        }
+    }
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Internal methods
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	this._saveMetadata = function(source, row, col, before, after) {
+        if (source === "edit") {
+            var data = {
+                sample_id: $scope.samples[row].id,
+                field: col,
+                value: after
+            };
+
+            $http.post('/api/sample_metadata', data);
+        }
+	};
+
+	this._saveDataset = function(source, row, col, before, after) {
+        if (source === "edit") {
+			var data = {
+				sample_id: $scope.samples[row].id,
+				experiment: col
+			};
+
+			$http.post('/api/dataset', data)
+				.success(function(data, status, headers, config) {
+					that.load();
+				})
+				.error(function(data, status, headers, config) {
+					alert("Dataset modification failed.");
+				});
+        }
+	};
+
+
+	this._addMetaColumns = function(result) {
+        $scope.samplePropertiesList = result.data;
+        for (var i in $scope.samplePropertiesList) {
+            var p = $scope.samplePropertiesList[i];
+
+            var c = {
+                data: p.property,
+                title: p.property,
+                readOnly: false,
+                width: 150,
+                is_metadata_column: true
+            };
+
+            if (p.type === "uri") {
+                c.renderer = that.sampleMetadataUriRenderer;
+            }
+            else {
+                c.renderer = that.sampleMetadataHtmlRenderer;
+            }
+
+            $scope.columns.push(c);
+        }
+    };
+
+
+	this._addExperimentColumns = function(result) {
+        for (var i in $scope.experimentList) {
+            var p = $scope.experimentList[i];
+
+            var c = {
+                data: p.name,
+                title: p.name,
+                readOnly: false,
+                width: 100,
+				renderer: that.releaseStatusRenderer
+            };
+
+			c.editor = that.DatasetEditor;
+            $scope.columns.push(c);
+        }
+    };
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Constructor
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	$scope.sample = {};
+	$scope.samples = [];
+	$scope.experimentList = [];
+	$scope.samplePropertiesList = [];
+	$scope.dataset = {};
+
+	$scope.columns = [
+		{ data: 'public_name', title: 'Public Name', readOnly: true, renderer: that.sampleMetadataHtmlRenderer, readOnlyCellClassName:"roCell" },
+        { data: 'private_name', title: 'Private Name', readOnly: true, renderer: that.sampleMetadataHtmlRenderer, readOnlyCellClassName:"roCell" },
+        { data: 'donor.private_name', title: 'Donor Name', readOnly: true, renderer: that.sampleMetadataHtmlRenderer, readOnlyCellClassName:"roCell" },
+        { data: 'EGAN', title: 'Phenotype', readOnly: true, renderer: that.sampleMetadataHtmlRenderer, readOnlyCellClassName:"roCell" },
+    ];
+    $scope.settings = {
+        onAfterChange: function(change, source) {that.saveCell(change, source);}
+    };
+
+	//Load list of sample metadata fields and add columns
+	$http({
+		method: 'GET',
+		url: '/api/sample_properties'
+	}).then(that._addMetaColumns);
+
+
+	//Load list of experiments  and add a column for each
+	$http({
+		method: 'GET',
+		url: '/api/experiments'
+	}).then(function (result) {
+		$scope.experimentList = result.data;
+		that._addExperimentColumns();
+	});
+
+	this.load();
+});
