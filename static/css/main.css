@@ -11,3 +11,11 @@ body {
 .angucomplete_highlight {
 	color: red;
 }
+
+.metadata_cell {
+	background-color: rgba(204, 224, 235, 0.58) !important;
+}
+
+.dataset_release_cell {
+	/*background-color: rgba(150, 235, 0, 0.27) !important;*/
+}

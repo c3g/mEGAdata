@@ -23,17 +23,13 @@ app.controller('DonorCtrl', function($scope, $http) {
     this.donorMetadataHtmlRenderer = function(instance, td, row, col, prop, value, cellProperties) {
         Handsontable.renderers.HtmlRenderer.apply(this, arguments);
         var rowData = $scope.donors[cellProperties.row];
-        if (rowData.public_name === null) {
-            td.style.backgroundColor = '#CCE0EB';
-        }
+        td.className = "metadata_cell";
     };
 
     this.donorMetadataUriRenderer = function(instance, td, row, col, prop, value, cellProperties) {
         Handsontable.renderers.HtmlRenderer.apply(this, arguments);
         var rowData = $scope.donors[cellProperties.row];
-        if (rowData.public_name === null) {
-            td.style.backgroundColor = '#CCE0EB';
-        }
+        td.className = "metadata_cell";
         if (value !== null) {
             td.innerHTML="<a target='_blank' href='" + value + "'>" + value + "</a>";
         }
@@ -130,11 +126,11 @@ app.controller('DonorCtrl', function($scope, $http) {
     $scope.donors = [];
     $scope.speciesList = [];
     $scope.columns = [
-        { data: 'public_name', title: 'Public Name', readOnly: true, renderer: that.donorMetadataHtmlRenderer, readOnlyCellClassName:"roCell" },
-        { data: 'private_name', title: 'Private Name', readOnly: true, renderer: that.donorPrivateNameRenderer, readOnlyCellClassName:"roCell" },
-        { data: 'taxon_id', title: 'Taxon ID', readOnly: true, renderer: that.donorMetadataHtmlRenderer, readOnlyCellClassName:"roCell" },
-        { data: 'phenotype', title: 'Phenotype', readOnly: true, renderer: that.donorMetadataHtmlRenderer, readOnlyCellClassName:"roCell" },
-        { data: 'is_pool', title: 'Pooled Sample', readOnly: true, renderer: that.donorMetadataHtmlRenderer, readOnlyCellClassName:"roCell" }
+        { data: 'public_name', title: 'Public Name', readOnly: true, readOnlyCellClassName:"roCell" },
+        { data: 'private_name', title: 'Private Name', readOnly: true, readOnlyCellClassName:"roCell" },
+        { data: 'taxon_id', title: 'Taxon ID', readOnly: true, readOnlyCellClassName:"roCell" },
+        { data: 'phenotype', title: 'Phenotype', readOnly: true, readOnlyCellClassName:"roCell" },
+        { data: 'is_pool', title: 'Pooled Sample', readOnly: true, readOnlyCellClassName:"roCell" }
     ];
     $scope.settings = {
         onAfterChange: function(change, source) {that.saveCell(change, source);}

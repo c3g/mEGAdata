@@ -14,6 +14,7 @@ app.controller('SampleCtrl', function($scope, $http) {
 		Handsontable.renderers.TextRenderer.apply(this, arguments);
 		td.style.fontWeight = "900";
 		td.style.textAlign = "center";
+        td.className = "dataset_release_cell";
 
 		if (value === null) {
 			cellProperties.readOnly = false;
@@ -29,7 +30,7 @@ app.controller('SampleCtrl', function($scope, $http) {
 		}
 		else if (value.charAt(0) === "P") {
 			td.style.color = 'green';
-			td.style.backgroundColor = '#C2E0C2';
+			td.style.backgroundColor = 'rgba(150, 235, 0, 0.27)';
 			cellProperties.readOnly = true;
 		}
     };
@@ -38,22 +39,20 @@ app.controller('SampleCtrl', function($scope, $http) {
     this.sampleMetadataHtmlRenderer = function(instance, td, row, col, prop, value, cellProperties) {
 		Handsontable.renderers.HtmlRenderer.apply(this, arguments);
         var rowData = $scope.samples[cellProperties.row];
-        if (rowData.public_name === null) {
-            td.style.backgroundColor = '#CCE0EB';
-        }
+        td.className = "metadata_cell";
     };
 
 
 	this.sampleMetadataUriRenderer = function(instance, td, row, col, prop, value, cellProperties) {
         Handsontable.renderers.HtmlRenderer.apply(this, arguments);
         var rowData = $scope.samples[cellProperties.row];
-        if (rowData.public_name === null) {
-            td.style.backgroundColor = '#CCE0EB';
-        }
+        td.className = "metadata_cell";
         if (value !== null) {
             td.innerHTML="<a target='_blank' href='" + value + "'>" + value + "</a>";
         }
     };
+
+
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -230,10 +229,10 @@ app.controller('SampleCtrl', function($scope, $http) {
 	$scope.dataset = {};
 
 	$scope.columns = [
-		{ data: 'public_name', title: 'Public Name', readOnly: true, renderer: that.sampleMetadataHtmlRenderer, readOnlyCellClassName:"roCell" },
-        { data: 'private_name', title: 'Private Name', readOnly: true, renderer: that.sampleMetadataHtmlRenderer, readOnlyCellClassName:"roCell" },
-        { data: 'donor.private_name', title: 'Donor Name', readOnly: true, renderer: that.sampleMetadataHtmlRenderer, readOnlyCellClassName:"roCell" },
-        { data: 'EGAN', title: 'Phenotype', readOnly: true, renderer: that.sampleMetadataHtmlRenderer, readOnlyCellClassName:"roCell" },
+		{ data: 'public_name', title: 'Public Name', readOnly: true, readOnlyCellClassName:"roCell" },
+        { data: 'private_name', title: 'Private Name', readOnly: true, readOnlyCellClassName:"roCell" },
+        { data: 'donor.private_name', title: 'Donor Name', readOnly: true, readOnlyCellClassName:"roCell" },
+        { data: 'EGAN', title: 'Phenotype', readOnly: true, readOnlyCellClassName:"roCell" },
     ];
     $scope.settings = {
         onAfterChange: function(change, source) {that.saveCell(change, source);}
