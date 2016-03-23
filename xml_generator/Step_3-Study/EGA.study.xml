@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<STUDY_SET xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ftp://ftp.sra.ebi.ac.uk/meta/xsd/sra_1_5/SRA.study.xsd">
+    <STUDY alias="__fill__" center_name="__fill__">
+        <DESCRIPTOR>
+            <STUDY_TITLE>__fill__</STUDY_TITLE>
+            <STUDY_TYPE existing_study_type="__fill__"/>
+            <STUDY_ABSTRACT>
+                __fill__
+            </STUDY_ABSTRACT>
+        </DESCRIPTOR>
+        <STUDY_ATTRIBUTES>
+            <STUDY_ATTRIBUTE>
+                <TAG>__fill__</TAG>
+                <VALUE>__fill__</VALUE>
+            </STUDY_ATTRIBUTE>
+        </STUDY_ATTRIBUTES>
+    </STUDY>
+    <!-- If you are submitting more than one study, replicate the block <STUDY> to </STUDY> here, as many times as necessary. -->
+</STUDY_SET>

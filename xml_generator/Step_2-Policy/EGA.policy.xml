@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<POLICY_SET>
+    <POLICY alias="__fill__" center_name="__fill__" broker_name="EGA">
+        <TITLE>__fill__</TITLE>
+        <DAC_REF accession="__fill_with_DAC_refID_obtained_after_creation__" refcenter="__fill__"/>
+        <POLICY_TEXT>__fill__</POLICY_TEXT>
+        <POLICY_LINKS>
+            <POLICY_LINK>
+                <URL_LINK>
+                    <LABEL>__fill__</LABEL>
+                    <URL>__fill__</URL>
+                </URL_LINK>
+            </POLICY_LINK>
+        </POLICY_LINKS>
+    </POLICY>
+</POLICY_SET>
