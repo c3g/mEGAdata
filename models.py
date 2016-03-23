@@ -57,7 +57,7 @@ class Sample(BaseModel):
     public_name = peewee.CharField()
     private_name = peewee.CharField()
     public_archive_id = peewee.CharField()
-    epirr_acc = peewee.CharField()
+    # epirr_acc = peewee.CharField()
     # EGAN = peewee.CharField()
 
     donor = peewee.ForeignKeyField(Donor)
