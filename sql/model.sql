@@ -1,3 +1,4 @@
+SET foreign_key_checks=0;
 DROP TABLE IF EXISTS `dataset`;
 CREATE TABLE `dataset` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '		',
@@ -179,3 +180,4 @@ CREATE TABLE `species` (
   `common_name` varchar(200) NOT NULL,
   PRIMARY KEY (`taxon_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+SET foreign_key_checks=1;
