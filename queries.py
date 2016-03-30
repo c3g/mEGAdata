@@ -40,10 +40,10 @@ def appendDonorsMetadata(recordList, pFilter=None):
         recordList[dm.donor_id][dm.property] = dm.value
 
 
-def getExperimentList():
+def getExperimentTypeList():
     recordList = []
-    for experiment in Experiment.select():
-        recordList.append(experiment.toJson())
+    for et in ExperimentType.select():
+        recordList.append(et.toJson())
     return json.dumps(recordList)
 
 
@@ -61,9 +61,9 @@ def getSampleList(donor):
         sampleRecord['id'] = sample.id
         
         datasetList = {}
-        query2 = Dataset.select(Dataset, Experiment, Sample).join(Experiment).switch(Dataset).join(Sample).where(Sample.id == sample.id)
+        query2 = Dataset.select(Dataset, ExperimentType, Sample).join(ExperimentType).switch(Dataset).join(Sample).where(Sample.id == sample.id)
         for dataset in query2:
-            datasetList[dataset.experiment.name] = dataset.release_status
+            datasetList[dataset.experiment_type.name] = dataset.release_status
         
         sampleRecord['datasets'] = datasetList
         recordObj[sample.id] = sample.toJson()
@@ -82,7 +82,7 @@ def appendSamplesMetadata(recordList):
 
 
 def appendSamplesDatasets(recordList):
-    query = Dataset.select(Dataset, Sample.id.alias('sample_id'), Experiment.name.alias('experiment_name')).join(Sample).switch(Dataset).join(Experiment)
+    query = Dataset.select(Dataset, Sample.id.alias('sample_id'), ExperimentType.name.alias('experiment_name')).join(Sample).switch(Dataset).join(ExperimentType)
 
     for dm in query.naive():
         recordList[dm.sample_id][dm.experiment_name] = dm.release_status
@@ -146,11 +146,11 @@ def insertSampleMetadata():
 def insertDataset():
     dataJson = request.get_json()
     s = Sample.get(id=dataJson.get("sample_id"))
-    e = Experiment.get(name=dataJson.get("experiment"))
+    et = ExperimentType.get(name=dataJson.get("experiment_type"))
      
     Dataset.create(
         sample = s,
-        experiment = e,
+        experiment_type = et,
         release_status = "P"   
     )
      

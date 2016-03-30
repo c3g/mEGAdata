@@ -37,7 +37,7 @@ INSERT INTO `sample_property` VALUES
   (13,'epirr_id','string',0);
 
 
-INSERT INTO `experiment` VALUES
+INSERT INTO `experiment_type` VALUES
 (1,'Bisulfite-seq','BS','WGB-Seq','Methylation profiling by high-throughput sequencing','wgb_seq'),
 (2,'RNA-seq','RNASeq','RNA-Seq','Transcriptome profiling by high-throughput sequencing','rna_seq'),
 (3,'mRNA-seq','mRNASeq','mRNA-Seq','Transcriptome profiling by high-throughput sequencing','rna_seq'),

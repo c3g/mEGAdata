@@ -115,13 +115,13 @@ app.controller('SampleCtrl', function($scope, $http) {
         var before = change[0][2];
         var after = change[0][3];
 
-		var experiments = $scope.experimentList.reduce(function(a, b) { a[b.name] = b; return a; }, {});
+		var experiment_types = $scope.experimentTypeList.reduce(function(a, b) { a[b.name] = b; return a; }, {});
 		var properties = $scope.samplePropertiesList.reduce(function(a, b) { a[b.property] = b; return a; }, {});
 
 		if (col in properties) {
 			that._saveMetadata(source, row, col, before, after);
 		}
-		if (col in experiments) {
+		if (col in experiment_types) {
 			that._saveDataset(source, row, col, before, after);
 		}
 
@@ -163,7 +163,7 @@ app.controller('SampleCtrl', function($scope, $http) {
         if (source === "edit") {
 			var data = {
 				sample_id: $scope.samples[row].id,
-				experiment: col
+				experiment_type: col
 			};
 
 			$http.post('/api/dataset', data)
@@ -203,8 +203,8 @@ app.controller('SampleCtrl', function($scope, $http) {
 
 
 	this._addExperimentColumns = function(result) {
-        for (var i in $scope.experimentList) {
-            var p = $scope.experimentList[i];
+        for (var i in $scope.experimentTypeList) {
+            var p = $scope.experimentTypeList[i];
 
             var c = {
                 data: p.name,
@@ -224,7 +224,7 @@ app.controller('SampleCtrl', function($scope, $http) {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	$scope.sample = {};
 	$scope.samples = [];
-	$scope.experimentList = [];
+	$scope.experimentTypeList = [];
 	$scope.samplePropertiesList = [];
 	$scope.dataset = {};
 
@@ -243,14 +243,14 @@ app.controller('SampleCtrl', function($scope, $http) {
 		method: 'GET',
 		url: '/api/sample_properties'
 	}).then(that._addMetaColumns);
-
-
+    
+    
 	//Load list of experiments  and add a column for each
 	$http({
 		method: 'GET',
-		url: '/api/experiments'
+		url: '/api/experiment_types'
 	}).then(function (result) {
-		$scope.experimentList = result.data;
+		$scope.experimentTypeList = result.data;
 		that._addExperimentColumns();
 	});
 

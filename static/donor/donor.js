@@ -1,7 +1,7 @@
 /*jslint browser: true*/
 /*global console, alert, d3, angular, Handsontable*/
 
-var app = angular.module('DonorApp', ['angucomplete-alt', 'ngHandsontable']);
+var app = angular.module('DonorApp', ['ngHandsontable']);
 app.controller('DonorCtrl', function($scope, $http) {
     "use strict";
     var that = this;
@@ -56,7 +56,6 @@ app.controller('DonorCtrl', function($scope, $http) {
 
     	$http.post('/api/donor', data)
     		.success(function(data, status, headers, config) {
-                alert("Success.");
                 $scope.donor = {};
                 that.load();
     		})

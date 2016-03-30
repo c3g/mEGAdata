@@ -46,12 +46,12 @@ def route_api_donor_metadata_add():
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Experiment
+# Experiment Types
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-@app.route("/api/experiments")
+@app.route("/api/experiment_types")
 # @login_required
 def route_json_experimentList():
-    return Response(getExperimentList(), mimetype='application/json')
+    return Response(getExperimentTypeList(), mimetype='application/json')
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

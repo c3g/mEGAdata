@@ -84,10 +84,13 @@ class SampleMetadata(BaseModel):
         db_table = 'sample_metadata'
 
 
-class Experiment(BaseModel):
+class ExperimentType(BaseModel):
     name  = peewee.CharField()
     internal_assay_short_name = peewee.CharField()
     ihec_name = peewee.CharField()
+
+    class Meta:
+        db_table = 'experiment_type'
 
 
 class Dataset(BaseModel):
@@ -97,7 +100,7 @@ class Dataset(BaseModel):
     EGA_EGAX = peewee.CharField()
 
     sample = peewee.ForeignKeyField(Sample)
-    experiment = peewee.ForeignKeyField(Experiment)
+    experiment_type = peewee.ForeignKeyField(ExperimentType)
 
 
 class Run(BaseModel):

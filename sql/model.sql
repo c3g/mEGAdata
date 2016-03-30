@@ -3,18 +3,18 @@ DROP TABLE IF EXISTS `dataset`;
 CREATE TABLE `dataset` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '		',
   `sample_id` int(11) DEFAULT NULL,
-  `experiment_id` int(11) DEFAULT NULL,
+  `experiment_type_id` int(11) DEFAULT NULL,
   `release_status` varchar(100) DEFAULT NULL,
   `EGA_EGAX` varchar(16) DEFAULT NULL,
   `last_modification` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `experiment_metadata_set_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `sample_experiment_UNIQUE` (`sample_id`,`experiment_id`),
-  KEY `fk_dataset_1_idx` (`experiment_id`),
+  UNIQUE KEY `sample_experiment_UNIQUE` (`sample_id`,`experiment_type_id`),
+  KEY `fk_dataset_1_idx` (`experiment_type_id`),
   KEY `fk_dataset_2_idx` (`sample_id`),
   KEY `experiment_metadata_set_id` (`experiment_metadata_set_id`),
   CONSTRAINT `dataset_ibfk_1` FOREIGN KEY (`experiment_metadata_set_id`) REFERENCES `experiment_metadata_set` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_dataset_1` FOREIGN KEY (`experiment_id`) REFERENCES `experiment` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_dataset_1` FOREIGN KEY (`experiment_type_id`) REFERENCES `experiment_type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_dataset_2` FOREIGN KEY (`sample_id`) REFERENCES `sample` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=4596 DEFAULT CHARSET=utf8;
 
@@ -70,8 +70,8 @@ CREATE TABLE `donor_property` (
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 
-DROP TABLE IF EXISTS `experiment`;
-CREATE TABLE `experiment` (
+DROP TABLE IF EXISTS `experiment_type`;
+CREATE TABLE `experiment_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   `internal_assay_short_name` varchar(50) DEFAULT NULL,
