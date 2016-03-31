@@ -108,11 +108,23 @@ class Run(BaseModel):
     dataset_id = peewee.IntegerField()
     run = peewee.CharField()
     lane = peewee.CharField()
-    md5_read_1 = peewee.CharField()
-    md5_read_2 = peewee.CharField()
-    md5_encEGA_read_1 = peewee.CharField()
-    md5_encEGA_read_2 = peewee.CharField()
     EGA_EGAR = peewee.CharField()
+
+    dataset = peewee.ForeignKeyField(Dataset)
+
+
+class RunFile(BaseModel):
+    id = peewee.IntegerField()
+    run_id = peewee.IntegerField()
+    name = peewee.CharField()
+    path = peewee.CharField()
+    md5 = peewee.CharField()
+    encrypted_md5 = peewee.CharField()
+
+    run = peewee.ForeignKeyField(Run)
+
+    class Meta:
+        db_table = 'run_file'
 
 
 class ReleaseSet(BaseModel):
