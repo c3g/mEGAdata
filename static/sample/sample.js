@@ -72,12 +72,19 @@ app.controller('SampleCtrl', function($scope, $http) {
 // Methods
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this.load = function() {
+        var url = "/api/samples";
+        if ("donor" in $scope.queryDict) {
+            url += "/" + $scope.queryDict["donor"];
+            $scope.donorName = " for " + $scope.queryDict["donor"];
+        }
+
+
         $http({
             method: 'GET',
-            url: '/api/samples'
+            url: url
         }).then(drawGrid);
 
-        //Fill the grid with all existing donors
+        //Fill the grid with all existing samples
         function drawGrid(result) {
             $scope.samples = result.data;
         }
@@ -227,9 +234,14 @@ app.controller('SampleCtrl', function($scope, $http) {
 	$scope.experimentTypeList = [];
 	$scope.samplePropertiesList = [];
 	$scope.dataset = {};
+	$scope.queryDict = {};
+
+    //Extract GET parameters to a dictionary
+    location.search.substr(1).split("&").forEach(function(item) {$scope.queryDict[item.split("=")[0]] = item.split("=")[1];});
+
 
 	$scope.columns = [
-		{ data: 'public_name', title: 'Public Name', readOnly: true, readOnlyCellClassName:"roCell" },
+		{ data: 'public_name', title: 'Public Name', readOnly: true, readOnlyCellClassName:"roCell", width: 130 },
         { data: 'private_name', title: 'Private Name', readOnly: true, readOnlyCellClassName:"roCell" },
         { data: 'donor.private_name', title: 'Donor Name', readOnly: true, readOnlyCellClassName:"roCell" },
         { data: 'EGAN', title: 'Phenotype', readOnly: true, readOnlyCellClassName:"roCell" },

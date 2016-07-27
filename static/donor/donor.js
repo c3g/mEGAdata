@@ -126,7 +126,7 @@ app.controller('DonorCtrl', function($scope, $http) {
     $scope.speciesList = [];
     $scope.columns = [
         { data: 'public_name', title: 'Public Name', readOnly: true, readOnlyCellClassName:"roCell" },
-        { data: 'private_name', title: 'Private Name', readOnly: true, readOnlyCellClassName:"roCell" },
+        { data: 'private_name', title: 'Private Name', readOnly: true, readOnlyCellClassName:"roCell", renderer: that.donorPrivateNameRenderer },
         { data: 'taxon_id', title: 'Taxon ID', readOnly: true, readOnlyCellClassName:"roCell" },
         { data: 'phenotype', title: 'Phenotype', readOnly: true, readOnlyCellClassName:"roCell" },
         { data: 'is_pool', title: 'Pooled Sample', readOnly: true, readOnlyCellClassName:"roCell" }

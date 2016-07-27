@@ -30,7 +30,7 @@
 </head>
 
 <body data-ng-app="SampleApp" data-ng-controller="SampleCtrl as ctrl">
-  <h2><a href="/"><img src="/img/EMC.png"> mEGAdata</a> : Samples <span id="donorName"></span></h2>
+  <h2><a href="/"><img src="/img/EMC.png"> mEGAdata</a> : Samples <span data-ng-bind="donorName"></span></h2>
   <hr>
   <p>
     <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#addSampleModal">

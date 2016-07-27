@@ -9,6 +9,8 @@ import json
 # MySQL accession functions
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def getSpeciesList():
+    """Returns all information on species in a JSON document."""
+
     recordList = []
     query = Species.select()
     for species in query:
@@ -48,6 +50,8 @@ def getExperimentTypeList():
 
 
 def getSampleList(donor):
+    """Returns list of samples in JSON format. If a donor object was provided, returns only samples that belong to that donor."""
+
     query = Sample.select(Sample, Donor).join(Donor)
     
     #Refine based on donor
@@ -71,21 +75,26 @@ def getSampleList(donor):
     appendSamplesMetadata(recordObj)
     appendSamplesDatasets(recordObj)
     recordList = recordObj.values()
-    return json.dumps(recordList)
+    return json.dumps(recordList, indent=2)
 
 
 def appendSamplesMetadata(recordList):
-    query = SampleMetadata.select(SampleMetadata, Sample.id.alias('sample_id'), SampleProperty.property.alias('property')).join(Sample).switch(SampleMetadata).join(SampleProperty)
+    query = SampleMetadata.select(SampleMetadata, Sample.id.alias('sample_id'), SampleProperty.property.alias('property'))\
+        .join(Sample)\
+        .switch(SampleMetadata).join(SampleProperty)\
+        .naive()
 
-    for dm in query.naive():
-        recordList[dm.sample_id][dm.property] = dm.value
+    for dm in query:
+        if dm.sample_id in recordList:
+            recordList[dm.sample_id][dm.property] = dm.value
 
 
 def appendSamplesDatasets(recordList):
     query = Dataset.select(Dataset, Sample.id.alias('sample_id'), ExperimentType.name.alias('experiment_name')).join(Sample).switch(Dataset).join(ExperimentType)
 
     for dm in query.naive():
-        recordList[dm.sample_id][dm.experiment_name] = dm.release_status
+        if dm.sample_id in recordList:
+            recordList[dm.sample_id][dm.experiment_name] = dm.release_status
 
 
 def insertDonor():
@@ -159,16 +168,20 @@ def insertDataset():
 
 
 def getDonorProperties():
+    """Returns all information on available donor properties in a JSON document, ordered by id."""
+
     recordList = []
     query = DonorProperty.select()
     for p in query:
         recordList.append(p.toJson())
-    return json.dumps(recordList)
+    return json.dumps(recordList, indent=2, sort_keys=True)
 
 
 def getSampleProperties():
+    """Returns all information on available sample properties in a JSON document, ordered by id."""
+
     recordList = []
     query = SampleProperty.select()
     for p in query:
         recordList.append(p.toJson())
-    return json.dumps(recordList)
+    return json.dumps(recordList, indent=2, sort_keys=True)
