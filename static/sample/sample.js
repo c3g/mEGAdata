@@ -78,9 +78,11 @@ app.controller('SampleCtrl', function($scope, $http) {
             $scope.donorName = " for " + $scope.queryDict["donor"];
         }
         else if (Object.keys($scope.queryDict).length > 0) {
+            var params = [];
             for (var key in $scope.queryDict) {
-                url += "/" + key + "/" + $scope.queryDict[key];
+                params.push(key + "=" + $scope.queryDict[key]);
             }
+            url += "/metadata?" + params.join("&");
         }
 
 
