@@ -74,8 +74,13 @@ app.controller('SampleCtrl', function($scope, $http) {
     this.load = function() {
         var url = "/api/samples";
         if ("donor" in $scope.queryDict) {
-            url += "/" + $scope.queryDict["donor"];
+            url += "/donor/" + $scope.queryDict["donor"];
             $scope.donorName = " for " + $scope.queryDict["donor"];
+        }
+        else if (Object.keys($scope.queryDict).length > 0) {
+            for (var key in $scope.queryDict) {
+                url += "/" + key + "/" + $scope.queryDict[key];
+            }
         }
 
 

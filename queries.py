@@ -49,15 +49,21 @@ def getExperimentTypeList():
     return json.dumps(recordList)
 
 
-def getSampleList(donor):
-    """Returns list of samples in JSON format. If a donor object was provided, returns only samples that belong to that donor."""
+def getSampleList(donor=None, filter={}):
+    """Returns list of samples in JSON format. If a donor object was provided, returns only samples that belong to that donor.
+    Metadata can also be used to filter samples."""
 
     query = Sample.select(Sample, Donor).join(Donor)
-    
+
+    if len(filter) > 0:
+        for prop in filter:
+            sp = SampleProperty.select().where(SampleProperty.property == prop)
+            query = query.switch(Sample).join(SampleMetadata).where(SampleMetadata.sample_property == sp, SampleMetadata.value == filter[prop])
+
     #Refine based on donor
     if donor is not None:
         query = query.where(Donor.private_name == donor)
-    
+
     recordObj = {}
     for sample in query:
         sampleRecord = sample.toJson()
