@@ -106,6 +106,7 @@ class Dataset(BaseModel):
 class Run(BaseModel):
     id = peewee.IntegerField()
     dataset_id = peewee.IntegerField()
+    library_name = peewee.CharField()
     run = peewee.CharField()
     lane = peewee.CharField()
     EGA_EGAR = peewee.CharField()
