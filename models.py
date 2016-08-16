@@ -43,6 +43,7 @@ class DonorProperty(BaseModel):
 
 class DonorMetadata(BaseModel):
     id = peewee.IntegerField(primary_key=True)
+    donor_id = peewee.IntegerField()
     value = peewee.CharField()
 
     donor = peewee.ForeignKeyField(Donor)
@@ -75,6 +76,7 @@ class SampleProperty(BaseModel):
 
 class SampleMetadata(BaseModel):
     id = peewee.IntegerField(primary_key=True)
+    sample_id = peewee.IntegerField()
     value = peewee.CharField()
 
     sample = peewee.ForeignKeyField(Sample)
