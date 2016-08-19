@@ -120,7 +120,6 @@ class RunFile(BaseModel):
     id = peewee.IntegerField()
     run_id = peewee.IntegerField()
     name = peewee.CharField()
-    path = peewee.CharField()
     md5 = peewee.CharField()
     encrypted_md5 = peewee.CharField()
 
