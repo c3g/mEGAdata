@@ -105,6 +105,17 @@ CREATE TABLE `experiment_metadata_set` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
+DROP TABLE IF EXISTS `public_track`;
+CREATE TABLE `release_set` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dataset_id` int(11) NOT NULL,
+  `track_type` varchar(100) DEFAULT NULL,
+  `md5sum` varchar(32) DEFAULT NULL,
+  `url` varchar(1500) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
 DROP TABLE IF EXISTS `release_set`;
 CREATE TABLE `release_set` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
