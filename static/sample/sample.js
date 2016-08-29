@@ -244,8 +244,9 @@ app.controller('SampleCtrl', function($scope, $http) {
 	$scope.queryDict = {};
 
     //Extract GET parameters to a dictionary
-    location.search.substr(1).split("&").forEach(function(item) {$scope.queryDict[item.split("=")[0]] = item.split("=")[1];});
-
+    if (location.search !== "") {
+        location.search.substr(1).split("&").forEach(function(item) {$scope.queryDict[item.split("=")[0]] = item.split("=")[1];});
+    }
 
 	$scope.columns = [
 		{ data: 'public_name', title: 'Public Name', readOnly: true, readOnlyCellClassName:"roCell", width: 130 },
