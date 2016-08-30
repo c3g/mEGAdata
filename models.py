@@ -90,6 +90,7 @@ class ExperimentType(BaseModel):
     name  = peewee.CharField()
     internal_assay_short_name = peewee.CharField()
     ihec_name = peewee.CharField()
+    public_assay_short_name = peewee.CharField()
 
     class Meta:
         db_table = 'experiment_type'
