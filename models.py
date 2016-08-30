@@ -147,3 +147,17 @@ class DatasetToReleaseSet(BaseModel):
 
     class Meta:
         db_table = 'dataset_to_release_set'
+
+
+class PublicTrack(BaseModel):
+    id = peewee.IntegerField()
+    dataset_id = peewee.IntegerField()
+    assembly = peewee.CharField()
+    track_type = peewee.CharField()
+    md5sum = peewee.CharField()
+    url = peewee.CharField()
+
+    dataset = peewee.ForeignKeyField(Dataset)
+
+    class Meta:
+        db_table = 'public_track'
