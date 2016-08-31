@@ -104,6 +104,7 @@ class Dataset(BaseModel):
 
     sample = peewee.ForeignKeyField(Sample)
     experiment_type = peewee.ForeignKeyField(ExperimentType)
+    experiment_metadata_set = peewee.ForeignKeyField(ExperimentMetadataSet)
 
 
 class Run(BaseModel):
@@ -161,3 +162,24 @@ class PublicTrack(BaseModel):
 
     class Meta:
         db_table = 'public_track'
+
+
+class ExperimentMetadataSet(BaseModel):
+    id = peewee.IntegerField()
+    name = peewee.CharField()
+    version = peewee.CharField()
+
+    class Meta:
+        db_table = 'experiment_metadata_set'
+
+
+class ExperimentMetadata(BaseModel):
+    id = peewee.IntegerField()
+    experiment_metadata_set_id = peewee.IntegerField()
+    attribute = peewee.CharField()
+    value = peewee.CharField()
+
+    experiment_metadata_set = peewee.ForeignKeyField(ExperimentMetadataSet)
+
+    class Meta:
+        db_table = 'experiment_metadata'
