@@ -96,6 +96,27 @@ class ExperimentType(BaseModel):
         db_table = 'experiment_type'
 
 
+class ExperimentMetadataSet(BaseModel):
+    id = peewee.IntegerField()
+    name = peewee.CharField()
+    version = peewee.CharField()
+
+    class Meta:
+        db_table = 'experiment_metadata_set'
+
+
+class ExperimentMetadata(BaseModel):
+    id = peewee.IntegerField()
+    experiment_metadata_set_id = peewee.IntegerField()
+    attribute = peewee.CharField()
+    value = peewee.CharField()
+
+    experiment_metadata_set = peewee.ForeignKeyField(ExperimentMetadataSet)
+
+    class Meta:
+        db_table = 'experiment_metadata'
+
+
 class Dataset(BaseModel):
     id = peewee.IntegerField()
     sample_id = peewee.IntegerField()
@@ -162,24 +183,3 @@ class PublicTrack(BaseModel):
 
     class Meta:
         db_table = 'public_track'
-
-
-class ExperimentMetadataSet(BaseModel):
-    id = peewee.IntegerField()
-    name = peewee.CharField()
-    version = peewee.CharField()
-
-    class Meta:
-        db_table = 'experiment_metadata_set'
-
-
-class ExperimentMetadata(BaseModel):
-    id = peewee.IntegerField()
-    experiment_metadata_set_id = peewee.IntegerField()
-    attribute = peewee.CharField()
-    value = peewee.CharField()
-
-    experiment_metadata_set = peewee.ForeignKeyField(ExperimentMetadataSet)
-
-    class Meta:
-        db_table = 'experiment_metadata'
