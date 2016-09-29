@@ -60,6 +60,8 @@ class Sample(BaseModel):
     public_archive_id = peewee.CharField()
     # epirr_acc = peewee.CharField()
     # EGAN = peewee.CharField()
+    tissue_type = peewee.CharField()
+    cell_type = peewee.CharField()
 
     donor = peewee.ForeignKeyField(Donor)
 
