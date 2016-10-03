@@ -20,10 +20,6 @@ app.controller('SampleCtrl', function($scope, $http) {
 			cellProperties.readOnly = false;
 			return;
 		}
-		else if (value.slice(0,2) === "R_") {
-			td.style.backgroundColor = '#FF6666';
-			cellProperties.readOnly = true;
-		}
 		else if (value.charAt(0) === "R") {
 			td.style.color = 'green';
 			cellProperties.readOnly = true;
@@ -72,6 +68,8 @@ app.controller('SampleCtrl', function($scope, $http) {
 // Methods
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this.load = function() {
+
+
         var url = "/api/samples";
         if ("donor" in $scope.queryDict) {
             url += "/donor/" + $scope.queryDict["donor"];
@@ -94,6 +92,7 @@ app.controller('SampleCtrl', function($scope, $http) {
         //Fill the grid with all existing samples
         function drawGrid(result) {
             $scope.samples = result.data;
+
         }
     };
 
