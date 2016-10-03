@@ -68,7 +68,7 @@ app.controller('SampleCtrl', function($scope, $http) {
 // Methods
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this.load = function() {
-
+        document.body.style.cursor="wait";
 
         var url = "/api/samples";
         if ("donor" in $scope.queryDict) {
@@ -92,7 +92,7 @@ app.controller('SampleCtrl', function($scope, $http) {
         //Fill the grid with all existing samples
         function drawGrid(result) {
             $scope.samples = result.data;
-
+            document.body.style.cursor="default";
         }
     };
 
