@@ -3,12 +3,11 @@
 
 var app = angular.module('DonorApp', ['ngHandsontable']);
 app.controller('DonorCtrl', function($scope, $http) {
-    "use strict";
     var that = this;
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Handsontable Renderers
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Handsontable Renderers
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this.donorPrivateNameRenderer = function(instance, td, row, col, prop, value, cellProperties) {
         Handsontable.renderers.HtmlRenderer.apply(this, arguments);
         var rowData = $scope.donors[cellProperties.row];
@@ -35,9 +34,9 @@ app.controller('DonorCtrl', function($scope, $http) {
         }
     };
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Methods
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Methods
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this.load = function() {
         $http({
             method: 'GET',
@@ -50,26 +49,26 @@ app.controller('DonorCtrl', function($scope, $http) {
         }
     };
 
-	//Add a donor in the database
+    //Add a donor in the database
     this.save = function() {
-    	var data = $scope.donor;
+        var data = $scope.donor;
 
-    	$http.post('/api/donor', data)
-    		.success(function(data, status, headers, config) {
+        $http.post('/api/donor', data)
+            .then(function(data, status, headers, config) {
                 $scope.donor = {};
                 that.load();
-    		})
-        	.error(function(data, status, headers, config) {
-        		alert("Donor creation failed.");
-        	});
+            })
+            .catch(function(data, status, headers, config) {
+                alert("Donor creation failed.");
+            });
     };
 
     //Cancel button for both modal dialogs.
     this.cancel = function() {
-    	//Nothing to do!
+        //Nothing to do!
     };
 
-	//Add donor metadata in the database
+    //Add donor metadata in the database
     this.saveCell = function(change, source) {
         if (source === "loadData") {
             return;
@@ -91,9 +90,9 @@ app.controller('DonorCtrl', function($scope, $http) {
         }
     };
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Internal methods
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Internal methods
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this._addMetaColumns = function(result) {
         $scope.donorPropertiesList = result.data;
         for (var i in $scope.donorPropertiesList) {
@@ -118,10 +117,10 @@ app.controller('DonorCtrl', function($scope, $http) {
     };
 
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Constructor
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	$scope.donor = {};
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Constructor
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    $scope.donor = {};
     $scope.donors = [];
     $scope.speciesList = [];
     $scope.columns = [
@@ -135,20 +134,20 @@ app.controller('DonorCtrl', function($scope, $http) {
         onAfterChange: function(change, source) {that.saveCell(change, source);}
     };
 
-	//List of all existing species in database
-	$http({
-		method: 'GET',
-		url: '/api/species'
-	}).success(function (result) {
-		$scope.speciesList = result;
-	});
+    //List of all existing species in database
+    $http({
+        method: 'GET',
+        url: '/api/species'
+    }).then(function (result) {
+        $scope.speciesList = result;
+    });
 
-	//List of all existing species in database
-	$scope.donorPropertiesList = [];
-	$http({
-		method: 'GET',
-		url: '/api/donor_properties'
-	}).then(that._addMetaColumns);
+    //List of all existing species in database
+    $scope.donorPropertiesList = [];
+    $http({
+        method: 'GET',
+        url: '/api/donor_properties'
+    }).then(that._addMetaColumns);
 
     this.load();
 });
