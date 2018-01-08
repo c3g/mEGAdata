@@ -26,13 +26,14 @@
 
 <div data-ng-app="SampleApp" data-ng-controller="SampleCtrl as ctrl">
 
-  <p>
-    <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#addSampleModal">
-      <span class="glyphicon glyphicon-plus" style="color: green;"></span> Add Sample
+  <div class="container">
+    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addSampleModal">
+      <span class="glyphicon glyphicon-plus"></span> Add Sample
     </button>
-    &nbsp;&nbsp;&nbsp;
-    <button class="btn btn-sm" data-ng-click="ctrl.collapseMetadata();">Expand/Collapse Metadata</button>
-  </p>
+    <button class="btn btn-sm btn-default" data-ng-click="ctrl.collapseMetadata();">Expand/Collapse Metadata</button>
+  </div>
+
+  <br/>
 
   <hot-table
           col-headers="true"

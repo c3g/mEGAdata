@@ -21,11 +21,14 @@
 {% block body %}
 
 <div data-ng-app="DonorApp" data-ng-controller="DonorCtrl as ctrl">
-  <p>
-    <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#donorModal">
-      <span class="glyphicon glyphicon-plus" style="color: green;"></span> Add Donor
+
+  <div class="container">
+    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#donorModal">
+      <span class="glyphicon glyphicon-plus"></span> Add Donor
     </button>
-  </p>
+  </div>
+
+  <br/>
 
   <hot-table
           col-headers="true"
