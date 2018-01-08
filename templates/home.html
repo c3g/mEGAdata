@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+
+{% block head %}
+  <link rel="stylesheet" media="screen" href="/css/main.css">
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+  <div class="col-sm-3 text-center">
+    <a class="btn btn-lg btn-default" href="/donors">Donors</a>
+  </div>
+  <div class="col-sm-3 text-center">
+    <a class="btn btn-lg btn-default" href="/samples">Samples</a>
+  </div>
+  <div class="col-sm-3 text-center">
+    <a class="btn btn-lg btn-default" href="/users">Users</a>
+  </div>
+  <div class="col-sm-3 text-center">
+    <a class="btn btn-lg btn-default" href="/logout">
+      <i class="fa fa-sign-out"></i> Logout
+    </a>
+  </div>
+</div>
+{% endblock %}

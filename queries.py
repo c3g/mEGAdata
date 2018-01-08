@@ -6,8 +6,47 @@ from models import *
 import json
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# MySQL accession functions
+# User
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+def listUsers():
+    users = []
+    query = User.select()
+    for user in query:
+        users.append(user.toJson())
+    return json.dumps(users)
+
+def createUser():
+    body = request.get_json()
+
+    user = User(email=body['email'])
+    user.save()
+
+    return json.dumps(user.toJson())
+
+def updateUser():
+    body = request.get_json()
+
+    user = User.get(User.id == body['id'])
+    user.name = body['name']
+    user.email = body['email']
+    user.save()
+
+    return json.dumps(user.toJson())
+
+def deleteUser():
+    body = request.get_json()
+
+    user = User.get(User.id == body['id'])
+    user.delete_instance()
+
+    return json.dumps({ 'ok': True })
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Other
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 def getSpeciesList():
     """Returns all information on species in a JSON document."""
 
@@ -20,11 +59,11 @@ def getSpeciesList():
 
 def getDonorList(pFilter=None):
     recordObj = {}
-    
+
     query = Donor.select()
     if pFilter:
         query = query.where(Donor.private_name.contains(pFilter))
-    
+
     for donor in query:
         recordObj[donor.id] = donor.toJson()
 
@@ -67,14 +106,14 @@ def getSampleList(donor=None, filter={}):
     recordObj = {}
     for sample in query:
         sampleRecord = sample.toJson()
-        
+
         sampleRecord['id'] = sample.id
-        
+
         datasetList = {}
         query2 = Dataset.select(Dataset, ExperimentType, Sample).join(ExperimentType).switch(Dataset).join(Sample).where(Sample.id == sample.id)
         for dataset in query2:
             datasetList[dataset.experiment_type.name] = dataset.release_status
-        
+
         sampleRecord['datasets'] = datasetList
         recordObj[sample.id] = sample.toJson()
 
@@ -112,7 +151,7 @@ def insertDonor():
         phenotype = dataJson.get("phenotype"),
         is_pool = dataJson.get("is_pool"),
     )
-      
+
     donor = Donor.select().order_by(Donor.id.desc()).get()
     return json.dumps(donor.toJson())
 
@@ -133,15 +172,15 @@ def insertDonorMetadata():
 def insertSample():
     dataJson = request.get_json()
     d = Donor.get(id=dataJson.get("donor_id"))
-    
+
     p = dataJson.get('project') or {}
-    
+
     Sample.create(
         public_name = dataJson.get('public_name'),
         private_name = dataJson.get('private_name'),
         donor = d
     )
-     
+
     sample = Sample.select().order_by(Sample.id.desc()).get()
     return json.dumps(sample.toJson())
 
@@ -162,13 +201,13 @@ def insertDataset():
     dataJson = request.get_json()
     s = Sample.get(id=dataJson.get("sample_id"))
     et = ExperimentType.get(name=dataJson.get("experiment_type"))
-     
+
     Dataset.create(
         sample = s,
         experiment_type = et,
-        release_status = "P"   
+        release_status = "P"
     )
-     
+
     dataset = Dataset.select().order_by(Dataset.id.desc()).get()
     return json.dumps(dataset.toJson())
 

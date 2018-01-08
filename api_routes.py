@@ -17,6 +17,32 @@ def route_api_dataset_add():
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Users
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+@app.route("/api/user/list", methods=['GET'])
+@login_required
+def route_api_user_list():
+    return Response(listUsers(), mimetype='application/json')
+
+@app.route("/api/user/create", methods=['POST'])
+@login_required
+def route_api_user_create():
+    return Response(createUser(), mimetype='application/json')
+
+
+@app.route("/api/user/update", methods=['POST'])
+@login_required
+def route_api_user_update():
+    return Response(updateUser(), mimetype='application/json')
+
+
+@app.route("/api/user/delete", methods=['POST'])
+@login_required
+def route_api_user_delete():
+    return Response(deleteUser(), mimetype='application/json')
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Donor
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 @app.route("/api/donors", methods=['GET'])

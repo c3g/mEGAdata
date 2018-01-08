@@ -32,7 +32,22 @@ def index():
 @app.route('/home')
 @login_required
 def home():
-    return app.send_static_file("index.html")
+    return render_template('home.html', title='Home')
+
+@app.route('/users')
+@login_required
+def users():
+    return render_template('users.html', title='Users')
+
+@app.route('/donors')
+@login_required
+def donors():
+    return render_template('donors.html', title='Users')
+
+@app.route('/samples')
+@login_required
+def samples():
+    return render_template('samples.html', title='Users')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

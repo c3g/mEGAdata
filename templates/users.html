@@ -1,0 +1,49 @@
+{% extends "_base.html" %}
+
+{% block head %}
+  <script src="/dist/js/users.js"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Users</div>
+    <div class="panel-body">
+
+      <div class="row">
+        <div class="col-sm-12">
+          Manage users here
+        </div><!-- /.col-lg-6 -->
+      </div><!-- /.row -->
+
+      <br/>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="input-group">
+            <input type="text" class="form-control js-user-email" placeholder="email@example.com">
+            <span class="input-group-btn">
+              <button class="btn btn-primary js-user-create" type="button">Add</button>
+            </span>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+      </div><!-- /.row -->
+
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="js-users"></tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

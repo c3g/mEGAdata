@@ -1,21 +1,23 @@
-body {
-	padding-left: 10px;
+
+html, body {
+  margin: 0;
+  padding: 0;
 }
+
 
 .roCell {
-	color: black;
-	background-color: #F5F5F5 !important;
+  color: black;
+  background-color: #F5F5F5 !important;
 }
 
-
 .angucomplete_highlight {
-	color: red;
+  color: red;
 }
 
 .metadata_cell {
-	background-color: rgba(204, 224, 235, 0.58) !important;
+  background-color: rgba(204, 224, 235, 0.58) !important;
 }
 
 .dataset_release_cell {
-	/*background-color: rgba(150, 235, 0, 0.27) !important;*/
+  /*background-color: rgba(150, 235, 0, 0.27) !important;*/
 }
