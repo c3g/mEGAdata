@@ -101,12 +101,12 @@ app.controller('SampleCtrl', function($scope, $http) {
         var data = $scope.sample;
 
         $http.post('/api/sample', data)
-            .success(function(data, status, headers, config) {
+            .then(function(response) {
                 alert("Success.");
                 $scope.sample = {};
                 that.load();
             })
-            .error(function(data, status, headers, config) {
+            .catch(function(err) {
                 alert("Sample creation failed.");
             });
     };
@@ -179,10 +179,10 @@ app.controller('SampleCtrl', function($scope, $http) {
             };
 
             $http.post('/api/dataset', data)
-                .success(function(data, status, headers, config) {
+                .then(function(response) {
                     that.load();
                 })
-                .error(function(data, status, headers, config) {
+                .catch(function(err) {
                     alert("Dataset modification failed.");
                 });
         }
