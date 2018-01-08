@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 from app import app, db
-#from flask.ext.stormpath import login_required, groups_required
 import requests
 from flask import Response
 import jmespath

@@ -1,6 +1,5 @@
 #!/usr/bin/python
 from app import app
-# from flask.ext.stormpath import login_required, groups_required
 import requests
 from flask import Response
 from queries import *
