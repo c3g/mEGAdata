@@ -1,5 +1,13 @@
 SET foreign_key_checks=0;
 
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `dataset`;
 CREATE TABLE `dataset` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '		',
