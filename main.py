@@ -4,7 +4,7 @@ from __future__ import print_function
 import os
 import requests
 import jmespath
-from flask import redirect, url_for, flash, Response, render_template
+from flask import Response, redirect, url_for, flash, render_template
 from flask.ext.login import LoginManager, login_user, logout_user, current_user, login_required
 
 # Local imports
@@ -14,6 +14,9 @@ from queries import *
 from models import User
 import api_routes
 
+#===============================================================================
+# Setup
+#===============================================================================
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -22,11 +25,15 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.get(User.id==user_id)
 
+
 #===============================================================================
 # Application routes
 #===============================================================================
+
 @app.route('/')
 def index():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     return render_template('login.html', title='Sign In')
 
 @app.route('/home')
