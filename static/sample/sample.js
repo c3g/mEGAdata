@@ -20,10 +20,6 @@ app.controller('SampleCtrl', function($scope, $http) {
 			cellProperties.readOnly = false;
 			return;
 		}
-		else if (value.slice(0,2) === "R_") {
-			td.style.backgroundColor = '#FF6666';
-			cellProperties.readOnly = true;
-		}
 		else if (value.charAt(0) === "R") {
 			td.style.color = 'green';
 			cellProperties.readOnly = true;
@@ -72,10 +68,19 @@ app.controller('SampleCtrl', function($scope, $http) {
 // Methods
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this.load = function() {
+        document.body.style.cursor="wait";
+
         var url = "/api/samples";
         if ("donor" in $scope.queryDict) {
-            url += "/" + $scope.queryDict["donor"];
+            url += "/donor/" + $scope.queryDict["donor"];
             $scope.donorName = " for " + $scope.queryDict["donor"];
+        }
+        else if (Object.keys($scope.queryDict).length > 0) {
+            var params = [];
+            for (var key in $scope.queryDict) {
+                params.push(key + "=" + $scope.queryDict[key]);
+            }
+            url += "/metadata?" + params.join("&");
         }
 
 
@@ -87,6 +92,7 @@ app.controller('SampleCtrl', function($scope, $http) {
         //Fill the grid with all existing samples
         function drawGrid(result) {
             $scope.samples = result.data;
+            document.body.style.cursor="default";
         }
     };
 
@@ -237,8 +243,9 @@ app.controller('SampleCtrl', function($scope, $http) {
 	$scope.queryDict = {};
 
     //Extract GET parameters to a dictionary
-    location.search.substr(1).split("&").forEach(function(item) {$scope.queryDict[item.split("=")[0]] = item.split("=")[1];});
-
+    if (location.search !== "") {
+        location.search.substr(1).split("&").forEach(function(item) {$scope.queryDict[item.split("=")[0]] = item.split("=")[1];});
+    }
 
 	$scope.columns = [
 		{ data: 'public_name', title: 'Public Name', readOnly: true, readOnlyCellClassName:"roCell", width: 130 },

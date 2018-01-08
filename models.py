@@ -43,6 +43,7 @@ class DonorProperty(BaseModel):
 
 class DonorMetadata(BaseModel):
     id = peewee.IntegerField(primary_key=True)
+    donor_id = peewee.IntegerField()
     value = peewee.CharField()
 
     donor = peewee.ForeignKeyField(Donor)
@@ -59,6 +60,8 @@ class Sample(BaseModel):
     public_archive_id = peewee.CharField()
     # epirr_acc = peewee.CharField()
     # EGAN = peewee.CharField()
+    tissue_type = peewee.CharField()
+    cell_type = peewee.CharField()
 
     donor = peewee.ForeignKeyField(Donor)
 
@@ -75,6 +78,7 @@ class SampleProperty(BaseModel):
 
 class SampleMetadata(BaseModel):
     id = peewee.IntegerField(primary_key=True)
+    sample_id = peewee.IntegerField()
     value = peewee.CharField()
 
     sample = peewee.ForeignKeyField(Sample)
@@ -88,9 +92,31 @@ class ExperimentType(BaseModel):
     name  = peewee.CharField()
     internal_assay_short_name = peewee.CharField()
     ihec_name = peewee.CharField()
+    public_assay_short_name = peewee.CharField()
 
     class Meta:
         db_table = 'experiment_type'
+
+
+class ExperimentMetadataSet(BaseModel):
+    id = peewee.IntegerField()
+    name = peewee.CharField()
+    version = peewee.CharField()
+
+    class Meta:
+        db_table = 'experiment_metadata_set'
+
+
+class ExperimentMetadata(BaseModel):
+    id = peewee.IntegerField()
+    experiment_metadata_set_id = peewee.IntegerField()
+    attribute = peewee.CharField()
+    value = peewee.CharField()
+
+    experiment_metadata_set = peewee.ForeignKeyField(ExperimentMetadataSet)
+
+    class Meta:
+        db_table = 'experiment_metadata'
 
 
 class Dataset(BaseModel):
@@ -101,11 +127,13 @@ class Dataset(BaseModel):
 
     sample = peewee.ForeignKeyField(Sample)
     experiment_type = peewee.ForeignKeyField(ExperimentType)
+    experiment_metadata_set = peewee.ForeignKeyField(ExperimentMetadataSet)
 
 
 class Run(BaseModel):
     id = peewee.IntegerField()
     dataset_id = peewee.IntegerField()
+    library_name = peewee.CharField()
     run = peewee.CharField()
     lane = peewee.CharField()
     EGA_EGAR = peewee.CharField()
@@ -117,7 +145,6 @@ class RunFile(BaseModel):
     id = peewee.IntegerField()
     run_id = peewee.IntegerField()
     name = peewee.CharField()
-    path = peewee.CharField()
     md5 = peewee.CharField()
     encrypted_md5 = peewee.CharField()
 
@@ -144,3 +171,17 @@ class DatasetToReleaseSet(BaseModel):
 
     class Meta:
         db_table = 'dataset_to_release_set'
+
+
+class PublicTrack(BaseModel):
+    id = peewee.IntegerField()
+    dataset_id = peewee.IntegerField()
+    assembly = peewee.CharField()
+    track_type = peewee.CharField()
+    md5sum = peewee.CharField()
+    url = peewee.CharField()
+
+    dataset = peewee.ForeignKeyField(Dataset)
+
+    class Meta:
+        db_table = 'public_track'

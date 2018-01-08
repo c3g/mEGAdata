@@ -58,10 +58,16 @@ def route_json_experimentList():
 # Sample
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 @app.route("/api/samples", methods=['GET'])
-@app.route("/api/samples/<donor>")
+@app.route("/api/samples/donor/<string:donor>", methods=['GET'])
 # @login_required
 def route_json_sampleList(donor=None):
-    return Response(getSampleList(donor), mimetype='application/json')
+    return Response(getSampleList(donor=donor), mimetype='application/json')
+
+
+@app.route("/api/samples/metadata", methods=['GET'])
+# @login_required
+def route_json_sampleList_metadata_filter():
+    return Response(getSampleList(filter=request.args), mimetype='application/json')
 
 
 @app.route("/api/sample_properties", methods=['GET'])
