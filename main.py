@@ -56,6 +56,11 @@ def donors():
 def samples():
     return render_template('samples.html', title='Samples')
 
+@app.route('/import')
+@login_required
+def import_data_hub():
+    return render_template('import.html', title='Import Data Hub')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     return render_template('login.html', title='Sign In')

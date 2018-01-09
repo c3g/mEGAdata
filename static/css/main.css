@@ -4,6 +4,33 @@ html, body {
   padding: 0;
 }
 
+/*
+ * Bootstrap corrections
+ */
+
+.alert .table {
+  margin-bottom: 0;
+}
+.alert .table td,
+.alert .table th {
+  border-top: none;
+}
+
+.table-small {
+  margin-left: 12px;
+}
+.table-small th,
+.table-small td {
+  padding: 2px 5px;
+}
+
+/*
+ * Other
+ */
+
+.home-container a {
+  width: 100%;
+}
 
 .roCell {
   color: black;
