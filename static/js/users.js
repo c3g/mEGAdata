@@ -3,6 +3,12 @@
  */
 /* global $, axios */
 
+import {
+  fetchUserList,
+  createUser,
+  updateUser,
+  deleteUser
+} from './requests'
 
 $(function() {
 
@@ -53,24 +59,3 @@ $(function() {
     })
   }
 })
-
-function fetchUserList() {
-  return get('/user/list')
-}
-function createUser(email) {
-  return post('/user/create', { email })
-}
-function updateUser(user) {
-  return post('/user/update', user)
-}
-function deleteUser(id) {
-  return post('/user/delete', { id })
-}
-
-
-function fetchAPI(method, route, data) {
-  return axios[method]('/api' + route, data)
-    .then(result => result.data)
-}
-function get(route, data)  { return fetchAPI('get',  route, data) }
-function post(route, data) { return fetchAPI('post', route, data) }
