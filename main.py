@@ -49,12 +49,12 @@ def users():
 @app.route('/donors')
 @login_required
 def donors():
-    return render_template('donors.html', title='Users')
+    return render_template('donors.html', title='Donors')
 
 @app.route('/samples')
 @login_required
 def samples():
-    return render_template('samples.html', title='Users')
+    return render_template('samples.html', title='Samples')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
