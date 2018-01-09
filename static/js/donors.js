@@ -15,7 +15,7 @@ app.controller('DonorCtrl', function($scope, $http) {
             td.style.backgroundColor = '#CCE0EB';
         }
         if (value !== null) {
-            td.innerHTML = "<a target='_blank' href='/sample/sample.html?donor=" + value + "'>" + value + "</a>";
+            td.innerHTML = "<a target='_blank' href='/samples?donor=" + value + "'>" + value + "</a>";
         }
     };
 
