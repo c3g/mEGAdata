@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import requests
-from flask import Response
+from flask import Response, request
 from flask.ext.login import login_required
 
 from app import app
@@ -31,19 +31,19 @@ def route_api_user_list():
 @app.route("/api/user/create", methods=['POST'])
 @login_required
 def route_api_user_create():
-    return JSONResponse(createUser())
+    return JSONResponse(createUser(request.get_json()))
 
 
 @app.route("/api/user/update", methods=['POST'])
 @login_required
 def route_api_user_update():
-    return JSONResponse(updateUser())
+    return JSONResponse(updateUser(request.get_json()))
 
 
 @app.route("/api/user/delete", methods=['POST'])
 @login_required
 def route_api_user_delete():
-    return JSONResponse(deleteUser())
+    return JSONResponse(deleteUser(request.get_json()))
 
 
 #==============================================================================
@@ -63,20 +63,29 @@ def route_api_get_donors(filter=None):
 @app.route("/api/donor_properties", methods=['GET'])
 @login_required
 def route_api_get_donor_properties(filter=None):
-    """Returns all properties that can be specified for a donor."""
+    """
+    Returns all properties that can be specified for a donor.
+    """
     return JSONResponse(getDonorProperties())
 
+@app.route("/api/donors", methods=['POST'])
+@login_required
+def route_api_post_donors():
+    """
+    Insert multiple donors
+    """
+    return JSONResponse(getDonorList(filter))
 
 @app.route("/api/donor", methods=['POST'])
 @login_required
 def route_api_donor_add():
-    return JSONResponse(insertDonor())
+    return JSONResponse(insertDonor(request.get_json()))
 
 
 @app.route("/api/donor_metadata", methods=['POST'])
 @login_required
 def route_api_donor_metadata_add():
-    return JSONResponse(insertDonorMetadata())
+    return JSONResponse(insertDonorMetadata(request.get_json()))
 
 
 #==============================================================================
@@ -118,13 +127,13 @@ def route_api_get_sample_properties(filter=None):
 @app.route("/api/sample", methods=['POST'])
 @login_required
 def route_api_sample_add():
-    return JSONResponse(insertSample())
+    return JSONResponse(insertSample(request.get_json()))
 
 
 @app.route("/api/sample_metadata", methods=['POST'])
 @login_required
 def route_api_sample_metadata_add():
-    return JSONResponse(insertSampleMetadata())
+    return JSONResponse(insertSampleMetadata(request.get_json()))
 
 
 

@@ -1,9 +1,7 @@
 #!/usr/bin/python
 
-#Peewee
-from flask import request
-from models import *
 import json
+from models import *
 
 #==============================================================================~
 # User
@@ -16,17 +14,13 @@ def listUsers():
         users.append(user.toJSON())
     return users
 
-def createUser():
-    body = request.get_json()
-
+def createUser(body):
     user = User(email=body['email'])
     user.save()
 
     return user.toJSON()
 
-def updateUser():
-    body = request.get_json()
-
+def updateUser(body):
     user = User.get(User.id == body['id'])
     user.name = body['name']
     user.email = body['email']
@@ -34,9 +28,7 @@ def updateUser():
 
     return user.toJSON()
 
-def deleteUser():
-    body = request.get_json()
-
+def deleteUser(body):
     user = User.get(User.id == body['id'])
     user.delete_instance()
 
@@ -147,8 +139,7 @@ def appendSamplesDatasets(recordList):
             recordList[dm.sample_id][dm.experiment_name] = dm.release_status
 
 
-def insertDonor():
-    dataJson = request.get_json()
+def insertDonor(dataJson):
     Donor.create(
         public_name = dataJson.get('public_name'),
         private_name = dataJson.get('private_name'),
@@ -161,8 +152,7 @@ def insertDonor():
     return donor.toJSON()
 
 
-def insertDonorMetadata():
-    dataJson = request.get_json()
+def insertDonorMetadata(dataJson):
     dm = DonorMetadata()
     dm.donor = Donor.get(id=dataJson.get('donor_id'))
     dm.donor_property = DonorProperty.select().where(DonorProperty.property == dataJson.get('field'))
@@ -174,8 +164,7 @@ def insertDonorMetadata():
 
 
 
-def insertSample():
-    dataJson = request.get_json()
+def insertSample(dataJson):
     d = Donor.get(id=dataJson.get("donor_id"))
 
     p = dataJson.get('project') or {}
@@ -191,8 +180,7 @@ def insertSample():
 
 
 
-def insertSampleMetadata():
-    dataJson = request.get_json()
+def insertSampleMetadata(dataJson):
     dm = SampleMetadata()
     dm.sample = Sample.get(id=dataJson.get('sample_id'))
     dm.sample_property = SampleProperty.select().where(SampleProperty.property == dataJson.get('field'))
@@ -202,8 +190,7 @@ def insertSampleMetadata():
 
 
 
-def insertDataset():
-    dataJson = request.get_json()
+def insertDataset(dataJson):
     s = Sample.get(id=dataJson.get("sample_id"))
     et = ExperimentType.get(name=dataJson.get("experiment_type"))
 
