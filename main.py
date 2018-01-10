@@ -10,9 +10,9 @@ from flask.ext.login import LoginManager, login_user, logout_user, current_user,
 # Local imports
 from app import app, db
 from auth import OAuthSignIn
-from queries import *
 from models import User
 import api_routes
+
 
 #===============================================================================
 # Setup
@@ -79,6 +79,7 @@ def plain_html(path):
 #===============================================================================
 # OAuth routes
 #===============================================================================
+
 @app.route('/authorize/<provider>')
 def oauth_authorize(provider):
     if not current_user.is_anonymous:
@@ -128,4 +129,6 @@ def oauth_callback(provider):
 
 
 if __name__ == "__main__":
-    app.run(debug=app.config["APPLICATION_DEBUG_MODE"], port=app.config["APPLICATION_PORT"], host=app.config["APPLICATION_HOST"])
+    app.run(debug=app.config["APPLICATION_DEBUG_MODE"],
+            port=app.config["APPLICATION_PORT"],
+            host=app.config["APPLICATION_HOST"])
