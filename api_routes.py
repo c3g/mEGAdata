@@ -16,7 +16,20 @@ def JSONResponse(value):
 @app.route("/api/dataset", methods=['POST'])
 @login_required
 def route_api_dataset_add():
-    return JSONResponse(insertDataset())
+    dataset = request.get_json()
+    insertedDataset = insertDataset(dataset)
+
+    if dataset.has_key('metadata'):
+        metadata = dataset['metadata']
+        for field in metadata.keys():
+            value = metadata[field]
+            insertExperimentMetadata({
+                'dataset_id': insertedDataset['id'],
+                'field': field,
+                'value': value
+            })
+
+    return JSONResponse(insertedDataset)
 
 
 #==============================================================================
