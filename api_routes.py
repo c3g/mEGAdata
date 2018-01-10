@@ -8,7 +8,6 @@ from app import app
 from queries import *
 
 def JSONResponse(value):
-    print value
     return Response(json.dumps(value), mimetype='application/json')
 
 # API Functions decorator. Also adds @login_required
