@@ -47,17 +47,14 @@ $(() => {
   const $progress = $('.js-progress')
   const $result = $('.js-result')
 
-  $report.hide()
-  $progress.hide()
-  $result.hide()
-  $import.attr('disabled', true)
+  $file.on('click', onClickFile)
+  $import.on('click', onClickImport)
 
-  $file.on('click', (ev) => {
-    openFile()
-    .then(file => {
-      $report.hide()
-      $progress.hide()
-      $import.attr('disabled', true)
+  reset()
+
+  function onClickFile() {
+    openFile().then(file => {
+      reset()
       $fileName.text(file.name)
 
       readFileAsText(file)
@@ -149,9 +146,9 @@ $(() => {
         $import.removeAttr('disabled')
       })
     })
-  })
+  }
 
-  $import.on('click', () => {
+  function onClickImport() {
 
     $import.attr('disabled', true)
 
@@ -179,8 +176,14 @@ $(() => {
         `There were some errors while importing the data hub:<br/>${renderResults(results)}`
       )
     })
-  })
+  }
 
+  function reset() {
+    $report.hide()
+    $progress.hide()
+    $result.hide()
+    $import.attr('disabled', true)
+  }
 
   function setReport(level, icon, message) {
     $report.removeClass(`alert-primary alert-success alert-info alert-warning alert-danger`)

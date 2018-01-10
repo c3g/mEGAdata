@@ -3,7 +3,7 @@
  */
 
 
-export function fetchUserList() {
+export function fetchUsers() {
   return get('/user/list')
 }
 export function createUser(email) {
@@ -20,10 +20,16 @@ export function fetchExperimentTypes() {
   return get('/experiment_types')
 }
 
+export function fetchDonors() {
+  return get('/donors')
+}
 export function createDonor(donor) {
   return post('/donor', donor)
 }
 
+export function fetchSamples() {
+  return get('/samples')
+}
 export function createSample(sample) {
   return post('/sample', sample)
 }

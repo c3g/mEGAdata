@@ -4,7 +4,7 @@
 /* global $, axios */
 
 import {
-  fetchUserList,
+  fetchUsers,
   createUser,
   updateUser,
   deleteUser
@@ -32,7 +32,7 @@ $(function() {
   updateUsers()
 
   function updateUsers() {
-    return fetchUserList().then(renderUsers)
+    return fetchUsers().then(renderUsers)
   }
 
   function renderUsers(users) {
