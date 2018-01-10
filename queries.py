@@ -155,10 +155,27 @@ def insertDonor(dataJson):
 def insertDonorMetadata(dataJson):
     dm = DonorMetadata()
     dm.donor = Donor.get(id=dataJson.get('donor_id'))
-    dm.donor_property = DonorProperty.select().where(DonorProperty.property == dataJson.get('field'))
+    try:
+        dm.donor_property = DonorProperty.get(DonorProperty.property == dataJson.get('field'))
+    except:
+        insertDonorProperty({
+            'property': dataJson.get('field'),
+            'type': 'text',
+            'is_exported_to_ega': False,
+        })
+        dm.donor_property = DonorProperty.get(DonorProperty.property == dataJson.get('field'))
     dm.value = dataJson.get('value')
     DonorMetadata.save(dm)
     return {}
+
+
+def insertDonorProperty(dataJson):
+    p = DonorProperty()
+    p.property = dataJson.get('property')
+    p.type = dataJson.get('type')
+    p.is_exported_to_ega = dataJson.get('is_exported_to_ega')
+    DonorProperty.save(p)
+    return p.toJSON()
 
 
 
@@ -179,14 +196,32 @@ def insertSample(dataJson):
     return sample.toJSON()
 
 
-
 def insertSampleMetadata(dataJson):
     dm = SampleMetadata()
     dm.sample = Sample.get(id=dataJson.get('sample_id'))
-    dm.sample_property = SampleProperty.select().where(SampleProperty.property == dataJson.get('field'))
+    try:
+        dm.sample_property = SampleProperty.get(SampleProperty.property == dataJson.get('field'))
+    except:
+        insertSampleProperty({
+            'property': dataJson.get('field'),
+            'type': 'text',
+            'is_exported_to_ega': False,
+        })
+        dm.sample_property = SampleProperty.get(SampleProperty.property == dataJson.get('field'))
     dm.value = dataJson.get('value')
     SampleMetadata.save(dm)
     return {}
+
+
+def insertSampleProperty(dataJson):
+    p = SampleProperty()
+    p.property = dataJson.get('property')
+    p.type = dataJson.get('type')
+    p.is_exported_to_ega = dataJson.get('is_exported_to_ega')
+    SampleProperty.save(p)
+    return p.toJSON()
+
+
 
 
 
@@ -202,6 +237,32 @@ def insertDataset(dataJson):
 
     dataset = Dataset.select().order_by(Dataset.id.desc()).get()
     return dataset.toJSON()
+
+def insertExperimentMetadata(dataJson):
+    dm = ExperimentMetadata()
+    dm.dataset = Dataset.get(id=dataJson.get('dataset_id'))
+    try:
+        dm.experiment_property = ExperimentProperty.get(ExperimentProperty.property == dataJson.get('field'))
+    except:
+        insertExperimentProperty({
+            'property': dataJson.get('field'),
+            'type': 'text',
+            'is_exported_to_ega': False,
+        })
+        dm.experiment_property = ExperimentProperty.get(ExperimentProperty.property == dataJson.get('field'))
+    dm.value = dataJson.get('value')
+    ExperimentMetadata.save(dm)
+    return {}
+
+def insertExperimentProperty(dataJson):
+    p = ExperimentProperty()
+    p.property = dataJson.get('property')
+    p.type = dataJson.get('type')
+    p.is_exported_to_ega = dataJson.get('is_exported_to_ega')
+    ExperimentProperty.save(p)
+    return p.toJSON()
+
+
 
 
 def getDonorProperties():
