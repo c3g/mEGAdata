@@ -232,7 +232,7 @@ def insertDataset(dataJson):
     Dataset.create(
         sample = s,
         experiment_type = et,
-        release_status = "P"
+        release_status = dataJson.get("release_status") if dataJson.get("release_status") != None else "P"
     )
 
     dataset = Dataset.select().order_by(Dataset.id.desc()).get()

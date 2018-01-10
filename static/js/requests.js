@@ -16,6 +16,9 @@ export function deleteUser(id) {
   return post('/user/delete', { id })
 }
 
+export function fetchExperimentTypes() {
+  return get('/experiment_types')
+}
 
 export function createDonor(donor) {
   return post('/donor', donor)
@@ -23,6 +26,10 @@ export function createDonor(donor) {
 
 export function createSample(sample) {
   return post('/sample', sample)
+}
+
+export function createDataset(dataset) {
+  return post('/dataset', dataset)
 }
 
 
