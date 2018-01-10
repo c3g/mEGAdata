@@ -133,7 +133,20 @@ def route_api_get_sample_properties(filter=None):
 @app.route("/api/sample", methods=['POST'])
 @login_required
 def route_api_sample_add():
-    return JSONResponse(insertSample(request.get_json()))
+    sample = request.get_json()
+    insertedSample = insertSample(sample)
+
+    if sample.has_key('metadata'):
+        metadata = sample['metadata']
+        for field in metadata.keys():
+            value = metadata[field]
+            insertSampleMetadata({
+                'sample_id': insertedSample['id'],
+                'field': field,
+                'value': value
+            })
+
+    return JSONResponse(insertedSample)
 
 
 @app.route("/api/sample_metadata", methods=['POST'])
