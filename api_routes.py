@@ -68,24 +68,30 @@ def route_api_get_donor_properties(filter=None):
     """
     return JSONResponse(getDonorProperties())
 
-@app.route("/api/donors", methods=['POST'])
-@login_required
-def route_api_post_donors():
-    """
-    Insert multiple donors
-    """
-    return JSONResponse(getDonorList(filter))
-
 @app.route("/api/donor", methods=['POST'])
 @login_required
 def route_api_donor_add():
-    return JSONResponse(insertDonor(request.get_json()))
+    donor = request.get_json()
+    insertedDonor = insertDonor(donor)
+
+    if donor.has_key('metadata'):
+        metadata = donor['metadata']
+        for field in metadata.keys():
+            value = metadata[field]
+            insertDonorMetadata({
+                'donor_id': insertedDonor['id'],
+                'field': field,
+                'value': value
+            })
+
+    return JSONResponse(insertedDonor)
 
 
 @app.route("/api/donor_metadata", methods=['POST'])
 @login_required
 def route_api_donor_metadata_add():
     return JSONResponse(insertDonorMetadata(request.get_json()))
+
 
 
 #==============================================================================
