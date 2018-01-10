@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import requests
+from functools import wraps
 from flask import Response, request
 from flask.ext.login import login_required
 
@@ -7,14 +8,27 @@ from app import app
 from queries import *
 
 def JSONResponse(value):
+    print value
     return Response(json.dumps(value), mimetype='application/json')
+
+# API Functions decorator. Also adds @login_required
+# Makes all functions return { ok: true|false, ... }
+def api_function(fn):
+    @wraps(fn)
+    def fn_wrapped(*args, **kwargs):
+        try:
+            return JSONResponse({ 'ok': True, 'data': fn(*args, **kwargs) })
+        except Exception as e:
+            return JSONResponse({ 'ok': False, 'message': str(e) })
+    return login_required(fn_wrapped)
+
 
 #==============================================================================
 # Dataset
 #==============================================================================
 
 @app.route("/api/dataset", methods=['POST'])
-@login_required
+@api_function
 def route_api_dataset_add():
     dataset = request.get_json()
     insertedDataset = insertDataset(dataset)
@@ -29,7 +43,7 @@ def route_api_dataset_add():
                 'value': value
             })
 
-    return JSONResponse(insertedDataset)
+    return insertedDataset
 
 
 #==============================================================================
@@ -37,26 +51,28 @@ def route_api_dataset_add():
 #==============================================================================
 
 @app.route("/api/user/list", methods=['GET'])
-@login_required
+@api_function
 def route_api_user_list():
-    return JSONResponse(listUsers())
+    return listUsers()
+
 
 @app.route("/api/user/create", methods=['POST'])
-@login_required
+@api_function
 def route_api_user_create():
-    return JSONResponse(createUser(request.get_json()))
+    return createUser(request.get_json())
 
 
 @app.route("/api/user/update", methods=['POST'])
-@login_required
+@api_function
+@api_function
 def route_api_user_update():
-    return JSONResponse(updateUser(request.get_json()))
+    return updateUser(request.get_json())
 
 
 @app.route("/api/user/delete", methods=['POST'])
-@login_required
+@api_function
 def route_api_user_delete():
-    return JSONResponse(deleteUser(request.get_json()))
+    return deleteUser(request.get_json())
 
 
 #==============================================================================
@@ -65,24 +81,24 @@ def route_api_user_delete():
 
 @app.route("/api/donors", methods=['GET'])
 @app.route("/api/donors/<string:filter>", methods=['GET'])
-@login_required
+@api_function
 def route_api_get_donors(filter=None):
     """
     Returns all registered donors. If a filter string is provided, returns filtered list of registered donors.
     """
-    return JSONResponse(getDonorList(filter))
+    return getDonorList(filter)
 
 
 @app.route("/api/donor_properties", methods=['GET'])
-@login_required
+@api_function
 def route_api_get_donor_properties(filter=None):
     """
     Returns all properties that can be specified for a donor.
     """
-    return JSONResponse(getDonorProperties())
+    return getDonorProperties()
 
 @app.route("/api/donor", methods=['POST'])
-@login_required
+@api_function
 def route_api_donor_add():
     donor = request.get_json()
     insertedDonor = insertDonor(donor)
@@ -97,13 +113,13 @@ def route_api_donor_add():
                 'value': value
             })
 
-    return JSONResponse(insertedDonor)
+    return insertedDonor
 
 
 @app.route("/api/donor_metadata", methods=['POST'])
-@login_required
+@api_function
 def route_api_donor_metadata_add():
-    return JSONResponse(insertDonorMetadata(request.get_json()))
+    return insertDonorMetadata(request.get_json())
 
 
 
@@ -112,9 +128,9 @@ def route_api_donor_metadata_add():
 #==============================================================================
 
 @app.route("/api/experiment_types")
-@login_required
+@api_function
 def route_json_experimentList():
-    return JSONResponse(getExperimentTypeList())
+    return getExperimentTypeList()
 
 
 #==============================================================================
@@ -123,28 +139,28 @@ def route_json_experimentList():
 
 @app.route("/api/samples", methods=['GET'])
 @app.route("/api/samples/donor/<string:donor>", methods=['GET'])
-@login_required
+@api_function
 def route_json_sampleList(donor=None):
-    return JSONResponse(getSampleList(donor=donor))
+    return getSampleList(donor=donor)
 
 
 @app.route("/api/samples/metadata", methods=['GET'])
-@login_required
+@api_function
 def route_json_sampleList_metadata_filter():
-    return JSONResponse(getSampleList(filter=request.args))
+    return getSampleList(filter=request.args)
 
 
 @app.route("/api/sample_properties", methods=['GET'])
-@login_required
+@api_function
 def route_api_get_sample_properties(filter=None):
     """
     Returns all properties that can be specified for a sample.
     """
-    return JSONResponse(getSampleProperties())
+    return getSampleProperties()
 
 
 @app.route("/api/sample", methods=['POST'])
-@login_required
+@api_function
 def route_api_sample_add():
     sample = request.get_json()
     insertedSample = insertSample(sample)
@@ -159,13 +175,13 @@ def route_api_sample_add():
                 'value': value
             })
 
-    return JSONResponse(insertedSample)
+    return insertedSample
 
 
 @app.route("/api/sample_metadata", methods=['POST'])
-@login_required
+@api_function
 def route_api_sample_metadata_add():
-    return JSONResponse(insertSampleMetadata(request.get_json()))
+    return insertSampleMetadata(request.get_json())
 
 
 
@@ -174,9 +190,9 @@ def route_api_sample_metadata_add():
 #==============================================================================
 
 @app.route("/api/species", methods=['GET'])
-@login_required
+@api_function
 def route_api_get_species():
     """
     Returns all support species with this instance of mEGAdata.
     """
-    return JSONResponse(getSpeciesList())
+    return getSpeciesList()

@@ -3,6 +3,16 @@
 
 var app = angular.module('SampleApp', ["angucomplete-alt", 'ngHandsontable']);
 app.controller('SampleCtrl', function($scope, $http) {
+
+    $http.defaults.transformResponse = [
+        res => JSON.parse(res),
+        res => {
+            if (!res.ok)
+                return Promise.reject(new Error(res.message))
+            return res.data
+        }
+    ]
+
     var that = this;
     that.is_metadata_collapsed = false;
 

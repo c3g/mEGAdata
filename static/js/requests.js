@@ -35,7 +35,14 @@ export function createDataset(dataset) {
 
 function fetchAPI(method, route, data) {
   return axios[method]('/api' + route, data)
-    .then(result => result.data)
+    .then(result => {
+      const apiResult = result.data
+
+      if (apiResult.ok)
+        return Promise.resolve(apiResult.data)
+      else
+        return Promise.reject(new Error(apiResult.message))
+    })
 }
 function get(route, data)  { return fetchAPI('get',  route, data) }
 function post(route, data) { return fetchAPI('post', route, data) }
