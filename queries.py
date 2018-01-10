@@ -5,16 +5,16 @@ from flask import request
 from models import *
 import json
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#==============================================================================~
 # User
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#==============================================================================~
 
 def listUsers():
     users = []
     query = User.select()
     for user in query:
         users.append(user.toJson())
-    return json.dumps(users)
+    return users
 
 def createUser():
     body = request.get_json()
@@ -22,7 +22,7 @@ def createUser():
     user = User(email=body['email'])
     user.save()
 
-    return json.dumps(user.toJson())
+    return user.toJson()
 
 def updateUser():
     body = request.get_json()
@@ -32,7 +32,7 @@ def updateUser():
     user.email = body['email']
     user.save()
 
-    return json.dumps(user.toJson())
+    return user.toJson()
 
 def deleteUser():
     body = request.get_json()
@@ -40,21 +40,23 @@ def deleteUser():
     user = User.get(User.id == body['id'])
     user.delete_instance()
 
-    return json.dumps({ 'ok': True })
+    return { 'ok': True }
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#==============================================================================~
 # Other
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#==============================================================================~
 
 def getSpeciesList():
-    """Returns all information on species in a JSON document."""
+    """
+    Returns all information on species in a JSON document.
+    """
 
     recordList = []
     query = Species.select()
     for species in query:
         recordList.append(species.toJson())
-    return json.dumps(recordList)
+    return recordList
 
 
 def getDonorList(pFilter=None):
@@ -69,7 +71,7 @@ def getDonorList(pFilter=None):
 
     appendDonorsMetadata(recordObj, pFilter)
     recordList = recordObj.values()
-    return json.dumps(recordList)
+    return recordList
 
 
 def appendDonorsMetadata(recordList, pFilter=None):
@@ -85,12 +87,15 @@ def getExperimentTypeList():
     recordList = []
     for et in ExperimentType.select():
         recordList.append(et.toJson())
-    return json.dumps(recordList)
+    return recordList
 
 
 def getSampleList(donor=None, filter={}):
-    """Returns list of samples in JSON format. If a donor object was provided, returns only samples that belong to that donor.
-    Metadata can also be used to filter samples."""
+    """
+    Returns list of samples in JSON format. If a donor object was provided, returns
+    only samples that belong to that donor.
+    Metadata can also be used to filter samples.
+    """
 
     query = Sample.select(Sample, Donor).join(Donor)
 
@@ -99,7 +104,7 @@ def getSampleList(donor=None, filter={}):
             sp = SampleProperty.select().where(SampleProperty.property == prop)
             query = query.switch(Sample).join(SampleMetadata).where(SampleMetadata.sample_property == sp, SampleMetadata.value == filter[prop])
 
-    #Refine based on donor
+    # Refine based on donor
     if donor is not None:
         query = query.where(Donor.private_name == donor)
 
@@ -120,7 +125,7 @@ def getSampleList(donor=None, filter={}):
     appendSamplesMetadata(recordObj)
     appendSamplesDatasets(recordObj)
     recordList = recordObj.values()
-    return json.dumps(recordList, indent=2)
+    return recordList
 
 
 def appendSamplesMetadata(recordList):
@@ -153,7 +158,7 @@ def insertDonor():
     )
 
     donor = Donor.select().order_by(Donor.id.desc()).get()
-    return json.dumps(donor.toJson())
+    return donor.toJson()
 
 
 def insertDonorMetadata():
@@ -182,7 +187,7 @@ def insertSample():
     )
 
     sample = Sample.select().order_by(Sample.id.desc()).get()
-    return json.dumps(sample.toJson())
+    return sample.toJson()
 
 
 
@@ -209,24 +214,26 @@ def insertDataset():
     )
 
     dataset = Dataset.select().order_by(Dataset.id.desc()).get()
-    return json.dumps(dataset.toJson())
+    return dataset.toJson()
 
 
 def getDonorProperties():
-    """Returns all information on available donor properties in a JSON document, ordered by id."""
-
+    """
+    Returns all information on available donor properties in a JSON document, ordered by id.
+    """
     recordList = []
     query = DonorProperty.select()
     for p in query:
         recordList.append(p.toJson())
-    return json.dumps(recordList, indent=2, sort_keys=True)
+    return recordList
 
 
 def getSampleProperties():
-    """Returns all information on available sample properties in a JSON document, ordered by id."""
-
+    """
+    Returns all information on available sample properties in a JSON document, ordered by id.
+    """
     recordList = []
     query = SampleProperty.select()
     for p in query:
         recordList.append(p.toJson())
-    return json.dumps(recordList, indent=2, sort_keys=True)
+    return recordList
