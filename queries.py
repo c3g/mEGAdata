@@ -13,7 +13,7 @@ def listUsers():
     users = []
     query = User.select()
     for user in query:
-        users.append(user.toJson())
+        users.append(user.toJSON())
     return users
 
 def createUser():
@@ -22,7 +22,7 @@ def createUser():
     user = User(email=body['email'])
     user.save()
 
-    return user.toJson()
+    return user.toJSON()
 
 def updateUser():
     body = request.get_json()
@@ -32,7 +32,7 @@ def updateUser():
     user.email = body['email']
     user.save()
 
-    return user.toJson()
+    return user.toJSON()
 
 def deleteUser():
     body = request.get_json()
@@ -55,7 +55,7 @@ def getSpeciesList():
     recordList = []
     query = Species.select()
     for species in query:
-        recordList.append(species.toJson())
+        recordList.append(species.toJSON())
     return recordList
 
 
@@ -67,7 +67,7 @@ def getDonorList(pFilter=None):
         query = query.where(Donor.private_name.contains(pFilter))
 
     for donor in query:
-        recordObj[donor.id] = donor.toJson()
+        recordObj[donor.id] = donor.toJSON()
 
     appendDonorsMetadata(recordObj, pFilter)
     recordList = recordObj.values()
@@ -86,7 +86,7 @@ def appendDonorsMetadata(recordList, pFilter=None):
 def getExperimentTypeList():
     recordList = []
     for et in ExperimentType.select():
-        recordList.append(et.toJson())
+        recordList.append(et.toJSON())
     return recordList
 
 
@@ -110,7 +110,7 @@ def getSampleList(donor=None, filter={}):
 
     recordObj = {}
     for sample in query:
-        sampleRecord = sample.toJson()
+        sampleRecord = sample.toJSON()
 
         sampleRecord['id'] = sample.id
 
@@ -120,7 +120,7 @@ def getSampleList(donor=None, filter={}):
             datasetList[dataset.experiment_type.name] = dataset.release_status
 
         sampleRecord['datasets'] = datasetList
-        recordObj[sample.id] = sample.toJson()
+        recordObj[sample.id] = sample.toJSON()
 
     appendSamplesMetadata(recordObj)
     appendSamplesDatasets(recordObj)
@@ -158,7 +158,7 @@ def insertDonor():
     )
 
     donor = Donor.select().order_by(Donor.id.desc()).get()
-    return donor.toJson()
+    return donor.toJSON()
 
 
 def insertDonorMetadata():
@@ -187,7 +187,7 @@ def insertSample():
     )
 
     sample = Sample.select().order_by(Sample.id.desc()).get()
-    return sample.toJson()
+    return sample.toJSON()
 
 
 
@@ -214,7 +214,7 @@ def insertDataset():
     )
 
     dataset = Dataset.select().order_by(Dataset.id.desc()).get()
-    return dataset.toJson()
+    return dataset.toJSON()
 
 
 def getDonorProperties():
@@ -224,7 +224,7 @@ def getDonorProperties():
     recordList = []
     query = DonorProperty.select()
     for p in query:
-        recordList.append(p.toJson())
+        recordList.append(p.toJSON())
     return recordList
 
 
@@ -235,5 +235,5 @@ def getSampleProperties():
     recordList = []
     query = SampleProperty.select()
     for p in query:
-        recordList.append(p.toJson())
+        recordList.append(p.toJSON())
     return recordList

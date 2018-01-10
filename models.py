@@ -8,7 +8,7 @@ from playhouse.shortcuts import model_to_dict
 # Peewee Objects
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class BaseModel(peewee.Model):
-    def toJson(self):
+    def toJSON(self):
         dict = model_to_dict(self)
         return dict
 
