@@ -137,27 +137,6 @@ class ExperimentType(BaseModel):
         db_table = 'experiment_type'
 
 
-class ExperimentMetadataSet(BaseModel):
-    id = peewee.IntegerField()
-    name = peewee.CharField()
-    version = peewee.CharField()
-
-    class Meta:
-        db_table = 'experiment_metadata_set'
-
-
-class ExperimentMetadata(BaseModel):
-    id = peewee.IntegerField()
-    experiment_metadata_set_id = peewee.IntegerField()
-    attribute = peewee.CharField()
-    value = peewee.CharField()
-
-    experiment_metadata_set = peewee.ForeignKeyField(ExperimentMetadataSet)
-
-    class Meta:
-        db_table = 'experiment_metadata'
-
-
 class Dataset(BaseModel):
     id = peewee.IntegerField()
     sample_id = peewee.IntegerField()
@@ -166,7 +145,28 @@ class Dataset(BaseModel):
 
     sample = peewee.ForeignKeyField(Sample)
     experiment_type = peewee.ForeignKeyField(ExperimentType)
-    experiment_metadata_set = peewee.ForeignKeyField(ExperimentMetadataSet)
+
+
+class ExperimentProperty(BaseModel):
+    id = peewee.IntegerField(primary_key=True)
+    property = peewee.CharField()
+    type = peewee.CharField()
+    is_exported_to_ega = peewee.BooleanField()
+
+    class Meta:
+        db_table = 'experiment_property'
+
+
+class ExperimentMetadata(BaseModel):
+    id = peewee.IntegerField(primary_key=True)
+    dataset_id = peewee.IntegerField()
+    value = peewee.CharField()
+
+    dataset = peewee.ForeignKeyField(Dataset)
+    experiment_property = peewee.ForeignKeyField(ExperimentProperty)
+
+    class Meta:
+        db_table = 'experiment_metadata'
 
 
 class Run(BaseModel):
