@@ -8,11 +8,7 @@ from models import *
 #==============================================================================~
 
 def listUsers():
-    users = []
-    query = User.select()
-    for user in query:
-        users.append(user.toJSON())
-    return users
+    return [user.toJSON() for user in User.select()]
 
 def createUser(body):
     user = User(email=body['email'])
@@ -43,27 +39,21 @@ def getSpeciesList():
     """
     Returns all information on species in a JSON document.
     """
-
-    recordList = []
-    query = Species.select()
-    for species in query:
-        recordList.append(species.toJSON())
-    return recordList
+    return [species.toJSON() for species in Species.select()]
 
 
 def getDonorList(pFilter=None):
-    recordObj = {}
+    donorsByID = {}
 
     query = Donor.select()
     if pFilter:
         query = query.where(Donor.private_name.contains(pFilter))
 
-    for donor in query:
-        recordObj[donor.id] = donor.toJSON()
+    donorsByID = { donor.id: donor.toJSON() for donor in query }
 
-    appendDonorsMetadata(recordObj, pFilter)
-    recordList = recordObj.values()
-    return recordList
+    appendDonorsMetadata(donorsByID, pFilter)
+
+    return donorsByID.values()
 
 
 def appendDonorsMetadata(recordList, pFilter=None):
@@ -76,10 +66,7 @@ def appendDonorsMetadata(recordList, pFilter=None):
 
 
 def getExperimentTypeList():
-    recordList = []
-    for et in ExperimentType.select():
-        recordList.append(et.toJSON())
-    return recordList
+    return [exp.toJSON() for exp in ExperimentType.select()]
 
 
 def getSampleList(donor=None, filter={}):
@@ -269,19 +256,11 @@ def getDonorProperties():
     """
     Returns all information on available donor properties in a JSON document, ordered by id.
     """
-    recordList = []
-    query = DonorProperty.select()
-    for p in query:
-        recordList.append(p.toJSON())
-    return recordList
+    return [p.toJSON() for p in DonorProperty.select()]
 
 
 def getSampleProperties():
     """
     Returns all information on available sample properties in a JSON document, ordered by id.
     """
-    recordList = []
-    query = SampleProperty.select()
-    for p in query:
-        recordList.append(p.toJSON())
-    return recordList
+    return [p.toJSON() for p in SampleProperty.select()]
