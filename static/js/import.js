@@ -6,20 +6,21 @@
 import Fuse from 'fuse.js'
 import openFile from './utils/open-file'
 import readFileAsText from './utils/read-file-as-text'
-import promiseProgress from './utils/promise-progress'
 import { validateAll } from './utils/validate'
 import {
   createDonor,
   createSample,
   createDataset,
+  fetchDonors,
   fetchExperimentTypes,
+  fetchSamples,
 } from './requests'
 
 let dataHub
 let hubDescription
 let datasetsByID
 let samplesByID
-let objects = []
+let imports
 
 const fuseOptions = {
   shouldSort: true,
@@ -30,21 +31,41 @@ const fuseOptions = {
 let experimentNames
 let experimentTypes
 let experimentTypesFuse
-fetchExperimentTypes()
-.then(res => {
-  experimentNames = res.map(e => e.name)
-  experimentTypes = res
-  experimentTypesFuse = new Fuse(experimentTypes, fuseOptions)
-})
+let donors
+let donorPrivateNames
+let samples
+let samplePrivateNames
 
+let loading
+loadData()
+
+function loadData() {
+  loading = []
+  loading.push(fetchExperimentTypes()
+  .then(res => {
+    experimentNames = res.map(e => e.name)
+    experimentTypes = res
+    experimentTypesFuse = new Fuse(experimentTypes, fuseOptions)
+  }))
+  loading.push(fetchDonors().then(res => {
+    donors = res
+    donorPrivateNames = new Set(donors.map(d => d.private_name))
+  }))
+  loading.push(fetchSamples().then(res => {
+    samples = res
+    samplePrivateNames = new Set(samples.map(d => d.private_name))
+  }))
+}
 
 $(() => {
 
   const $file = $('.js-file')
   const $fileName = $('.js-file-name')
+  const $fileIcon = $('.js-file-icon')
   const $report = $('.js-report')
   const $import = $('.js-import')
   const $progress = $('.js-progress')
+  const $progressBar = $('.js-progress-bar')
   const $result = $('.js-result')
 
   $file.on('click', onClickFile)
@@ -53,8 +74,12 @@ $(() => {
   reset()
 
   function onClickFile() {
-    openFile().then(file => {
-      reset()
+    openFile()
+    .then(file => {
+      $fileIcon.attr('class', 'fa fa-spin fa-spinner')
+      return Promise.all(loading).then(() => file)
+    })
+    .then(file => {
       $fileName.text(file.name)
 
       readFileAsText(file)
@@ -73,16 +98,24 @@ $(() => {
 
         // Extract groups & tag with ids
         hubDescription = dataHub.hub_description
-        datasetsByID = dataHub.datasets
-        samplesByID = dataHub.samples
-        Object.keys(datasetsByID).forEach(id => datasetsByID[id].id = id)
-        Object.keys(samplesByID).forEach(id => samplesByID[id].id = id)
+        datasetsByID = tagWithIDs(dataHub.datasets)
+        samplesByID  = tagWithIDs(dataHub.samples)
 
-        // Generate objects that will be inserted in the database
-        objects = Object.values(datasetsByID).map(data => {
-          const { donor, sample } = extractSampleDonor(samplesByID[data.sample_id])
+        // Generate imports that will be inserted in the database
+        imports = {
+          datasetsByID: {},
+          samplesByID: {},
+          donorsByID: {},
+        }
+        Object.values(datasetsByID).forEach(data => {
           const dataset = extractDataset(data)
-          return { dataset, donor, sample }
+          imports.datasetsByID[dataset.__id] = dataset
+        })
+        Object.values(samplesByID).forEach(data => {
+          const { donor, sample } = extractSampleDonor(data, hubDescription)
+
+          imports.samplesByID[sample.__id] = sample
+          imports.donorsByID[donor.__id]   = donor
         })
 
         // Validate schema first
@@ -113,10 +146,29 @@ $(() => {
             }
 
             errors.push({
-              type: undefined,
               which: 'datasets',
               id: dataset.id,
               message
+            })
+          }
+        })
+
+        // Then, validate that we won't be inserting a duplicate private_name
+        Object.values(imports.samplesByID).forEach(sample => {
+          if (samplePrivateNames.has(sample.private_name)) {
+            errors.push({
+              which: 'samples',
+              id: sample.__id,
+              message: `Sample private name <b>“${sample.private_name}”</b> is already present in the database.`
+            })
+          }
+        })
+        Object.values(imports.donorsByID).forEach(donor => {
+          if (donorPrivateNames.has(donor.private_name)) {
+            errors.push({
+              which: 'samples',
+              id: donor.__sampleID,
+              message: `Donor private name <b>“${donor.private_name}”</b> is already present in the database.`
             })
           }
         })
@@ -133,12 +185,16 @@ $(() => {
           `Data hub ready to be imported<br/>
           <table class="table-small"><tbody>
             <tr>
-              <th>Datasets</th>
-              <td>${Object.keys(datasetsByID).length}</td>
+              <th>Donors</th>
+              <td>${Object.keys(imports.donorsByID).length}</td>
             </tr>
             <tr>
               <th>Samples</th>
-              <td>${Object.keys(samplesByID).length}</td>
+              <td>${Object.keys(imports.samplesByID).length}</td>
+            </tr>
+            <tr>
+              <th>Datasets</th>
+              <td>${Object.keys(imports.datasetsByID).length}</td>
             </tr>
           </tbody></table>
           `
@@ -146,6 +202,8 @@ $(() => {
         $import.removeAttr('disabled')
       })
     })
+    .catch(() => {})
+    .then(reset)
   }
 
   function onClickImport() {
@@ -153,32 +211,42 @@ $(() => {
     $import.attr('disabled', true)
 
     $progress.show()
-    $progress.css({ width: '0%' })
-    $progress.text('0%')
+    $progressBar.css({ width: '0%' })
+    $progressBar.text('0%')
 
-    doImport(progress => {
-      const percent = `${progress * 100}%`
-      $progress.css({ width: percent })
-      $progress.text(percent)
+    doImport(imports, progress => {
+      const percent = `${progress.toFixed(2) * 100}%`
+      $progressBar.css({ width: percent })
+      $progressBar.attr('aria-valuenow', progress * 100)
+      $progressBar.text(percent)
     })
     .then(results => {
-      console.log(results)
-
       $progress.hide()
 
-      if (results.every(r => r.ok)) {
+      if (results.length === 0) {
+        // Reload the verification data if ever the user re-imports another hub
+        loadData()
         return setResult('success', 'check', 'Data hub succesfuly imported')
       }
+
+      console.log('%cImport failures:', 'font-weight: bold; color: #dd1212;')
+      console.log('%c========================', 'font-weight: bold; color: #dd1212;')
+      console.log(results)
+      console.log('%c========================', 'font-weight: bold; color: #dd1212;')
 
       setResult(
         'danger',
         'warning',
-        `There were some errors while importing the data hub:<br/>${renderResults(results)}`
+        `There were some errors while importing the data hub.
+         Open the console for more details.<br/>
+         ${renderResults(results)}
+        `
       )
     })
   }
 
   function reset() {
+    $fileIcon.attr('class', 'fa fa-folder-open-o')
     $report.hide()
     $progress.hide()
     $result.hide()
@@ -210,60 +278,95 @@ function renderErrors(errors) {
 }
 
 function renderResults(results) {
-  return `<table class="table table-condensed"><tbody>` + results.filter(r => !r.ok).map(result =>
+  return `<table class="table table-condensed"><tbody>` + results.map(result =>
     `<tr>
-      <th>Dataset ${result.id}</th>
+      <th>${result.which} ${result.data.__id}</th>
       <td>${result.message}</td>
     </tr>`
   ).join('\n') + `</tbody></table>`
 }
 
-function doImport(progressFn) {
-  return promiseProgress(objects.map(({ donor, sample, dataset }) => {
-    const id = dataset.__id
+function doImport(imports, progressFn) {
 
+  let completed = 0
+  let total = Object.values(imports).reduce((acc, cur) => acc + Object.keys(cur).length, 0)
+  const progress = res => {
+    completed++
+    progressFn(completed / total)
+    return res
+  }
+
+  return Promise.all(Object.values(imports.donorsByID).map(donor => {
     return createDonor(donor)
-    .then(donor => {
-      console.log(donor)
+    .then(({ id: donorID }) => {
+      donor.id = donorID
+      return { ok: true }
+    })
+    .catch(err => {
+      return Promise.resolve({
+        ok: false,
+        which: 'donor',
+        message: err,
+        data: donor,
+      })
+    })
+    .then(progress)
+  }))
+  .then(donorResults => {
 
+    return Promise.all(Object.values(imports.samplesByID).map(sample => {
+
+      const donor = imports.donorsByID[sample.__donorID]
       sample.donor_id = donor.id
 
       return createSample(sample)
-      .then(sample => {
-        console.log(sample)
-
-        dataset.sample_id = sample.id
-
-        return createDataset(dataset)
-        .then(dataset => {
-          console.log(dataset)
-
-          return Promise.resolve({
-            ok: true,
-            id: id,
-            donor,
-            sample,
-            dataset
-          })
+      .then(({ id: sampleID }) => {
+        sample.id = sampleID
+        return { ok: true }
+      })
+      .catch(err => {
+        return Promise.resolve({
+          ok: false,
+          which: 'sample',
+          message: err,
+          data: sample,
         })
       })
-    })
-    .catch(err => {
-      console.log(err)
-      return Promise.resolve({
-        ok: false,
-        id: id,
-        message: err,
-        donor,
-        sample,
-        dataset
+      .then(progress)
+    }))
+    .then(results => donorResults.concat(results))
+  })
+  .then(otherResults => {
+
+    return Promise.all(Object.values(imports.datasetsByID).map(dataset => {
+
+      const sample = imports.samplesByID[dataset.__sampleID]
+      dataset.sample_id = sample.id
+
+      return createDataset(dataset)
+      .then(({ id: datasetID }) => {
+        dataset.id = datasetID
+        return { ok: true }
       })
-    })
-  }), progressFn)
+      .catch(err => {
+        return Promise.resolve({
+          ok: false,
+          which: 'dataset',
+          message: err,
+          data: dataset,
+        })
+      })
+      .then(progress)
+    }))
+    .then(results => otherResults.concat(results))
+  })
+  .then(results => results.filter(r => !r.ok))
 }
 
-function extractSampleDonor(sampleData) {
+function extractSampleDonor(sampleData, hubDescription) {
   const donor  = {
+    __id: sampleData.donor_id,
+    __sampleID: sampleData.id,
     public_name: null,
     private_name: sampleData.donor_id,
     phenotype: sampleData.donor_health_status,
@@ -273,6 +376,7 @@ function extractSampleDonor(sampleData) {
   }
   const sample = {
     __id: sampleData.id,
+    __donorID: sampleData.donor_id,
     public_name: null,
     private_name: sampleData.id,
     metadata: {}
@@ -291,6 +395,7 @@ function extractSampleDonor(sampleData) {
 function extractDataset(data) {
   return {
     __id: data.id,
+    __sampleID: data.sample_id,
     sample_id: null,
     experiment_type: findExperimentType(data.experiment_attributes.experiment_type),
     release_status: '',
@@ -298,6 +403,11 @@ function extractDataset(data) {
       ...data.experiment_attributes
     }
   }
+}
+
+function tagWithIDs(itemsByID) {
+  Object.keys(itemsByID).forEach(id => itemsByID[id].id = id)
+  return itemsByID
 }
 
 function findExperimentType(type) {
