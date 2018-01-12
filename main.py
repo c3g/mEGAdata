@@ -5,7 +5,7 @@ import os
 import requests
 import jmespath
 from flask import Response, redirect, url_for, flash, render_template
-from flask.ext.login import LoginManager, login_user, logout_user, current_user, login_required
+from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 
 # Local imports
 from app import app, db

@@ -2,7 +2,7 @@
 import requests
 from functools import wraps
 from flask import Response, request
-from flask.ext.login import login_required
+from flask_login import login_required
 
 from app import app
 from queries import *
