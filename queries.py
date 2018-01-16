@@ -240,6 +240,33 @@ def insertExperimentProperty(dataJson):
 
 
 #==============================================================================~
+# Run
+#==============================================================================~
+
+def insertRun(data):
+    dataset = Dataset.get(id=data['dataset_id'])
+
+    run = Run()
+    run.dataset = dataset
+    run.library_name = data['library_name']
+    run.run = data['run']
+    run.lane = data['lane']
+    run.save()
+
+    if data.has_key('files'):
+        for f in data['files']:
+            file = RunFile()
+            file.run_id = run.id
+            file.name = f['name']
+            file.md5 = f['md5']
+            file.encrypted_md5 = f['encrypted_md5']
+            file.save()
+
+    return run.toJSON()
+
+
+
+#==============================================================================~
 # Other
 #==============================================================================~
 
