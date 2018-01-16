@@ -31,16 +31,10 @@ def deleteUser(body):
     return { 'ok': True }
 
 
-#==============================================================================~
-# Other
-#==============================================================================~
 
-def getSpeciesList():
-    """
-    Returns all information on species in a JSON document.
-    """
-    return [species.toJSON() for species in Species.select()]
-
+#==============================================================================~
+# Donor
+#==============================================================================~
 
 def getDonorList(pFilter=None):
     donorsByID = {}
@@ -55,6 +49,42 @@ def getDonorList(pFilter=None):
 
     return donorsByID.values()
 
+def insertDonor(dataJson):
+    Donor.create(
+        public_name = dataJson.get('public_name'),
+        private_name = dataJson.get('private_name'),
+        taxon_id = dataJson.get("taxon_id"),
+        phenotype = dataJson.get("phenotype"),
+        is_pool = dataJson.get("is_pool"),
+    )
+
+    donor = Donor.select().order_by(Donor.id.desc()).get()
+    return donor.toJSON()
+
+def insertDonorMetadata(dataJson):
+    dm = DonorMetadata()
+    dm.donor = Donor.get(id=dataJson.get('donor_id'))
+    try:
+        dm.donor_property = DonorProperty.get(DonorProperty.property == dataJson.get('field'))
+    except:
+        insertDonorProperty({
+            'property': dataJson.get('field'),
+            'type': 'text',
+            'is_exported_to_ega': False,
+        })
+        dm.donor_property = DonorProperty.get(DonorProperty.property == dataJson.get('field'))
+    dm.value = dataJson.get('value')
+    DonorMetadata.save(dm)
+    return {}
+
+def insertDonorProperty(dataJson):
+    p = DonorProperty()
+    p.property = dataJson.get('property')
+    p.type = dataJson.get('type')
+    p.is_exported_to_ega = dataJson.get('is_exported_to_ega')
+    DonorProperty.save(p)
+    return p.toJSON()
+
 
 def appendDonorsMetadata(recordList, pFilter=None):
     query = DonorMetadata.select(DonorMetadata, Donor.id.alias('donor_id'), DonorProperty.property.alias('property')).join(Donor).switch(DonorMetadata).join(DonorProperty)
@@ -65,9 +95,10 @@ def appendDonorsMetadata(recordList, pFilter=None):
         recordList[dm.donor_id][dm.property] = dm.value
 
 
-def getExperimentTypeList():
-    return [exp.toJSON() for exp in ExperimentType.select()]
 
+#==============================================================================~
+# Sample
+#==============================================================================~
 
 def getSampleList(donor=None, filter={}):
     """
@@ -106,68 +137,6 @@ def getSampleList(donor=None, filter={}):
     recordList = recordObj.values()
     return recordList
 
-
-def appendSamplesMetadata(recordList):
-    query = SampleMetadata.select(SampleMetadata, Sample.id.alias('sample_id'), SampleProperty.property.alias('property'))\
-        .join(Sample)\
-        .switch(SampleMetadata).join(SampleProperty)\
-        .naive()
-
-    for dm in query:
-        if dm.sample_id in recordList:
-            recordList[dm.sample_id][dm.property] = dm.value
-
-
-def appendSamplesDatasets(recordList):
-    query = Dataset.select(Dataset, Sample.id.alias('sample_id'), ExperimentType.name.alias('experiment_name')).join(Sample).switch(Dataset).join(ExperimentType)
-
-    for dm in query.naive():
-        if dm.sample_id in recordList:
-            recordList[dm.sample_id][dm.experiment_name] = dm.release_status
-
-
-def insertDonor(dataJson):
-    Donor.create(
-        public_name = dataJson.get('public_name'),
-        private_name = dataJson.get('private_name'),
-        taxon_id = dataJson.get("taxon_id"),
-        phenotype = dataJson.get("phenotype"),
-        is_pool = dataJson.get("is_pool"),
-    )
-
-    donor = Donor.select().order_by(Donor.id.desc()).get()
-    return donor.toJSON()
-
-
-def insertDonorMetadata(dataJson):
-    dm = DonorMetadata()
-    dm.donor = Donor.get(id=dataJson.get('donor_id'))
-    try:
-        dm.donor_property = DonorProperty.get(DonorProperty.property == dataJson.get('field'))
-    except:
-        insertDonorProperty({
-            'property': dataJson.get('field'),
-            'type': 'text',
-            'is_exported_to_ega': False,
-        })
-        dm.donor_property = DonorProperty.get(DonorProperty.property == dataJson.get('field'))
-    dm.value = dataJson.get('value')
-    DonorMetadata.save(dm)
-    return {}
-
-
-def insertDonorProperty(dataJson):
-    p = DonorProperty()
-    p.property = dataJson.get('property')
-    p.type = dataJson.get('type')
-    p.is_exported_to_ega = dataJson.get('is_exported_to_ega')
-    DonorProperty.save(p)
-    return p.toJSON()
-
-
-
-
-
 def insertSample(dataJson):
     d = Donor.get(id=dataJson.get("donor_id"))
 
@@ -181,7 +150,6 @@ def insertSample(dataJson):
 
     sample = Sample.select().order_by(Sample.id.desc()).get()
     return sample.toJSON()
-
 
 def insertSampleMetadata(dataJson):
     dm = SampleMetadata()
@@ -209,8 +177,28 @@ def insertSampleProperty(dataJson):
     return p.toJSON()
 
 
+def appendSamplesMetadata(recordList):
+    query = SampleMetadata.select(SampleMetadata, Sample.id.alias('sample_id'), SampleProperty.property.alias('property'))\
+        .join(Sample)\
+        .switch(SampleMetadata).join(SampleProperty)\
+        .naive()
+
+    for dm in query:
+        if dm.sample_id in recordList:
+            recordList[dm.sample_id][dm.property] = dm.value
+
+def appendSamplesDatasets(recordList):
+    query = Dataset.select(Dataset, Sample.id.alias('sample_id'), ExperimentType.name.alias('experiment_name')).join(Sample).switch(Dataset).join(ExperimentType)
+
+    for dm in query.naive():
+        if dm.sample_id in recordList:
+            recordList[dm.sample_id][dm.experiment_name] = dm.release_status
 
 
+
+#==============================================================================~
+# Dataset
+#==============================================================================~
 
 def insertDataset(dataJson):
     s = Sample.get(id=dataJson.get("sample_id"))
@@ -251,6 +239,9 @@ def insertExperimentProperty(dataJson):
 
 
 
+#==============================================================================~
+# Other
+#==============================================================================~
 
 def getDonorProperties():
     """
@@ -264,3 +255,13 @@ def getSampleProperties():
     Returns all information on available sample properties in a JSON document, ordered by id.
     """
     return [p.toJSON() for p in SampleProperty.select()]
+
+def getSpeciesList():
+    """
+    Returns all information on species in a JSON document.
+    """
+    return [species.toJSON() for species in Species.select()]
+
+def getExperimentTypeList():
+    return [exp.toJSON() for exp in ExperimentType.select()]
+
