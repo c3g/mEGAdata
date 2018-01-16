@@ -1,9 +1,10 @@
 /*
  * import.js
  */
-/* global $, axios */
 
 import Fuse from 'fuse.js'
+import Result from 'folktale/result'
+
 import openFile from './utils/open-file'
 import readFileAsText from './utils/read-file-as-text'
 import { validateAll } from './utils/validate'
@@ -11,22 +12,19 @@ import {
   createDonor,
   createSample,
   createDataset,
+  createRun,
   fetchDonors,
   fetchExperimentTypes,
   fetchSamples,
 } from './requests'
-
-let dataHub
-let hubDescription
-let datasetsByID
-let samplesByID
-let imports
 
 const fuseOptions = {
   shouldSort: true,
   keys: ['name'],
   threshold: 0.5
 }
+
+let imports
 
 let experimentNames
 let experimentTypes
@@ -85,121 +83,46 @@ $(() => {
       readFileAsText(file)
       .then(text => {
 
-        dataHub = undefined
-        try {
-          dataHub = JSON.parse(text)
-        } catch (err) {
-          return setReport('danger', 'warning', 'Couldnt parse input file as JSON')
-        }
-
-        if (!dataHub.datasets || !dataHub.samples || !dataHub.hub_description) {
-          return setReport('danger', 'warning', 'JSON document doesnt seem to be a data hub')
-        }
-
-        // Extract groups & tag with ids
-        hubDescription = dataHub.hub_description
-        datasetsByID = tagWithIDs(dataHub.datasets)
-        samplesByID  = tagWithIDs(dataHub.samples)
-
         // Generate imports that will be inserted in the database
-        imports = {
-          datasetsByID: {},
-          samplesByID: {},
-          donorsByID: {},
-        }
-        Object.values(datasetsByID).forEach(data => {
-          const dataset = extractDataset(data)
-          imports.datasetsByID[dataset.__id] = dataset
-        })
-        Object.values(samplesByID).forEach(data => {
-          const { donor, sample } = extractSampleDonor(data, hubDescription)
+        const result = parseImports(text)
 
-          imports.samplesByID[sample.__id] = sample
-          imports.donorsByID[donor.__id]   = donor
-        })
+        result.matchWith({
+          Error: ({ value }) => {
+            const message = typeof value === 'string' ?
+              value :
+              `Some errors were found in the current data hub:<br/>${renderErrors(value)}`
 
-        // Validate schema first
-        const errors = validateAll(datasetsByID, samplesByID, dataHub.hub_description)
+            return setReport('danger', 'warning', message)
+          },
+          Ok: ({ value }) => {
 
-        // Then, validate that the corresponding entities in the database are present
-        Object.values(datasetsByID).forEach(dataset => {
+            imports = value
 
-          const type = findExperimentType(dataset.experiment_attributes.experiment_type)
-
-          // If we dont have a matching experiment, generate an error
-          if (!experimentNames.includes(type)) {
-
-            const alternatives = experimentTypesFuse.search(type)
-
-            let message = `Experiment type <b>“${type}”</b> is not present in the database. `
-
-            if (alternatives.length > 0) {
-              if (alternatives.length === 1) {
-                message += `<div class="suggestion">Try “${alternatives[0].name}”?</div>`
-              } else {
-                message += `<div class="suggestion">Try one of these?
-                  <ul>
-                    ${alternatives.slice(0, 5).map(a => `<li>“${a.name}”</li>`).join('\n')}
-                  </ul>
-                </div>`
-              }
-            }
-
-            errors.push({
-              which: 'datasets',
-              id: dataset.id,
-              message
-            })
+            setReport('success', 'check',
+              `Data hub ready to be imported<br/>
+              <table class="table-small"><tbody>
+                <tr>
+                  <th>Donors</th>
+                  <td>${Object.keys(imports.donorsByID).length}</td>
+                </tr>
+                <tr>
+                  <th>Samples</th>
+                  <td>${Object.keys(imports.samplesByID).length}</td>
+                </tr>
+                <tr>
+                  <th>Datasets</th>
+                  <td>${Object.keys(imports.datasetsByID).length}</td>
+                </tr>
+                <tr>
+                  <th>Runs</th>
+                  <td>${Object.values(imports.datasetsByID).map(d => d.__runs.length).reduce(sumReducer)}</td>
+                </tr>
+              </tbody></table>
+              `
+            )
+            $import.removeAttr('disabled')
           }
         })
-
-        // Then, validate that we won't be inserting a duplicate private_name
-        Object.values(imports.samplesByID).forEach(sample => {
-          if (samplePrivateNames.has(sample.private_name)) {
-            errors.push({
-              which: 'samples',
-              id: sample.__id,
-              message: `Sample private name <b>“${sample.private_name}”</b> is already present in the database.`
-            })
-          }
-        })
-        Object.values(imports.donorsByID).forEach(donor => {
-          if (donorPrivateNames.has(donor.private_name)) {
-            errors.push({
-              which: 'samples',
-              id: donor.__sampleID,
-              message: `Donor private name <b>“${donor.private_name}”</b> is already present in the database.`
-            })
-          }
-        })
-
-        if (errors.length > 0) {
-          return setReport(
-            'danger',
-            'warning',
-            `Some errors were found in the current data hub:<br/>${renderErrors(errors)}`
-          )
-        }
-
-        setReport('success', 'check',
-          `Data hub ready to be imported<br/>
-          <table class="table-small"><tbody>
-            <tr>
-              <th>Donors</th>
-              <td>${Object.keys(imports.donorsByID).length}</td>
-            </tr>
-            <tr>
-              <th>Samples</th>
-              <td>${Object.keys(imports.samplesByID).length}</td>
-            </tr>
-            <tr>
-              <th>Datasets</th>
-              <td>${Object.keys(imports.datasetsByID).length}</td>
-            </tr>
-          </tbody></table>
-          `
-        )
-        $import.removeAttr('disabled')
       })
     })
     .catch(() => {})
@@ -229,10 +152,13 @@ $(() => {
         return setResult('success', 'check', 'Data hub succesfuly imported')
       }
 
-      console.log('%cImport failures:', 'font-weight: bold; color: #dd1212;')
-      console.log('%c========================', 'font-weight: bold; color: #dd1212;')
+      /* eslint-disable no-console */
+      const style = 'font-weight: bold; color: #dd1212;'
+      console.log('%cImport failures:', style)
+      console.log('%c========================', style)
       console.log(results)
-      console.log('%c========================', 'font-weight: bold; color: #dd1212;')
+      console.log('%c========================', style)
+      /* eslint-enable no-console */
 
       setResult(
         'danger',
@@ -254,14 +180,14 @@ $(() => {
   }
 
   function setReport(level, icon, message) {
-    $report.removeClass(`alert-primary alert-success alert-info alert-warning alert-danger`)
+    $report.removeClass('alert-primary alert-success alert-info alert-warning alert-danger')
     $report.addClass(`alert-${level}`)
     $report.html(`<i class="fa fa-${icon}"></i> ${message}`)
     $report.show()
   }
 
   function setResult(level, icon, message) {
-    $result.removeClass(`alert-primary alert-success alert-info alert-warning alert-danger`)
+    $result.removeClass('alert-primary alert-success alert-info alert-warning alert-danger')
     $result.addClass(`alert-${level}`)
     $result.html(`<i class="fa fa-${icon}"></i> ${message}`)
     $result.show()
@@ -269,27 +195,127 @@ $(() => {
 })
 
 function renderErrors(errors) {
-  return `<table class="table table-condensed"><tbody>` + errors.map(error =>
+  return '<table class="table table-condensed"><tbody>' + errors.map(error =>
     `<tr>
       <th>${error.which.replace(/s$/, '')} ${error.id}</th>
       <td>${error.message}</td>
     </tr>`
-  ).join('\n') + `</tbody></table>`
+  ).join('\n') + '</tbody></table>'
 }
 
 function renderResults(results) {
-  return `<table class="table table-condensed"><tbody>` + results.map(result =>
+  return '<table class="table table-condensed"><tbody>' + results.map(result =>
     `<tr>
       <th>${result.which} ${result.data.__id}</th>
       <td>${result.message}</td>
     </tr>`
-  ).join('\n') + `</tbody></table>`
+  ).join('\n') + '</tbody></table>'
+}
+
+function parseImports(text) {
+
+  let dataHub = undefined
+  try {
+    dataHub = JSON.parse(text)
+  } catch (err) {
+    return Result.Error('Couldnt parse input file as JSON')
+  }
+
+  if (!dataHub.datasets || !dataHub.samples || !dataHub.hub_description) {
+    return Result.Error('JSON document doesnt seem to be a data hub')
+  }
+
+  // Extract groups & tag with ids
+  const hubDescription = dataHub.hub_description
+  const datasetsByID = tagWithIDs(dataHub.datasets)
+  const samplesByID  = tagWithIDs(dataHub.samples)
+
+  // Generate imports that will be inserted in the database
+  const imports = {
+    datasetsByID: {},
+    samplesByID: {},
+    donorsByID: {},
+  }
+  Object.values(datasetsByID).forEach(data => {
+    const dataset = extractDataset(data)
+    imports.datasetsByID[dataset.__id] = dataset
+  })
+  Object.values(samplesByID).forEach(data => {
+    const { donor, sample } = extractSampleDonor(data, hubDescription)
+
+    imports.samplesByID[sample.__id] = sample
+    imports.donorsByID[donor.__id]   = donor
+  })
+
+  // Validate schema first
+  const errors = validateAll(datasetsByID, samplesByID, dataHub.hub_description)
+
+  // Then, validate that the corresponding entities in the database are present
+  Object.values(datasetsByID).forEach(dataset => {
+
+    const type = findExperimentType(dataset.experiment_attributes.experiment_type)
+
+    // If we dont have a matching experiment, generate an error
+    if (!experimentNames.includes(type)) {
+
+      const alternatives = experimentTypesFuse.search(type)
+
+      let message = `Experiment type <b>“${type}”</b> is not present in the database. `
+
+      if (alternatives.length > 0) {
+        if (alternatives.length === 1) {
+          message += `<div class="suggestion">Try “${alternatives[0].name}”?</div>`
+        } else {
+          message += `<div class="suggestion">Try one of these?
+            <ul>
+                    ${alternatives.slice(0, 5).map(a => `<li>“${a.name}”</li>`).join('\n')}
+                  </ul>
+                </div>`
+        }
+      }
+
+      errors.push({
+        which: 'datasets',
+        id: dataset.id,
+        message
+      })
+    }
+  })
+
+  // Then, validate that we won't be inserting a duplicate private_name
+  Object.values(imports.samplesByID).forEach(sample => {
+    if (samplePrivateNames.has(sample.private_name)) {
+      errors.push({
+        which: 'samples',
+        id: sample.__id,
+        message: `Sample private name <b>“${sample.private_name}”</b> is already present in the database.`
+      })
+    }
+  })
+  Object.values(imports.donorsByID).forEach(donor => {
+    if (donorPrivateNames.has(donor.private_name)) {
+      errors.push({
+        which: 'samples',
+        id: donor.__sampleID,
+        message: `Donor private name <b>“${donor.private_name}”</b> is already present in the database.`
+      })
+    }
+  })
+
+  if (errors.length > 0) {
+    return Result.Error(errors)
+  }
+
+  return Result.Ok(imports)
 }
 
 function doImport(imports, progressFn) {
 
   let completed = 0
-  let total = Object.values(imports).reduce((acc, cur) => acc + Object.keys(cur).length, 0)
+  let total =
+    Object.values(imports).map(o => Object.keys(o).length).reduce(sumReducer)
+    + Object.values(imports.datasetsByID).map(d => d.run ? d.run.length : 0).reduce(sumReducer)
+
   const progress = res => {
     completed++
     progressFn(completed / total)
@@ -359,6 +385,36 @@ function doImport(imports, progressFn) {
       .then(progress)
     }))
     .then(results => otherResults.concat(results))
+    .then(results => {
+
+      const runs =
+        Object.values(imports.datasetsByID)
+        .map(d => d.__runs.map(r => {
+          r.__datasetID = d.__id
+          r.dataset_id = d.id
+          return r
+        }))
+        .reduce(flattenReducer, [])
+
+      return Promise.all(runs.map(run =>
+        (
+          run.dataset_id === undefined ?
+            Promise.reject('Undefined dataset id (dataset creation might have failed)') :
+            Promise.resolve(run)
+        )
+        .then(createRun)
+        .then(() => ({ ok: true }))
+        .catch(err => {
+          return Promise.resolve({
+            ok: false,
+            which: 'dataset (on runs)',
+            message: err,
+            data: imports.datasetsByID[run.__datasetID],
+          })
+        })
+        .then(progress)
+      ))
+    })
   })
   .then(results => results.filter(r => !r.ok))
 }
@@ -396,12 +452,13 @@ function extractDataset(data) {
   return {
     __id: data.id,
     __sampleID: data.sample_id,
+    __runs: data.run || [],
     sample_id: null,
     experiment_type: findExperimentType(data.experiment_attributes.experiment_type),
     release_status: '',
     metadata: {
       ...data.experiment_attributes
-    }
+    },
   }
 }
 
@@ -412,4 +469,12 @@ function tagWithIDs(itemsByID) {
 
 function findExperimentType(type) {
   return experimentNames.find(name => name.toLowerCase() === type.toLowerCase()) || type
+}
+
+function sumReducer(acc, cur) {
+  return acc + cur
+}
+
+function flattenReducer(acc, cur) {
+  return acc.concat(cur)
 }

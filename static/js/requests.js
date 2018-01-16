@@ -38,6 +38,10 @@ export function createDataset(dataset) {
   return post('/dataset', dataset)
 }
 
+export function createRun(run) {
+  return post('/run', run)
+}
+
 
 function fetchAPI(method, route, data) {
   return axios[method]('/api' + route, data)

@@ -45,11 +45,49 @@
                 "rpkm_forward": ["rpkm_reverse"],
                 "rpkm_reverse": ["rpkm_forward"]
             }
-        }
+        },
+        "run": { "$ref": "#/definitions/run" }
     },
+
     "required": ["id", "sample_id", "analysis_attributes", "experiment_attributes", "browser"],
 
     "definitions": {
+        "run": {
+            "type": "array",
+            "description": "The list of associated runs",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "library_name": {
+                        "type": "string"
+                    },
+                    "run": {
+                        "type": "string"
+                    },
+                    "lane": {
+                        "type": "string"
+                    },
+                    "files": {
+                        "type": "array",
+                        "description": "The list of files associated with this run",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "md5": {
+                                    "type": "string"
+                                },
+                                "encrypted_md5": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "track": {
             "type": "array",
             "description": "A list of tracks that belong to this type. The first track is considered as the main track representing this type.",
