@@ -2,169 +2,93 @@
 /* global angular, Handsontable*/
 
 import transformAPIResponse from './utils/transform-api-response'
+import * as Renderer from './utils/hot-renderers'
+import queryString from './utils/query-string'
+
 
 const app = angular.module('SampleApp', ['angucomplete-alt', 'ngHandsontable']);
 app.controller('SampleCtrl', function($scope, $http) {
-
     $http.defaults.transformResponse = transformAPIResponse
 
-    var that = this;
-    that.is_metadata_collapsed = false;
-
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Handsontable Renderers
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    this.releaseStatusRenderer = function(instance, td, row, col, prop, value, cellProperties) {
-        Handsontable.renderers.TextRenderer.apply(this, arguments);
-        td.style.fontWeight = '900';
-        td.style.textAlign = 'center';
-        td.className = 'dataset_release_cell';
-
-        if (value === null) {
-            cellProperties.readOnly = false;
-            return;
-        }
-        else if (value.charAt(0) === 'R') {
-            td.style.color = 'green';
-            cellProperties.readOnly = true;
-        }
-        else if (value.charAt(0) === 'P') {
-            td.style.color = 'green';
-            td.style.backgroundColor = 'rgba(150, 235, 0, 0.27)';
-            cellProperties.readOnly = true;
-        }
-    };
-
-
-    this.sampleMetadataHtmlRenderer = function(instance, td, row, col, prop, value, cellProperties) {
-        Handsontable.renderers.HtmlRenderer.apply(this, arguments);
-        td.className = 'metadata_cell';
-    };
-
-
-    this.sampleMetadataUriRenderer = function(instance, td, row, col, prop, value, cellProperties) {
-        Handsontable.renderers.HtmlRenderer.apply(this, arguments);
-        td.className = 'metadata_cell';
-        if (value !== null) {
-            td.innerHTML = '<a target=\'_blank\' href=\'' + value + '\'>' + value + '</a>';
-        }
-    };
-
-
+    this.is_metadata_collapsed = false;
 
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Handsontable Editors
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // CustomEditor will ask if an unreleased dataset should be released
-    this.DatasetEditor = Handsontable.editors.BaseEditor.prototype.extend();
-    this.DatasetEditor.prototype.getValue = function() {};
-    this.DatasetEditor.prototype.setValue = function(newValue) {};
-    this.DatasetEditor.prototype.open = function() { this.finishEditing(); };
-    this.DatasetEditor.prototype.close = function() {};
-    this.DatasetEditor.prototype.focus = function() {};
+    this.DatasetEditor = createEditor({
+        getValue: () => {},
+        setValue: (newValue) => {},
+        open: (editor, ...args) => {
+            editor.finishEditing();
+            this._updateDataset(editor.row, editor.prop, editor.originalValue);
+        },
+        close: () => {},
+        focus: () => {},
+    })
 
 
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Methods
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    this.load = function() {
+    this.load = () => {
         document.body.style.cursor = 'wait';
 
-        var url = '/api/samples';
+        let url = '/api/samples';
+
         if ('donor' in $scope.queryDict) {
             url += '/donor/' + $scope.queryDict['donor'];
             $scope.donorName = ' for ' + $scope.queryDict['donor'];
-        }
-        else if (Object.keys($scope.queryDict).length > 0) {
-            var params = [];
-            for (var key in $scope.queryDict) {
-                params.push(key + '=' + $scope.queryDict[key]);
-            }
-            url += '/metadata?' + params.join('&');
+        } else if (Object.keys($scope.queryDict).length > 0) {
+            url += '/metadata?' + queryString($scope.queryDict);
         }
 
-
-        $http({
-            method: 'GET',
-            url: url
-        }).then(drawGrid);
-
-        // Fill the grid with all existing samples
-        function drawGrid(result) {
+        $http.get(url).then((result) => {
             $scope.samples = result.data;
             document.body.style.cursor = 'default';
-        }
+        });
     };
 
     // Add a sample in the database
-    this.save = function() {
+    this.save = () => {
         $scope.sample.donor_id = $scope.sample.donor.originalObject.id;
-        var data = $scope.sample;
 
-        $http.post('/api/sample', data)
-            .then(function(response) {
+        $http.post('/api/sample', $scope.sample)
+            .then((response) => {
                 alert('Success.');
                 $scope.sample = {};
-                that.load();
+                this.load();
             })
-            .catch(function(err) {
+            .catch((err) => {
                 alert('Sample creation failed.');
             });
     };
 
-
-    this.cancel = function() {
+    this.cancel = () => {
         // Nothing to do!
     };
 
     // Add sample metadata in the database
-    this.saveCell = function(change, source) {
-        if (source === 'loadData') {
+    this.onAfterChange = (change, source) => {
+        if (source === 'loadData' || /^datasets\./.test(col))
             return;
-        }
 
-        var row = change[0][0];
-        var col = change[0][1];
-        var before = change[0][2];
-        var after = change[0][3];
+        const row    = change[0][0];
+        const col    = change[0][1];
+        const before = change[0][2];
+        const after  = change[0][3];
 
-        var experiment_types = $scope.experimentTypeList.reduce(function(a, b) { a[b.name] = b; return a; }, {});
-        var properties = $scope.samplePropertiesList.reduce(function(a, b) { a[b.property] = b; return a; }, {});
-
-        if (col in properties) {
-            that._saveMetadata(source, row, col, before, after);
-        }
-        if (col in experiment_types) {
-            that._saveDataset(source, row, col, before, after);
-        }
-
+        this._saveMetadata(source, row, col, before, after);
     };
-
-
-    this.collapseMetadata = function() {
-        that.is_metadata_collapsed = !that.is_metadata_collapsed;
-        var colwidth = 150;
-        if (that.is_metadata_collapsed) {
-            colwidth = 20;
-        }
-
-        for (var c_idx in $scope.columns) {
-            var col = $scope.columns[c_idx];
-            if (col.is_metadata_column) {
-                col.width = colwidth;
-            }
-        }
-    }
-
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Internal methods
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    this._saveMetadata = function(source, row, col, before, after) {
+    this._saveMetadata = (source, row, col, before, after) => {
         if (source === 'edit') {
-            var data = {
+            const data = {
                 sample_id: $scope.samples[row].id,
                 field: col,
                 value: after
@@ -174,65 +98,76 @@ app.controller('SampleCtrl', function($scope, $http) {
         }
     };
 
-    this._saveDataset = function(source, row, col, before, after) {
-        if (source === 'edit') {
-            var data = {
+    this._updateDataset = (row, prop, data) => {
+        const dataset = data === null ?
+            {
                 sample_id: $scope.samples[row].id,
-                experiment_type: col
+                experiment_type: prop.replace('datasets.', ''),
+                release_status: 'P',
+            } :
+            {
+                id: data.id,
+                release_status: 'P',
             };
 
-            $http.post('/api/dataset', data)
-                .then(function(response) {
-                    that.load();
-                })
-                .catch(function(err) {
-                    alert('Dataset modification failed.');
-                });
-        }
+        $http.post('/api/dataset', dataset)
+            .then((response) => this.load())
+            .catch((err) => alert('Dataset modification failed.'));
     };
 
+    this._addMetaColumns = (result) => {
 
-    this._addMetaColumns = function(result) {
         $scope.samplePropertiesList = result.data;
-        for (var i in $scope.samplePropertiesList) {
-            var p = $scope.samplePropertiesList[i];
 
-            var c = {
+        for (let i in $scope.samplePropertiesList) {
+            const p = $scope.samplePropertiesList[i];
+
+            $scope.columns.push({
                 data: p.property,
                 title: p.property,
                 readOnly: false,
                 width: 150,
-                is_metadata_column: true
-            };
-
-            if (p.type === 'uri') {
-                c.renderer = that.sampleMetadataUriRenderer;
-            }
-            else {
-                c.renderer = that.sampleMetadataHtmlRenderer;
-            }
-
-            $scope.columns.push(c);
+                is_metadata_column: true,
+                renderer: p.type === 'uri' ? Renderer.URI : Renderer.HTML,
+            });
         }
     };
 
+    this._addExperimentColumns = (result) => {
 
-    this._addExperimentColumns = function(result) {
-        for (var i in $scope.experimentTypeList) {
-            var p = $scope.experimentTypeList[i];
+        for (let i in $scope.experimentTypeList) {
+            const p = $scope.experimentTypeList[i];
 
-            var c = {
-                data: p.name,
+            $scope.columns.push({
+                data: `datasets.${p.name}`,
                 title: p.name,
                 readOnly: false,
                 width: 100,
-                renderer: that.releaseStatusRenderer
-            };
-
-            c.editor = that.DatasetEditor;
-            $scope.columns.push(c);
+                renderer: Renderer.dataset,
+                editor: this.DatasetEditor,
+            });
         }
     };
+
+    // Expand/Collapse metadata columns
+    this.toggleMetadata = () => {
+        this.is_metadata_collapsed = !this.is_metadata_collapsed;
+        this._updateMetadataDimensions()
+    }
+    this.collapseMetadata = () => {
+        this.is_metadata_collapsed = true
+        this._updateMetadataDimensions()
+    }
+    this._updateMetadataDimensions = () => {
+        const colwidth = this.is_metadata_collapsed ? 20 : 150;
+
+        for (let c in $scope.columns) {
+            const col = $scope.columns[c];
+
+            if (col.is_metadata_column)
+                col.width = colwidth;
+        }
+    }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructor
@@ -246,34 +181,42 @@ app.controller('SampleCtrl', function($scope, $http) {
 
     // Extract GET parameters to a dictionary
     if (location.search !== '') {
-        location.search.substr(1).split('&').forEach(function(item) { $scope.queryDict[item.split('=')[0]] = item.split('=')[1]; });
+        location.search.substr(1).split('&').forEach((item) => { $scope.queryDict[item.split('=')[0]] = item.split('=')[1]; });
     }
 
     $scope.columns = [
-        { data: 'public_name', title: 'Public Name', readOnly: true, readOnlyCellClassName:'roCell', width: 130 },
-        { data: 'private_name', title: 'Private Name', readOnly: true, readOnlyCellClassName:'roCell' },
-        { data: 'donor.private_name', title: 'Donor Name', readOnly: true, readOnlyCellClassName:'roCell' },
-        { data: 'EGAN', title: 'Phenotype', readOnly: true, readOnlyCellClassName:'roCell' },
+        { data: 'public_name',        title: 'Public Name',  readOnly: true, readOnlyCellClassName:'roCell',   width: 130 },
+        { data: 'private_name',       title: 'Private Name', readOnly: true, readOnlyCellClassName:'roCell' },
+        { data: 'donor.private_name', title: 'Donor Name',   readOnly: true, readOnlyCellClassName:'roCell' },
+        { data: 'EGAN',               title: 'Phenotype',    readOnly: true, readOnlyCellClassName:'roCell' },
     ];
+
     $scope.settings = {
-        onAfterChange: function(change, source) { that.saveCell(change, source); }
+        onAfterChange: this.onAfterChange
     };
 
     // Load list of sample metadata fields and add columns
-    $http({
-        method: 'GET',
-        url: '/api/sample_properties'
-    }).then(that._addMetaColumns);
-
+    $http.get('/api/sample_properties')
+    .then(this._addMetaColumns);
 
     // Load list of experiments  and add a column for each
-    $http({
-        method: 'GET',
-        url: '/api/experiment_types'
-    }).then(function (result) {
+    $http.get('/api/experiment_types')
+    .then((result) => {
         $scope.experimentTypeList = result.data;
-        that._addExperimentColumns();
+        this._addExperimentColumns();
     });
 
     this.load();
 });
+
+
+function createEditor(methods) {
+    const Editor = Handsontable.editors.BaseEditor.prototype.extend();
+
+    for (let name in methods) {
+        let method = methods[name]
+        Editor.prototype[name] = function(...args) { return method(this, ...args) }
+    }
+
+    return Editor
+}

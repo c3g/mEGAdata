@@ -42,7 +42,7 @@ const entries = {
 module.exports = {
   entry: entries,
 
-  devtool: isProduction ? 'source-map' : 'cheap-module-source-map',
+  devtool: isProduction ? 'source-map' : 'eval-source-map',
 
   module: {
     rules:

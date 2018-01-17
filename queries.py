@@ -118,24 +118,45 @@ def getSampleList(donor=None, filter={}):
     if donor is not None:
         query = query.where(Donor.private_name == donor)
 
-    recordObj = {}
+    samplesByID = {}
+
     for sample in query:
         sampleRecord = sample.toJSON()
 
-        sampleRecord['id'] = sample.id
+        datasetByExperiment = {}
 
-        datasetList = {}
-        query2 = Dataset.select(Dataset, ExperimentType, Sample).join(ExperimentType).switch(Dataset).join(Sample).where(Sample.id == sample.id)
-        for dataset in query2:
-            datasetList[dataset.experiment_type.name] = dataset.release_status
+        for dataset in getDatasetsForSample(sample.id):
+            datasetResult = {
+                'id': dataset.id,
+                'release_status': dataset.release_status or None,
+                'runs': []
+            }
+            for run in getRunsForDataset(dataset.id):
+                datasetResult['runs'].append({
+                    'id': run.id,
+                    'library_name': run.library_name,
+                    'run': run.run,
+                    'lane': run.lane,
+                    'EGA_EGAR': run.EGA_EGAR
+                })
+            datasetByExperiment[dataset.experiment_type.name] = datasetResult
 
-        sampleRecord['datasets'] = datasetList
-        recordObj[sample.id] = sample.toJSON()
+        sampleRecord['datasets'] = datasetByExperiment
+        samplesByID[sample.id] = sampleRecord
 
-    appendSamplesMetadata(recordObj)
-    appendSamplesDatasets(recordObj)
-    recordList = recordObj.values()
-    return recordList
+    appendSamplesMetadata(samplesByID)
+
+    return samplesByID.values()
+
+def appendSamplesMetadata(recordList):
+    query = SampleMetadata.select(SampleMetadata, Sample.id.alias('sample_id'), SampleProperty.property.alias('property'))\
+        .join(Sample)\
+        .switch(SampleMetadata).join(SampleProperty)\
+        .naive()
+
+    for dm in query:
+        if dm.sample_id in recordList:
+            recordList[dm.sample_id][dm.property] = dm.value
 
 def insertSample(dataJson):
     d = Donor.get(id=dataJson.get("donor_id"))
@@ -177,30 +198,15 @@ def insertSampleProperty(dataJson):
     return p.toJSON()
 
 
-def appendSamplesMetadata(recordList):
-    query = SampleMetadata.select(SampleMetadata, Sample.id.alias('sample_id'), SampleProperty.property.alias('property'))\
-        .join(Sample)\
-        .switch(SampleMetadata).join(SampleProperty)\
-        .naive()
-
-    for dm in query:
-        if dm.sample_id in recordList:
-            recordList[dm.sample_id][dm.property] = dm.value
-
-def appendSamplesDatasets(recordList):
-    query = Dataset.select(Dataset, Sample.id.alias('sample_id'), ExperimentType.name.alias('experiment_name')).join(Sample).switch(Dataset).join(ExperimentType)
-
-    for dm in query.naive():
-        if dm.sample_id in recordList:
-            recordList[dm.sample_id][dm.experiment_name] = dm.release_status
-
-
 
 #==============================================================================~
 # Dataset
 #==============================================================================~
 
 def insertDataset(dataJson):
+    if dataJson.has_key('id'):
+        return updateDataset(dataJson)
+
     s = Sample.get(id=dataJson.get("sample_id"))
     et = ExperimentType.get(name=dataJson.get("experiment_type"))
 
@@ -211,6 +217,18 @@ def insertDataset(dataJson):
     )
 
     dataset = Dataset.select().order_by(Dataset.id.desc()).get()
+    return dataset.toJSON()
+
+def updateDataset(dataJson):
+    dataset = Dataset.get(id=dataJson['id'])
+
+    for key in dataJson.keys():
+        if key == 'id':
+            continue
+        if hasattr(dataset, key):
+            setattr(dataset, key, dataJson[key])
+
+    dataset.save()
     return dataset.toJSON()
 
 def insertExperimentMetadata(dataJson):
@@ -238,12 +256,20 @@ def insertExperimentProperty(dataJson):
     return p.toJSON()
 
 
+def getDatasetsForSample(sampleID):
+    query = Dataset.select(Dataset, ExperimentType, Sample)\
+                    .join(ExperimentType).switch(Dataset).join(Sample)\
+                    .where(Sample.id == sampleID)
+
+    return query
+
+
 
 #==============================================================================~
 # Run
 #==============================================================================~
 
-def insertRun(data):
+
     dataset = Dataset.get(id=data['dataset_id'])
 
     run = Run()
@@ -263,6 +289,14 @@ def insertRun(data):
             file.save()
 
     return run.toJSON()
+
+
+def getRunsForDataset(datasetID):
+    query = Run.select(Run)\
+                    .join(Dataset)\
+                    .where(Dataset.id == datasetID)
+
+    return query
 
 
 
