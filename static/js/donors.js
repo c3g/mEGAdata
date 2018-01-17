@@ -1,23 +1,18 @@
-/*jslint browser: true*/
-/*global console, alert, d3, angular, Handsontable*/
+/* jslint browser: true*/
+/* global angular, Handsontable*/
+
+import transformAPIResponse from './utils/transform-api-response'
 
 var app = angular.module('DonorApp', ['ngHandsontable']);
 app.controller('DonorCtrl', function($scope, $http) {
 
-    $http.defaults.transformResponse = [
-        res => JSON.parse(res),
-        res => {
-            if (!res.ok)
-                return Promise.reject(new Error(res.message))
-            return res.data
-        }
-    ]
+    $http.defaults.transformResponse = transformAPIResponse
 
     var that = this;
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Handsontable Renderers
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this.donorPrivateNameRenderer = function(instance, td, row, col, prop, value, cellProperties) {
         Handsontable.renderers.HtmlRenderer.apply(this, arguments);
         var rowData = $scope.donors[cellProperties.row];
@@ -25,41 +20,39 @@ app.controller('DonorCtrl', function($scope, $http) {
             td.style.backgroundColor = '#CCE0EB';
         }
         if (value !== null) {
-            td.innerHTML = "<a target='_blank' href='/samples?donor=" + value + "'>" + value + "</a>";
+            td.innerHTML = '<a target=\'_blank\' href=\'/samples?donor=' + value + '\'>' + value + '</a>';
         }
     };
 
     this.donorMetadataHtmlRenderer = function(instance, td, row, col, prop, value, cellProperties) {
         Handsontable.renderers.HtmlRenderer.apply(this, arguments);
-        var rowData = $scope.donors[cellProperties.row];
-        td.className = "metadata_cell";
+        td.className = 'metadata_cell';
     };
 
     this.donorMetadataUriRenderer = function(instance, td, row, col, prop, value, cellProperties) {
         Handsontable.renderers.HtmlRenderer.apply(this, arguments);
-        var rowData = $scope.donors[cellProperties.row];
-        td.className = "metadata_cell";
+        td.className = 'metadata_cell';
         if (value !== null) {
-            td.innerHTML="<a target='_blank' href='" + value + "'>" + value + "</a>";
+            td.innerHTML = '<a target=\'_blank\' href=\'' + value + '\'>' + value + '</a>';
         }
     };
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Methods
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this.load = function() {
         $http({
             method: 'GET',
             url: '/api/donors'
         }).then(drawGrid);
 
-        //Fill the grid with all existing donors
+        // Fill the grid with all existing donors
         function drawGrid(result) {
             $scope.donors = result.data;
         }
     };
 
-    //Add a donor in the database
+    // Add a donor in the database
     this.save = function() {
         var data = $scope.donor;
 
@@ -69,18 +62,18 @@ app.controller('DonorCtrl', function($scope, $http) {
                 that.load();
             })
             .catch(function(data, status, headers, config) {
-                alert("Donor creation failed.");
+                alert('Donor creation failed.');
             });
     };
 
-    //Cancel button for both modal dialogs.
+    // Cancel button for both modal dialogs.
     this.cancel = function() {
-        //Nothing to do!
+        // Nothing to do!
     };
 
-    //Add donor metadata in the database
+    // Add donor metadata in the database
     this.saveCell = function(change, source) {
-        if (source === "loadData") {
+        if (source === 'loadData') {
             return;
         }
 
@@ -89,7 +82,7 @@ app.controller('DonorCtrl', function($scope, $http) {
         var before = change[0][2];
         var after = change[0][3];
 
-        if (source === "edit") {
+        if (source === 'edit') {
             var data = {
                 donor_id: $scope.donors[row].id,
                 field: col,
@@ -100,9 +93,9 @@ app.controller('DonorCtrl', function($scope, $http) {
         }
     };
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Internal methods
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this._addMetaColumns = function(result) {
         $scope.donorPropertiesList = result.data;
         for (var i in $scope.donorPropertiesList) {
@@ -115,7 +108,7 @@ app.controller('DonorCtrl', function($scope, $http) {
                 width: 150
             };
 
-            if (p.type === "uri") {
+            if (p.type === 'uri') {
                 c.renderer = that.donorMetadataUriRenderer;
             }
             else {
@@ -127,24 +120,24 @@ app.controller('DonorCtrl', function($scope, $http) {
     };
 
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructor
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $scope.donor = {};
     $scope.donors = [];
     $scope.speciesList = [];
     $scope.columns = [
-        { data: 'public_name', title: 'Public Name', readOnly: true, readOnlyCellClassName:"roCell" },
-        { data: 'private_name', title: 'Private Name', readOnly: true, readOnlyCellClassName:"roCell", renderer: that.donorPrivateNameRenderer },
-        { data: 'taxon_id', title: 'Taxon ID', readOnly: true, readOnlyCellClassName:"roCell" },
-        { data: 'phenotype', title: 'Phenotype', readOnly: true, readOnlyCellClassName:"roCell" },
-        { data: 'is_pool', title: 'Pooled Sample', readOnly: true, readOnlyCellClassName:"roCell" }
+        { data: 'public_name', title: 'Public Name', readOnly: true, readOnlyCellClassName:'roCell' },
+        { data: 'private_name', title: 'Private Name', readOnly: true, readOnlyCellClassName:'roCell', renderer: that.donorPrivateNameRenderer },
+        { data: 'taxon_id', title: 'Taxon ID', readOnly: true, readOnlyCellClassName:'roCell' },
+        { data: 'phenotype', title: 'Phenotype', readOnly: true, readOnlyCellClassName:'roCell' },
+        { data: 'is_pool', title: 'Pooled Sample', readOnly: true, readOnlyCellClassName:'roCell' }
     ];
     $scope.settings = {
-        onAfterChange: function(change, source) {that.saveCell(change, source);}
+        onAfterChange: function(change, source) { that.saveCell(change, source); }
     };
 
-    //List of all existing species in database
+    // List of all existing species in database
     $http({
         method: 'GET',
         url: '/api/species'
@@ -152,7 +145,7 @@ app.controller('DonorCtrl', function($scope, $http) {
         $scope.speciesList = result;
     });
 
-    //List of all existing species in database
+    // List of all existing species in database
     $scope.donorPropertiesList = [];
     $http({
         method: 'GET',
