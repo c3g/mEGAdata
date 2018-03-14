@@ -1,5 +1,13 @@
 SET foreign_key_checks=0;
 
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `dataset`;
 CREATE TABLE `dataset` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '		',
@@ -8,13 +16,10 @@ CREATE TABLE `dataset` (
   `release_status` varchar(100) DEFAULT NULL,
   `EGA_EGAX` varchar(16) DEFAULT NULL,
   `last_modification` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `experiment_metadata_set_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `sample_experiment_UNIQUE` (`sample_id`,`experiment_type_id`),
   KEY `fk_dataset_1_idx` (`experiment_type_id`),
   KEY `fk_dataset_2_idx` (`sample_id`),
-  KEY `experiment_metadata_set_id` (`experiment_metadata_set_id`),
-  CONSTRAINT `dataset_ibfk_1` FOREIGN KEY (`experiment_metadata_set_id`) REFERENCES `experiment_metadata_set` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_dataset_1` FOREIGN KEY (`experiment_type_id`) REFERENCES `experiment_type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_dataset_2` FOREIGN KEY (`sample_id`) REFERENCES `sample` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -84,25 +89,28 @@ CREATE TABLE `experiment_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-DROP TABLE IF EXISTS `experiment_metadata`;
-CREATE TABLE `experiment_metadata` (
+drop table if exists `experiment_property`;
+create table `experiment_property` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `attribute` varchar(200) DEFAULT NULL,
+  `property` varchar(100) DEFAULT NULL,
+  `type` set('string','int','float','text','uri') DEFAULT NULL,
+  `is_exported_to_ega` tinyint(1) NOT NULL,
+  primary key (`id`)
+);
+
+
+drop table if exists `experiment_metadata`;
+create table `experiment_metadata` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dataset_id` int(11) NOT NULL,
+  `experiment_property_id` int(11) NOT NULL,
   `value` text,
-  `experiment_metadata_set_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `experiment_metadata_set_id` (`experiment_metadata_set_id`),
-  CONSTRAINT `experiment_metadata_set_id` FOREIGN KEY (`experiment_metadata_set_id`) REFERENCES `experiment_metadata_set` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-DROP TABLE IF EXISTS `experiment_metadata_set`;
-CREATE TABLE `experiment_metadata_set` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `version` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  primary key (`id`),
+  KEY `fk_experiment_metadata_dataset1_idx` (`dataset_id`),
+  KEY `fk_experiment_metadata_experiment_property1_idx` (`experiment_property_id`),
+  CONSTRAINT `fk_experiment_metadata_dataset1` FOREIGN KEY (`dataset_id`) REFERENCES `dataset` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_experiment_metadata_experiment_property1` FOREIGN KEY (`experiment_property_id`) REFERENCES `experiment_property` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
 
 
 DROP TABLE IF EXISTS `public_track`;

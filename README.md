@@ -36,7 +36,7 @@ Then, copy settings_example.py to settings.py, and configure parameters.
 ###To execute
 ```
 . venv/bin/activate
-python mEGAdata.py
+python main.py
 ```
 
 Start by adding donors, then add samples, and finally, datasets, by double-clicking on a sample-experiment cell.

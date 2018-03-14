@@ -1,0 +1,187 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://epigenomesportal.ca/schemas/dataset.json",
+    "title": "Dataset",
+    "description": "IHEC Data Hub Dataset schema",
+
+    "type" : "object",
+    "properties": {
+        "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Uniquely identifying ID"
+        },
+        "sample_id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "When the experiment belongs to a single sample, put one sample ID here."
+        },
+        "experiment_attributes": { "$ref": "#/definitions/experiment" },
+        "analysis_attributes": { "$ref": "#/definitions/analysis" },
+        "browser": {
+            "type": "object",
+            "properties": {
+                "signal_unstranded": {"$ref": "#/definitions/track"},
+                "signal_forward": {"$ref": "#/definitions/track"},
+                "signal_reverse": {"$ref": "#/definitions/track"},
+                "peak_calls": {"$ref": "#/definitions/track"},
+                "methylation_profile":  {"$ref": "#/definitions/track"},
+                "contigs":  {"$ref": "#/definitions/track"}
+            },
+            "dependencies": {
+                "signal_forward": ["signal_reverse"],
+                "signal_reverse": ["signal_forward"]
+            }
+        },
+        "download": {
+            "type": "object",
+            "properties": {
+                "rpkm_forward": {"$ref": "#/definitions/track"},
+                "rpkm_reverse": {"$ref": "#/definitions/track"},
+                "rpkm_unstranded": {"$ref": "#/definitions/track"}
+            },
+            "additionalProperties": false,
+            "dependencies": {
+                "rpkm_forward": ["rpkm_reverse"],
+                "rpkm_reverse": ["rpkm_forward"]
+            }
+        },
+        "run": { "$ref": "#/definitions/run" }
+    },
+
+    "required": ["id", "sample_id", "analysis_attributes", "experiment_attributes", "browser"],
+
+    "definitions": {
+        "run": {
+            "type": "array",
+            "description": "The list of associated runs",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "library_name": {
+                        "type": "string"
+                    },
+                    "run": {
+                        "type": "string"
+                    },
+                    "lane": {
+                        "type": "string"
+                    },
+                    "files": {
+                        "type": "array",
+                        "description": "The list of files associated with this run",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "md5": {
+                                    "type": "string"
+                                },
+                                "encrypted_md5": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "track": {
+            "type": "array",
+            "description": "A list of tracks that belong to this type. The first track is considered as the main track representing this type.",
+            "items": {
+                "type" : "object",
+                "properties" : {
+                    "big_data_url": {
+                        "type" : "string",
+                        "preferredFormat": "uri",
+                        "description": "The URL from where this dataset track can be obtained online."
+                    },
+                    "description_url": {
+                        "type": "string",
+                        "preferredFormat": "uri",
+                        "description": "The URL of the document giving more information about this dataset track."
+                    },
+                    "md5sum": {
+                        "type": "string",
+                        "description": "The checksum for this track."
+                    },
+                    "subtype": {
+                        "type": "string",
+                        "description": "If there are multiple files for this track type, use this free text field to put more information about what kind of information this track represents."
+                    },
+                    "sample_source": {
+                        "type": "string",
+                        "description": "Use this field if the track belongs to only one/some sample(s) of a merged dataset."
+                    },
+                    "primary": {
+                        "type": "boolean",
+                        "description": "When there are multiple tracks for this track type, set this field to 'true' to express that this is the primary track to represent this track type."
+                    }
+                },
+                "required": ["big_data_url", "md5sum"]
+            }
+        },
+        "experiment": {
+            "id": "http://epigenomesportal.ca/schemas/experiment.json",
+            "title": "Experiment",
+            "description": "IHEC Data Hub Experiment schema",
+            "type" : "object",
+
+            "properties": {
+                "experiment_type": {
+                    "type": "string",
+                    "description": "DNA Methylation, mRNA-Seq, ChIP-Seq Input..."
+                },
+                "assay_type": {
+                    "type": "string",
+                    "description": "As described in the experiment_ontology_uri term, e.g. 'DNA Methylation'..."
+                },
+                "experiment_ontology_uri": {
+                    "type": "string",
+                    "preferredFormat": "uri",
+                    "description": "(Ontology) links to experiment ontology information."
+                },
+                "reference_registry_id": {
+                    "type": "string",
+                    "description": "The EpiRR ID for this dataset."
+                }
+            },
+
+            "required": ["experiment_type", "experiment_ontology_uri"]
+        },
+        "analysis": {
+            "id": "http://epigenomesportal.ca/schemas/analysis.json",
+            "title": "Analysis",
+            "description": "IHEC Data Hub Analysis schema",
+            "type": "object",
+
+            "properties": {
+                "analysis_group": {
+                    "type": "string",
+                    "description": "The group that ran the bioformatics analysis to produce this dataset tracks."
+                },
+                "alignment_software": {
+                    "type": "string",
+                    "description": "The name of the software used for mapping."
+                },
+                "alignment_software_version": {
+                    "type": "string",
+                    "description": "The version of the software used for mapping."
+                },
+                "analysis_software": {
+                    "type": "string",
+                    "description": "The name of the software used for determining signal (read density)."
+                },
+                "analysis_software_version": {
+                    "type": "string",
+                    "description": "The version of the software used for determining signal (read density)."
+                }
+            },
+
+            "required": ["analysis_group", "alignment_software", "alignment_software_version", "analysis_software", "analysis_software_version"]
+        }
+    }
+}

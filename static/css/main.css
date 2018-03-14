@@ -1,21 +1,82 @@
-body {
-	padding-left: 10px;
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * Bootstrap corrections
+ */
+
+.alert .table {
+  margin-bottom: 0;
+}
+.alert .table td,
+.alert .table th {
+  border-top: none;
+}
+.alert .table td:first-child,
+.alert .table th:first-child {
+  white-space: nowrap;
+}
+
+.table-small {
+  margin-left: 12px;
+}
+.table-small th,
+.table-small td {
+  padding: 2px 5px;
+}
+
+.suggestion {
+  font-weight: bold;
+  font-size: 0.8;
+}
+
+/*
+ * Other
+ */
+
+.home-container a {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .roCell {
-	color: black;
-	background-color: #F5F5F5 !important;
+  color: black;
+  background-color: #F5F5F5 !important;
 }
-
 
 .angucomplete_highlight {
-	color: red;
+  color: red;
 }
 
-.metadata_cell {
-	background-color: rgba(204, 224, 235, 0.58) !important;
-}
 
-.dataset_release_cell {
-	/*background-color: rgba(150, 235, 0, 0.27) !important;*/
+.cell--metadata {
+  background-color: rgba(204, 224, 235, 0.58) !important;
+}
+.cell--has-run {
+  background-color: #fff5e4 !important;
+}
+.cell--dataset,
+.cell--dataset-pending {
+  color: green;
+  font-weight: bold;
+  text-align: center;
+}
+.cell--dataset-pending {
+  background-color: #e3faba !important;
+}
+.cell--dataset-pending.cell--has-run {
+  background: repeating-linear-gradient(
+    45deg,
+    #fff5e4,
+    #fff5e4 10px,
+    #e3faba 10px,
+    #e3faba 20px
+  );
 }

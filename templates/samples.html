@@ -1,44 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Samples</title>
-  <link rel="stylesheet" media="screen" href="/css/main.css">
-  
-  <!-- jQuery -->
-  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-  
+{% extends "_base.html" %}
+
+{% block head %}
   <!-- Handsontable -->
-  <script src="../bower_components/handsontable/dist/handsontable.full.js"></script>
-  <link rel="stylesheet" media="screen" href="../bower_components/handsontable/dist/handsontable.full.css">
-  
+  <script src="bower_components/handsontable/dist/handsontable.full.js"></script>
+  <link rel="stylesheet" media="screen" href="bower_components/handsontable/dist/handsontable.full.css">
+
   <!-- Bootstrap -->
-  <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
-  
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
   <!-- Angular -->
-  <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+  <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 
   <!-- Angular angucomplete-alt, for auto-completion -->
-  <script src="../bower_components/angucomplete-alt/dist/angucomplete-alt.min.js"></script>
-  <link rel="stylesheet" media="screen" href="../bower_components/angucomplete-alt/angucomplete-alt.css">
-  
-  <!-- Sample application Angular controller -->
-  <script type="text/javascript" src="./sample.js"></script>
+  <script src="bower_components/angucomplete-alt/dist/angucomplete-alt.min.js"></script>
+  <link rel="stylesheet" media="screen" href="bower_components/angucomplete-alt/angucomplete-alt.css">
 
-  <script src="../bower_components/ngHandsontable/dist/ngHandsontable.js"></script>
+  <script src="bower_components/ngHandsontable/dist/ngHandsontable.js"></script>
 
+  <script src="/dist/samples.js"></script>
 </head>
+{% endblock %}
 
-<body data-ng-app="SampleApp" data-ng-controller="SampleCtrl as ctrl">
-  <h2><a href="/"><img src="/img/EMC.png"> mEGAdata</a> : Samples <span data-ng-bind="donorName"></span></h2>
-  <hr>
-  <p>
-    <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#addSampleModal">
-      <span class="glyphicon glyphicon-plus" style="color: green;"></span> Add Sample
+{% block body %}
+
+<div data-ng-app="SampleApp" data-ng-controller="SampleCtrl as ctrl">
+
+  <div class="container">
+    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addSampleModal">
+      <span class="glyphicon glyphicon-plus"></span> Add Sample
     </button>
-    &nbsp;&nbsp;&nbsp;
-    <button class="btn btn-sm" data-ng-click="ctrl.collapseMetadata();">Expand/Collapse Metadata</button>
-  </p>
+    <button class="btn btn-sm btn-default" data-ng-click="ctrl.toggleMetadata();">Expand/Collapse Metadata</button>
+  </div>
+
+  <br/>
 
   <hot-table
           col-headers="true"
@@ -95,8 +90,8 @@
       </div>
     </div>
   </div>
-  
-  
+
+
     <div style="font-size: 9px; position: absolute; top: 10px; left: 1000px;">
     <b>Datasets Legend:</b>
     <table>
@@ -114,6 +109,7 @@
 
   </div>
 
-  
-</body>
-</html>
+
+</div>
+
+{% endblock %}

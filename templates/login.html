@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+  <div class="text-center">
+    <a class="btn btn-danger" href={{ url_for('oauth_authorize', provider='google') }}>
+      <i class="fa fa-google"></i> Sign in with Google
+    </a>
+  </div>
+</div>
+
+{% endblock %}

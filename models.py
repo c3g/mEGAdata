@@ -8,12 +8,51 @@ from playhouse.shortcuts import model_to_dict
 # Peewee Objects
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class BaseModel(peewee.Model):
-    def toJson(self):
+    def toJSON(self):
         dict = model_to_dict(self)
         return dict
-        
+
     class Meta:
         database = db
+
+
+class User(BaseModel):
+    id = peewee.IntegerField(primary_key=True)
+    name = peewee.CharField()
+    email = peewee.CharField()
+
+    def is_authenticated():
+        """
+        This property should return True if the user is authenticated, i.e. they
+        have provided valid credentials. (Only authenticated users will fulfill
+        the criteria of login_required.)
+        """
+        return True
+
+    def is_active():
+        """
+        This property should return True if this is an active user - in addition
+        to being authenticated, they also have activated their account, not been
+        suspended, or any condition your application has for rejecting an account.
+        Inactive accounts may not log in (without being forced of course).
+        """
+        return True
+
+    def is_anonymous():
+        """
+        This property should return True if this is an anonymous user. (Actual users
+        should return False instead.)
+        """
+        return False
+
+    def get_id(self):
+        """
+        This method must return a unicode that uniquely identifies this user, and
+        can be used to load the user from the user_loader callback. Note that this
+        must be a unicode - if the ID is natively an int or some other type, you will
+        need to convert it to unicode.
+        """
+        return str(self.id)
 
 
 class Species(BaseModel):
@@ -98,27 +137,6 @@ class ExperimentType(BaseModel):
         db_table = 'experiment_type'
 
 
-class ExperimentMetadataSet(BaseModel):
-    id = peewee.IntegerField()
-    name = peewee.CharField()
-    version = peewee.CharField()
-
-    class Meta:
-        db_table = 'experiment_metadata_set'
-
-
-class ExperimentMetadata(BaseModel):
-    id = peewee.IntegerField()
-    experiment_metadata_set_id = peewee.IntegerField()
-    attribute = peewee.CharField()
-    value = peewee.CharField()
-
-    experiment_metadata_set = peewee.ForeignKeyField(ExperimentMetadataSet)
-
-    class Meta:
-        db_table = 'experiment_metadata'
-
-
 class Dataset(BaseModel):
     id = peewee.IntegerField()
     sample_id = peewee.IntegerField()
@@ -127,7 +145,28 @@ class Dataset(BaseModel):
 
     sample = peewee.ForeignKeyField(Sample)
     experiment_type = peewee.ForeignKeyField(ExperimentType)
-    experiment_metadata_set = peewee.ForeignKeyField(ExperimentMetadataSet)
+
+
+class ExperimentProperty(BaseModel):
+    id = peewee.IntegerField(primary_key=True)
+    property = peewee.CharField()
+    type = peewee.CharField()
+    is_exported_to_ega = peewee.BooleanField()
+
+    class Meta:
+        db_table = 'experiment_property'
+
+
+class ExperimentMetadata(BaseModel):
+    id = peewee.IntegerField(primary_key=True)
+    dataset_id = peewee.IntegerField()
+    value = peewee.CharField()
+
+    dataset = peewee.ForeignKeyField(Dataset)
+    experiment_property = peewee.ForeignKeyField(ExperimentProperty)
+
+    class Meta:
+        db_table = 'experiment_metadata'
 
 
 class Run(BaseModel):

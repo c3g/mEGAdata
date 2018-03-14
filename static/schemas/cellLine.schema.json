@@ -1,0 +1,79 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "Cell_Line",
+    "title": "Cell Line",
+    "description": "IHEC Data Hub Sample schema",
+
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Uniquely identifying ID"
+        },
+        "biomaterial_type": {
+            "type": "string",
+            "enum": [
+                "Cell Line"
+            ],
+            "description": ""
+        },
+        "sample_ontology_uri": {
+            "type": "string",
+            "preferredFormat": "uri",
+            "description": "Ontology term that links to sample ontology information. Depending on the biomaterial_type, will be either an UBERON or CL ontology term."
+        },
+        "molecule": {
+            "type": "string",
+            "description": "The type of molecule that was extracted from the biological material. Include one of the following: total RNA, polyA RNA, cytoplasmic RNA, nuclear RNA, genomic DNA, protein, or other."
+        },
+        "disease": {
+            "type": "string",
+            "description": "Free form field for more specific disease information. If dealing with a rare disease consider identifiability issues."
+        },
+        "disease_ontology_uri": {
+            "type": "string",
+            "preferredFormat": "uri",
+            "description": "Links to disease ontology information. If dealing with a rare disease consider identifiability issues. The NCI metathesaurus term C0277545 “Disease type AND/OR category unknown” should be used for unknown diseases. Phenotypes associated with the disease should be submitted as DISEASE_ONTOLOGY_URIs (if available) or in the free form DISEASE attribute."
+        },
+        "line": {
+            "type": "string",
+            "description": "The name of the cell line."
+        },
+        "lineage": {
+            "type": "string",
+            "description": "The developmental lineage to which the cell line belongs."
+        },
+        "differentiation_stage": {
+            "type": "string",
+            "description": "The stage in cell differentiation to which the cell line belongs."
+        },
+        "medium": {
+            "type": "string",
+            "description": "The medium in which the cell line has been grown."
+        },
+        "sex": {
+            "type": "string",
+            "enum": [
+                "Male",
+                "Female",
+                "Unknown",
+                "Mixed"
+            ],
+            "description": "'Male', 'Female', 'Unknown', or 'Mixed' for pooled samples."
+        }
+    },
+    "required": [
+        "id",
+        "sample_ontology_uri",
+        "molecule",
+        "disease",
+        "disease_ontology_uri",
+        "biomaterial_type",
+        "line",
+        "lineage",
+        "differentiation_stage",
+        "medium",
+        "sex"
+    ]
+}
