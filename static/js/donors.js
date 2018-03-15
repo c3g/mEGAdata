@@ -4,7 +4,9 @@
 import transformAPIResponse from './utils/transform-api-response'
 import * as Renderer from './utils/hot-renderers'
 
-var app = angular.module('DonorApp', ['ngHandsontable']);
+const HTMLRenderer = Handsontable.renderers.Html || Handsontable.renderers.HtmlRenderer
+
+const app = angular.module('DonorApp', ['ngHandsontable']);
 app.controller('DonorCtrl', function($scope, $http) {
 
     $http.defaults.transformResponse = transformAPIResponse
@@ -15,14 +17,14 @@ app.controller('DonorCtrl', function($scope, $http) {
     // Handsontable Renderers
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     function donorPrivateNameRenderer(instance, td, row, col, prop, value, cellProperties) {
-        Handsontable.renderers.Html.apply(this, arguments);
-        var rowData = $scope.donors[cellProperties.row];
-        if (rowData.public_name === null) {
+        HTMLRenderer.apply(this, arguments);
+        const rowData = $scope.donors[cellProperties.row];
+
+        if (rowData.public_name === null)
             td.style.backgroundColor = '#CCE0EB';
-        }
-        if (value !== null) {
+
+        if (value !== null)
             td.innerHTML = '<a target=\'_blank\' href=\'/samples?donor=' + value + '\'>' + value + '</a>';
-        }
     }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
