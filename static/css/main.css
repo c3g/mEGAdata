@@ -56,6 +56,34 @@ html, body {
 }
 
 
+.dataset-legend {
+  font-size: 9px;
+  margin-top: -2em;
+}
+.dataset-legend-released,
+.dataset-legend-pending,
+.dataset-legend-has-run {
+  border: 1px solid #ccc;
+  width: 40px;
+  font-weight: 900;
+  text-align: center;
+}
+.dataset-legend-released {
+  background-color: white;
+  color: green;
+}
+.dataset-legend-pending {
+  background-color: #c2e0c2;
+  color: green;
+}
+.dataset-legend-has-run {
+  background-color: #fff5e4;
+}
+.dataset-legend td:last-child {
+  padding-left: 1em;
+}
+
+
 .cell--metadata {
   background-color: rgba(204, 224, 235, 0.58) !important;
 }
