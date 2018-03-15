@@ -30,16 +30,13 @@ app.controller('DonorCtrl', function($scope, $http) {
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Methods
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    this.load = function() {
-        $http({
-            method: 'GET',
-            url: '/api/donors'
-        }).then(drawGrid);
-
-        // Fill the grid with all existing donors
-        function drawGrid(result) {
+    this.load = () => {
+        $http.get('/api/donors')
+        .then(result => {
+            // Fill the grid with all existing donors
             $scope.donors = result.data;
-        }
+            $scope.isLoading = false
+        });
     };
 
     // Add a donor in the database
@@ -113,9 +110,11 @@ app.controller('DonorCtrl', function($scope, $http) {
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructor
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    $scope.isLoading = true
     $scope.donor = {};
     $scope.donors = [];
     $scope.speciesList = [];
+    $scope.donorPropertiesList = [];
     $scope.columns = [
         { data: 'public_name', title: 'Public Name', readOnly: true, readOnlyCellClassName:'roCell' },
         { data: 'private_name', title: 'Private Name', readOnly: true, readOnlyCellClassName:'roCell', renderer: donorPrivateNameRenderer },
@@ -128,19 +127,14 @@ app.controller('DonorCtrl', function($scope, $http) {
     };
 
     // List of all existing species in database
-    $http({
-        method: 'GET',
-        url: '/api/species'
-    }).then(function (result) {
+    $http.get('/api/species')
+    .then(result => {
         $scope.speciesList = result;
     });
 
     // List of all existing species in database
-    $scope.donorPropertiesList = [];
-    $http({
-        method: 'GET',
-        url: '/api/donor_properties'
-    }).then(that._addMetaColumns);
+    $http.get('/api/donor_properties')
+    .then(this._addMetaColumns);
 
     this.load();
 });

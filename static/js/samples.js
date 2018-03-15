@@ -34,8 +34,6 @@ app.controller('SampleCtrl', function($scope, $http) {
     // Methods
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this.load = () => {
-        document.body.style.cursor = 'wait';
-
         let url = '/api/samples';
 
         if ('donor' in $scope.queryDict) {
@@ -46,8 +44,8 @@ app.controller('SampleCtrl', function($scope, $http) {
         }
 
         $http.get(url).then((result) => {
-            $scope.samples = result.data;
-            document.body.style.cursor = 'default';
+            $scope.isLoading = false
+            $scope.samples = result.data
         });
     };
 
@@ -172,6 +170,7 @@ app.controller('SampleCtrl', function($scope, $http) {
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructor
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    $scope.isLoading = true
     $scope.sample = {};
     $scope.samples = [];
     $scope.experimentTypeList = [];

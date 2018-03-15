@@ -22,7 +22,7 @@
 
 <div data-ng-app="DonorApp" data-ng-controller="DonorCtrl as ctrl">
 
-  <div class="container">
+  <div class="flex-row">
     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#donorModal">
       <span class="glyphicon glyphicon-plus"></span> Add Donor
     </button>
@@ -30,19 +30,24 @@
 
   <br/>
 
+  <div ng-show="isLoading" class="loading-message">
+    <i class="fa fa-spinner fa-spin"></i> Loading
+  </div>
+
   <hot-table
-          col-headers="true"
-          row-headers="false"
-          column-sorting="true"
-          sort-indicator="true"
-          manual-column-resize="true"
-          min-spare-rows="minSpareRows"
-          datarows="donors"
-          width="700"
-          columns="columns"
-          settings="settings"
+    ng-show="!isLoading" 
+    col-headers="true"
+    row-headers="false"
+    column-sorting="true"
+    sort-indicator="true"
+    manual-column-resize="true"
+    min-spare-rows="minSpareRows"
+    datarows="donors"
+    width="700"
+    columns="columns"
+    settings="settings"
   >
-  </hot-table>
+  </hot-table> 
 
   <!-- Donor creation modal dialog -->
   <div class="modal fade" id="donorModal" tabindex="-1" role="dialog" aria-labelledby="donorModalLabel" aria-hidden="true">

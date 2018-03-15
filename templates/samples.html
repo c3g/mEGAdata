@@ -26,57 +26,54 @@
 
 <div data-ng-app="SampleApp" data-ng-controller="SampleCtrl as ctrl">
 
-  <div class="container">
+  <div class="flex-row">
 
-    <div class="row">
-
-    </div>
-
-    <div class="col-sm-10">
+    <div>
       <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addSampleModal">
         <span class="glyphicon glyphicon-plus"></span> Add Sample
       </button>
-
       <button class="btn btn-sm btn-default" data-ng-click="ctrl.toggleMetadata();">Expand/Collapse Metadata</button>
     </div>
-    <div class="col-sm-2">
-      <div class="dataset-legend">
-        <b>Datasets Legend:</b>
 
-        <table>
-          <tr>
-            <td style="padding: 1px;"><div class="dataset-legend-released">R1</div></td>
-            <td>Released in R1</td>
-          </tr>
+    <div class="flex-fill"></div>
 
-          <tr>
-            <td style="padding: 1px;"><div class="dataset-legend-pending">P</div></td>
-            <td>Pending Release</td>
-          </tr>
-
-          <tr>
-            <td style="padding: 1px;"><div class="dataset-legend-has-run">&nbsp;</div></td>
-            <td>Has run informations</td>
-          </tr>
-        </table>
-      </div>
-
+    <div class="dataset-legend">
+      <b>Datasets Legend:</b>
+      <table>
+        <tr>
+          <td style="padding: 1px;"><div class="dataset-legend-released">R1</div></td>
+          <td>Released in R1</td>
+        </tr>
+        <tr>
+          <td style="padding: 1px;"><div class="dataset-legend-pending">P</div></td>
+          <td>Pending Release</td>
+        </tr>
+        <tr>
+          <td style="padding: 1px;"><div class="dataset-legend-has-run">&nbsp;</div></td>
+          <td>Has run informations</td>
+        </tr>
+      </table>
     </div>
   </div>
 
   <br/>
 
+  <div ng-show="isLoading" class="loading-message">
+    <i class="fa fa-spinner fa-spin"></i> Loading
+  </div>
+
   <hot-table
-          col-headers="true"
-          row-headers="false"
-          column-sorting="true"
-          sort-indicator="true"
-          manual-column-resize="true"
-          min-spare-rows="minSpareRows"
-          datarows="samples"
-          width="700"
-          columns="columns"
-          settings="settings"
+    ng-show="!isLoading" 
+    col-headers="true"
+    row-headers="false"
+    column-sorting="true"
+    sort-indicator="true"
+    manual-column-resize="true"
+    min-spare-rows="minSpareRows"
+    datarows="samples"
+    width="700"
+    columns="columns"
+    settings="settings"
   >
   </hot-table>
 

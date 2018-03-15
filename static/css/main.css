@@ -2,6 +2,8 @@
 html, body {
   margin: 0;
   padding: 0;
+
+  font-family: 'Ubuntu';
 }
 
 /*
@@ -34,7 +36,21 @@ html, body {
 }
 
 /*
- * Other
+ * Layout
+ */
+
+.flex-row {
+  padding: 1em;
+  display: flex;
+}
+
+.flex-fill {
+  flex: 1;
+}
+
+
+/*
+ * Elements
  */
 
 .home-container a {
@@ -50,6 +66,25 @@ html, body {
   color: black;
   background-color: #F5F5F5 !important;
 }
+
+.loading-message {
+  font-size: 60px;
+  font-weight: bold;
+  opacity: 0.2;
+  text-align: center;
+  padding: 3em;
+}
+
+
+/*
+ * Elements (/donors)
+ */
+
+
+/*
+ * Elements (/samples)
+ */
+
 
 .angucomplete_highlight {
   color: red;
