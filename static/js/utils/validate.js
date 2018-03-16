@@ -13,7 +13,6 @@ import PrimaryCellSchema from '../../schemas/primaryCell.schema.json';
 import PrimaryCellCultureSchema from '../../schemas/primaryCellCulture.schema.json';
 import PrimaryTissueSchema from '../../schemas/primaryTissue.schema.json';
 
-const { keys, values } = Object
 
 
 export const VALIDATION_ERROR = {
@@ -133,7 +132,7 @@ export function validateAll(datasetsByID, samplesByID, hubDescription) {
       })))
 
   // Validate datasets
-  keys(datasetsByID).forEach(id => {
+  Object.keys(datasetsByID).forEach(id => {
     const dataset = datasetsByID[id]
 
     results.push(
@@ -146,7 +145,7 @@ export function validateAll(datasetsByID, samplesByID, hubDescription) {
           id: id,
         })))
 
-    keys(dataset.browser || {}).forEach(trackType => {
+    Object.keys(dataset.browser || {}).forEach(trackType => {
       if (![
             'signal_unstranded',
             'signal_forward',
@@ -189,7 +188,7 @@ export function validateAll(datasetsByID, samplesByID, hubDescription) {
   })
 
   // Validate samples
-  keys(samplesByID).forEach(id => {
+  Object.keys(samplesByID).forEach(id => {
     const sample = samplesByID[id]
     const schema = getSchemaForSample(sample)
 
