@@ -4,7 +4,9 @@
 import transformAPIResponse from './utils/transform-api-response'
 import * as Renderer from './utils/hot-renderers'
 
-var app = angular.module('DonorApp', ['ngHandsontable']);
+const HTMLRenderer = Handsontable.renderers.Html || Handsontable.renderers.HtmlRenderer
+
+const app = angular.module('DonorApp', ['ngHandsontable']);
 app.controller('DonorCtrl', function($scope, $http) {
 
     $http.defaults.transformResponse = transformAPIResponse
@@ -15,29 +17,26 @@ app.controller('DonorCtrl', function($scope, $http) {
     // Handsontable Renderers
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     function donorPrivateNameRenderer(instance, td, row, col, prop, value, cellProperties) {
-        Handsontable.renderers.Html.apply(this, arguments);
-        var rowData = $scope.donors[cellProperties.row];
-        if (rowData.public_name === null) {
+        HTMLRenderer.apply(this, arguments);
+        const rowData = $scope.donors[cellProperties.row];
+
+        if (rowData.public_name === null)
             td.style.backgroundColor = '#CCE0EB';
-        }
-        if (value !== null) {
+
+        if (value !== null)
             td.innerHTML = '<a target=\'_blank\' href=\'/samples?donor=' + value + '\'>' + value + '</a>';
-        }
     }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Methods
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    this.load = function() {
-        $http({
-            method: 'GET',
-            url: '/api/donors'
-        }).then(drawGrid);
-
-        // Fill the grid with all existing donors
-        function drawGrid(result) {
+    this.load = () => {
+        $http.get('/api/donors')
+        .then(result => {
+            // Fill the grid with all existing donors
             $scope.donors = result.data;
-        }
+            $scope.isLoading = false
+        });
     };
 
     // Add a donor in the database
@@ -111,9 +110,11 @@ app.controller('DonorCtrl', function($scope, $http) {
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Constructor
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    $scope.isLoading = true
     $scope.donor = {};
     $scope.donors = [];
     $scope.speciesList = [];
+    $scope.donorPropertiesList = [];
     $scope.columns = [
         { data: 'public_name', title: 'Public Name', readOnly: true, readOnlyCellClassName:'roCell' },
         { data: 'private_name', title: 'Private Name', readOnly: true, readOnlyCellClassName:'roCell', renderer: donorPrivateNameRenderer },
@@ -126,19 +127,14 @@ app.controller('DonorCtrl', function($scope, $http) {
     };
 
     // List of all existing species in database
-    $http({
-        method: 'GET',
-        url: '/api/species'
-    }).then(function (result) {
+    $http.get('/api/species')
+    .then(result => {
         $scope.speciesList = result;
     });
 
     // List of all existing species in database
-    $scope.donorPropertiesList = [];
-    $http({
-        method: 'GET',
-        url: '/api/donor_properties'
-    }).then(that._addMetaColumns);
+    $http.get('/api/donor_properties')
+    .then(this._addMetaColumns);
 
     this.load();
 });

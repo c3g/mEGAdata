@@ -2,6 +2,8 @@
 html, body {
   margin: 0;
   padding: 0;
+
+  font-family: 'Ubuntu';
 }
 
 /*
@@ -34,7 +36,21 @@ html, body {
 }
 
 /*
- * Other
+ * Layout
+ */
+
+.flex-row {
+  padding: 1em;
+  display: flex;
+}
+
+.flex-fill {
+  flex: 1;
+}
+
+
+/*
+ * Elements
  */
 
 .home-container a {
@@ -51,8 +67,55 @@ html, body {
   background-color: #F5F5F5 !important;
 }
 
+.loading-message {
+  font-size: 60px;
+  font-weight: bold;
+  opacity: 0.2;
+  text-align: center;
+  padding: 3em;
+}
+
+
+/*
+ * Elements (/donors)
+ */
+
+
+/*
+ * Elements (/samples)
+ */
+
+
 .angucomplete_highlight {
   color: red;
+}
+
+
+.dataset-legend {
+  font-size: 9px;
+  margin-top: -2em;
+}
+.dataset-legend-released,
+.dataset-legend-pending,
+.dataset-legend-has-run {
+  border: 1px solid #ccc;
+  width: 40px;
+  font-weight: 900;
+  text-align: center;
+}
+.dataset-legend-released {
+  background-color: white;
+  color: green;
+}
+.dataset-legend-pending {
+  background-color: #c2e0c2;
+  color: green;
+}
+.dataset-legend-has-run {
+  background-color: #fff5e4;
+}
+.dataset-legend td:last-child {
+  padding-left: 1em;
 }
 
 

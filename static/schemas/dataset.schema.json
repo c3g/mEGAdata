@@ -1,21 +1,12 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "id": "http://epigenomesportal.ca/schemas/dataset.json",
+    "id": "Dataset",
     "title": "Dataset",
     "description": "IHEC Data Hub Dataset schema",
 
     "type" : "object",
     "properties": {
-        "id": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Uniquely identifying ID"
-        },
-        "sample_id": {
-            "type": "string",
-            "minLength": 1,
-            "description": "When the experiment belongs to a single sample, put one sample ID here."
-        },
+        "sample_id": { "type": "string", "description": "When the experiment belongs to a single sample, put one sample ID here." },
         "experiment_attributes": { "$ref": "#/definitions/experiment" },
         "analysis_attributes": { "$ref": "#/definitions/analysis" },
         "browser": {
@@ -46,12 +37,13 @@
                 "rpkm_reverse": ["rpkm_forward"]
             }
         },
+
         "run": { "$ref": "#/definitions/run" }
     },
-
-    "required": ["id", "sample_id", "analysis_attributes", "experiment_attributes", "browser"],
+    "required": ["sample_id", "analysis_attributes", "experiment_attributes", "browser"],
 
     "definitions": {
+
         "run": {
             "type": "array",
             "description": "The list of associated runs",
@@ -88,97 +80,235 @@
                 }
             }
         },
+
         "track": {
             "type": "array",
             "description": "A list of tracks that belong to this type. The first track is considered as the main track representing this type.",
             "items": {
                 "type" : "object",
                 "properties" : {
-                    "big_data_url": {
-                        "type" : "string",
-                        "preferredFormat": "uri",
-                        "description": "The URL from where this dataset track can be obtained online."
-                    },
-                    "description_url": {
-                        "type": "string",
-                        "preferredFormat": "uri",
-                        "description": "The URL of the document giving more information about this dataset track."
-                    },
-                    "md5sum": {
-                        "type": "string",
-                        "description": "The checksum for this track."
-                    },
-                    "subtype": {
-                        "type": "string",
-                        "description": "If there are multiple files for this track type, use this free text field to put more information about what kind of information this track represents."
-                    },
-                    "sample_source": {
-                        "type": "string",
-                        "description": "Use this field if the track belongs to only one/some sample(s) of a merged dataset."
-                    },
-                    "primary": {
-                        "type": "boolean",
-                        "description": "When there are multiple tracks for this track type, set this field to 'true' to express that this is the primary track to represent this track type."
-                    }
+                    "big_data_url": {"type" : "string", "format": "uri", "description": "The URL from where this dataset track can be obtained online."},
+                    "description_url": {"type": "string", "format": "uri", "description": "The URL of the document giving more information about this dataset track."},
+                    "md5sum": {"type": "string", "format": "md5", "description": "The checksum for this track."},
+                    "subtype": {"type": "string", "description": "If there are multiple files for this track type, use this free text field to put more information about what kind of information this track represents."},
+                    "sample_source": {"type": "string", "description": "Use this field if the track belongs to only one/some sample(s) of a merged dataset."},
+                    "primary": {"type": "boolean", "description": "When there are multiple tracks for this track type, set this field to 'true' to express that this is the primary track to represent this track type."}
                 },
                 "required": ["big_data_url", "md5sum"]
             }
         },
+
         "experiment": {
-            "id": "http://epigenomesportal.ca/schemas/experiment.json",
-            "title": "Experiment",
+            "id": "Experiment",
+            "title": "IHEC Data Hub Experiment",
             "description": "IHEC Data Hub Experiment schema",
             "type" : "object",
 
             "properties": {
-                "experiment_type": {
-                    "type": "string",
-                    "description": "DNA Methylation, mRNA-Seq, ChIP-Seq Input..."
-                },
-                "assay_type": {
-                    "type": "string",
-                    "description": "As described in the experiment_ontology_uri term, e.g. 'DNA Methylation'..."
-                },
-                "experiment_ontology_uri": {
-                    "type": "string",
-                    "preferredFormat": "uri",
-                    "description": "(Ontology) links to experiment ontology information."
-                },
-                "reference_registry_id": {
-                    "type": "string",
-                    "description": "The EpiRR ID for this dataset."
-                }
+                "experiment_type": {"type": "string", "description": "(Controlled Vocabulary) The assay target (e.g. ‘DNA Methylation’, ‘mRNA-Seq’, ‘smRNA-Seq’, 'Histone H3K4me1')."},
+                "experiment_ontology_uri": {"type": "string", "description": "(Ontology: OBI) links to experiment ontology information."},
+                "library_strategy": {"type": "string", "description": "(Controlled Vocabulary) The assay used. These are defined within the SRA metadata specifications with a controlled vocabulary (e.g. ‘Bisulfite-Seq’, ‘RNA-Seq’, ‘ChIP-Seq’). For a complete list, see https://www.ebi.ac.uk/ena/submit/reads-library-strategy."},
+                "reference_registry_id": {"type": "string", "description": "The IHEC EpiRR ID for this dataset, only for IHEC Reference Epigenome datasets. Otherwise leave empty."},
+                "molecule_ontology_uri" : {"type": "string", "description": "(Ontology: SO) links to molecule ontology information."},
+                "molecule" : {"type": "string", "enum": ["total RNA", "polyA RNA", "cytoplasmic RNA", "nuclear RNA", "genomic DNA", "protein", "other"], "description": "(Controlled Vocabulary) The type of molecule that was extracted from the biological material. Include one of the following: total RNA, polyA RNA, cytoplasmic RNA, nuclear RNA, small RNA, genomic DNA, protein, or other."}
             },
 
-            "required": ["experiment_type", "experiment_ontology_uri"]
+            "allOf": [
+                {
+                    "anyOf": [
+                        { "$ref": "#/definitions/experiment/definitions/chromatin_accessibility" },
+                        { "$ref": "#/definitions/experiment/definitions/bisulfite-seq" },
+                        { "$ref": "#/definitions/experiment/definitions/medip-seq" },
+                        { "$ref": "#/definitions/experiment/definitions/mre-seq" },
+                        { "$ref": "#/definitions/experiment/definitions/chip-seq" },
+                        { "$ref": "#/definitions/experiment/definitions/rna-seq" },
+                        { "$ref": "#/definitions/experiment/definitions/other" }
+                    ]
+                },
+                {
+                    "anyOf": [
+                        { "required": [ "experiment_ontology_uri" ] },
+                        { "required": [ "experiment_type" ] }
+                    ]
+                }
+            ],
+
+            "required": [ "library_strategy" ],
+
+            "definitions": {
+                "chromatin_accessibility": {
+                    "type": "object",
+                    "properties": {
+                        "experiment_type": {"type": "string", "enum": ["Chromatin Accessibility"]},
+                        "experiment_ontology_uri": {"type": "string"},
+                        "library_strategy": {"type": "string", "enum": ["DNase-Hypersensitivity"]},
+                        "molecule_ontology_uri" : {"type": "string"},
+                        "molecule" : {"type": "string", "enum": ["genomic DNA"]},
+
+                        "extraction_protocol": {"type": "string", "description": "The protocol used to isolate the extract material."},
+                        "dnase_protocol": {"type": "string", "description": "The protocol used for DNAse treatment."}
+                    }
+                },
+
+                "bisulfite-seq": {
+                    "type": "object",
+                    "properties": {
+                        "experiment_type": {"type": "string", "enum": ["DNA Methylation"]},
+                        "experiment_ontology_uri": {"type": "string"},
+                        "library_strategy": {"type": "string", "enum": ["Bisulfite-Seq"]},
+                        "molecule_ontology_uri" : {"type": "string"},
+                        "molecule" : {"type": "string", "enum": ["genomic DNA"]},
+
+                        "extraction_protocol": {"type": "string", "description": "The protocol used to isolate the extract material."},
+                        "extraction_protocol_type_of_sonicator": {"type": "string", "description": "The type of sonicator used for extraction."},
+                        "extraction_protocol_sonication_cycles": {"type": "string", "description": "The number of sonication cycles used for extraction."},
+                        "dna_preparation_initial_dna_qnty": {"type": "string", "description": "The initial DNA quantity used in preparation."},
+                        "dna_preparation_fragment_size_range": {"type": "string", "description": "The DNA fragment size range used in preparation."},
+                        "dna_preparation_adaptor_sequence": {"type": "string", "description": "The sequence of the adaptor used in preparation."},
+                        "dna_preparation_adaptor_ligation_protocol": {"type": "string", "description": "The protocol used for adaptor ligation."},
+                        "dna_preparation_post-ligation_fragment_size_selection": {"type": "string", "description": "The fragment size selection after adaptor ligation."},
+                        "bisulfite_conversion_protocol": {"type": "string", "description": "The bisulfite conversion protocol."},
+                        "bisulfite_conversion_percent": {"type": "string", "description": "The bisulfite conversion percent and how it was determined."},
+                        "library_generation_pcr_template_conc": {"type": "string", "description": "The PCR template concentration for library generation."},
+                        "library_generation_pcr_polymerase_type": {"type": "string", "description": "The PCR polymerase used for library generation"},
+                        "library_generation_pcr_thermocycling_program": {"type": "string", "description": "The thermocycling program used for library generation."},
+                        "library_generation_pcr_number_cycles": {"type": "string", "description": "The number of PCR cycles used for library generation."},
+                        "library_generation_pcr_f_primer_sequence": {"type": "string", "description": "The sequence of the PCR forward primer used for library generation."},
+                        "library_generation_pcr_r_primer_sequence": {"type": "string", "description": "The sequence of the PCR reverse primer used for library generation."},
+                        "library_generation_pcr_primer_conc": {"type": "string", "description": "The concentration of the PCR primers used for library generation."},
+                        "library_generation_pcr_product_isolation_protocol": {"type": "string", "description": "The protocol for isolating PCR products used for library generation."}
+                    }
+                },
+
+                "medip-seq": {
+                    "type": "object",
+                    "properties": {
+                        "experiment_type": {"type": "string", "enum": ["DNA Methylation"]},
+                        "experiment_ontology_uri": {"type": "string"},
+                        "library_strategy": {"type": "string", "enum": ["MeDIP-Seq"]},
+                        "molecule_ontology_uri" : {"type": "string"},
+                        "molecule" : {"type": "string", "enum": ["genomic DNA"]},
+
+                        "extraction_protocol": {"type": "string", "description": "The protocol used to isolate the extract material."},
+                        "extraction_protocol_type_of_sonicator": {"type": "string", "description": "The type of sonicator used for extraction."},
+                        "extraction_protocol_sonication_cycles": {"type": "string", "description": "The number of sonication cycles used for extraction."},
+                        "medip_protocol": {"type": "string", "description": "The MeDIP protocol used."},
+                        "medip_protocol_dna_amount": {"type": "string", "description": "The amount of DNA used in the MeDIP protocol."},
+                        "medip_protocol_bead_type": {"type": "string", "description": "The type of bead used in the MeDIP protocol."},
+                        "medip_protocol_bead_amount": {"type": "string", "description": "The amount of beads used in the MeDIP protocol."},
+                        "medip_protocol_antibody_amount": {"type": "string", "description": "The amount of antibody used in the MeDIP protocol."},
+                        "medip_antibody": {"type": "string", "description": "The specific antibody used in the MeDIP protocol."},
+                        "medip_antibody_provider": {"type": "string", "description": "The name of the company, laboratory or person that provided the antibody."},
+                        "medip_antibody_catalog": {"type": "string", "description": "The catalog from which the antibody was purchased."},
+                        "medip_antibody_lot": {"type": "string", "description": "The lot identifier of the antibody."}
+                    }
+                },
+
+                "mre-seq": {
+                    "type": "object",
+                    "properties": {
+                        "experiment_type": {"type": "string", "enum": ["DNA Methylation"]},
+                        "experiment_ontology_uri": {"type": "string"},
+                        "library_strategy": {"type": "string", "enum": ["MRE-Seq"]},
+                        "molecule_ontology_uri" : {"type": "string"},
+                        "molecule" : {"type": "string", "enum": ["genomic DNA"]},
+
+                        "mre_protocol": {"type": "string", "description": "The MRE protocol."},
+                        "mre_protocol_chromatin_amount": {"type": "string", "description": "The amount of chromatin used in the MRE protocol."},
+                        "mre_protocol_restriction_enzyme": {"type": "string", "description": "The restriction enzyme(s) used in the MRE protocol."},
+                        "mre_protocol_size_fraction": {"type": "string", "description": "The size of the fragments selected in the MRE protocol."}
+                    }
+                },
+
+                "chip-seq": {
+                    "type": "object",
+                    "properties": {
+                        "experiment_type": {"type": "string", "pattern": "^(ChIP-Seq Input)|(Histone H\\w+)+$"},
+                        "experiment_ontology_uri": {"type": "string"},
+                        "library_strategy": {"type": "string", "enum": ["ChIP-Seq"]},
+                        "molecule_ontology_uri" : {"type": "string"},
+                        "molecule" : {"type": "string", "enum": ["genomic DNA"]},
+
+                        "extraction_protocol": {"type": "string", "description": "The protocol used to isolate the extract material."},
+                        "extraction_protocol_type_of_sonicator": {"type": "string", "description": "The type of sonicator used for extraction."},
+                        "extraction_protocol_sonication_cycles": {"type": "string", "description": "The number of sonication cycles used for extraction."},
+                        "chip_protocol": {"type": "string", "description": "The ChIP protocol used."},
+                        "chip_protocol_chromatin_amount": {"type": "string", "description": "The amount of chromatin used in the ChIP protocol."},
+                        "chip_protocol_bead_type": {"type": "string", "description": "The type of bead used in the ChIP protocol."},
+                        "chip_protocol_bead_amount": {"type": "string", "description": "The amount of beads used in the ChIP protocol."},
+                        "chip_protocol_antibody_amount": {"type": "string", "description": "The amount of antibody used in the ChIP protocol."},
+                        "chip_antibody": {"type": "string", "description": "The specific antibody used in the ChIP protocol."},
+                        "chip_antibody_provider": {"type": "string", "description": "The name of the company, laboratory or person that provided the antibody."},
+                        "chip_antibody_catalog": {"type": "string", "description": "The catalog from which the antibody was purchased."},
+                        "chip_antibody_lot": {"type": "string", "description": "The lot identifier of the antibody."},
+                        "chip_protocol_crosslink_time": {"type": "string", "description": "The timespan in which the chromatin is crosslinked"},
+                        "library_generation_fragment_size_range": {"type": "string", "description": "The fragment size range of the preparation."}
+                    }
+                },
+
+                "rna-seq": {
+                    "type": "object",
+                    "properties": {
+                        "experiment_type": {"type": "string", "enum": ["RNA-Seq", "mRNA-Seq", "smRNA-Seq", "total-RNA-Seq"]},
+                        "experiment_ontology_uri": {"type": "string"},
+                        "library_strategy": {"type": "string", "enum": ["RNA-Seq"]},
+                        "molecule_ontology_uri" : {"type": "string"},
+                        "molecule" : {"type": "string", "enum": ["polyA RNA", "total RNA", "nuclear RNA", "cytoplasmic RNA"]},
+
+                        "extraction_protocol": {"type": "string", "description": "The protocol used to isolate the extract material."},
+                        "extraction_protocol_rna_enrichment": {"type": "string", "description": "The mRNA enrichment method used in the extraction protocol."},
+                        "extraction_protocol_fragmentation": {"type": "string", "description": "The fragmentation method used in the extraction protocol."},
+                        "rna_preparation_fragment_size_range": {"type": "string", "description": "The mRNA fragment size range of the preparation."},
+                        "rna_preparation_5'_rna_adapter_sequence": {"type": "string", "description": "The sequence of the 5’ RNA adapter used in preparation."},
+                        "rna_preparation_3'_rna_adapter_sequence": {"type": "string", "description": "The sequence of the 3’ RNA adapter used in preparation."},
+                        "rna_preparation_reverse_transcription_primer_sequence": {"type": "string", "description": "The sequence of the primer for reverse transcription used in preparation."},
+                        "rna_preparation_5'_dephosphorylation": {"type": "string", "description": "The protocol for 5’ dephosphorylation used in preparation."},
+                        "rna_preparation_5'_phosphorylation": {"type": "string", "description": "The protocol for 5’ phosphorylation used in preparation."},
+                        "rna_preparation_3'_rna_adapter_ligation_protocol": {"type": "string", "description": "The protocol for 3’ adapter ligation used in preparation."},
+                        "rna_preparation_5'_rna_adapter_ligation_protocol": {"type": "string", "description": "The protocol for 5’ adapter ligation used in preparation."},
+                        "library_generation_pcr_template_conc": {"type": "string", "description": "The PCR template concentration for library generation."},
+                        "library_generation_pcr_polymerase_type": {"type": "string", "description": "The PCR polymerase used for library generation"},
+                        "library_generation_pcr_thermocycling_program": {"type": "string", "description": "The thermocycling program used for library generation."},
+                        "library_generation_pcr_number_cycles": {"type": "string", "description": "The number of PCR cycles used for library generation."},
+                        "library_generation_pcr_f_primer_sequence": {"type": "string", "description": "The sequence of the PCR forward primer used for library generation."},
+                        "library_generation_pcr_r_primer_sequence": {"type": "string", "description": "The sequence of the PCR reverse primer used for library generation."},
+                        "library_generation_pcr_primer_conc": {"type": "string", "description": "The concentration of the PCR primers used for library generation."},
+                        "library_generation_pcr_product_isolation_protocol": {"type": "string", "description": "The protocol for isolating PCR products used for library generation."},
+                        "template_type": {"type": "string", "description": "(Controlled Vocabulary) mRNA or cDNA - The type of template, if applicable."},
+                        "amplified": {"type": "string", "description": "(Controlled Vocabulary) True or False - Is the sample amplified?"},
+                        "preparation_initial_rna_qnty": {"type": "string", "description": "The initial RNA quantity used in preparation."},
+                        "preparation_reverse_transcription_protocol": {"type": "string", "description": "The protocol for reverse transcription used in preparation."},
+                        "preparation_pcr_number_cycles": {"type": "string", "description": "The number of PCR cycles used to amplify."},
+                        "library_generation_protocol": {"type": "string", "description": "The protocol used to generate the library."},
+                        "library_generation_fragmentation": {"type": "string", "description": "The fragmentation method used in the library protocol."},
+                        "library_generation_fragment_size_range": {"type": "string", "description": "The fragment size range of the preparation."},
+                        "library_generation_3'_adapter_sequence": {"type": "string", "description": "The sequence of the 3' adapter used for library generation."},
+                        "library_generation_5'_adapter_sequence": {"type": "string", "description": "The sequence of the 5' adapter used for library generation."}
+                    }
+                },
+
+                "other": {
+                    "type": "object",
+                    "properties": {
+                        "experiment_type": {"type": "string", "enum": ["Other"]},
+                        "experiment_ontology_uri": {"type": "string"}
+                    }
+                }
+            }
         },
+
         "analysis": {
-            "id": "http://epigenomesportal.ca/schemas/analysis.json",
-            "title": "Analysis",
+            "id": "Analysis",
+            "title": "IHEC Data Hub Analysis",
             "description": "IHEC Data Hub Analysis schema",
             "type": "object",
 
             "properties": {
-                "analysis_group": {
-                    "type": "string",
-                    "description": "The group that ran the bioformatics analysis to produce this dataset tracks."
-                },
-                "alignment_software": {
-                    "type": "string",
-                    "description": "The name of the software used for mapping."
-                },
-                "alignment_software_version": {
-                    "type": "string",
-                    "description": "The version of the software used for mapping."
-                },
-                "analysis_software": {
-                    "type": "string",
-                    "description": "The name of the software used for determining signal (read density)."
-                },
-                "analysis_software_version": {
-                    "type": "string",
-                    "description": "The version of the software used for determining signal (read density)."
-                }
+                "analysis_group": {"type": "string", "description": "The group that ran the bioformatics analysis to produce this dataset tracks."},
+                "alignment_software": {"type": "string", "description": "The name of the software used for mapping."},
+                "alignment_software_version": {"type": "string", "description": "The version of the software used for mapping."},
+                "analysis_software": {"type": "string", "description": "The name of the software used for determining signal (read density)."},
+                "analysis_software_version": {"type": "string", "description": "The version of the software used for determining signal (read density)."}
             },
 
             "required": ["analysis_group", "alignment_software", "alignment_software_version", "analysis_software", "analysis_software_version"]

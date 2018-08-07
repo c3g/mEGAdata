@@ -26,26 +26,54 @@
 
 <div data-ng-app="SampleApp" data-ng-controller="SampleCtrl as ctrl">
 
-  <div class="container">
-    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addSampleModal">
-      <span class="glyphicon glyphicon-plus"></span> Add Sample
-    </button>
-    <button class="btn btn-sm btn-default" data-ng-click="ctrl.toggleMetadata();">Expand/Collapse Metadata</button>
+  <div class="flex-row">
+
+    <div>
+      <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addSampleModal">
+        <span class="glyphicon glyphicon-plus"></span> Add Sample
+      </button>
+      <button class="btn btn-sm btn-default" data-ng-click="ctrl.toggleMetadata();">Expand/Collapse Metadata</button>
+    </div>
+
+    <div class="flex-fill"></div>
+
+    <div class="dataset-legend">
+      <b>Datasets Legend:</b>
+      <table>
+        <tr>
+          <td style="padding: 1px;"><div class="dataset-legend-released">R1</div></td>
+          <td>Released in R1</td>
+        </tr>
+        <tr>
+          <td style="padding: 1px;"><div class="dataset-legend-pending">P</div></td>
+          <td>Pending Release</td>
+        </tr>
+        <tr>
+          <td style="padding: 1px;"><div class="dataset-legend-has-run">&nbsp;</div></td>
+          <td>Has run informations</td>
+        </tr>
+      </table>
+    </div>
   </div>
 
   <br/>
 
+  <div ng-show="isLoading" class="loading-message">
+    <i class="fa fa-spinner fa-spin"></i> Loading
+  </div>
+
   <hot-table
-          col-headers="true"
-          row-headers="false"
-          column-sorting="true"
-          sort-indicator="true"
-          manual-column-resize="true"
-          min-spare-rows="minSpareRows"
-          datarows="samples"
-          width="700"
-          columns="columns"
-          settings="settings"
+    ng-show="!isLoading" 
+    col-headers="true"
+    row-headers="false"
+    column-sorting="true"
+    sort-indicator="true"
+    manual-column-resize="true"
+    min-spare-rows="minSpareRows"
+    datarows="samples"
+    width="700"
+    columns="columns"
+    settings="settings"
   >
   </hot-table>
 
@@ -91,23 +119,6 @@
     </div>
   </div>
 
-
-    <div style="font-size: 9px; position: absolute; top: 2px; left: 1000px;">
-    <b>Datasets Legend:</b>
-    <table>
-      <tr>
-        <td style="padding: 1px;"><div style="border: 1px solid #ccc; background-color: white; color: green; font-weight: 900; text-align: center; width: 40px;">R1</div></td>
-        <td>Released in R1</td>
-      </tr>
-      <tr>
-        <td style="padding: 1px;"><div style="border: 1px solid #ccc; background-color: #c2e0c2; color: green; font-weight: 900; text-align: center; width: 40px;">P</div></td>
-        <td>Pending Release</td>
-      </tr>
-    </table>
-
-    <br />
-
-  </div>
 
 
 </div>

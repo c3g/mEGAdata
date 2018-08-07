@@ -4,6 +4,8 @@ from __future__ import print_function
 import os
 import requests
 import jmespath
+import gevent.wsgi
+import werkzeug.serving
 from flask import Response, redirect, url_for, flash, render_template
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 
@@ -129,6 +131,11 @@ def oauth_callback(provider):
 
 
 if __name__ == "__main__":
-    app.run(debug=app.config["APPLICATION_DEBUG_MODE"],
-            port=app.config["APPLICATION_PORT"],
-            host=app.config["APPLICATION_HOST"])
+    @werkzeug.serving.run_with_reloader
+    def runServer():
+        app.debug = app.config["APPLICATION_DEBUG_MODE"]
+        app.port  = app.config["APPLICATION_PORT"]
+        app.host  = app.config["APPLICATION_HOST"]
+
+        ws = gevent.wsgi.WSGIServer(('', app.config["APPLICATION_PORT"]), app)
+        ws.serve_forever()
