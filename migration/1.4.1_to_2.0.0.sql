@@ -49,3 +49,12 @@ ALTER TABLE `dataset` DROP FOREIGN KEY `dataset_ibfk_1`;
 ALTER TABLE `dataset` DROP COLUMN `experiment_metadata_set_id`;
 DROP TABLE `experiment_metadata_old`;
 DROP TABLE `experiment_metadata_set`;
+
+
+-- Create users table
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
