@@ -97,10 +97,11 @@ class Sample(BaseModel):
     public_name = peewee.CharField()
     private_name = peewee.CharField()
     public_archive_id = peewee.CharField()
-    # epirr_acc = peewee.CharField()
-    # EGAN = peewee.CharField()
-    tissue_type = peewee.CharField()
-    cell_type = peewee.CharField()
+    epirr_acc = peewee.CharField()
+    EGA_EGAN = peewee.CharField()
+    biomaterial_type = peewee.CharField()
+    # tissue_type = peewee.CharField()
+    # cell_type = peewee.CharField()
 
     donor = peewee.ForeignKeyField(Donor)
 
