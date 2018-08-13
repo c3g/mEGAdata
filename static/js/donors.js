@@ -116,10 +116,10 @@ app.controller('DonorCtrl', function($scope, $http) {
     $scope.speciesList = [];
     $scope.donorPropertiesList = [];
     $scope.columns = [
-        { data: 'public_name', title: 'Public Name', readOnly: true, readOnlyCellClassName:'roCell' },
-        { data: 'private_name', title: 'Private Name', readOnly: true, readOnlyCellClassName:'roCell', renderer: donorPrivateNameRenderer },
+        { data: 'public_name', title: 'Public Name', readOnly: true, readOnlyCellClassName:'roCell', width: 120 },
+        { data: 'private_name', title: 'Private Name', readOnly: true, readOnlyCellClassName:'roCell', renderer: donorPrivateNameRenderer, width: 120 },
         { data: 'taxon_id', title: 'Taxon ID', readOnly: true, readOnlyCellClassName:'roCell' },
-        { data: 'phenotype', title: 'Phenotype', readOnly: true, readOnlyCellClassName:'roCell' },
+        { data: 'phenotype', title: 'Phenotype', readOnly: true, readOnlyCellClassName:'roCell', width: 150 },
         { data: 'is_pool', title: 'Pooled Sample', readOnly: true, readOnlyCellClassName:'roCell' }
     ];
     $scope.settings = {
