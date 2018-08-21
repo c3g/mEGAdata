@@ -173,17 +173,28 @@ def insertSample(dataJson):
     return sample.toJSON()
 
 def insertSampleMetadata(dataJson):
-    dm = SampleMetadata()
-    dm.sample = Sample.get(id=dataJson.get('sample_id'))
+    s = Sample.get(id=dataJson.get('sample_id'))
+
+    #Create property in database if it doesn't exist
     try:
-        dm.sample_property = SampleProperty.get(SampleProperty.property == dataJson.get('field'))
+        sp = SampleProperty.get(SampleProperty.property == dataJson.get('field'))
     except:
         insertSampleProperty({
             'property': dataJson.get('field'),
             'type': 'text',
             'is_exported_to_ega': False,
         })
-        dm.sample_property = SampleProperty.get(SampleProperty.property == dataJson.get('field'))
+        sp = SampleProperty.get(SampleProperty.property == dataJson.get('field'))
+
+
+    #If a value already exists for this sample/property, just update the record
+    try:
+        dm = SampleMetadata.get(SampleMetadata.sample == s, SampleMetadata.sample_property == sp)
+    except:
+        dm = SampleMetadata()
+        dm.sample = s
+        dm.sample_property = sp
+
     dm.value = dataJson.get('value')
     SampleMetadata.save(dm)
     return {}
