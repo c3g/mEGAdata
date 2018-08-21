@@ -49,6 +49,7 @@ ALTER TABLE `dataset` DROP FOREIGN KEY `dataset_ibfk_1`;
 ALTER TABLE `dataset` DROP COLUMN `experiment_metadata_set_id`;
 DROP TABLE `experiment_metadata_old`;
 DROP TABLE `experiment_metadata_set`;
+ALTER TABLE `sample` DROP COLUMN `public_archive_id`;
 
 
 -- Create users table
