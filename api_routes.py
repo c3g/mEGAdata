@@ -130,7 +130,6 @@ def route_api_donor_metadata_add():
     return insertDonorMetadata(request.get_json())
 
 
-
 #==============================================================================
 # Experiment Types
 #==============================================================================
@@ -190,7 +189,6 @@ def route_api_sample_add():
 @api_function
 def route_api_sample_metadata_add():
     return insertSampleMetadata(request.get_json())
-
 
 
 #==============================================================================
