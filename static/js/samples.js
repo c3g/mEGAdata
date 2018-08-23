@@ -22,7 +22,7 @@ app.controller('SampleCtrl', function($scope, $http) {
         setValue: (newValue) => {},
         open: (editor, ...args) => {
             editor.finishEditing();
-            this._updateDataset(editor.row, editor.prop, editor.originalValue);
+            // this._updateDataset(editor.row, editor.prop, editor.originalValue);
         },
         close: () => {},
         focus: () => {},
