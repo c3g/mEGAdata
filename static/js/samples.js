@@ -184,10 +184,11 @@ app.controller('SampleCtrl', function($scope, $http) {
     }
 
     $scope.columns = [
-        { data: 'public_name',        title: 'Public Name',  readOnly: true, readOnlyCellClassName:'roCell',   width: 130 },
-        { data: 'private_name',       title: 'Private Name', readOnly: true, readOnlyCellClassName:'roCell' },
-        { data: 'donor.private_name', title: 'Donor Name',   readOnly: true, readOnlyCellClassName:'roCell' },
-        { data: 'EGAN',               title: 'Phenotype',    readOnly: true, readOnlyCellClassName:'roCell' },
+        { data: 'public_name',        title: 'Public Name',         readOnly: true, readOnlyCellClassName:'roCell',   width: 120 },
+        { data: 'private_name',       title: 'Private Name',        readOnly: true, readOnlyCellClassName:'roCell',   width: 120 },
+        { data: 'donor.private_name', title: 'Donor',               readOnly: true, readOnlyCellClassName:'roCell' },
+        { data: 'EGA_EGAN',           title: 'EGA EGAN',            readOnly: true, readOnlyCellClassName:'roCell' },
+        { data: 'biomaterial_type',   title: 'Biomaterial Type',    readOnly: true, readOnlyCellClassName:'roCell' },
     ];
 
     $scope.settings = {
