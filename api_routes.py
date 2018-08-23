@@ -1,5 +1,4 @@
 #!/usr/bin/python
-import requests
 from functools import wraps
 from flask import Response, request
 from flask_login import login_required
@@ -16,9 +15,9 @@ def api_function(fn):
     @wraps(fn)
     def fn_wrapped(*args, **kwargs):
         try:
-            return JSONResponse({ 'ok': True, 'data': fn(*args, **kwargs) })
+            return JSONResponse({'ok': True, 'data': fn(*args, **kwargs)})
         except Exception as e:
-            return JSONResponse({ 'ok': False, 'message': str(e) })
+            return JSONResponse({'ok': False, 'message': str(e)})
     return login_required(fn_wrapped)
 
 

@@ -3,6 +3,7 @@ SECRET_KEY = 'top_secret_key'
 APPLICATION_PORT = 5000
 APPLICATION_HOST = "127.0.0.1"
 APPLICATION_DEBUG_MODE = True
+APPLICATION_URL = 'http://localhost:5000'  # OAuth callback URL
 
 #Database configuration
 DATABASE_NAME = 'db_name'
