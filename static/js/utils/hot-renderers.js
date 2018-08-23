@@ -49,3 +49,10 @@ export function URI(instance, td, row, col, prop, value, cellProperties) {
     td.innerHTML = '<a target=\'_blank\' href=\'' + value + '\'>' + value + '</a>';
   }
 }
+
+export function donor(instance, td, row, col, prop, value, cellProperties) {
+  Handsontable.renderers.HtmlRenderer.apply(this, arguments);
+  if (value !== null) {
+    td.innerHTML = '<a href=\'/donors?donor=' + value + '\'>' + value + '</a>';
+  }
+}

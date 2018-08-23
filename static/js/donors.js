@@ -11,7 +11,7 @@ app.controller('DonorCtrl', function($scope, $http) {
 
     $http.defaults.transformResponse = transformAPIResponse
 
-    var that = this;
+    const self = this;
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Handsontable Renderers
@@ -46,7 +46,7 @@ app.controller('DonorCtrl', function($scope, $http) {
         $http.post('/api/donor', data)
             .then(function(data, status, headers, config) {
                 $scope.donor = {};
-                that.load();
+                self.load();
             })
             .catch(function(data, status, headers, config) {
                 alert('Donor creation failed.');
@@ -114,15 +114,16 @@ app.controller('DonorCtrl', function($scope, $http) {
     $scope.donors = [];
     $scope.speciesList = [];
     $scope.donorPropertiesList = [];
+    $scope.searchParams = new URLSearchParams(location.search);
     $scope.columns = [
-        { data: 'public_name', title: 'Public Name', readOnly: true, readOnlyCellClassName:'roCell', width: 120 },
-        { data: 'private_name', title: 'Private Name', readOnly: true, readOnlyCellClassName:'roCell', renderer: donorPrivateNameRenderer, width: 120 },
-        { data: 'taxon_id', title: 'Taxon ID', readOnly: true, readOnlyCellClassName:'roCell' },
-        { data: 'phenotype', title: 'Phenotype', readOnly: true, readOnlyCellClassName:'roCell', width: 150 },
-        { data: 'is_pool', title: 'Pooled Sample', readOnly: true, readOnlyCellClassName:'roCell' }
+        { data: 'public_name',  title: 'Public Name',   readOnly: true, readOnlyCellClassName:'roCell',   width: 120 },
+        { data: 'private_name', title: 'Private Name',  readOnly: true, readOnlyCellClassName:'roCell',   width: 120, renderer: donorPrivateNameRenderer },
+        { data: 'taxon_id',     title: 'Taxon ID',      readOnly: true, readOnlyCellClassName:'roCell' },
+        { data: 'phenotype',    title: 'Phenotype',     readOnly: true, readOnlyCellClassName:'roCell',   width: 150 },
+        { data: 'is_pool',      title: 'Pooled Sample', readOnly: true, readOnlyCellClassName:'roCell' }
     ];
     $scope.settings = {
-        onAfterChange: function(change, source) { that.saveCell(change, source); }
+        onAfterChange: function(change, source) { self.saveCell(change, source); }
     };
 
     // List of all existing species in database

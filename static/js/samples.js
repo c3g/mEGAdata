@@ -10,7 +10,7 @@ const app = angular.module('SampleApp', ['angucomplete-alt', 'ngHandsontable']);
 app.controller('SampleCtrl', function($scope, $http) {
     $http.defaults.transformResponse = transformAPIResponse
 
-    this.is_metadata_collapsed = false;
+    this.isMetadataCollapsed = false;
 
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -34,13 +34,14 @@ app.controller('SampleCtrl', function($scope, $http) {
     // Methods
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this.load = () => {
+        const donor = $scope.searchParams.get('donor')
         let url = '/api/samples';
 
-        if ('donor' in $scope.queryDict) {
-            url += '/donor/' + $scope.queryDict['donor'];
-            $scope.donorName = ' for ' + $scope.queryDict['donor'];
-        } else if (Object.keys($scope.queryDict).length > 0) {
-            url += '/metadata?' + queryString($scope.queryDict);
+        if (donor) {
+            url += '/donor/' + donor
+            $scope.donorName = ' for ' + donor;
+        } else if (Array.from($scope.searchParams.keys()).length > 0) {
+            url += '/metadata' + location.search;
         }
 
         $http.get(url).then((result) => {
@@ -113,12 +114,9 @@ app.controller('SampleCtrl', function($scope, $http) {
             .catch((err) => alert('Dataset modification failed.'));
     };
 
-    this._addMetaColumns = (result) => {
-
-        $scope.samplePropertiesList = result.data;
-
-        for (let i in $scope.samplePropertiesList) {
-            const p = $scope.samplePropertiesList[i];
+    this._addMetaColumns = (columns) => {
+        for (let i in columns) {
+            const p = columns[i];
 
             $scope.columns.push({
                 data: p.property,
@@ -131,10 +129,9 @@ app.controller('SampleCtrl', function($scope, $http) {
         }
     };
 
-    this._addExperimentColumns = (result) => {
-
-        for (let i in $scope.experimentTypeList) {
-            const p = $scope.experimentTypeList[i];
+    this._addExperimentColumns = (columns) => {
+        for (let i in columns) {
+            const p = columns[i];
 
             $scope.columns.push({
                 data: `datasets.${p.name}`,
@@ -149,15 +146,15 @@ app.controller('SampleCtrl', function($scope, $http) {
 
     // Expand/Collapse metadata columns
     this.toggleMetadata = () => {
-        this.is_metadata_collapsed = !this.is_metadata_collapsed;
+        this.isMetadataCollapsed = !this.isMetadataCollapsed;
         this._updateMetadataDimensions()
     }
     this.collapseMetadata = () => {
-        this.is_metadata_collapsed = true
+        this.isMetadataCollapsed = true
         this._updateMetadataDimensions()
     }
     this._updateMetadataDimensions = () => {
-        const colwidth = this.is_metadata_collapsed ? 20 : 150;
+        const colwidth = this.isMetadataCollapsed ? 20 : 150;
 
         for (let c in $scope.columns) {
             const col = $scope.columns[c];
@@ -176,35 +173,33 @@ app.controller('SampleCtrl', function($scope, $http) {
     $scope.experimentTypeList = [];
     $scope.samplePropertiesList = [];
     $scope.dataset = {};
-    $scope.queryDict = {};
-
-    // Extract GET parameters to a dictionary
-    if (location.search !== '') {
-        location.search.substr(1).split('&').forEach((item) => { $scope.queryDict[item.split('=')[0]] = item.split('=')[1]; });
-    }
-
+    $scope.searchParams = new URLSearchParams(location.search);
     $scope.columns = [
-        { data: 'public_name',        title: 'Public Name',         readOnly: true, readOnlyCellClassName:'roCell',   width: 120 },
-        { data: 'private_name',       title: 'Private Name',        readOnly: true, readOnlyCellClassName:'roCell',   width: 120 },
-        { data: 'donor.private_name', title: 'Donor',               readOnly: true, readOnlyCellClassName:'roCell' },
-        { data: 'EGA_EGAN',           title: 'EGA EGAN',            readOnly: true, readOnlyCellClassName:'roCell' },
-        { data: 'biomaterial_type',   title: 'Biomaterial Type',    readOnly: true, readOnlyCellClassName:'roCell' },
+        { data: 'public_name',        title: 'Public Name',      readOnly: true, readOnlyCellClassName: 'roCell',   width: 120 },
+        { data: 'private_name',       title: 'Private Name',     readOnly: true, readOnlyCellClassName: 'roCell',   width: 120 },
+        { data: 'donor.private_name', title: 'Donor',            readOnly: true, readOnlyCellClassName: 'roCell',   renderer: Renderer.donor },
+        { data: 'EGA_EGAN',           title: 'EGA EGAN',         readOnly: true, readOnlyCellClassName: 'roCell' },
+        { data: 'biomaterial_type',   title: 'Biomaterial Type', readOnly: true, readOnlyCellClassName: 'roCell' },
     ];
-
     $scope.settings = {
         onAfterChange: this.onAfterChange
     };
 
-    // Load list of sample metadata fields and add columns
-    $http.get('/api/sample_properties')
-    .then(this._addMetaColumns);
+    // Load list of sample metadata + experiments fields and add columns
+    // Load list of sample metadata + experiments fields and add columns
+    Promise.all([
+        $http.get('/api/sample_properties'),
+        $http.get('/api/experiment_types')
+    ])
+    .then(([resultSample, resultExperiment]) => {
+        $scope.samplePropertiesList = resultSample.data;
+        $scope.experimentTypeList   = resultExperiment.data;
 
-    // Load list of experiments  and add a column for each
-    $http.get('/api/experiment_types')
-    .then((result) => {
-        $scope.experimentTypeList = result.data;
-        this._addExperimentColumns();
-    });
+        this._addMetaColumns($scope.samplePropertiesList);
+        this._addExperimentColumns($scope.experimentTypeList);
+
+        $scope.$apply()
+    })
 
     this.load();
 });
