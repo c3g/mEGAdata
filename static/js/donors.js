@@ -31,7 +31,9 @@ app.controller('DonorCtrl', function($scope, $http) {
     // Methods
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this.load = () => {
-        $http.get('/api/donors')
+        const donor = $scope.searchParams.get('donor')
+        const url = '/api/donors' + (donor ? `/${donor}` : '')
+        $http.get(url)
         .then(result => {
             // Fill the grid with all existing donors
             $scope.donors = result.data;
@@ -41,7 +43,7 @@ app.controller('DonorCtrl', function($scope, $http) {
 
     // Add a donor in the database
     this.save = function() {
-        var data = $scope.donor;
+        const data = $scope.donor;
 
         $http.post('/api/donor', data)
             .then(function(data, status, headers, config) {
@@ -82,27 +84,16 @@ app.controller('DonorCtrl', function($scope, $http) {
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Internal methods
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    this._addMetaColumns = function(result) {
-        $scope.donorPropertiesList = result.data;
-        for (var i in $scope.donorPropertiesList) {
-            var p = $scope.donorPropertiesList[i];
-
-            var c = {
+    this._addMetaColumns = function(columns) {
+        columns.forEach(p => {
+            $scope.columns.push({
                 data: p.property,
                 title: p.property,
                 readOnly: false,
-                width: 150
-            };
-
-            if (p.type === 'uri') {
-                c.renderer = Renderer.URI;
-            }
-            else {
-                c.renderer = Renderer.HTML;
-            }
-
-            $scope.columns.push(c);
-        }
+                width: 150,
+                rendered: p.type === 'uri' ? Renderer.URI : Renderer.HTML
+            });
+        })
     };
 
 
@@ -134,7 +125,10 @@ app.controller('DonorCtrl', function($scope, $http) {
 
     // List of all existing species in database
     $http.get('/api/donor_properties')
-    .then(this._addMetaColumns);
+    .then(result => {
+        $scope.donorPropertiesList = result.data;
+        this._addMetaColumns($scope.donorPropertiesList)
+    });
 
     this.load();
 });
