@@ -24,12 +24,14 @@
 
 {% block body %}
 
+<!-- IMPORTANT: Angular interpolation uses {: code :} in this file -->
+
 <div data-ng-app="SampleApp" data-ng-controller="SampleCtrl as ctrl">
 
   <div class="flex-row">
 
     <div>
-      <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addSampleModal">
+      <button id="addSampleButton" type="button" class="btn btn-sm btn-primary">
         <span class="glyphicon glyphicon-plus"></span> Add Sample
       </button>
       <button class="btn btn-sm btn-default" data-ng-click="ctrl.toggleMetadata();">Expand/Collapse Metadata</button>
@@ -63,7 +65,7 @@
   </div>
 
   <hot-table
-    ng-show="!isLoading" 
+    ng-show="!isLoading"
     col-headers="true"
     row-headers="false"
     column-sorting="true"
@@ -78,23 +80,23 @@
   </hot-table>
 
   <!-- Add sample modal dialog -->
-  <div class="modal fade" id="addSampleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="addSampleModal" tabindex="-1" role="dialog" aria-labelledby="sampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Add Sample</h4>
+          <h4 class="modal-title" id="sampleModalLabel">Add Sample</h4>
         </div>
         <div class="modal-body">
           <p><b>Enter sample information:</b></p>
           <table class="table table-hover form-group">
             <tr>
               <td>Sample Private Name:</td>
-              <td><input type="text" data-ng-model="sample.private_name"></td>
+              <td><input type="text" class="form-control" data-ng-model="sample.private_name"></td>
             </tr>
             <tr>
               <td>Sample Public Name:</td>
-              <td><input type="text" data-ng-model="sample.public_name"></td>
+              <td><input type="text" class="form-control" data-ng-model="sample.public_name"></td>
             </tr>
             <tr>
               <td>Donor:</td>
@@ -105,6 +107,7 @@
                   selected-object="sample.donor"
                   remote-url="/api/donors/"
                   title-field="private_name"
+                  input-class="form-control"
                   match-class="angucomplete_highlight"
                   minlength="1"/>
               </td>
@@ -112,7 +115,7 @@
           </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal" data-ng-click="ctrl.cancel()">Cancel</button>
+          <button type="button" class="btn btn-danger"  data-dismiss="modal" data-ng-click="ctrl.cancel()">Cancel</button>
           <button type="button" class="btn btn-success" data-dismiss="modal" data-ng-click="ctrl.save()">Save</button>
         </div>
       </div>
@@ -120,6 +123,156 @@
   </div>
 
 
+  <!-- Sample Run modal dialog -->
+  <div class="modal fade" id="runModal" tabindex="-1" role="dialog" aria-labelledby="runModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="runModalLabel">Runs for dataset {: runModalView.datasetName :}</h4>
+        </div>
+
+        <div class="modal-body">
+
+          <table class="table form-group">
+            <tbody>
+              <tr>
+                <th>Sample</th>
+                <th></th>
+              </tr>
+
+              <tr>
+                <td>id</td>
+                <td>{: runModalView.sample.id :}</td>
+              </tr>
+              <tr>
+                <td>EGA_EGAN</td>
+                <td>{: runModalView.sample.EGA_EGAN :}</td>
+              </tr>
+              <tr>
+                <td>private_name</td>
+                <td>{: runModalView.sample.private_name :}</td>
+              </tr>
+              <tr>
+                <td>public_name</td>
+                <td>{: runModalView.sample.public_name :}</td>
+              </tr>
+              <tr>
+                <td>project_name</td>
+                <td>{: runModalView.sample.project_name :}</td>
+              </tr>
+
+              <tr>
+                <th>Donor</th>
+                <th></th>
+              </tr>
+              <tr>
+                <td>id</td>
+                <td>{: runModalView.sample.donor.id :}</td>
+              </tr>
+              <tr>
+                <td>is_pool</td>
+                <td>{: runModalView.sample.donor.is_pool :}</td>
+              </tr>
+              <tr>
+                <td>phenotype</td>
+                <td>{: runModalView.sample.donor.phenotype :}</td>
+              </tr>
+              <tr>
+                <td>private_name</td>
+                <td>{: runModalView.sample.donor.private_name :}</td>
+              </tr>
+              <tr>
+                <td>public_name</td>
+                <td>{: runModalView.sample.donor.public_name :}</td>
+              </tr>
+              <tr>
+                <td>taxon_id</td>
+                <td>{: runModalView.sample.donor.taxon_id :}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <br/>
+          <h4>Runs:</h4>
+          <table class="table form-group">
+            <thead>
+              <tr>
+                <th>Run</th>
+                <th>Lane</th>
+                <th>EGA_EGAR</th>
+                <th>Library Name</th>
+                <th>Files</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr ng-repeat="(i, run) in runModalView.runs">
+                <td>{: run.run :}</td>
+                <td>{: run.lane :}</td>
+                <td>{: run.EGA_EGAR :}</td>
+                <td>{: run.library_name :}</td>
+                <td>
+                  <table class="table">
+                    <tr>
+                      <th>Name</th>
+                      <th>MD5</th>
+                      <th>Enc. MD5</th>
+                    </tr>
+                    <tr ng-repeat="(i, file) in run.files">
+                      <td>{: file.name :}</td>
+                      <td>{: file.md5 :}</td>
+                      <td>{: file.encrypted_md5 :}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr ng-if="runModalView.isLoading">
+                <td colspan="5">Loading…</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+          <br/>
+          <h4>Public Tracks:</h4>
+          <table class="table form-group">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>assembly</th>
+                <th>md5sum</th>
+                <th>track_type</th>
+                <th>url</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr ng-repeat="(i, track) in runModalView.publicTracks">
+                <td>{: track.id :}</td>
+                <td>{: track.assembly :}</td>
+                <td>{: track.md5sum :}</td>
+                <td>{: track.track_type :}</td>
+                <td><a href="{: track.url :}"><i class="fa fa-link"></i></a></td>
+              </tr>
+
+              <tr ng-if="runModalView.isLoading">
+                <td colspan="5">Loading…</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+
+        <!-- <div class="modal-footer">
+           -   <button type="button" class="btn btn-danger"  data-dismiss="modal" data-ng-click="ctrl.cancel()">Cancel</button>
+           -   <button type="button" class="btn btn-success" data-dismiss="modal" data-ng-click="ctrl.save()">Save</button>
+           - </div> -->
+      </div>
+    </div>
+  </div>
 
 </div>
 

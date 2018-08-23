@@ -2,7 +2,7 @@
   "name": "mEGAdata",
   "version": "1.4.0",
   "dependencies": {
-    "angular": "^1.5.0",
+    "angular": "1.5.0",
     "ngHandsontable": "^0.12.0",
     "jquery": "^1.11.2",
     "bootstrap": "^3.3.6",
@@ -10,6 +10,6 @@
     "handsontable": "~0.25.0"
   },
   "resolutions": {
-    "angular": "^1.5.0"
+    "angular": "1.5.0"
   }
 }

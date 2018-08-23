@@ -95,8 +95,8 @@ function copyFiles(source, dest) {
     compiler.plugin('done', (compilation) => {
       console.log(chalk.bold(`Moving files from ${chalk.blue(source)} to ${chalk.blue(dest)}`))
       fs.readdirSync(source).forEach(file => {
-        const sourceFile = join(source, file)
-        const destFile = join(dest, file)
+        const sourceFile = path.join(source, file)
+        const destFile = path.join(dest, file)
         const content = fs.readFileSync(sourceFile)
         fs.writeFileSync(destFile, content)
       })

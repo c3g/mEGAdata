@@ -53,6 +53,10 @@ def route_api_dataset_add():
 def route_api_run_create():
     return insertRun(request.get_json())
 
+@app.route('/api/run/<string:dataset_id>', methods=['GET'])
+@api_function
+def route_api_run_get(dataset_id):
+    return getRunsForDataset(dataset_id, attach_files=True)
 
 #==============================================================================
 # Users
@@ -202,3 +206,16 @@ def route_api_get_species():
     Returns all support species with this instance of mEGAdata.
     """
     return getSpeciesList()
+
+
+#==============================================================================
+# Tracks
+#==============================================================================
+
+@app.route("/api/track/<string:dataset_id>", methods=['GET'])
+@api_function
+def route_api_tracks_get(dataset_id):
+    """
+    Returns all the tracks for a dataset
+    """
+    return getPublicTracksList(dataset_id)

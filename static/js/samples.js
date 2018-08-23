@@ -7,6 +7,10 @@ import queryString from './utils/query-string'
 
 
 const app = angular.module('SampleApp', ['angucomplete-alt', 'ngHandsontable']);
+app.config(['$interpolateProvider', (provider) => {
+  provider.startSymbol('{:')
+  provider.endSymbol(':}')
+}])
 app.controller('SampleCtrl', function($scope, $http) {
     $http.defaults.transformResponse = transformAPIResponse
 
@@ -18,14 +22,19 @@ app.controller('SampleCtrl', function($scope, $http) {
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // CustomEditor will ask if an unreleased dataset should be released
     this.DatasetEditor = createEditor({
-        getValue: () => {},
-        setValue: (newValue) => {},
+        getValue: (editor) => {},
+        setValue: (editor, newValue) => {},
         open: (editor, ...args) => {
             editor.finishEditing();
+            const row = editor.row
+            const prop = editor.prop
+            const sample = $scope.samples[row]
+            const dataset = editor.originalValue
+            this.onClickExperimentCell(dataset, sample, prop, row)
             // this._updateDataset(editor.row, editor.prop, editor.originalValue);
         },
-        close: () => {},
-        focus: () => {},
+        close: (editor) => {},
+        focus: (editor) => {},
     })
 
 
@@ -33,7 +42,7 @@ app.controller('SampleCtrl', function($scope, $http) {
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Methods
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    this.load = () => {
+    this.loadDonors = () => {
         const donor = $scope.searchParams.get('donor')
         let url = '/api/samples';
 
@@ -50,6 +59,19 @@ app.controller('SampleCtrl', function($scope, $http) {
         });
     };
 
+    this.loadDatasetDetails = (datasetID) => {
+        Promise.all([
+            $http.get(`/api/track/${datasetID}`),
+            $http.get(`/api/run/${datasetID}`)
+        ])
+        .then(([tracks, runs]) => {
+            $scope.runModalView.publicTracks = tracks.data
+            $scope.runModalView.runs = runs.data
+            $scope.runModalView.isLoading = false
+            $scope.$apply()
+        })
+    }
+
     // Add a sample in the database
     this.save = () => {
         $scope.sample.donor_id = $scope.sample.donor.originalObject.id;
@@ -58,7 +80,7 @@ app.controller('SampleCtrl', function($scope, $http) {
             .then((response) => {
                 alert('Success.');
                 $scope.sample = {};
-                this.load();
+                this.loadDonors();
             })
             .catch((err) => {
                 alert('Sample creation failed.');
@@ -81,6 +103,23 @@ app.controller('SampleCtrl', function($scope, $http) {
 
         this._saveMetadata(source, row, col, before, after);
     };
+
+    this.onClickExperimentCell = (dataset, sample, prop, row) => {
+        if (dataset && dataset.runs.length > 0) {
+            $scope.runModalView = {
+                sample: sample,
+                dataset: dataset,
+                datasetName: prop.replace('datasets.', ''),
+                runs: [],
+                publicTracks: [],
+                isLoading: true,
+            }
+            $scope.runModal.modal('show')
+            $scope.$apply()
+
+            this.loadDatasetDetails(dataset.id)
+        }
+    }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Internal methods
@@ -110,14 +149,12 @@ app.controller('SampleCtrl', function($scope, $http) {
             };
 
         $http.post('/api/dataset', dataset)
-            .then((response) => this.load())
+            .then((response) => this.loadDonors())
             .catch((err) => alert('Dataset modification failed.'));
     };
 
     this._addMetaColumns = (columns) => {
-        for (let i in columns) {
-            const p = columns[i];
-
+        columns.forEach(p => {
             $scope.columns.push({
                 data: p.property,
                 title: p.property,
@@ -125,14 +162,12 @@ app.controller('SampleCtrl', function($scope, $http) {
                 width: 150,
                 is_metadata_column: true,
                 renderer: p.type === 'uri' ? Renderer.URI : Renderer.HTML,
-            });
-        }
+            })
+        })
     };
 
     this._addExperimentColumns = (columns) => {
-        for (let i in columns) {
-            const p = columns[i];
-
+        columns.forEach(p => {
             $scope.columns.push({
                 data: `datasets.${p.name}`,
                 title: p.name,
@@ -140,8 +175,8 @@ app.controller('SampleCtrl', function($scope, $http) {
                 width: 100,
                 renderer: Renderer.dataset,
                 editor: this.DatasetEditor,
-            });
-        }
+            })
+        })
     };
 
     // Expand/Collapse metadata columns
@@ -184,6 +219,15 @@ app.controller('SampleCtrl', function($scope, $http) {
     $scope.settings = {
         onAfterChange: this.onAfterChange
     };
+    $scope.addSampleButton = $('#addSampleButton')
+    $scope.addSampleModal  = $('#addSampleModal').modal('hide')
+
+    $scope.runModalView    = { sample: {}, dataset: {}, datasetName: '', runs: [], publicTracks: [], isLoading: false }
+    $scope.runModal        = $('#runModal').modal('hide')
+
+    $scope.addSampleButton.on('click', () => {
+        $scope.addSampleModal.modal('show')
+    })
 
     // Load list of sample metadata + experiments fields and add columns
     // Load list of sample metadata + experiments fields and add columns
@@ -201,7 +245,7 @@ app.controller('SampleCtrl', function($scope, $http) {
         $scope.$apply()
     })
 
-    this.load();
+    this.loadDonors();
 });
 
 

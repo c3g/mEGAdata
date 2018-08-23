@@ -129,16 +129,8 @@ def getSampleList(donor=None, filter={}):
             datasetResult = {
                 'id': dataset.id,
                 'release_status': dataset.release_status or None,
-                'runs': []
+                'runs': getRunsForDataset(dataset.id)
             }
-            for run in getRunsForDataset(dataset.id):
-                datasetResult['runs'].append({
-                    'id': run.id,
-                    'library_name': run.library_name,
-                    'run': run.run,
-                    'lane': run.lane,
-                    'EGA_EGAR': run.EGA_EGAR
-                })
             datasetByExperiment[dataset.experiment_type.name] = datasetResult
 
         sampleRecord['datasets'] = datasetByExperiment
@@ -280,7 +272,7 @@ def getDatasetsForSample(sampleID):
 # Run
 #==============================================================================~
 
-
+def insertRun(data):
     dataset = Dataset.get(id=data['dataset_id'])
 
     run = Run()
@@ -302,13 +294,47 @@ def getDatasetsForSample(sampleID):
     return run.toJSON()
 
 
-def getRunsForDataset(datasetID):
-    query = Run.select(Run)\
-                    .join(Dataset)\
-                    .where(Dataset.id == datasetID)
+def getRunsForDataset(datasetID, attach_files=False):
+    query = Run.select().join(Dataset).where(Dataset.id == datasetID)
 
-    return query
+    runs = []
+    for row in query:
+        run = {
+            'id': row.id,
+            'library_name': row.library_name,
+            'run': row.run,
+            'lane': row.lane,
+            'EGA_EGAR': row.EGA_EGAR
+        }
+        if attach_files:
+            run['files'] = [{
+                'name': file.name,
+                'md5': file.md5,
+                'encrypted_md5': file.encrypted_md5,
+            } for file in RunFile.select().where(RunFile.run_id == row.id)]
 
+        runs.append(run)
+
+    return runs
+
+
+#==============================================================================~
+# RunFile
+#==============================================================================~
+
+def getRunFilesForRun(runID):
+    query = RunFile.select().where(RunFile.run_id == runID)
+
+    files = []
+    for file in query:
+        files.append({
+            'id': file.id,
+            'name': file.name,
+            'md5': file.md5,
+            'encrypted_md5': file.encrypted_md5,
+        })
+
+    return files
 
 
 #==============================================================================~
@@ -337,3 +363,8 @@ def getSpeciesList():
 def getExperimentTypeList():
     return [exp.toJSON() for exp in ExperimentType.select()]
 
+def getPublicTracksList(dataset_id):
+    """
+    Returns all the tracks for a dataset
+    """
+    return [track.toJSON() for track in PublicTrack.select().where(PublicTrack.dataset_id == dataset_id)]
