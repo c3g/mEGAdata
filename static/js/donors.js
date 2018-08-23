@@ -64,19 +64,18 @@ app.controller('DonorCtrl', function($scope, $http) {
             return;
         }
 
-        var row = change[0][0];
-        var col = change[0][1];
-        var before = change[0][2];
-        var after = change[0][3];
+        const row    = change[0][0];
+        const col    = change[0][1];
+        const before = change[0][2];
+        const after  = change[0][3];
 
         if (source === 'edit') {
-            var data = {
+
+            $http.post('/api/donor_metadata', {
                 donor_id: $scope.donors[row].id,
                 field: col,
                 value: after
-            };
-
-            $http.post('/api/donor_metadata', data);
+            });
         }
     };
 
