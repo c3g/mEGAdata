@@ -368,6 +368,7 @@ function doImport(imports, progressFn) {
 
       const sample = imports.samplesByID[dataset.__sampleID]
       dataset.sample_id = sample.id
+      dataset.release_status = 'P'
 
       return createDataset(dataset)
       .then(({ id: datasetID }) => {
