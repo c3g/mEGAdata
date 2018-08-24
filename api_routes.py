@@ -1,7 +1,7 @@
 #!/usr/bin/python
 from functools import wraps
-from flask import Response, request
-from flask_login import login_required
+from flask import Response, request, current_app
+from flask_login import login_required, current_user
 
 from app import app
 from queries import *
@@ -9,16 +9,25 @@ from queries import *
 def JSONResponse(value):
     return Response(json.dumps(value), mimetype='application/json')
 
-# API Functions decorator. Also adds @login_required
+# API Functions decorator.
 # Makes all functions return { ok: true|false, ... }
-def api_function(fn):
-    @wraps(fn)
-    def fn_wrapped(*args, **kwargs):
-        try:
-            return JSONResponse({'ok': True, 'data': fn(*args, **kwargs)})
-        except Exception as e:
-            return JSONResponse({'ok': False, 'message': str(e)})
-    return login_required(fn_wrapped)
+def api_function(edit=False):
+    def decorator(fn):
+        @wraps(fn)
+        def fn_wrapped(*args, **kwargs):
+            print current_user.can_edit
+            # Login required
+            if not current_user.is_authenticated:
+                return JSONResponse({'ok': False, 'message': 'Not logged in'})
+            # user.can_edit
+            if edit and not current_user.can_edit:
+                return JSONResponse({'ok': False, 'message': 'Current user cannot edit content'})
+            try:
+                return JSONResponse({'ok': True, 'data': fn(*args, **kwargs)})
+            except Exception as e:
+                return JSONResponse({'ok': False, 'message': str(e)})
+        return fn_wrapped
+    return decorator
 
 
 #==============================================================================
@@ -26,7 +35,7 @@ def api_function(fn):
 #==============================================================================
 
 @app.route("/api/dataset", methods=['POST'])
-@api_function
+@api_function(edit=True)
 def route_api_dataset_add():
     dataset = request.get_json()
     insertedDataset = insertDataset(dataset)
@@ -49,12 +58,12 @@ def route_api_dataset_add():
 #==============================================================================
 
 @app.route('/api/run', methods=['POST'])
-@api_function
+@api_function(edit=True)
 def route_api_run_create():
     return insertRun(request.get_json())
 
 @app.route('/api/run/<string:dataset_id>', methods=['GET'])
-@api_function
+@api_function(edit=True)
 def route_api_run_get(dataset_id):
     return getRunsForDataset(dataset_id, attach_files=True)
 
@@ -63,26 +72,25 @@ def route_api_run_get(dataset_id):
 #==============================================================================
 
 @app.route("/api/user/list", methods=['GET'])
-@api_function
+@api_function()
 def route_api_user_list():
     return listUsers()
 
 
 @app.route("/api/user/create", methods=['POST'])
-@api_function
+@api_function(edit=True)
 def route_api_user_create():
     return createUser(request.get_json())
 
 
 @app.route("/api/user/update", methods=['POST'])
-@api_function
-@api_function
+@api_function(edit=True)
 def route_api_user_update():
     return updateUser(request.get_json())
 
 
 @app.route("/api/user/delete", methods=['POST'])
-@api_function
+@api_function(edit=True)
 def route_api_user_delete():
     return deleteUser(request.get_json())
 
@@ -93,7 +101,7 @@ def route_api_user_delete():
 
 @app.route("/api/donors", methods=['GET'])
 @app.route("/api/donors/<string:filter>", methods=['GET'])
-@api_function
+@api_function()
 def route_api_get_donors(filter=None):
     """
     Returns all registered donors. If a filter string is provided, returns filtered list of registered donors.
@@ -102,7 +110,7 @@ def route_api_get_donors(filter=None):
 
 
 @app.route("/api/donor_properties", methods=['GET'])
-@api_function
+@api_function()
 def route_api_get_donor_properties(filter=None):
     """
     Returns all properties that can be specified for a donor.
@@ -110,7 +118,7 @@ def route_api_get_donor_properties(filter=None):
     return getDonorProperties()
 
 @app.route("/api/donor", methods=['POST'])
-@api_function
+@api_function(edit=True)
 def route_api_donor_add():
     donor = request.get_json()
     insertedDonor = insertDonor(donor)
@@ -129,7 +137,7 @@ def route_api_donor_add():
 
 
 @app.route("/api/donor_metadata", methods=['POST'])
-@api_function
+@api_function(edit=True)
 def route_api_donor_metadata_add():
     return insertDonorMetadata(request.get_json())
 
@@ -139,7 +147,7 @@ def route_api_donor_metadata_add():
 #==============================================================================
 
 @app.route("/api/experiment_types")
-@api_function
+@api_function()
 def route_json_experimentList():
     return getExperimentTypeList()
 
@@ -150,19 +158,19 @@ def route_json_experimentList():
 
 @app.route("/api/samples", methods=['GET'])
 @app.route("/api/samples/donor/<string:donor>", methods=['GET'])
-@api_function
+@api_function()
 def route_json_sampleList(donor=None):
     return getSampleList(donor=donor)
 
 
 @app.route("/api/samples/metadata", methods=['GET'])
-@api_function
+@api_function()
 def route_json_sampleList_metadata_filter():
     return getSampleList(filter=request.args)
 
 
 @app.route("/api/sample_properties", methods=['GET'])
-@api_function
+@api_function()
 def route_api_get_sample_properties(filter=None):
     """
     Returns all properties that can be specified for a sample.
@@ -171,7 +179,7 @@ def route_api_get_sample_properties(filter=None):
 
 
 @app.route("/api/sample", methods=['POST'])
-@api_function
+@api_function(edit=True)
 def route_api_sample_add():
     sample = request.get_json()
     insertedSample = insertSample(sample)
@@ -190,7 +198,7 @@ def route_api_sample_add():
 
 
 @app.route("/api/sample_metadata", methods=['POST'])
-@api_function
+@api_function(edit=True)
 def route_api_sample_metadata_add():
     return insertSampleMetadata(request.get_json())
 
@@ -200,7 +208,7 @@ def route_api_sample_metadata_add():
 #==============================================================================
 
 @app.route("/api/species", methods=['GET'])
-@api_function
+@api_function()
 def route_api_get_species():
     """
     Returns all support species with this instance of mEGAdata.
@@ -213,7 +221,7 @@ def route_api_get_species():
 #==============================================================================
 
 @app.route("/api/track/<string:dataset_id>", methods=['GET'])
-@api_function
+@api_function()
 def route_api_tracks_get(dataset_id):
     """
     Returns all the tracks for a dataset

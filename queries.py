@@ -20,9 +20,15 @@ def updateUser(body):
     user = User.get(User.id == body['id'])
     user.name = body['name']
     user.email = body['email']
+    user.can_edit = body['can_edit']
     user.save()
 
-    return user.toJSON()
+    return {
+        'id': user.id,
+        'name': user.name,
+        'email': user.email,
+        'can_edit': user.can_edit,
+    }
 
 def deleteUser(body):
     user = User.get(User.id == body['id'])
