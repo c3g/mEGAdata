@@ -70,6 +70,8 @@ class Donor(BaseModel):
     phenotype = peewee.CharField()
     is_pool = peewee.BooleanField()
 
+    species = peewee.ForeignKeyField(Species, db_column='taxon_id')
+
 
 class DonorProperty(BaseModel):
     id = peewee.IntegerField(primary_key=True)
@@ -100,8 +102,6 @@ class Sample(BaseModel):
     epirr_acc = peewee.CharField()
     EGA_EGAN = peewee.CharField()
     biomaterial_type = peewee.CharField()
-    # tissue_type = peewee.CharField()
-    # cell_type = peewee.CharField()
 
     donor = peewee.ForeignKeyField(Donor)
 
