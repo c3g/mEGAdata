@@ -146,6 +146,10 @@ html, body {
   );
 }
 
+.table-runs td:last-child {
+    padding: 0 !important;
+}
+
 
 /*
  * Elements (/users)

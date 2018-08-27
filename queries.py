@@ -374,3 +374,15 @@ def getPublicTracksList(dataset_id):
     Returns all the tracks for a dataset
     """
     return [track.toJSON() for track in PublicTrack.select().where(PublicTrack.dataset_id == dataset_id)]
+
+def getExperimentMetadata(dataset_id):
+    """
+    Returns all the experiment metadata for a dataset
+    """
+    return [
+        {
+            'property': metadata.experiment_property.property,
+            'type': metadata.experiment_property.type,
+            'value': metadata.value,
+        }
+        for metadata in ExperimentMetadata.select().where(ExperimentMetadata.dataset_id == dataset_id)]

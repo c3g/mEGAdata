@@ -4,6 +4,7 @@
 import transformAPIResponse from './utils/transform-api-response'
 import * as Renderer from './utils/hot-renderers'
 import queryString from './utils/query-string'
+import { fetchCurrentUser } from './requests.js'
 
 
 const app = angular.module('SampleApp', ['angucomplete-alt', 'ngHandsontable']);
@@ -61,10 +62,12 @@ app.controller('SampleCtrl', function($scope, $http) {
 
     this.loadDatasetDetails = (datasetID) => {
         Promise.all([
+            $http.get(`/api/experiment_metadata/${datasetID}`),
             $http.get(`/api/track/${datasetID}`),
             $http.get(`/api/run/${datasetID}`)
         ])
-        .then(([tracks, runs]) => {
+        .then(([metadata, tracks, runs]) => {
+            $scope.runModalView.metadata = metadata.data
             $scope.runModalView.publicTracks = tracks.data
             $scope.runModalView.runs = runs.data
             $scope.runModalView.isLoading = false
@@ -110,6 +113,7 @@ app.controller('SampleCtrl', function($scope, $http) {
                 sample: sample,
                 dataset: dataset,
                 datasetName: prop.replace('datasets.', ''),
+                metadata: [],
                 runs: [],
                 publicTracks: [],
                 isLoading: true,
@@ -158,7 +162,7 @@ app.controller('SampleCtrl', function($scope, $http) {
             $scope.columns.push({
                 data: p.property,
                 title: p.property,
-                readOnly: false,
+                readOnly: !$scope.currentUser.can_edit,
                 width: 150,
                 is_metadata_column: true,
                 renderer: p.type === 'uri' ? Renderer.URI : Renderer.HTML,
@@ -166,7 +170,7 @@ app.controller('SampleCtrl', function($scope, $http) {
         })
     };
 
-    this._addExperimentColumns = (columns) => {
+    this._addDatasetColumns = (columns) => {
         columns.forEach(p => {
             $scope.columns.push({
                 data: `datasets.${p.name}`,
@@ -222,7 +226,7 @@ app.controller('SampleCtrl', function($scope, $http) {
     $scope.addSampleButton = $('#addSampleButton')
     $scope.addSampleModal  = $('#addSampleModal').modal('hide')
 
-    $scope.runModalView    = { sample: {}, dataset: {}, datasetName: '', runs: [], publicTracks: [], isLoading: false }
+    $scope.runModalView    = { sample: {}, dataset: {}, datasetName: '', metadata: [], runs: [], publicTracks: [], isLoading: false }
     $scope.runModal        = $('#runModal').modal('hide')
 
     $scope.addSampleButton.on('click', () => {
@@ -232,15 +236,17 @@ app.controller('SampleCtrl', function($scope, $http) {
     // Load list of sample metadata + experiments fields and add columns
     // Load list of sample metadata + experiments fields and add columns
     Promise.all([
+        $http.get('/api/user/current'),
         $http.get('/api/sample_properties'),
         $http.get('/api/experiment_types')
     ])
-    .then(([resultSample, resultExperiment]) => {
+    .then(([currentUser, resultSample, resultExperiment]) => {
+        $scope.currentUser = currentUser;
         $scope.samplePropertiesList = resultSample.data;
         $scope.experimentTypeList   = resultExperiment.data;
 
         this._addMetaColumns($scope.samplePropertiesList);
-        this._addExperimentColumns($scope.experimentTypeList);
+        this._addDatasetColumns($scope.experimentTypeList);
 
         $scope.$apply()
     })

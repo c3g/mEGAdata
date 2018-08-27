@@ -6,6 +6,9 @@
 export function fetchUsers() {
   return get('/user/list')
 }
+export function fetchCurrentUser() {
+  return get('/user/current')
+}
 export function createUser(email) {
   return post('/user/create', { email })
 }

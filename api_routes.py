@@ -63,7 +63,7 @@ def route_api_run_create():
     return insertRun(request.get_json())
 
 @app.route('/api/run/<string:dataset_id>', methods=['GET'])
-@api_function(edit=True)
+@api_function()
 def route_api_run_get(dataset_id):
     return getRunsForDataset(dataset_id, attach_files=True)
 
@@ -76,18 +76,20 @@ def route_api_run_get(dataset_id):
 def route_api_user_list():
     return listUsers()
 
+@app.route("/api/user/current", methods=['GET'])
+@api_function()
+def route_api_user_current():
+    return current_user.toJSON()
 
 @app.route("/api/user/create", methods=['POST'])
 @api_function(edit=True)
 def route_api_user_create():
     return createUser(request.get_json())
 
-
 @app.route("/api/user/update", methods=['POST'])
 @api_function(edit=True)
 def route_api_user_update():
     return updateUser(request.get_json())
-
 
 @app.route("/api/user/delete", methods=['POST'])
 @api_function(edit=True)
@@ -150,6 +152,16 @@ def route_api_donor_metadata_add():
 @api_function()
 def route_json_experimentList():
     return getExperimentTypeList()
+
+
+#==============================================================================
+# Experiment Metadata
+#==============================================================================
+
+@app.route("/api/experiment_metadata/<string:dataset_id>")
+@api_function()
+def route_json_experiment_metadata_get(dataset_id):
+    return getExperimentMetadata(dataset_id)
 
 
 #==============================================================================

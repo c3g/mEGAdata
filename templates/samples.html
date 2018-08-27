@@ -137,13 +137,17 @@
           <table class="table form-group">
             <tbody>
               <tr>
-                <th>Sample</th>
+                <th>Dataset</th>
                 <th></th>
+              </tr>
+              <tr>
+                <td>Release Status</td>
+                <td>{: runModalView.dataset.release_status :}</td>
               </tr>
 
               <tr>
-                <td>id</td>
-                <td>{: runModalView.sample.id :}</td>
+                <th>Sample</th>
+                <th></th>
               </tr>
               <tr>
                 <td>EGA_EGAN</td>
@@ -165,10 +169,6 @@
               <tr>
                 <th>Donor</th>
                 <th></th>
-              </tr>
-              <tr>
-                <td>id</td>
-                <td>{: runModalView.sample.donor.id :}</td>
               </tr>
               <tr>
                 <td>is_pool</td>
@@ -194,8 +194,31 @@
           </table>
 
           <br/>
+          <h4>Metadata</h4>
+          <table class="table form-group table-metadata">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr ng-repeat="(i, m) in runModalView.metadata">
+                <td>{: m.property :}</td>
+                <td>{: m.value :}</td>
+              </tr>
+
+              <tr ng-if="runModalView.isLoading">
+                <td colspan="5">Loading…</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+          <br/>
           <h4>Runs:</h4>
-          <table class="table form-group">
+          <table class="table form-group table-runs">
             <thead>
               <tr>
                 <th>Run</th>
