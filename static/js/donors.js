@@ -11,7 +11,7 @@ app.controller('DonorCtrl', function($scope, $http) {
 
     $http.defaults.transformResponse = transformAPIResponse
 
-    var that = this;
+    const self = this;
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Handsontable Renderers
@@ -31,7 +31,9 @@ app.controller('DonorCtrl', function($scope, $http) {
     // Methods
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this.load = () => {
-        $http.get('/api/donors')
+        const donor = $scope.searchParams.get('donor')
+        const url = '/api/donors' + (donor ? `/${donor}` : '')
+        $http.get(url)
         .then(result => {
             // Fill the grid with all existing donors
             $scope.donors = result.data;
@@ -41,12 +43,12 @@ app.controller('DonorCtrl', function($scope, $http) {
 
     // Add a donor in the database
     this.save = function() {
-        var data = $scope.donor;
+        const data = $scope.donor;
 
         $http.post('/api/donor', data)
             .then(function(data, status, headers, config) {
                 $scope.donor = {};
-                that.load();
+                self.load();
             })
             .catch(function(data, status, headers, config) {
                 alert('Donor creation failed.');
@@ -64,46 +66,34 @@ app.controller('DonorCtrl', function($scope, $http) {
             return;
         }
 
-        var row = change[0][0];
-        var col = change[0][1];
-        var before = change[0][2];
-        var after = change[0][3];
+        const row    = change[0][0];
+        const col    = change[0][1];
+        const before = change[0][2];
+        const after  = change[0][3];
 
         if (source === 'edit') {
-            var data = {
+
+            $http.post('/api/donor_metadata', {
                 donor_id: $scope.donors[row].id,
                 field: col,
                 value: after
-            };
-
-            $http.post('/api/donor_metadata', data);
+            });
         }
     };
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Internal methods
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    this._addMetaColumns = function(result) {
-        $scope.donorPropertiesList = result.data;
-        for (var i in $scope.donorPropertiesList) {
-            var p = $scope.donorPropertiesList[i];
-
-            var c = {
+    this._addMetaColumns = function(columns) {
+        columns.forEach(p => {
+            $scope.columns.push({
                 data: p.property,
                 title: p.property,
                 readOnly: false,
-                width: 150
-            };
-
-            if (p.type === 'uri') {
-                c.renderer = Renderer.URI;
-            }
-            else {
-                c.renderer = Renderer.HTML;
-            }
-
-            $scope.columns.push(c);
-        }
+                width: 150,
+                rendered: p.type === 'uri' ? Renderer.URI : Renderer.HTML
+            });
+        })
     };
 
 
@@ -115,15 +105,16 @@ app.controller('DonorCtrl', function($scope, $http) {
     $scope.donors = [];
     $scope.speciesList = [];
     $scope.donorPropertiesList = [];
+    $scope.searchParams = new URLSearchParams(location.search);
     $scope.columns = [
-        { data: 'public_name', title: 'Public Name', readOnly: true, readOnlyCellClassName:'roCell', width: 120 },
-        { data: 'private_name', title: 'Private Name', readOnly: true, readOnlyCellClassName:'roCell', renderer: donorPrivateNameRenderer, width: 120 },
-        { data: 'taxon_id', title: 'Taxon ID', readOnly: true, readOnlyCellClassName:'roCell' },
-        { data: 'phenotype', title: 'Phenotype', readOnly: true, readOnlyCellClassName:'roCell', width: 150 },
-        { data: 'is_pool', title: 'Pooled Sample', readOnly: true, readOnlyCellClassName:'roCell' }
+        { data: 'public_name',  title: 'Public Name',   readOnly: true, readOnlyCellClassName:'roCell',   width: 120 },
+        { data: 'private_name', title: 'Private Name',  readOnly: true, readOnlyCellClassName:'roCell',   width: 120, renderer: donorPrivateNameRenderer },
+        { data: 'taxon_id',     title: 'Taxon ID',      readOnly: true, readOnlyCellClassName:'roCell' },
+        { data: 'phenotype',    title: 'Phenotype',     readOnly: true, readOnlyCellClassName:'roCell',   width: 150 },
+        { data: 'is_pool',      title: 'Pooled Sample', readOnly: true, readOnlyCellClassName:'roCell' }
     ];
     $scope.settings = {
-        onAfterChange: function(change, source) { that.saveCell(change, source); }
+        onAfterChange: function(change, source) { self.saveCell(change, source); }
     };
 
     // List of all existing species in database
@@ -134,7 +125,10 @@ app.controller('DonorCtrl', function($scope, $http) {
 
     // List of all existing species in database
     $http.get('/api/donor_properties')
-    .then(this._addMetaColumns);
+    .then(result => {
+        $scope.donorPropertiesList = result.data;
+        this._addMetaColumns($scope.donorPropertiesList)
+    });
 
     this.load();
 });

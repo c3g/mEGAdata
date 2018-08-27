@@ -2,7 +2,8 @@ from __future__ import print_function
 from flask import url_for, current_app, redirect, request
 from rauth import OAuth2Service
 
-import json, urllib2
+import json
+import urllib2
 
 class OAuthSignIn(object):
     providers = None
@@ -20,13 +21,14 @@ class OAuthSignIn(object):
         pass
 
     def get_callback_url(self):
-        return url_for('oauth_callback', provider=self.provider_name,
-                        _external=True)
+        url = current_app.config['APPLICATION_URL']
+        url += url_for('oauth_callback', provider=self.provider_name)
+        return url
 
     @classmethod
     def get_provider(self, provider_name):
         if self.providers is None:
-            self.providers={}
+            self.providers = {}
             for provider_class in self.__subclasses__():
                 provider = provider_class()
                 self.providers[provider.provider_name] = provider
@@ -38,12 +40,12 @@ class GoogleSignIn(OAuthSignIn):
         googleinfo = urllib2.urlopen('https://accounts.google.com/.well-known/openid-configuration')
         google_params = json.load(googleinfo)
         self.service = OAuth2Service(
-                name='google',
-                client_id=self.consumer_id,
-                client_secret=self.consumer_secret,
-                authorize_url=google_params.get('authorization_endpoint'),
-                base_url=google_params.get('userinfo_endpoint'),
-                access_token_url=google_params.get('token_endpoint')
+            name='google',
+            client_id=self.consumer_id,
+            client_secret=self.consumer_secret,
+            authorize_url=google_params.get('authorization_endpoint'),
+            base_url=google_params.get('userinfo_endpoint'),
+            access_token_url=google_params.get('token_endpoint')
         )
 
     def authorize(self):
@@ -51,20 +53,20 @@ class GoogleSignIn(OAuthSignIn):
             scope='email',
             response_type='code',
             redirect_uri=self.get_callback_url())
-            )
+        )
 
     def callback(self):
         if 'code' not in request.args:
             return None, None, None
         oauth_session = self.service.get_auth_session(
-                data={'code': request.args['code'],
-                      'grant_type': 'authorization_code',
-                      'redirect_uri': self.get_callback_url()
-                     },
-                decoder = json.loads
+            data={
+                'code': request.args['code'],
+                'grant_type': 'authorization_code',
+                'redirect_uri': self.get_callback_url()
+            },
+            decoder=json.loads
         )
         me = oauth_session.get('').json()
-        print((me['name'],
-                me['email']))
-        return (me['name'],
-                me['email'])
+        result = (me['name'], me['email'])
+        print(result)
+        return result

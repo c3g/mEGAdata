@@ -5,6 +5,7 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   `email` varchar(200) DEFAULT NULL,
+  `can_edit` boolean DEFAULT FALSE,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -167,7 +168,6 @@ CREATE TABLE `sample` (
   `donor_id` int(11) DEFAULT NULL,
   `public_name` varchar(100) DEFAULT NULL,
   `private_name` varchar(100) DEFAULT NULL,
-  `public_archive_id` varchar(50) NOT NULL DEFAULT '',
   `EGA_EGAN` varchar(16) DEFAULT NULL,
   `last_modification` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),

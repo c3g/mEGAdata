@@ -5,7 +5,6 @@
 /* global Handsontable*/
 
 export function dataset(instance, td, row, col, prop, data, cellProperties) {
-
   const releaseStatus = data === null ? '' : (data.release_status || '')
   const runs = data === null ? [] : data.runs
 
@@ -19,18 +18,9 @@ export function dataset(instance, td, row, col, prop, data, cellProperties) {
     cellProperties
   ]);
 
-  td.className = 'cell--dataset';
-
-  if (releaseStatus.charAt(0) === 'R') {
-    cellProperties.readOnly = true;
-  }
-  else if (releaseStatus.charAt(0) === 'P') {
-    td.className = 'cell--dataset-pending';
-    cellProperties.readOnly = true;
-  }
-  else {
-    cellProperties.readOnly = false;
-  }
+  td.className = releaseStatus.charAt(0) === 'P' ?
+    'cell--dataset-pending' :
+    'cell--dataset'
 
   if (runs.length > 0) {
     td.className += ' cell--has-run'
@@ -47,5 +37,12 @@ export function URI(instance, td, row, col, prop, value, cellProperties) {
   td.className = 'cell--metadata';
   if (value !== null) {
     td.innerHTML = '<a target=\'_blank\' href=\'' + value + '\'>' + value + '</a>';
+  }
+}
+
+export function donor(instance, td, row, col, prop, value, cellProperties) {
+  Handsontable.renderers.HtmlRenderer.apply(this, arguments);
+  if (value !== null) {
+    td.innerHTML = '<a href=\'/donors?donor=' + value + '\'>' + value + '</a>';
   }
 }

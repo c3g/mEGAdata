@@ -20,6 +20,7 @@ class User(BaseModel):
     id = peewee.IntegerField(primary_key=True)
     name = peewee.CharField()
     email = peewee.CharField()
+    can_edit = peewee.BooleanField()
 
     def is_authenticated():
         """
