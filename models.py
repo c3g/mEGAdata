@@ -69,6 +69,8 @@ class Donor(BaseModel):
     phenotype = peewee.CharField()
     is_pool = peewee.BooleanField()
 
+    species = peewee.ForeignKeyField(Species, db_column='taxon_id')
+
 
 class DonorProperty(BaseModel):
     id = peewee.IntegerField(primary_key=True)
