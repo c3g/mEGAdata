@@ -5,10 +5,6 @@
   <script src="bower_components/handsontable/dist/handsontable.full.js"></script>
   <link rel="stylesheet" media="screen" href="bower_components/handsontable/dist/handsontable.full.css">
 
-  <!-- Bootstrap -->
-  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-
   <!-- Angular -->
   <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 
@@ -124,8 +120,8 @@
 
 
   <!-- Sample Run modal dialog -->
-  <div class="modal fade" id="runModal" tabindex="-1" role="dialog" aria-labelledby="runModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+  <div class="modal fade runModal" id="runModal" tabindex="-1" role="dialog" aria-labelledby="runModalLabel" aria-hidden="true">
+    <div class="runModal__dialog modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -134,21 +130,32 @@
 
         <div class="modal-body">
 
-          <table class="table form-group">
-            <tbody>
+          <h3>Dataset</h3>
+          <table class="table table-condensed table-dataset table-bordered table-striped form-group">
+            <thead>
               <tr>
-                <th>Dataset</th>
-                <th></th>
+                <th>Property</th>
+                <th>Value</th>
               </tr>
+            </thead>
+            <tbody>
               <tr>
                 <td>Release Status</td>
                 <td>{: runModalView.dataset.release_status :}</td>
               </tr>
+            </tbody>
+          </table>
 
+          <br/>
+          <h3>Sample</h3>
+          <table class="table table-condensed table-sample table-bordered table-striped form-group">
+            <thead>
               <tr>
-                <th>Sample</th>
-                <th></th>
+                <th>Property</th>
+                <th>Value</th>
               </tr>
+            </thead>
+            <tbody>
               <tr>
                 <td>EGA_EGAN</td>
                 <td>{: runModalView.sample.EGA_EGAN :}</td>
@@ -166,10 +173,19 @@
                 <td>{: runModalView.sample.project_name :}</td>
               </tr>
 
+            </tbody>
+          </table>
+
+          <br/>
+          <h3>Donor</h3>
+          <table class="table table-condensed table-donor table-bordered table-striped form-group">
+            <thead>
               <tr>
-                <th>Donor</th>
-                <th></th>
+                <th>Property</th>
+                <th>Value</th>
               </tr>
+            </thead>
+            <tbody>
               <tr>
                 <td>is_pool</td>
                 <td>{: runModalView.sample.donor.is_pool :}</td>
@@ -194,8 +210,8 @@
           </table>
 
           <br/>
-          <h4>Metadata</h4>
-          <table class="table form-group table-metadata">
+          <h3>Metadata</h3>
+          <table class="table table-condensed table-bordered table-striped form-group table-metadata">
             <thead>
               <tr>
                 <th>Property</th>
@@ -217,8 +233,8 @@
           </table>
 
           <br/>
-          <h4>Runs:</h4>
-          <table class="table form-group table-runs">
+          <h3>Runs</h3>
+          <table class="table table-condensed table-bordered table-striped form-group table-runs">
             <thead>
               <tr>
                 <th>Run</th>
@@ -237,7 +253,7 @@
                 <td>{: run.library_name :}</td>
                 <td>
                   <div class="table-files-container">
-                    <table class="table table-files">
+                    <table class="table table-condensed table-files">
                       <tr>
                         <th>Name</th>
                         <th>MD5</th>
@@ -261,8 +277,8 @@
           </table>
 
           <br/>
-          <h4>Public Tracks:</h4>
-          <table class="table form-group">
+          <h3>Public Tracks</h3>
+          <table class="table table-condensed table-bordered table-striped form-group">
             <thead>
               <tr>
                 <th>id</th>
