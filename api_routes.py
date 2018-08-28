@@ -36,7 +36,7 @@ def api_function(edit=False):
 
 @app.route("/api/dataset", methods=['POST'])
 @api_function(edit=True)
-def route_api_dataset_add():
+def _dataset_add():
     dataset = request.get_json()
     insertedDataset = insertDataset(dataset)
 
@@ -59,12 +59,12 @@ def route_api_dataset_add():
 
 @app.route('/api/run', methods=['POST'])
 @api_function(edit=True)
-def route_api_run_create():
+def _run_create():
     return insertRun(request.get_json())
 
 @app.route('/api/run/<string:dataset_id>', methods=['GET'])
 @api_function()
-def route_api_run_get(dataset_id):
+def _run_get(dataset_id):
     return getRunsForDataset(dataset_id, attach_files=True)
 
 #==============================================================================
@@ -73,27 +73,27 @@ def route_api_run_get(dataset_id):
 
 @app.route("/api/user/list", methods=['GET'])
 @api_function()
-def route_api_user_list():
+def _user_list():
     return listUsers()
 
 @app.route("/api/user/current", methods=['GET'])
 @api_function()
-def route_api_user_current():
+def _user_current():
     return current_user.toJSON()
 
 @app.route("/api/user/create", methods=['POST'])
 @api_function(edit=True)
-def route_api_user_create():
+def _user_create():
     return createUser(request.get_json())
 
 @app.route("/api/user/update", methods=['POST'])
 @api_function(edit=True)
-def route_api_user_update():
+def _user_update():
     return updateUser(request.get_json())
 
 @app.route("/api/user/delete", methods=['POST'])
 @api_function(edit=True)
-def route_api_user_delete():
+def _user_delete():
     return deleteUser(request.get_json())
 
 
@@ -104,7 +104,7 @@ def route_api_user_delete():
 @app.route("/api/donors", methods=['GET'])
 @app.route("/api/donors/<string:filter>", methods=['GET'])
 @api_function()
-def route_api_get_donors(filter=None):
+def _get_donors(filter=None):
     """
     Returns all registered donors. If a filter string is provided, returns filtered list of registered donors.
     """
@@ -113,7 +113,7 @@ def route_api_get_donors(filter=None):
 
 @app.route("/api/donor_properties", methods=['GET'])
 @api_function()
-def route_api_get_donor_properties(filter=None):
+def _get_donor_properties(filter=None):
     """
     Returns all properties that can be specified for a donor.
     """
@@ -121,7 +121,7 @@ def route_api_get_donor_properties(filter=None):
 
 @app.route("/api/donor", methods=['POST'])
 @api_function(edit=True)
-def route_api_donor_add():
+def _donor_add():
     donor = request.get_json()
     insertedDonor = insertDonor(donor)
 
@@ -140,7 +140,7 @@ def route_api_donor_add():
 
 @app.route("/api/donor_metadata", methods=['POST'])
 @api_function(edit=True)
-def route_api_donor_metadata_add():
+def _donor_metadata_add():
     return insertDonorMetadata(request.get_json())
 
 
@@ -183,16 +183,22 @@ def route_json_sampleList_metadata_filter():
 
 @app.route("/api/sample_properties", methods=['GET'])
 @api_function()
-def route_api_get_sample_properties(filter=None):
+def _get_sample_properties(filter=None):
     """
     Returns all properties that can be specified for a sample.
     """
     return getSampleProperties()
 
 
+@app.route("/api/sample_properties/names", methods=['GET'])
+@api_function()
+def _get_sample_properties_names():
+    return getSamplePropertiesNames()
+
+
 @app.route("/api/sample", methods=['POST'])
 @api_function(edit=True)
-def route_api_sample_add():
+def _sample_add():
     sample = request.get_json()
     insertedSample = insertSample(sample)
 
@@ -209,9 +215,15 @@ def route_api_sample_add():
     return insertedSample
 
 
+@app.route("/api/sample_metadata", methods=['GET'])
+@api_function()
+def _sample_metadata_get():
+    return getSampleMetadataList()
+
+
 @app.route("/api/sample_metadata", methods=['POST'])
 @api_function(edit=True)
-def route_api_sample_metadata_add():
+def _sample_metadata_add():
     return insertSampleMetadata(request.get_json())
 
 
@@ -221,7 +233,7 @@ def route_api_sample_metadata_add():
 
 @app.route("/api/species", methods=['GET'])
 @api_function()
-def route_api_get_species():
+def _get_species():
     """
     Returns all support species with this instance of mEGAdata.
     """
@@ -234,7 +246,7 @@ def route_api_get_species():
 
 @app.route("/api/track/<string:dataset_id>", methods=['GET'])
 @api_function()
-def route_api_tracks_get(dataset_id):
+def _tracks_get(dataset_id):
     """
     Returns all the tracks for a dataset
     """
