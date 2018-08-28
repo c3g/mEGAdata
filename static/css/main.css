@@ -146,8 +146,18 @@ html, body {
   );
 }
 
-.table-runs td:last-child {
-    padding: 0 !important;
+.table-runs {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+.table-runs > * > tr > *:nth-child(1) { width: 50px; }
+.table-runs > * > tr > *:nth-child(2) { width: 50px; }
+.table-runs > * > tr > *:nth-child(3) { width: 100px; }
+/* .table-runs > * > tr > *:nth-child(4) { width: 20px; } */
+/* .table-runs > * > tr > *:last-child { } */
+.table-runs > tbody > tr > td:last-child {
+  padding: 0 !important;
+  overflow: auto;
 }
 
 
