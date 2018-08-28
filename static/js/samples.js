@@ -162,7 +162,7 @@ app.controller('SampleCtrl', function($scope, $http) {
             $scope.columns.push({
                 data: p.property,
                 title: p.property,
-                readOnly: !$scope.currentUser.can_edit,
+                readOnly: $scope.currentUser.can_edit ? false : true,
                 width: 150,
                 is_metadata_column: true,
                 renderer: p.type === 'uri' ? Renderer.URI : Renderer.HTML,
@@ -241,7 +241,7 @@ app.controller('SampleCtrl', function($scope, $http) {
         $http.get('/api/experiment_types')
     ])
     .then(([currentUser, resultSample, resultExperiment]) => {
-        $scope.currentUser = currentUser;
+        $scope.currentUser = currentUser.data;
         $scope.samplePropertiesList = resultSample.data;
         $scope.experimentTypeList   = resultExperiment.data;
 
