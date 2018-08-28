@@ -236,18 +236,20 @@
                 <td>{: run.EGA_EGAR :}</td>
                 <td>{: run.library_name :}</td>
                 <td>
-                  <table class="table">
-                    <tr>
-                      <th>Name</th>
-                      <th>MD5</th>
-                      <th>Enc. MD5</th>
-                    </tr>
-                    <tr ng-repeat="(i, file) in run.files">
-                      <td>{: file.name :}</td>
-                      <td>{: file.md5 :}</td>
-                      <td>{: file.encrypted_md5 :}</td>
-                    </tr>
-                  </table>
+                  <div class="table-files-container">
+                    <table class="table table-files">
+                      <tr>
+                        <th>Name</th>
+                        <th>MD5</th>
+                        <th>Enc. MD5</th>
+                      </tr>
+                      <tr ng-repeat="(i, file) in run.files">
+                        <td>{: file.name :}</td>
+                        <td>{: file.md5 :}</td>
+                        <td>{: file.encrypted_md5 :}</td>
+                      </tr>
+                    </table>
+                  </div>
                 </td>
               </tr>
 
