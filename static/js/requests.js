@@ -36,9 +36,15 @@ export function fetchSamples() {
 export function createSample(sample) {
   return post('/sample', sample)
 }
+export function fetchSamplePropertiesNames() {
+  return get('/sample_properties/names')
+}
 
 export function createDataset(dataset) {
   return post('/dataset', dataset)
+}
+export function fetchDatasetPropertiesNames() {
+  return get('/dataset_properties/names')
 }
 
 export function createRun(run) {

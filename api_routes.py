@@ -1,7 +1,8 @@
 #!/usr/bin/python
+import json
 from functools import wraps
-from flask import Response, request, current_app
-from flask_login import login_required, current_user
+from flask import Response, request
+from flask_login import current_user
 
 from app import app
 from queries import *
@@ -51,6 +52,11 @@ def _dataset_add():
             })
 
     return insertedDataset
+
+@app.route("/api/dataset_properties/names", methods=['GET'])
+@api_function()
+def _dataset_metadata_names():
+    return getExperimentPropertiesNames()
 
 
 #==============================================================================
