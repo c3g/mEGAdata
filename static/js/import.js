@@ -13,9 +13,12 @@ import {
   createSample,
   createDataset,
   createRun,
+  fetchDatasetPropertiesNames,
   fetchDonors,
   fetchExperimentTypes,
   fetchSamples,
+  fetchSamplePropertiesNames,
+  fetchCurrentUser,
 } from './requests'
 
 const fuseOptions = {
@@ -26,24 +29,33 @@ const fuseOptions = {
 
 let imports
 
+let currentUser
 let experimentNames
 let experimentTypes
 let experimentTypesFuse
+let datasetPropertiesNames
 let donors
 let donorPrivateNames
 let samples
 let samplePrivateNames
+let samplePropertiesNames
 
-let loading
-loadData()
+let isLoading = false
+const didLoad = loadData()
 
 function loadData() {
-  loading = []
-  loading.push(fetchExperimentTypes()
-  .then(res => {
-    experimentNames = res.map(e => e.name)
+  isLoading = true
+  const loading = []
+  loading.push(fetchCurrentUser().then(res => {
+    currentUser = res
+  }))
+  loading.push(fetchExperimentTypes().then(res => {
+    experimentNames = res.map(e => e.ihec_name)
     experimentTypes = res
     experimentTypesFuse = new Fuse(experimentTypes, fuseOptions)
+  }))
+  loading.push(fetchDatasetPropertiesNames().then(res => {
+    datasetPropertiesNames = res
   }))
   loading.push(fetchDonors().then(res => {
     donors = res
@@ -53,6 +65,13 @@ function loadData() {
     samples = res
     samplePrivateNames = new Set(samples.map(d => d.private_name))
   }))
+  loading.push(fetchSamplePropertiesNames().then(res => {
+    samplePropertiesNames = res
+  }))
+  return Promise.all(loading)
+  .then(() => {
+    isLoading = false
+  })
 }
 
 $(() => {
@@ -70,12 +89,13 @@ $(() => {
   $import.on('click', onClickImport)
 
   reset()
+  didLoad.then(reset)
 
   function onClickFile() {
     openFile()
     .then(file => {
       $fileIcon.attr('class', 'fa fa-spin fa-spinner')
-      return Promise.all(loading).then(() => file)
+      return didLoad.then(() => file)
     })
     .then(file => {
       $fileName.text(file.name)
@@ -95,31 +115,24 @@ $(() => {
             return setReport('danger', 'warning', message)
           },
           Ok: ({ value }) => {
-
             imports = value
 
-            setReport('success', 'check',
-              `Data hub ready to be imported<br/>
-              <table class="table-small"><tbody>
-                <tr>
-                  <th>Donors</th>
-                  <td>${Object.keys(imports.donorsByID).length}</td>
-                </tr>
-                <tr>
-                  <th>Samples</th>
-                  <td>${Object.keys(imports.samplesByID).length}</td>
-                </tr>
-                <tr>
-                  <th>Datasets</th>
-                  <td>${Object.keys(imports.datasetsByID).length}</td>
-                </tr>
-                <tr>
-                  <th>Runs</th>
-                  <td>${Object.values(imports.datasetsByID).map(d => d.__runs.length).reduce(sumReducer)}</td>
-                </tr>
-              </tbody></table>
-              `
-            )
+            const newDatasetProperties = Object.values(imports.datasetsByID)
+              .map(dataset => Object.keys(dataset.metadata).map(field => ({ field, id: dataset.__id })))
+              .reduce(flattenReducer, [])
+              .filter(desc => !datasetPropertiesNames.includes(desc.field))
+            const newSampleProperties = Object.values(imports.samplesByID)
+              .map(sample => Object.keys(sample.metadata).map(field => ({ field, id: sample.__id })))
+              .reduce(flattenReducer, [])
+              .filter(desc => !samplePropertiesNames.includes(desc.field))
+
+            if (newDatasetProperties.length > 0 || newSampleProperties.length > 0) {
+              setReport('warning', 'exclamation-triangle', renderWarningReport(imports, newDatasetProperties, newSampleProperties))
+            }
+            else {
+              setReport('success', 'check', renderSuccessReport(imports))
+            }
+
             $import.removeAttr('disabled')
           }
         })
@@ -154,8 +167,8 @@ $(() => {
 
       /* eslint-disable no-console */
       const style = 'font-weight: bold; color: #dd1212;'
-      console.log('%cImport failures:', style)
       console.log('%c========================', style)
+      console.log('%cImport failures:', style)
       console.log(results)
       console.log('%c========================', style)
       /* eslint-enable no-console */
@@ -172,11 +185,17 @@ $(() => {
   }
 
   function reset() {
-    $fileIcon.attr('class', 'fa fa-folder-open-o')
     $report.hide()
     $progress.hide()
     $result.hide()
     $import.attr('disabled', true)
+
+    $file.attr('disabled', isLoading || !currentUser || !currentUser.can_edit)
+    $fileIcon.attr('class', isLoading ? 'fa fa-spin fa-spinner' : 'fa fa-folder-open-o')
+
+    if (currentUser && !currentUser.can_edit) {
+      setReport('warning', 'exclamation-triangle', 'You don\'t have the permissions to edit data.')
+    }
   }
 
   function setReport(level, icon, message) {
@@ -210,6 +229,57 @@ function renderResults(results) {
       <td>${result.message}</td>
     </tr>`
   ).join('\n') + '</tbody></table>'
+}
+
+function renderSuccessReport(imports) {
+  return (
+    `Data hub ready to be imported<br/>
+    <table class="table-small"><tbody>
+      <tr>
+        <th>Donors</th>
+        <td>${Object.keys(imports.donorsByID).length}</td>
+      </tr>
+      <tr>
+        <th>Samples</th>
+        <td>${Object.keys(imports.samplesByID).length}</td>
+      </tr>
+      <tr>
+        <th>Datasets</th>
+        <td>${Object.keys(imports.datasetsByID).length}</td>
+      </tr>
+      <tr>
+        <th>Runs</th>
+        <td>${Object.values(imports.datasetsByID).map(d => d.__runs.length).reduce(sumReducer)}</td>
+      </tr>
+    </tbody></table>
+    `
+  )
+}
+
+function renderWarningReport(imports, newDatasetProperties, newSampleProperties) {
+  return renderSuccessReport(imports) + (
+    newSampleProperties.length > 0 ?
+    `
+      <br/>
+      <b>Some sample properties will be created:</b>
+      <ul>
+        ${newSampleProperties.map(desc =>
+          `<li>${desc.field} (from sample ${desc.id})</li>`
+        )}
+      </ul>
+    ` : ''
+  ) + (
+    newDatasetProperties.length > 0 ?
+    `
+      <br/>
+      <b>Some dataset properties will be created:</b>
+      <ul>
+        ${newDatasetProperties.map(desc =>
+          `<li>${desc.field} (from dataset ${desc.id})</li>`
+        )}
+      </ul>
+    ` : ''
+  )
 }
 
 function parseImports(text) {
@@ -415,6 +485,7 @@ function doImport(imports, progressFn) {
         })
         .then(progress)
       ))
+      .then(runResults => results.concat(runResults))
     })
   })
   .then(results => results.filter(r => !r.ok))
@@ -469,7 +540,8 @@ function tagWithIDs(itemsByID) {
 }
 
 function findExperimentType(type) {
-  return experimentNames.find(name => name.toLowerCase() === type.toLowerCase()) || type
+  const experimentType = experimentTypes.find(e => e.ihec_name.toLowerCase() === type.toLowerCase())
+  return experimentType ? experimentType.ihec_name : type
 }
 
 function sumReducer(acc, cur) {
