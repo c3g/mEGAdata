@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
-import json
-from models import *
+from models import Dataset, Donor, DonorMetadata, DonorProperty, ExperimentMetadata, ExperimentProperty, ExperimentType
+from models import PublicTrack, User, Sample, SampleMetadata, SampleProperty, Species, Run, RunFile
 
 #==============================================================================~
 # User
@@ -34,8 +34,7 @@ def deleteUser(body):
     user = User.get(User.id == body['id'])
     user.delete_instance()
 
-    return { 'ok': True }
-
+    return {'ok': True}
 
 
 #==============================================================================~
@@ -49,7 +48,7 @@ def getDonorList(pFilter=None):
     if pFilter:
         query = query.where(Donor.private_name.contains(pFilter))
 
-    donorsByID = { donor.id: donor.toJSON() for donor in query }
+    donorsByID = {donor.id: donor.toJSON() for donor in query}
 
     appendDonorsMetadata(donorsByID, pFilter)
 
@@ -57,11 +56,11 @@ def getDonorList(pFilter=None):
 
 def insertDonor(dataJson):
     Donor.create(
-        public_name = dataJson.get('public_name'),
-        private_name = dataJson.get('private_name'),
-        taxon_id = dataJson.get("taxon_id"),
-        phenotype = dataJson.get("phenotype"),
-        is_pool = dataJson.get("is_pool"),
+        public_name=dataJson.get('public_name'),
+        private_name=dataJson.get('private_name'),
+        taxon_id=dataJson.get("taxon_id"),
+        phenotype=dataJson.get("phenotype"),
+        is_pool=dataJson.get("is_pool"),
     )
 
     donor = Donor.select().order_by(Donor.id.desc()).get()
@@ -91,7 +90,6 @@ def insertDonorProperty(dataJson):
     DonorProperty.save(p)
     return p.toJSON()
 
-
 def appendDonorsMetadata(recordList, pFilter=None):
     query = DonorMetadata.select(DonorMetadata, Donor.id.alias('donor_id'), DonorProperty.property.alias('property')).join(Donor).switch(DonorMetadata).join(DonorProperty)
     if pFilter:
@@ -99,7 +97,6 @@ def appendDonorsMetadata(recordList, pFilter=None):
 
     for dm in query.naive():
         recordList[dm.donor_id][dm.property] = dm.value
-
 
 
 #==============================================================================~
@@ -159,12 +156,10 @@ def appendSamplesMetadata(recordList):
 def insertSample(dataJson):
     d = Donor.get(id=dataJson.get("donor_id"))
 
-    p = dataJson.get('project') or {}
-
     Sample.create(
-        public_name = dataJson.get('public_name'),
-        private_name = dataJson.get('private_name'),
-        donor = d
+        public_name=dataJson.get('public_name'),
+        private_name=dataJson.get('private_name'),
+        donor=d
     )
 
     sample = Sample.select().order_by(Sample.id.desc()).get()
@@ -173,7 +168,7 @@ def insertSample(dataJson):
 def insertSampleMetadata(dataJson):
     s = Sample.get(id=dataJson.get('sample_id'))
 
-    #Create property in database if it doesn't exist
+    # Create property in database if it doesn't exist
     try:
         sp = SampleProperty.get(SampleProperty.property == dataJson.get('field'))
     except:
@@ -184,8 +179,7 @@ def insertSampleMetadata(dataJson):
         })
         sp = SampleProperty.get(SampleProperty.property == dataJson.get('field'))
 
-
-    #If a value already exists for this sample/property, just update the record
+    # If a value already exists for this sample/property, just update the record
     try:
         dm = SampleMetadata.get(SampleMetadata.sample == s, SampleMetadata.sample_property == sp)
     except:
@@ -197,7 +191,6 @@ def insertSampleMetadata(dataJson):
     SampleMetadata.save(dm)
     return {}
 
-
 def insertSampleProperty(dataJson):
     p = SampleProperty()
     p.property = dataJson.get('property')
@@ -206,6 +199,11 @@ def insertSampleProperty(dataJson):
     SampleProperty.save(p)
     return p.toJSON()
 
+def getSamplePropertiesNames():
+    names = []
+    for p in SampleProperty.select():
+        names.append(p.property)
+    return sorted(list(set(names)))
 
 
 #==============================================================================~
@@ -220,9 +218,9 @@ def insertDataset(dataJson):
     et = ExperimentType.get(name=dataJson.get("experiment_type"))
 
     Dataset.create(
-        sample = s,
-        experiment_type = et,
-        release_status = dataJson.get("release_status") if dataJson.get("release_status") != None else "P"
+        sample=s,
+        experiment_type=et,
+        release_status=dataJson.get("release_status") if dataJson.get("release_status") != None else "P"
     )
 
     dataset = Dataset.select().order_by(Dataset.id.desc()).get()
@@ -264,14 +262,12 @@ def insertExperimentProperty(dataJson):
     ExperimentProperty.save(p)
     return p.toJSON()
 
-
 def getDatasetsForSample(sampleID):
     query = Dataset.select(Dataset, ExperimentType, Sample)\
-                    .join(ExperimentType).switch(Dataset).join(Sample)\
-                    .where(Sample.id == sampleID)
+                   .join(ExperimentType).switch(Dataset).join(Sample)\
+                   .where(Sample.id == sampleID)
 
     return query
-
 
 
 #==============================================================================~
