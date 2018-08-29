@@ -215,7 +215,7 @@ def insertDataset(dataJson):
         return updateDataset(dataJson)
 
     s = Sample.get(id=dataJson.get("sample_id"))
-    et = ExperimentType.get(name=dataJson.get("experiment_type"))
+    et = ExperimentType.get(ihec_name=dataJson.get("experiment_type"))
 
     Dataset.create(
         sample=s,
@@ -269,6 +269,11 @@ def getDatasetsForSample(sampleID):
 
     return query
 
+def getExperimentPropertiesNames():
+    names = []
+    for p in ExperimentProperty.select():
+        names.append(p.property)
+    return sorted(list(set(names)))
 
 #==============================================================================~
 # Run
