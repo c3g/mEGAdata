@@ -252,7 +252,8 @@
                 <td>{: run.EGA_EGAR :}</td>
                 <td>{: run.library_name :}</td>
                 <td>
-                  <div class="table-files-container">
+                  <span ng-if="run.files.length == 0" class="text-muted table-files-message">No files</span>
+                  <div  ng-if="run.files.length > 0" class="table-files-container">
                     <table class="table table-condensed table-files">
                       <tr>
                         <th>Name</th>

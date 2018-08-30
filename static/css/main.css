@@ -175,7 +175,13 @@ html, body {
   height: 100%;
   overflow: auto;
 }
-
+.table .table-files {
+  margin-bottom: 0;
+  background-color: transparent;
+}
+.table-files-message {
+  padding: 5px;
+}
 
 /*
  * Elements (/users)
