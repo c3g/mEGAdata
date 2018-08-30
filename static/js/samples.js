@@ -96,13 +96,16 @@ app.controller('SampleCtrl', function($scope, $http) {
 
     // Add sample metadata in the database
     this.onAfterChange = (change, source) => {
-        if (source === 'loadData' || /^datasets\./.test(col))
+        if (source === 'loadData' || change === null)
             return;
 
         const row    = change[0][0];
         const col    = change[0][1];
         const before = change[0][2];
         const after  = change[0][3];
+
+        if (/^datasets\./.test(col))
+            return;
 
         this._saveMetadata(source, row, col, before, after);
     };
@@ -241,7 +244,7 @@ app.controller('SampleCtrl', function($scope, $http) {
         $http.get('/api/experiment_types')
     ])
     .then(([currentUser, resultSample, resultExperiment]) => {
-        $scope.currentUser = currentUser.data;
+        $scope.currentUser          = currentUser.data;
         $scope.samplePropertiesList = resultSample.data;
         $scope.experimentTypeList   = resultExperiment.data;
 
