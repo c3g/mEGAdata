@@ -111,7 +111,7 @@ app.controller('SampleCtrl', function($scope, $http) {
     };
 
     this.onClickExperimentCell = (dataset, sample, prop, row) => {
-        if (dataset && dataset.runs.length > 0) {
+        if (dataset && (dataset.runs.length > 0 || dataset.release_status === 'P')) {
             $scope.runModalView = {
                 sample: sample,
                 dataset: dataset,
