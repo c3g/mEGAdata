@@ -16,7 +16,6 @@ def api_function(edit=False):
     def decorator(fn):
         @wraps(fn)
         def fn_wrapped(*args, **kwargs):
-            print current_user.can_edit
             # Login required
             if not current_user.is_authenticated:
                 return JSONResponse({'ok': False, 'message': 'Not logged in'})
