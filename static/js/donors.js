@@ -104,7 +104,6 @@ app.controller('DonorCtrl', function($scope, $http) {
     $scope.currentUser = {};
     $scope.donor = {};
     $scope.donors = [];
-    $scope.speciesList = [];
     $scope.donorPropertiesList = [];
     $scope.searchParams = new URLSearchParams(location.search);
     $scope.columns = [
@@ -121,20 +120,15 @@ app.controller('DonorCtrl', function($scope, $http) {
     // List of all existing species in database
     Promise.all([
         $http.get('/api/user/current'),
-        $http.get('/api/species'),
+        $http.get('/api/donor_properties'),
     ])
-    .then(([currentUser, speciesList]) => {
+    .then(([currentUser, donorPropertiesList]) => {
         $scope.currentUser = currentUser.data;
-        $scope.speciesList = speciesList;
+        $scope.donorPropertiesList = donorPropertiesList.data;
+
+        this._addMetaColumns($scope.donorPropertiesList)
 
         $scope.$apply()
-    });
-
-    // List of all existing species in database
-    $http.get('/api/donor_properties')
-    .then(result => {
-        $scope.donorPropertiesList = result.data;
-        this._addMetaColumns($scope.donorPropertiesList)
     });
 
     this.load();
