@@ -67,31 +67,58 @@ def insertDonor(dataJson):
     return donor.toJSON()
 
 def insertDonorMetadata(dataJson):
-    dm = DonorMetadata()
-    dm.donor = Donor.get(id=dataJson.get('donor_id'))
+    donor_id = dataJson.get('donor_id')
+    field = dataJson.get('field')
+    value = dataJson.get('value')
+
+    # Retrieve or create property
+    dp = getOrInsertDonorProperty(field)
+
+    # Check if metadata already exists, if so just update the value
     try:
-        dm.donor_property = DonorProperty.get(DonorProperty.property == dataJson.get('field'))
+        dm = DonorMetadata.get(DonorMetadata.donor_id == donor_id, DonorMetadata.donor_property_id == dp.id)
+        dm.value = value
+        dm.save()
+        return True
     except:
-        insertDonorProperty({
-            'property': dataJson.get('field'),
-            'type': 'text',
-            'is_exported_to_ega': False,
-        })
-        dm.donor_property = DonorProperty.get(DonorProperty.property == dataJson.get('field'))
-    dm.value = dataJson.get('value')
-    DonorMetadata.save(dm)
-    return {}
+        pass
+
+    dm = DonorMetadata()
+    dm.donor = Donor.get(id=donor_id)
+    dm.donor_property = dp
+    dm.value = value
+    dm.save()
+
+    return True
 
 def insertDonorProperty(dataJson):
     p = DonorProperty()
     p.property = dataJson.get('property')
     p.type = dataJson.get('type')
     p.is_exported_to_ega = dataJson.get('is_exported_to_ega')
-    DonorProperty.save(p)
+    p.save()
     return p.toJSON()
 
+def getOrInsertDonorProperty(field):
+    try:
+        dp = DonorProperty.get(DonorProperty.property == field)
+    except:
+        insertDonorProperty({
+            'property': field,
+            'type': 'text',
+            'is_exported_to_ega': False,
+        })
+        dp = DonorProperty.get(DonorProperty.property == field)
+    return dp
+
 def appendDonorsMetadata(recordList, pFilter=None):
-    query = DonorMetadata.select(DonorMetadata, Donor.id.alias('donor_id'), DonorProperty.property.alias('property')).join(Donor).switch(DonorMetadata).join(DonorProperty)
+    query = DonorMetadata.select(
+                DonorMetadata,
+                Donor.id.alias('donor_id'),
+                DonorProperty.property.alias('property')
+            )\
+            .join(Donor)\
+            .switch(DonorMetadata).join(DonorProperty)
     if pFilter:
         query = query.where(Donor.private_name.contains(pFilter))
 
