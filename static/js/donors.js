@@ -89,7 +89,7 @@ app.controller('DonorCtrl', function($scope, $http) {
             $scope.columns.push({
                 data: p.property,
                 title: p.property,
-                readOnly: false,
+                readOnly: $scope.currentUser.can_edit ? false : true,
                 width: 150,
                 rendered: p.type === 'uri' ? Renderer.URI : Renderer.HTML
             });
@@ -101,6 +101,7 @@ app.controller('DonorCtrl', function($scope, $http) {
     // Constructor
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $scope.isLoading = true
+    $scope.currentUser = {};
     $scope.donor = {};
     $scope.donors = [];
     $scope.speciesList = [];
@@ -118,9 +119,15 @@ app.controller('DonorCtrl', function($scope, $http) {
     };
 
     // List of all existing species in database
-    $http.get('/api/species')
-    .then(result => {
-        $scope.speciesList = result;
+    Promise.all([
+        $http.get('/api/user/current'),
+        $http.get('/api/species'),
+    ])
+    .then(([currentUser, speciesList]) => {
+        $scope.currentUser = currentUser.data;
+        $scope.speciesList = speciesList;
+
+        $scope.$apply()
     });
 
     // List of all existing species in database

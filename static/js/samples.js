@@ -210,6 +210,7 @@ app.controller('SampleCtrl', function($scope, $http) {
     // Constructor
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $scope.isLoading = true
+    $scope.currentUser = {};
     $scope.sample = {};
     $scope.samples = [];
     $scope.experimentTypeList = [];
