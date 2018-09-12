@@ -89,7 +89,7 @@ app.controller('DonorCtrl', function($scope, $http) {
             $scope.columns.push({
                 data: p.property,
                 title: p.property,
-                readOnly: false,
+                readOnly: $scope.currentUser.can_edit ? false : true,
                 width: 150,
                 rendered: p.type === 'uri' ? Renderer.URI : Renderer.HTML
             });
@@ -101,9 +101,9 @@ app.controller('DonorCtrl', function($scope, $http) {
     // Constructor
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $scope.isLoading = true
+    $scope.currentUser = {};
     $scope.donor = {};
     $scope.donors = [];
-    $scope.speciesList = [];
     $scope.donorPropertiesList = [];
     $scope.searchParams = new URLSearchParams(location.search);
     $scope.columns = [
@@ -118,16 +118,17 @@ app.controller('DonorCtrl', function($scope, $http) {
     };
 
     // List of all existing species in database
-    $http.get('/api/species')
-    .then(result => {
-        $scope.speciesList = result;
-    });
+    Promise.all([
+        $http.get('/api/user/current'),
+        $http.get('/api/donor_properties'),
+    ])
+    .then(([currentUser, donorPropertiesList]) => {
+        $scope.currentUser = currentUser.data;
+        $scope.donorPropertiesList = donorPropertiesList.data;
 
-    // List of all existing species in database
-    $http.get('/api/donor_properties')
-    .then(result => {
-        $scope.donorPropertiesList = result.data;
         this._addMetaColumns($scope.donorPropertiesList)
+
+        $scope.$apply()
     });
 
     this.load();
