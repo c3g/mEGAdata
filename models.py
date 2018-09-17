@@ -146,6 +146,7 @@ class Dataset(BaseModel):
     release_status = peewee.CharField()
     EGA_EGAX = peewee.CharField()
     experiment_type_id = peewee.IntegerField()
+    library_layout = peewee.CharField()
 
     sample = peewee.ForeignKeyField(Sample)
     experiment_type = peewee.ForeignKeyField(ExperimentType)
