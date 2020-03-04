@@ -67,6 +67,6 @@ class GoogleSignIn(OAuthSignIn):
             decoder=json.loads
         )
         me = oauth_session.get('').json()
-        result = (me['name'], me['email'])
+        result = (me.get('name', me['email']), me['email'])
         print(result)
         return result
