@@ -60,11 +60,13 @@
     <i class="fa fa-spinner fa-spin"></i> Loading
   </div>
 
-  <hot-table
+<!-- Don't turn column-sorting to true.  If true and columns get sorted, any data editing is to old coordinates (not updated, sorted ones). -->
+<!-- Likewise for dataset information.  Once columns are sorted, displayed datasets are for old coordinates (row, column), not new sorted ones.-->
+<hot-table
     ng-show="!isLoading"
     col-headers="true"
     row-headers="false"
-    column-sorting="true"
+    column-sorting="false"
     sort-indicator="true"
     manual-column-resize="true"
     min-spare-rows="minSpareRows"
