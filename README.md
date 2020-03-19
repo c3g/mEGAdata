@@ -4,11 +4,19 @@
 These need to be installed beforehand:
 
 * MySQL
-* Python
-* pip
+* Python 2.7.17
+* pip 9.0.1
+
+  Follow the curl directions at https://pip.pypa.io/en/stable/installing/ then use `python get-pip.py pip==9.0.2`
 * virtualenv
-* node.js (includes npm)
-* bower (can be install with `npm install bower`)
+
+  `pip install virtualenv`
+* node.js (includes npm) 10.0.0
+
+  Follow the nvm directions at: https://github.com/nvm-sh/nvm
+* bower
+
+    Can be install with `npm install bower`
 
 ### Steps to install
 ```
@@ -20,6 +28,7 @@ mysql -uuser -ppasswd  mEGAdata < default_data.sql
 ```
 
 ### Install external Python dependencies
+sudo apt-get install libmysqlclient-dev
 ```
 virtualenv venv
 . venv/bin/activate
@@ -44,8 +53,9 @@ cd static/
 npm install
 npm run build
 ```
-### Execute the server
+### Execute flask the server
 ```
+cd megadata/
 . venv/bin/activate
 python main.py
 ```
