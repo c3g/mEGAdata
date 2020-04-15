@@ -13,3 +13,4 @@ RDFLib==4.2.1
 jmespath==0.9.0
 
 gevent==1.2.2
+numpy
