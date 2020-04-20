@@ -2,9 +2,11 @@
 # pip install -r requirements.txt
 
 Flask==0.11.1
-flask-peewee==0.6.6
 flask_login==0.3.2
+flask-peewee==0.6.6
+# flask-peewee==0.6.7
 peewee==2.5.1
+# peewee==2.10.2
 MySQL-python==1.2.3
 rauth==0.7.3
 
@@ -13,4 +15,4 @@ RDFLib==4.2.1
 jmespath==0.9.0
 
 gevent==1.2.2
-numpy
+numpy==1.16.6

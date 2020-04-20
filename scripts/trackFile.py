@@ -86,7 +86,8 @@ class TrackFile:
             self.track_type = "signal_unstranded"
         elif "methylation" in self.fileName:
             self.track_type = "methylation_profile"
-        ## Unknown file types - ALL BELOW MUST BE FURTHER CATEGORIZED
+        ## Unknown file types - ALL BELOW MUST STILL BE FURTHER CATEGORIZED
+        ## These are not always mutually exclusive.  Argh!
         elif "coverage" in self.fileName:
             self.track_type = "coverage" # always alongside methylation files.
         elif "ATAC" in self.fileName:

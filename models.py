@@ -22,7 +22,7 @@ class User(BaseModel):
     email = peewee.CharField()
     can_edit = peewee.BooleanField()
 
-    def is_authenticated():
+    def is_authenticated(self):
         """
         This property should return True if the user is authenticated, i.e. they
         have provided valid credentials. (Only authenticated users will fulfill
@@ -30,7 +30,7 @@ class User(BaseModel):
         """
         return True
 
-    def is_active():
+    def is_active(self):
         """
         This property should return True if this is an active user - in addition
         to being authenticated, they also have activated their account, not been
@@ -39,7 +39,7 @@ class User(BaseModel):
         """
         return True
 
-    def is_anonymous():
+    def is_anonymous(self):
         """
         This property should return True if this is an anonymous user. (Actual users
         should return False instead.)
@@ -71,6 +71,7 @@ class Donor(BaseModel):
     is_pool = peewee.BooleanField()
 
     species = peewee.ForeignKeyField(Species, db_column='taxon_id')
+    # taxon = peewee.ForeignKeyField(Species, to_field='taxon_id') # db_column='taxon_id')
 
 
 class DonorProperty(BaseModel):
@@ -218,12 +219,15 @@ class DatasetToReleaseSet(BaseModel):
 
 
 class PublicTrack(BaseModel):
-    id = peewee.IntegerField()
+    id = peewee.IntegerField(primary_key=True)
     dataset_id = peewee.IntegerField()
     assembly = peewee.CharField()
     track_type = peewee.CharField()
     md5sum = peewee.CharField()
     url = peewee.CharField()
+    path = peewee.CharField()
+    file_name = peewee.CharField()
+    file_type = peewee.CharField()
 
     dataset = peewee.ForeignKeyField(Dataset)
 
