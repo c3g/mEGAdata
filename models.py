@@ -4,6 +4,26 @@ from app import db
 import peewee
 from playhouse.shortcuts import model_to_dict
 
+#----------------------------------
+# All the ForeignKeys have been defined incorrectly in this model file.  However, it does work.
+# As far as I can tell, everything seems to work by virtue of the side effect of an ORM bug, but only in Peewee 2.5.1.  Future peewee versions have corrected the bug and thus broken the functionality.  peewee cannot be upgraded without some rework of the models, queries and most of the javascript (almost everything).  Since this is an internal project, rarely used and the handsOnTable version is already woefully outdated (0.25.0 versus 7.4.2), no attempt at repair has been made so far. 
+# Foreign keys should NOT be defined twice, as both an xxx_id field and a ForeignKey field, as such (example taken from DonorMetadata)
+#    donor_id = peewee.IntegerField()
+#    donor_property_id = peewee.IntegerField()
+#
+#    donor = peewee.ForeignKeyField(Donor)
+#    donor_property = peewee.ForeignKeyField(DonorProperty)
+#
+# ForeignKeyFields should be defined as such:
+#    donor = ForeignKeyField(db_column='donor_id', rel_model=Donor, to_field='id')
+#    donor_property = ForeignKeyField(db_column='donor_property_id', rel_model=DonorProperty, to_field='id')
+#
+# Such duplicate definitons have created a situation where one field is used for joins by the ORM (ie. donor) but doesn't really exist in the database and another field (xxx_id) is expected through the api.
+# Corrections will require changes to the queries.py and all the javascript stuff now that xxx_id fields are expected everywhere.
+# 
+# Addendum: Perhaps it would be possible to correct the models.py then put some ugly, hacky stuff into queries.py to preserve the API.  At least then it wouldn't require modifying the javascript.
+# ---------------------------------
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Peewee Objects
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -71,7 +91,6 @@ class Donor(BaseModel):
     is_pool = peewee.BooleanField()
 
     species = peewee.ForeignKeyField(Species, db_column='taxon_id')
-    # taxon = peewee.ForeignKeyField(Species, to_field='taxon_id') # db_column='taxon_id')
 
 
 class DonorProperty(BaseModel):
