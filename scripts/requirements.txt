@@ -1,0 +1,7 @@
+# To install everything:
+# pip install -r requirements.txt
+
+mysqlclient==1.4.6
+numpy==1.18.3
+peewee==3.13.2
+pkg-resources==0.0.0

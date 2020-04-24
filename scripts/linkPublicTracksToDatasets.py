@@ -1,51 +1,40 @@
-#!/usr/bin/python
-from __future__ import print_function
+#!/usr/bin/python3
 import peewee
 import re
-# For relative imports, modify sys.path
-if __name__ == '__main__' and __package__ is None:
-    from os import sys, path
-    sys.path.append(path.dirname(path.dirname(path.abspath(__file__)))) # parent directory of pwd
-from app import db
+
 from models import Dataset, Sample, ExperimentType, PublicTrack
 from models import User
+from logger_settings import logger
 
 # Defines the logic to link public_tracks (files) to their existant datasets (metadata).
-# Handled on a per projects basis.
 
 def main():
-    db.set_autocommit(True)
-
-    # user = User.get(User.id==3)
-    # print(user.name)
-    # user.name = 'Tony Kwan'
-    # print(user.save())
+    # Handle each project separately
 
     link_EMC_Mature_Adipocytes()
 
 def link_EMC_Mature_Adipocytes():
-# Find all EMC_M_A public_tracks
+    # Find all EMC_Mature_Adipocytes public_tracks
     query = PublicTrack.select().where(PublicTrack.path.startswith('EMC_Mature_adipocytes'))
+    # Attempt to pair with a existant dataset, based on (1) sample.private_name within public_track.file_name and (2) raw_experiment_type similar to a known experiment_type.
     for pt in query:
-        # substring up until third '_'.
+        # (1) sample.private_name within public_track.file_name
+        # substring up until third '_'.  #TODO: This regex could be refactored.
         all_ = [m.start() for m in re.finditer(r"_", pt.file_name)]
         prefix = pt.file_name[0: all_[2]]
-        # Foreach, attempt to pair with a existant dataset, based on sample.private_name in file name.
+        # (2) public_track.raw_experiment_type "similar" to a known experiment_type name.
+        
         try:
             ds = Dataset.select(Dataset, Sample).join(Sample, on=(Dataset.sample_id == Sample.id)).where(Sample.private_name == prefix).get()
         except Exception:
-            pass # No match found.  Must deal with this case, eventually.
-            # print(Exception)
+            pass # No match found.  Does the metadata exist somewhere outside the database?  Probably not.
+            logger.warning('No corresponding dataset found for %s.', pt.file_name)
         else:
-            pt.dataset = ds # Assign a dataset foreign key.  Can alse be written as pt.dataset = ds.id
-            print(pt.save())
-            # pt.dataset_id = ds.id # Assign a dataset foreign key.  Can alse be written as pt.dataset = ds.id
-            # print(pt.save())
+            pt.dataset = ds # Works best # Assign a dataset foreign key.  Can also be written as pt.dataset = ds.id OR pt.dataset_id = ds.id
+            logger.info('Dataset linked for public_track %s: %s.', pt.file_name, pt.save())
 
     # Manual pairing:
-
-    # EG006_IA_mADPs two cases of 
-    # Compensating for a type (`Stoma`, not `Stroma`)
+    # EG006_IA_mADPs two cases.  Compensating for a typo (`Stoma`, not `Stroma`)
     ds = (Dataset
             .select(Dataset, Sample)
             .join(Sample)
@@ -71,11 +60,9 @@ def link_EMC_Mature_Adipocytes():
     pt.dataset = ds
     pt.save()
 
+# def map
 
-# Log results
-# List linked public_tracks
-# List unlinked public_tracks
-# List unlinked datasets
+# List unlinked datasets - I don't think this is possible.  Requires completeness.  Maybe do it in SQL at the end.
 
 
 if __name__ == "__main__":

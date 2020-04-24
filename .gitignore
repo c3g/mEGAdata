@@ -5,3 +5,4 @@ static/node_modules/
 static/bower_components/
 *.pyc
 .vscode/
+*.mwb.bak

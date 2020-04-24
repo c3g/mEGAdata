@@ -1,0 +1,60 @@
+Project-specific notes:
+=======================
+
+File and path naming 'convention' of the source file directory.
+Note: mEGAdata.experiment_type corresponds to IHEC.assay
+Path: Project/Donor/Experiment_type/(     )/(tracks|peak_call)/
+File: (Donor)_(     )_(Experiment_type)_(Repetition)_(peaks){0,1}.(forward|reverse|narrowPeak|broadPeak|coverage|methylation).(bb|bw)
+
+What is this (     ) element?
+sample.tissue_type?  I think it can be ignored for now.  Doesn't appear in 2016 McGill IHEC DH.
+
+
+General thoughts
+----------------
+What are these called: (forward|reverse|narrowPeak|broadPeak|coverage|methylation).  track_type is not a very good name (since it often means assay), but seems to be used here in public_track.track_type.
+
+There are some repeats in here, designated by file_name containing `Rep_1`.  Something will have to be done (marked one as primary, or do we want repeats?)
+
+
+EMC_Mature_Adiposytes
+---------------------
+Donors EG011 -> EG020: No entry in the DB.  These are all ATACSeq (non-core IHEC assay, so maybe best to ignore them).  Also, EG010 is ATACSeq, but IS present in the DB.  These missing donor represent about 3/8 of the EMC_Mature_Adiposytes tracks. ATACSeq is an IHEC non-core assay. 
+Using hook that sample.private_name is within public_track.file_name (sufficiently distinct).
+
+
+
+EMC_BluePrint
+-------------
+Extra value in path naming convention.  nTC (no Template Control?)  So far this is ignored.
+EMC_BluePrint/S000X1/nTC/ChIP_2_H3K4me1/peak_call/S000X1_nTC_ChIP_2_H3K4me1_1_peaks.broadPeak.bb
+This values takes the following forms: nTC, GR, Mono, or H3_nTC
+
+./EMC_BluePrint/nTC/nTC/ChIP_Input/tracks/nTC_ChIP_Input.bw seems incorrectly named (nTC twice)
+
+
+EMC_MSCs
+--------
+Extra value in naming convention (tagmentation stuff)
+EMC_MSCs/454T/MSC_Tagmentation-ChIP_100K/H3K4ME1/peak_call/454T_MSC_Tagmentation-ChIP_100K_H3K4ME1_2_peaks.broadPeak.bb
+
+
+EMC_Temporal_Change
+-------------------
+Extra value in path naming: TC, BC or Mono
+
+Also, path & filename seem to have conflicting indicators (H3K9me3 or Input - which is it?)
+EMC_Temporal_Change/BCU1799/TC/H3K9me3/tracks/BCU1799_TC_ChIP_Input_1.bw
+
+
+EMC_Brain_Bank
+--------------
+
+Extra term in path naming.  ie:
+EMC_BrainBank/S133/CE_Brain/NChIP_H3K27me3/peak_call/S133_CE_Brain_NChIP_H3K27me3_1_peaks.broadPeak.bb
+
+
+EMC_SARDs
+---------
+Extra term in path naming. ie:
+EMC_SARDs/012/Mono/NChIP_H3K27me3/peak_call/012_Mono_NChIP_H3K27me3_1_peaks.broadPeak.bb

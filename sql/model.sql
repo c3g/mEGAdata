@@ -1,3 +1,5 @@
+-- This model is sufficiently deprecated, I wouldn't recommend using it.  Better just to pull a fresh mysqldump from something live.
+
 SET foreign_key_checks=0;
 
 DROP TABLE IF EXISTS `user`;
