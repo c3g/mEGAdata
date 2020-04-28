@@ -6,7 +6,7 @@ from trackFile import TrackFile # already in pwd
 # Reads a directory listing containing data files and inserts them into the database as public_tracks.
 
 # Inputs [in the `lists` sub-dir]:
-# 1. A listing of the directory containing all the files, generated through: `find . -type f` 
+# 1. A listing of only the .bigwig and .bigbed files from the root directory containing all the files, generated through: `find . -type f | egrep "(\.bw$)|(\.bb$)" > lists/ls_bwbb.txt` 
 
 def main():
 

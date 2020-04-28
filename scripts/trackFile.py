@@ -17,7 +17,7 @@ from numpy import loadtxt, str
 
 class TrackFile:
     #csv mapping of file_path/file_names to md5sums
-    md5sum_dict = [] # csv list of full_lines and md5sums (for .bigWig and .BigBed only)
+    md5sum_dict = [] # csv list of full_lines and md5sums (for .bigwig and .bigbed only)
 
     """
     # TrackFile Class properties
@@ -90,11 +90,16 @@ class TrackFile:
             self.track_type = "Unknown" # Category should be unused.
 
     # raw_experiment_type is still messy and intended to map to experiment_type.name.
-    # These will need to map to (edcc.track_metadata key: EXPERIMENT_TYPE) or edcc.assay.
+    # These will ultimately need to map to (edcc.track_metadata key: EXPERIMENT_TYPE)(maybe) or edcc.assay (probably).
     def find_raw_experiment_type(self):
-        # The path is "mostly" structured as such: Project/Donor/(     )/Experiment_type/(tracks|peak_call)/
+        # The path is "mostly" structured as such: Project/Donor/(third_path_token)/Experiment_type/(tracks|peak_call)/
         match = re.search(r"[\w-]*/(tracks|peak_call)", self.path)
         self.raw_experiment_type = re.sub(r"/(tracks|peak_call)", "", match.group())
+
+        # Manual intervention for some wacky-named file exceptions.
+        if "MSC_Tagmentation-ChIP_100K" in self.path:
+            self.raw_experiment_type = "Tagmentation-ChIP_100K_H3K4ME1"
+
         # elif "ATAC" in self.file_name:
         #     self.track_type = "ATAC"
         # elif "smRNASeq" in self.file_name:

@@ -7,8 +7,8 @@ logger.setLevel(logging.INFO)
 # Create a handler
 handler = logging.StreamHandler()
 # Modify according to your preferred logging level.
-# handler.setLevel(logging.INFO)
-handler.setLevel(logging.WARNING)
+handler.setLevel(logging.INFO)
+# handler.setLevel(logging.WARNING)
 # handler.setLevel(logging.ERROR)
 
 # Create formatter and add it to the handler
