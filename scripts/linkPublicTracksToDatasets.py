@@ -2,82 +2,151 @@
 import peewee
 import re
 
-from models import Dataset, Sample, ExperimentType, PublicTrack
+from models import Dataset, Sample, ExperimentType, PublicTrack, Donor
 from models import User
 from logger_settings import logger
 
-# Defines the logic to link public_tracks (files) to their existant datasets (metadata).
+# Link public_tracks (data files) to their existant datasets (metadata).
 
 def main():
-    # Handle each project separately
+    # Handle each project separately.
 
-    link_EMC_Mature_Adipocytes()
+    # link_EMC_Mature_Adipocytes()
+    link_EMC_BrainBank()
 
+# Attempt to pair with an existant dataset, based on (1) sample.private_name within public_track.file_name and (2) raw_experiment_type similar to a known experiment_type (.name, .internal_assay_name or ihec_name).
 def link_EMC_Mature_Adipocytes():
-    # Find all EMC_Mature_Adipocytes public_tracks
-    query = PublicTrack.select().where(PublicTrack.path.startswith('EMC_Mature_adipocytes'))
-    # Attempt to pair with a existant dataset, based on (1) sample.private_name within public_track.file_name and (2) raw_experiment_type similar to a known experiment_type.
-    for pt in query:
-        # (1) sample.private_name within public_track.file_name
-        # substring up until third '_'.  #TODO: This regex could probably be refactored.
+    pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_Mature_adipocytes"))
+
+    for pt in pt_query:
+        # (1) sample.private_name within beginning of public_track.file_name
+        # substring up until third "_".  #TODO: This regex could probably be refactored.
         all_ = [m.start() for m in re.finditer(r"_", pt.file_name)]
         prefix = pt.file_name[0: all_[2]]
+
         # (2) public_track.raw_experiment_type "similar" to a known experiment_type.name.
         exp_t_name = map_raw_exp_name_to_exp_type_name(pt.raw_experiment_type)
 
+        ds_query = Dataset.select(Dataset, Sample.private_name, ExperimentType.name)\
+            .join(Sample).where(Sample.private_name == prefix)\
+            .switch(Dataset).join(ExperimentType).where(ExperimentType.name == exp_t_name)
+
         # Match to (hopefully) a single dataset
-        query = Dataset.select(Dataset, Sample.private_name, ExperimentType.name).join(Sample).where(Sample.private_name == prefix).switch(Dataset).join(ExperimentType).where(ExperimentType.name == exp_t_name)
-        if query.count() > 1:
-            logger.warning("Multiple corresponding datasets found for %s.", pt.file_name)
-        elif query.count() < 1: # == -1: # Error
-            logger.warning('No corresponding dataset found for %s.', pt.file_name)
-        else:
-            result = query.execute()
+        if ds_query.count() != 1:
+            logger.warning(f"None or multiple corresponding datasets, {ds_query.count()}, found for {pt.file_name}")
+            for dataset in ds_query.execute():
+                logger.error(f"{pt.file_name} mapping to all of: {dataset.id}")
+        else:  # One single dataset found
+            result = ds_query.execute()
             for dataset in result:
-                pt.dataset = dataset.id # Can also be written as pt.dataset_id = ds.id
-                logger.info('Dataset linked for public_track %s: %s.', pt.file_name, pt.save())
+                pt.dataset = dataset.id  # Can also be written as pt.dataset = ds OR pt.dataset_id = ds.id
+                logger.info(f"Dataset linked for public_track {pt.file_name}. Saved: {pt.save()}")
 
-        # # Match to a single dataset
-        # try:
-        #     # Working # ds = Dataset.select(Dataset, Sample).join(Sample, on=(Dataset.sample_id == Sample.id)).where(Sample.private_name == prefix).get()
-        #     query = Dataset.select(Dataset, Sample.private_name, ExperimentType.name).join(Sample).where(Sample.private_name == prefix).switch(Dataset).join(ExperimentType).where(ExperimentType.name = exp_t_name)
-        #     results = query.execute()
-        # except Exception:
-        #     pass # No match found.  Does the metadata exist somewhere outside the database?  Probably not.
-        #     logger.warning('No corresponding dataset found for %s.', pt.file_name)
-        # else:
-        #     pt.dataset = ds # Works best # Assign a dataset foreign key.  Can also be written as pt.dataset = ds.id OR pt.dataset_id = ds.id
-        #     logger.info('Dataset linked for public_track %s: %s.', pt.file_name, pt.save())
+    # Handle the unlinked exceptional cases.
+    link_manually_EMC_Mature_Adipocytes()
 
 
+# Attempt to pair with an existant dataset.
+# #TODO: Some of the unmapped NCHiP's are in this project.
+def link_EMC_BrainBank():
+    pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_BrainBank"))
+    for pt in pt_query:
+        # sample.private_name has is a highly variable number of _'s that have been lumped together with the remainder of the public_track.file_name.  It is impossible to know how much of the beginning of the public_track.file_name to use.
+        # In EMC_BrainBank, there is a small number of unique third_path_tokens, *mostly* ending in Brain.  Use public_track.filename up until and including this third_path_token to match against the beginning of sample.private_name).
+        # Applicable tokens: "BA11_Brain", "BA11", "BA44_Brain", "BA8_BA9", "CE_Brain", "LatAmy_Brain"
+        
+        # (1) Match the first part of public_track.file_name against sample.private_name.
+        match = re.search(r".*((BA11_Brain)|(BA11)|(BA44_Brain)|(BA8_BA9)|(CE_Brain)|(LatAmy_Brain))", pt.file_name)
+        prefix = match.group()
+        # logger.debug(f"prefix: {prefix}")
+
+        # (2) public_track.raw_experiment_type "similar" to a known experiment_type.name.
+        exp_t_name = map_raw_exp_name_to_exp_type_name(pt.raw_experiment_type)
+
+        ds_query = Dataset.select(Dataset, Sample.private_name, ExperimentType.name)\
+            .join(Sample).where(Sample.private_name == prefix)\
+            .switch(Dataset).join(ExperimentType).where(ExperimentType.name == exp_t_name)
+
+        # Match to (hopefully) a single dataset
+        if ds_query.count() != 1:
+            logger.warning(f"None or multiple corresponding datasets, {ds_query.count()}, found for {pt.file_name}")
+            for dataset in ds_query.execute():
+                logger.error(f"{pt.file_name} mapping to: {dataset.id}")
+        else:  # One single dataset found
+            result = ds_query.execute()
+            for dataset in result:
+                pt.dataset = dataset.id  # Can also be written as pt.dataset = ds OR pt.dataset_id = ds.id
+                logger.info(f"Dataset linked for public_track {pt.file_name}. Saved: {pt.save()}")
+
+    # Handle some unlinked exceptional cases.
+    link_manually_EMC_BrainBank()
+
+# Handle some tricky cases manually.
+def link_manually_EMC_Mature_Adipocytes():
     # Manual pairing:
     # EG006_IA_mADPs two cases.  Compensating for a typo (`Stoma`, not `Stroma`)
-    ds = (Dataset
-            .select(Dataset, Sample)
-            .join(Sample)
-            .where(Sample.private_name == 'EG006_SC_Stroma')).get()
-    pt = PublicTrack.get(PublicTrack.file_name == 'EG006_SC_Stoma_RNASeq_1.forward.bw')
+    ds = (Dataset.select(Dataset, Sample)
+        .join(Sample).where(Sample.private_name == "EG006_SC_Stroma")).get()
+        # TODO: verify against experiment_type.name; ensure only one dataset returned.
+    pt = PublicTrack.get(PublicTrack.file_name == "EG006_SC_Stoma_RNASeq_1.forward.bw")
     pt.dataset = ds
-    pt.save()
+    logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
 
-    pt = PublicTrack.get(PublicTrack.file_name == 'EG006_SC_Stoma_RNASeq_1.reverse.bw')
+    pt = PublicTrack.get(PublicTrack.file_name == "EG006_SC_Stoma_RNASeq_1.reverse.bw")
     pt.dataset = ds
-    pt.save()
+    logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
 
-    # Unique case for sample.private_name = EG010_SC_mADPs_1 (first of the ATAC-Seq with two tracks)
-    ds = (Dataset
-            .select(Dataset, Sample)
-            .join(Sample)
-            .where(Sample.private_name == 'EG010_SC_mADPs_1')).get()
-    pt = PublicTrack.get(PublicTrack.file_name == 'EG010_SC_mADPs_ATACSeqCP_1_peaks.narrowPeak.bb')
+    # Unique case for sample.private_name = EG010_SC_mADPs_1 (first of the ATAC-Seq with two tracks).
+    # There is only one dataset associated with this sample. (No need to check against experiment_type.name.)
+    ds = (Dataset.select(Dataset, Sample)
+        .join(Sample).where(Sample.private_name == "EG010_SC_mADPs_1")).get()
+    pt = PublicTrack.get(PublicTrack.file_name == "EG010_SC_mADPs_ATACSeqCP_1_peaks.narrowPeak.bb")
     pt.dataset = ds
-    pt.save()
+    logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
 
-    pt = PublicTrack.get(PublicTrack.file_name == 'EG010_SC_mADPs_ATACSeqCP_1.bw')
+    # Second track
+    pt = PublicTrack.get(PublicTrack.file_name == "EG010_SC_mADPs_ATACSeqCP_1.bw")
     pt.dataset = ds
-    pt.save()
+    logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
 
 
+def link_manually_EMC_BrainBank():
+    # Manual pairing to compensate for an abbreviation ("Pl11" versus "Pool11") in 2 experiment_type.names.
+    # Note: There is an experiment_type.name for ChIP, but not ChIP2, as in the file name.
+    #TODO: Ask whether to use it?
+    '''
+    ds_query = (Dataset.select(Dataset, Sample, ExperimentType)
+        .join(Sample).where(Sample.private_name == "134_171_225_227_Pool11_LatAmy_Brain")
+        .switch(Dataset).join(ExperimentType).where(ExperimentType.internal_assay_short_name == "ChIP_H3K36me3")) # Need to use ExperimentType.internal_assay_short_name here.
+    if ds_query.count() != 1:
+        logger.warning(f"None or multiple corresponding datasets, {ds_query.count()}, found.")
+    else:
+        result = ds_query.execute()
+        pt_file_names = ["134_171_225_227_Pl11_LatAmy_Brain_ChIP2_H3K36me3_1.bw",
+            "134_171_225_227_Pl11_LatAmy_Brain_ChIP2_H3K36me3_1_peaks.broadPeak.bb"]
+        for ds in result:
+            for pt_f_n in pt_file_names:
+                pt = PublicTrack.get(PublicTrack.file_name == pt_f_n)
+                pt.dataset = ds.id
+                logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}. Saved: {pt.save()}")
+    '''
+    ds_query = (Dataset.select(Dataset, Sample, ExperimentType)
+        .join(Sample).where(Sample.private_name == "134_171_225_227_Pool11_LatAmy_Brain")
+        .switch(Dataset).join(ExperimentType).where(ExperimentType.internal_assay_short_name == "ChIP_H3K27me3")) # Need to use ExperimentType.internal_assay_short_name here.
+    if ds_query.count() != 1:
+        logger.error(f"None or multiple corresponding datasets, {ds_query.count()}, found.")
+    else:
+        result = ds_query.execute()
+        pt_file_names = ["134_171_225_227_Pl11_LatAmy_Brain_ChIP_H3K27me3_1.bw",
+            "134_171_225_227_Pl11_LatAmy_Brain_ChIP_H3K27me3_1_peaks.broadPeak.bb"]
+        for ds in result:
+            for pt_f_n in pt_file_names:
+                pt = PublicTrack.get(PublicTrack.file_name == pt_f_n)
+                pt.dataset = ds.id
+                logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
+
+
+# Maps public_track.raw_experiment_type to experiment_type.name, in a slightly fuzzy manner.
 def map_raw_exp_name_to_exp_type_name(raw_experiment_type):
     if re.search(r"ATAC", raw_experiment_type) is not None:
         return "ATAC-seq"
@@ -90,7 +159,7 @@ def map_raw_exp_name_to_exp_type_name(raw_experiment_type):
     elif re.search(r"^chipmentation_", raw_experiment_type) is not None:
         res = re.search(r"H3K[\w]*", raw_experiment_type)
         return "Chipmentation_" + res.group()
-    elif re.search(r"NChIP", raw_experiment_type) is None and re.search(r"H3K\d{1,2}(me\d|ac)", raw_experiment_type) is not None:
+    elif re.search(r"H3K\d{1,2}(me\d|ac)", raw_experiment_type) is not None and re.search(r"NChIP", raw_experiment_type) is None:
         res = re.search(r"H3K\d{1,2}(me\d|ac)", raw_experiment_type)
         return res.group()
     elif re.search(r"^RNASeq", raw_experiment_type) is not None:
@@ -99,11 +168,20 @@ def map_raw_exp_name_to_exp_type_name(raw_experiment_type):
         return "smRNA-seq"
     # TODO - Still must handle NChIP and Tagmentation cases.
     else:
-        logger.warning("No mapping for " + raw_experiment_type)
+        logger.warning(f"No mapping experiment_type.name for {raw_experiment_type}.")
         return "unmatched"
-
-# List unlinked datasets - I don't think this is possible.  Requires completeness.  Maybe do it in SQL at the end.
 
 
 if __name__ == "__main__":
   main()
+
+# Aviso and future improvement:
+# When joining on sample.private_name, there is the chance that:
+# i) A Donor is shared between projects.
+# A check could be made agaist project name.  Using (donor_metadata.value like 'EMC_[project name]%' where donor_property.property = 'project_name') would accomplish this since all donors have been assigned to a normalized project (except EMC_Rodent_Brain, a project which, for now, doesn't matter and has bigger problems.)
+# 
+# ii) A donor.private_name could be *repeated* between projects (since some donor.private_names are incredibly terse (ie. two digits.)
+
+# No action has been taken since no donor is ever shared between projects and no donor.private_name is ever repeated between projects.  So far.
+
+# However, there is probably no unique project and naming constraint implemented so far.

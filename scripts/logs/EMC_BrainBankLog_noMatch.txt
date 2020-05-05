@@ -1,0 +1,124 @@
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 106_LatAmy_Brain_RNASeq3_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 106_LatAmy_Brain_RNASeq3_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 114_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 114_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 117_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 117_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 11_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 11_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 125_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 125_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 133_LatAmy_Brain_RNASeq2_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 133_LatAmy_Brain_RNASeq2_1.reverse.bw
+
+TYPO - to be manually corrected in link_manually_EMC_BrainBank()
+    Only have a dataset for ...ChIP..., not for ...ChIP2...  Are they the same thing?
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 134_171_225_227_Pl11_LatAmy_Brain_ChIP2_H3K36me3_1.bw
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 134_171_225_227_Pl11_LatAmy_Brain_ChIP2_H3K36me3_1_peaks.broadPeak.bb
+LINKED MANUALLY:
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 134_171_225_227_Pl11_LatAmy_Brain_ChIP_H3K27me3_1.bw
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 134_171_225_227_Pl11_LatAmy_Brain_ChIP_H3K27me3_1_peaks.broadPeak.bb
+
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 134_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 134_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 138_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 138_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 152_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 152_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 153_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 153_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 156_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 156_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 158_LatAmy_Brain_RNASeq3_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 158_LatAmy_Brain_RNASeq3_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 167_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 167_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 171_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 171_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 17_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 17_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 184_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 184_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 189_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 189_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 191_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 191_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 216_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 216_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 221_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 221_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 225_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 225_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 227_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 227_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 245_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 245_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 247_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 247_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 248_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 248_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 250_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 250_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 28_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 28_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 2_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 2_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 33_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 33_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 35_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 35_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 36_LatAmy_Brain_RNASeq3_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 36_LatAmy_Brain_RNASeq3_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 39_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 39_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 3_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 3_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 41_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 41_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 51_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 51_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 54_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 54_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 58_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 58_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 90_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 90_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 94_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 94_LatAmy_Brain_RNASeq_1.reverse.bw
+
+No metadata record of a Bisulfite-seq analysis.  Is this different or the same as S133_BA11_Brain?  Did someone forget to enter the BS run into mEGAdata? 
+The (path_third_token) seems to have sample and experiment_type inside.
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_BA11_BS_1.coverage.bw
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_BA11_BS_1.methylation.bw
+
+A mEGAdata record for S133_BA8_BA9_Brain does exist, but no metadata record of a RNASeq analysis.  Should this get linked to the dataset?  The (path_third_token) seems to have sample and experiment_type (BS) inside.
+Something strange going on here.
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_BA8_BA9_Brain_RNASeq_1.forward.bw
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_BA8_BA9_Brain_RNASeq_1.reverse.bw
+No metadata record of the BS experiment_type.
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_BA8_BA9_BS_1.coverage.bw
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_BA8_BA9_BS_1.methylation.bw
+
+Here are the NChIPs.  What happens to them?
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K27ac_1.bw
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K27ac_1_peaks.narrowPeak.bb
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K27me3_1.bw
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K27me3_1_peaks.broadPeak.bb
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K36me3_1.bw
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K36me3_1_peaks.broadPeak.bb
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K4me1_1.bw
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K4me1_1_peaks.broadPeak.bb
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K4me3_1.bw
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K4me3_1_peaks.narrowPeak.bb
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K9me3_1.bw
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K9me3_1_peaks.broadPeak.bb
+
+
+No mEGAdata metadata record of S135_.*  This probably shouldn't get linked.  The (path_third_token) seems to have both sample and experiment_type (ATACSeq) inside.
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S135_BA44_Brain_ATACSeq_1.bw
+    link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S135_BA44_Brain_ATACSeq_1_peaks.narrowPeak.bb
+
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S172_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S172_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S210_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S210_LatAmy_Brain_RNASeq_1.reverse.bw

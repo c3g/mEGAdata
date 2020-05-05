@@ -1,0 +1,288 @@
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 28_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 28_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 90_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 90_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 191_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 191_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : INFO : Dataset linked for public_track 51_58_106_Pool10_LatAmy_Brain_ChIP_H3K27ac_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 51_58_106_Pool10_LatAmy_Brain_ChIP_H3K27ac_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 51_58_106_Pool10_LatAmy_Brain_BS_1.coverage.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 51_58_106_Pool10_LatAmy_Brain_BS_1.methylation.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 51_58_106_Pool10_LatAmy_Brain_ChIP_H3K4me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 51_58_106_Pool10_LatAmy_Brain_ChIP_H3K4me3_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 51_58_106_Pool10_LatAmy_Brain_ChIP_Input_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 51_58_106_Pool10_LatAmy_Brain_ChIP_H3K36me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 51_58_106_Pool10_LatAmy_Brain_ChIP_H3K36me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 51_58_106_Pool10_LatAmy_Brain_ChIP_H3K9me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 51_58_106_Pool10_LatAmy_Brain_ChIP_H3K9me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 51_58_106_Pool10_LatAmy_Brain_ChIP_H3K4me1_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 51_58_106_Pool10_LatAmy_Brain_ChIP_H3K4me1_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 51_58_106_Pool10_LatAmy_Brain_ChIP_H3K27me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 51_58_106_Pool10_LatAmy_Brain_ChIP_H3K27me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 39_167_184_Pool3_LatAmy_Brain_ChIP_H3K4me1_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 39_167_184_Pool3_LatAmy_Brain_ChIP_H3K4me1_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 39_167_184_Pool3_LatAmy_Brain_ChIP_2_H3K27ac_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 39_167_184_Pool3_LatAmy_Brain_ChIP_2_H3K27ac_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 39_167_184_Pool3_LatAmy_Brain_ChIP_H3K9me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 39_167_184_Pool3_LatAmy_Brain_ChIP_H3K9me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 39_167_184_Pool3_LatAmy_Brain_ChIP_H3K36me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 39_167_184_Pool3_LatAmy_Brain_ChIP_H3K36me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 39_167_184_Pool3_LatAmy_Brain_BS_1.methylation.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 39_167_184_Pool3_LatAmy_Brain_BS_1.coverage.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 39_167_184_Pool3_LatAmy_Brain_ChIP_H3K27me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 39_167_184_Pool3_LatAmy_Brain_ChIP_H3K27me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 39_167_184_Pool3_LatAmy_Brain_ChIP_H3K4me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 39_167_184_Pool3_LatAmy_Brain_ChIP_H3K4me3_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 39_167_184_Pool3_LatAmy_Brain_ChIP_Input_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_ChIP_H3K27me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_ChIP_H3K27me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_ChIP_Input_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_ChIP_H3K4me3_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_ChIP_H3K4me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_ChIP_H3K36me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_ChIP_H3K36me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_ChIP_H3K27ac_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_ChIP_H3K27ac_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_ChIP_H3K4me1_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_ChIP_H3K4me1_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_ChIP_2_H3K27me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_ChIP_2_H3K27me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_ChIP_H3K9me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_ChIP_H3K9me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_BS_1.coverage.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 2_156_Pool2_LatAmy_Brain_BS_1.methylation.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 11_54_250_Pool6_LatAmy_Brain_ChIP_H3K27me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 11_54_250_Pool6_LatAmy_Brain_ChIP_H3K27me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 11_54_250_Pool6_LatAmy_Brain_ChIP_H3K4me1_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 11_54_250_Pool6_LatAmy_Brain_ChIP_H3K4me1_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 11_54_250_Pool6_LatAmy_Brain_BS_1.coverage.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 11_54_250_Pool6_LatAmy_Brain_BS_1.methylation.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 11_54_250_Pool6_LatAmy_Brain_ChIP_Input_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 11_54_250_Pool6_LatAmy_Brain_ChIP_H3K36me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 11_54_250_Pool6_LatAmy_Brain_ChIP_H3K36me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 11_54_250_Pool6_LatAmy_Brain_ChIP_H3K9me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 11_54_250_Pool6_LatAmy_Brain_ChIP_H3K9me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 11_54_250_Pool6_LatAmy_Brain_ChIP_H3K4me3_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 11_54_250_Pool6_LatAmy_Brain_ChIP_H3K4me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 11_54_250_Pool6_LatAmy_Brain_ChIP_H3K27ac_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 11_54_250_Pool6_LatAmy_Brain_ChIP_H3K27ac_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 2_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 2_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 41_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 41_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 36_LatAmy_Brain_RNASeq3_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 36_LatAmy_Brain_RNASeq3_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 227_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 227_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 250_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 250_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 153_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 153_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 58_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 58_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 17_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 17_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : INFO : Dataset linked for public_track 17_28_94_133_158_247_LatAmy_Brain_ChIP2_H3K27ac_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 17_28_94_133_158_247_LatAmy_Brain_ChIP2_H3K27ac_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 17_28_94_133_158_247_LatAmy_Brain_ChIP_H3K9me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 17_28_94_133_158_247_LatAmy_Brain_ChIP_H3K9me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 17_28_94_133_158_247_LatAmy_Brain_ChIP_H3K4me1_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 17_28_94_133_158_247_LatAmy_Brain_ChIP_H3K4me1_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 17_28_94_133_158_247_LatAmy_Brain_BS_1.coverage.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 17_28_94_133_158_247_LatAmy_Brain_BS_1.methylation.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 17_28_94_133_158_247_LatAmy_Brain_ChIP_H3K36me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 17_28_94_133_158_247_LatAmy_Brain_ChIP_H3K36me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 17_28_94_133_158_247_LatAmy_Brain_ChIP_H3K4me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 17_28_94_133_158_247_LatAmy_Brain_ChIP_H3K4me3_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 17_28_94_133_158_247_LatAmy_Brain_ChIP_Input_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 17_28_94_133_158_247_LatAmy_Brain_ChIP2_H3K27me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 17_28_94_133_158_247_LatAmy_Brain_ChIP2_H3K27me3_1.bw. Saved: 1
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S210_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S210_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 247_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 247_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 133_LatAmy_Brain_RNASeq2_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 133_LatAmy_Brain_RNASeq2_1.forward.bw
+link_EMC_BrainBank : INFO : Dataset linked for public_track 138_189_221_248_Pool5_LatAmy_Brain_ChIP_H3K4me1_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 138_189_221_248_Pool5_LatAmy_Brain_ChIP_H3K4me1_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 138_189_221_248_Pool5_LatAmy_Brain_BS_1.methylation.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 138_189_221_248_Pool5_LatAmy_Brain_BS_1.coverage.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 138_189_221_248_Pool5_LatAmy_Brain_ChIP_H3K9me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 138_189_221_248_Pool5_LatAmy_Brain_ChIP_H3K9me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 138_189_221_248_Pool5_LatAmy_Brain_ChIP_Input_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 138_189_221_248_Pool5_LatAmy_Brain_ChIP_H3K27me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 138_189_221_248_Pool5_LatAmy_Brain_ChIP_H3K27me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 138_189_221_248_Pool5_LatAmy_Brain_ChIP_H3K27ac_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 138_189_221_248_Pool5_LatAmy_Brain_ChIP_H3K27ac_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 138_189_221_248_Pool5_LatAmy_Brain_ChIP_H3K36me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 138_189_221_248_Pool5_LatAmy_Brain_ChIP_H3K36me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 138_189_221_248_Pool5_LatAmy_Brain_ChIP_H3K4me3_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 138_189_221_248_Pool5_LatAmy_Brain_ChIP_H3K4me3_1.bw. Saved: 1
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 35_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 35_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 134_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 134_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S135_BA44_Brain_ATACSeq_1.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S135_BA44_Brain_ATACSeq_1_peaks.narrowPeak.bb
+link_EMC_BrainBank : INFO : Dataset linked for public_track 134_171_225_227_Pool11_LatAmy_Brain_ChIP_H3K4me3_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 134_171_225_227_Pool11_LatAmy_Brain_ChIP_H3K4me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 134_171_225_227_Pool11_LatAmy_Brain_ChIP_H3K27ac_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 134_171_225_227_Pool11_LatAmy_Brain_ChIP_H3K27ac_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 134_171_225_227_Pool11_LatAmy_Brain_ChIP_H3K4me1_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 134_171_225_227_Pool11_LatAmy_Brain_ChIP_H3K4me1_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 134_171_225_227_Pool11_LatAmy_Brain_ChIP_H3K9me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 134_171_225_227_Pool11_LatAmy_Brain_ChIP_H3K9me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 134_171_225_227_Pool11_LatAmy_Brain_ChIP_Input_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 134_171_225_227_Pool11_LatAmy_Brain_BS_1.coverage.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 134_171_225_227_Pool11_LatAmy_Brain_BS_1.methylation.bw. Saved: 1
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 171_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 171_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 106_LatAmy_Brain_RNASeq3_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 106_LatAmy_Brain_RNASeq3_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 94_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 94_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 51_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 51_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 134_171_225_227_Pl11_LatAmy_Brain_ChIP2_H3K36me3_1_peaks.broadPeak.bb
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 134_171_225_227_Pl11_LatAmy_Brain_ChIP2_H3K36me3_1.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 134_171_225_227_Pl11_LatAmy_Brain_ChIP_H3K27me3_1.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 134_171_225_227_Pl11_LatAmy_Brain_ChIP_H3K27me3_1_peaks.broadPeak.bb
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 216_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 216_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 158_LatAmy_Brain_RNASeq3_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 158_LatAmy_Brain_RNASeq3_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 125_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 125_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 152_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 152_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 184_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 184_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : INFO : Dataset linked for public_track 3_41_Pool9_LatAmy_Brain_ChIP_2_H3K4me3_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 3_41_Pool9_LatAmy_Brain_ChIP_2_H3K4me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 3_41_Pool9_LatAmy_Brain_ChIP_H3K27ac_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 3_41_Pool9_LatAmy_Brain_ChIP_H3K27ac_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 3_41_Pool9_LatAmy_Brain_ChIP_H3K27me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 3_41_Pool9_LatAmy_Brain_ChIP_H3K27me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 3_41_Pool9_LatAmy_Brain_BS_1.coverage.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 3_41_Pool9_LatAmy_Brain_BS_1.methylation.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 3_41_Pool9_LatAmy_Brain_ChIP_H3K36me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 3_41_Pool9_LatAmy_Brain_ChIP_H3K36me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 3_41_Pool9_LatAmy_Brain_ChIP_Input_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 3_41_Pool9_LatAmy_Brain_ChIP_H3K9me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 3_41_Pool9_LatAmy_Brain_ChIP_H3K9me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 3_41_Pool9_LatAmy_Brain_ChIP_H3K4me1_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 3_41_Pool9_LatAmy_Brain_ChIP_H3K4me1_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 117_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 117_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 248_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 248_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 3_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 3_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : INFO : Dataset linked for public_track 90_114_125_152_Pool8_LatAmy_Brain_ChIP_H3K36me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 90_114_125_152_Pool8_LatAmy_Brain_ChIP_H3K36me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 90_114_125_152_Pool8_LatAmy_Brain_ChIP_Input_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 90_114_125_152_Pool8_LatAmy_Brain_BS_1.methylation.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 90_114_125_152_Pool8_LatAmy_Brain_BS_1.coverage.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 90_114_125_152_Pool8_LatAmy_Brain_ChIP_H3K27ac_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 90_114_125_152_Pool8_LatAmy_Brain_ChIP_H3K27ac_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 90_114_125_152_Pool8_LatAmy_Brain_ChIP_H3K27me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 90_114_125_152_Pool8_LatAmy_Brain_ChIP_H3K27me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 90_114_125_152_Pool8_LatAmy_Brain_ChIP_H3K4me3_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 90_114_125_152_Pool8_LatAmy_Brain_ChIP_H3K4me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 90_114_125_152_Pool8_LatAmy_Brain_ChIP_H3K9me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 90_114_125_152_Pool8_LatAmy_Brain_ChIP_H3K9me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 90_114_125_152_Pool8_LatAmy_Brain_ChIP_2_H3K4me1_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 90_114_125_152_Pool8_LatAmy_Brain_ChIP_2_H3K4me1_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S172_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S172_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : INFO : Dataset linked for public_track 36_191_216_245_Pool7_LatAmy_Brain_ChIP_Input_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 36_191_216_245_Pool7_LatAmy_Brain_ChIP_H3K36me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 36_191_216_245_Pool7_LatAmy_Brain_ChIP_H3K36me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 36_191_216_245_Pool7_LatAmy_Brain_ChIP_H3K9me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 36_191_216_245_Pool7_LatAmy_Brain_ChIP_H3K9me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 36_191_216_245_Pool7_LatAmy_Brain_ChIP_H3K27me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 36_191_216_245_Pool7_LatAmy_Brain_ChIP_H3K27me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 36_191_216_245_Pool7_LatAmy_Brain_ChIP_H3K4me1_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 36_191_216_245_Pool7_LatAmy_Brain_ChIP_H3K4me1_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 36_191_216_245_Pool7_LatAmy_Brain_ChIP_H3K4me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 36_191_216_245_Pool7_LatAmy_Brain_ChIP_H3K4me3_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 36_191_216_245_Pool7_LatAmy_Brain_ChIP_H3K27ac_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 36_191_216_245_Pool7_LatAmy_Brain_ChIP_H3K27ac_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 36_191_216_245_Pool7_LatAmy_Brain_BS_1.coverage.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 36_191_216_245_Pool7_LatAmy_Brain_BS_1.methylation.bw. Saved: 1
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 245_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 245_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 11_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 11_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 167_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 167_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 189_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 189_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 54_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 54_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 221_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 221_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 225_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 225_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 114_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 114_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_BA8_BA9_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_BA8_BA9_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : INFO : Dataset linked for public_track S133_BA11_Brain_RNASeq_1.reverse.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track S133_BA11_Brain_RNASeq_1.forward.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track S133_BA44_Brain_RNASeq_1.reverse.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track S133_BA44_Brain_RNASeq_1.forward.bw. Saved: 1
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_BA11_BS_1.methylation.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_BA11_BS_1.coverage.bw
+map_raw_exp_name_to_exp_type_name : WARNING : No mapping for NChIP_H3K9me3.
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K9me3_1_peaks.broadPeak.bb
+map_raw_exp_name_to_exp_type_name : WARNING : No mapping for NChIP_H3K9me3.
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K9me3_1.bw
+map_raw_exp_name_to_exp_type_name : WARNING : No mapping for NChIP_H3K27me3.
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K27me3_1.bw
+map_raw_exp_name_to_exp_type_name : WARNING : No mapping for NChIP_H3K27me3.
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K27me3_1_peaks.broadPeak.bb
+map_raw_exp_name_to_exp_type_name : WARNING : No mapping for NChIP_H3K4me1.
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K4me1_1_peaks.broadPeak.bb
+map_raw_exp_name_to_exp_type_name : WARNING : No mapping for NChIP_H3K4me1.
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K4me1_1.bw
+map_raw_exp_name_to_exp_type_name : WARNING : No mapping for NChIP_H3K36me3.
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K36me3_1_peaks.broadPeak.bb
+map_raw_exp_name_to_exp_type_name : WARNING : No mapping for NChIP_H3K36me3.
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K36me3_1.bw
+map_raw_exp_name_to_exp_type_name : WARNING : No mapping for NChIP_H3K4me3.
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K4me3_1.bw
+map_raw_exp_name_to_exp_type_name : WARNING : No mapping for NChIP_H3K4me3.
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K4me3_1_peaks.narrowPeak.bb
+map_raw_exp_name_to_exp_type_name : WARNING : No mapping for NChIP_H3K27ac.
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K27ac_1_peaks.narrowPeak.bb
+map_raw_exp_name_to_exp_type_name : WARNING : No mapping for NChIP_H3K27ac.
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_CE_Brain_NChIP_H3K27ac_1.bw
+link_EMC_BrainBank : INFO : Dataset linked for public_track S133_CE_Brain_NChIP_Input_1.bw. Saved: 1
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_BA8_BA9_BS_1.coverage.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for S133_BA8_BA9_BS_1.methylation.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 39_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 39_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 138_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 138_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 33_LatAmy_Brain_RNASeq_1.forward.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 33_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : INFO : Dataset linked for public_track 33_35_Pool4_LatAmy_Brain_ChIP_H3K27ac_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 33_35_Pool4_LatAmy_Brain_ChIP_H3K27ac_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 33_35_Pool4_LatAmy_Brain_ChIP_H3K4me3_1_peaks.narrowPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 33_35_Pool4_LatAmy_Brain_ChIP_H3K4me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 33_35_Pool4_LatAmy_Brain_ChIP_H3K4me1_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 33_35_Pool4_LatAmy_Brain_ChIP_H3K4me1_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 33_35_Pool4_LatAmy_Brain_ChIP_H3K36me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 33_35_Pool4_LatAmy_Brain_ChIP_H3K36me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 33_35_Pool4_LatAmy_Brain_ChIP_Input_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 33_35_Pool4_LatAmy_Brain_BS_1.methylation.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 33_35_Pool4_LatAmy_Brain_BS_1.coverage.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 33_35_Pool4_LatAmy_Brain_ChIP_H3K27me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 33_35_Pool4_LatAmy_Brain_ChIP_H3K27me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 33_35_Pool4_LatAmy_Brain_ChIP_H3K9me3_1.bw. Saved: 1
+link_EMC_BrainBank : INFO : Dataset linked for public_track 33_35_Pool4_LatAmy_Brain_ChIP_H3K9me3_1_peaks.broadPeak.bb. Saved: 1
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 156_LatAmy_Brain_RNASeq_1.reverse.bw
+link_EMC_BrainBank : ERROR : None or multiple corresponding datasets, 0, found for 156_LatAmy_Brain_RNASeq_1.forward.bw
+link_manually_EMC_BrainBank : INFO : Dataset linked manually for public_track 134_171_225_227_Pl11_LatAmy_Brain_ChIP_H3K27me3_1.bw to 4686.  Saved: 1
+link_manually_EMC_BrainBank : INFO : Dataset linked manually for public_track 134_171_225_227_Pl11_LatAmy_Brain_ChIP_H3K27me3_1_peaks.broadPeak.bb to 4686.  Saved: 1

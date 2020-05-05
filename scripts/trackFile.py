@@ -1,9 +1,11 @@
 #!/usr/bin/python
 import os
 import re
+
 import peewee
-from models import PublicTrack
 from numpy import loadtxt, str
+
+from models import PublicTrack
 
 # Object describing one track file.
 
@@ -14,10 +16,9 @@ from numpy import loadtxt, str
 # find . -type f | egrep "(\.bw|\.bb)" | xargs -n 1 md5sum >> md5sumBwBbInitial.txt
 # awk '{print $2","$1}' md5sumBwBbInitial.txt | sort > md5sumBwBb.csv
 
-
 class TrackFile:
     #csv mapping of file_path/file_names to md5sums
-    md5sum_dict = [] # csv list of full_lines and md5sums (for .bigwig and .bigbed only)
+    md5sum_dict = []  # csv list of full_lines and md5sums (for .bigwig and .bigbed only)
 
     """
     # TrackFile Class properties
@@ -27,7 +28,7 @@ class TrackFile:
     file_root - file_name, less the extension
     file_extension - file extension
     file_type - BigWig, BigBed, etc.
-    assembly - hg38
+    assembly - hg38  #TODO: verify this - it might not be the case (for non-human primates & mice)
     track_type - signal_forward, signal_reverse, etc. - NEEDS REWORKING
     raw_experiment_type - Unrefined experiment_type.
     md5sum - md5sum of the file.
@@ -39,7 +40,7 @@ class TrackFile:
         #Path
         self.path = os.path.dirname(full_line.lstrip('./'))
         #file_name
-        self.file_name = os.path.basename(full_line.strip()) # Remove trailing \n
+        self.file_name = os.path.basename(full_line.strip())  # Remove trailing \n
         # Call class methods to assign additional attributes
         self.find_file_type()
         self.find_track_type()
@@ -66,8 +67,7 @@ class TrackFile:
         elif self.file_extension == '.bai':
             self.file_type = "Bai"
         else:
-            self.file_type = "Unknown" # This category should never be used.
-
+            self.file_type = "Unknown"  # This category should never be used.
 
     # TrackType ought to basically be (signal_forward|signal_reverse|signal_unstranded|peak_calls|methylation_profile|narrowPeak|broadPeak|coverage)
     # #TODO This is still very incomplete and will eventually be needed for IHEC DP browser definitions
@@ -85,9 +85,9 @@ class TrackFile:
         ## Unknown file types - ALL BELOW MUST STILL BE FURTHER CATEGORIZED
         ## These are not always mutually exclusive.  Argh!
         elif "coverage" in self.file_name:
-            self.track_type = "coverage" # always alongside methylation files.
+            self.track_type = "coverage"  # always alongside methylation files.
         else:
-            self.track_type = "Unknown" # Category should be unused.
+            self.track_type = "Unknown"  # This category should be unused.
 
     # raw_experiment_type is still messy and intended to map to experiment_type.name.
     # These will ultimately need to map to (edcc.track_metadata key: EXPERIMENT_TYPE)(maybe) or edcc.assay (probably).
@@ -109,7 +109,6 @@ class TrackFile:
         # elif "_BS_" in self.file_name and "BS" in self.path:
         #     self.track_type = "_BS_" # Bisulfite sequencing determines methylation.
 
-
     # full_line must not contain any \n 
     def find_md5sum(self, full_line):
         if self.md5sum_dict:
@@ -118,19 +117,17 @@ class TrackFile:
         else:
             # Class var dictionary of all md5sums is empty and must be populated.
             self.load_md5sum()
-        if self.file_type in ['BigWig', 'BigBed']: #md5sum list should only contain .bw and .bb files.
+        if self.file_type in ['BigWig', 'BigBed']:  # md5sum list should only contain the .bw and .bb files.
             self.md5sum = self.md5sum_dict[full_line]
-
 
     @classmethod
     def load_md5sum(cls):
         try:
-            key_value = loadtxt("lists/md5sumBwBb.csv", delimiter=",", dtype=str) # numpy.loadtxt and numpy.str
+            key_value = loadtxt("lists/md5sumBwBb.csv", delimiter=",", dtype=str)  # numpy.loadtxt and numpy.str
         except OSError:
             print("Cannot open file")
         else:
             cls.md5sum_dict = {k:v for k,v in key_value}
-
 
     # Better displayed as a string
     def __str__(self):

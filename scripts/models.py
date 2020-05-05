@@ -1,8 +1,6 @@
 from peewee import Model, TextField, CharField, IntegerField, ForeignKeyField, DateTimeField, CompositeKey, SQL
 from settings import db
 
-# database = MySQLDatabase('mEGAdata', **{'charset': 'utf8', 'sql_mode': 'PIPES_AS_CONCAT', 'use_unicode': True, 'host': 'localhost', 'user': 'assez', 'password': 'planAhead'})
-
 class UnknownField(object):
     def __init__(self, *_, **__): pass
 

@@ -3,27 +3,32 @@ Project-specific notes:
 
 File and path naming 'convention' of the source file directory:
 Path: Project/Donor/(third_path_token)/Experiment_type/(tracks|peak_call)/
-File: (Donor)_(token)_(Experiment_type)_(Repetition)_(peaks){0,1}.(forward|reverse|narrowPeak|broadPeak|coverage|methylation).(bb|bw)
+File: (Donor)_(third_path_token)_(Experiment_type)_(Repetition)_(peaks){0,1}.(forward|reverse|narrowPeak|broadPeak|coverage|methylation).(bb|bw)
 Note: mEGAdata.experiment_type corresponds to IHEC.assay
 
-(third_path_token) takes on a few forms, depending on the project.  Often it is sample.tissue_type or a cell_type.  Doesn't appear in relevant to 2016 McGill IHEC DH but could have implications for matching public_track to experiment_type.
+(third_path_token) takes on a few forms, depending on the project.  Often it is sample.tissue_type or a cell_type.  Doesn't appear to be relevant to 2016 McGill IHEC DH but could have implications for matching mEGAdata.public_track to mEGAdata.experiment_type.
+
+# TODO: Currently, all files are inserted in to DB as hg38 public_tracks.  Probably shouldn't be inserting the primate and mouse tracks at all.  Or at least change their assemblies! 
 
 
 General thoughts
 ----------------
 What are these called: (forward|reverse|narrowPeak|broadPeak|coverage|methylation).  track_type is not a very good name (since it often means assay), but seems to be used here in public_track.track_type.
 
-There are some repeats in here, designated by file_name containing `Rep_1` (or 2, or 3).  Something will have to be done (marked one as primary, or do we want repeats?)  This is often identified in either the public_track.raw_experiment_type or sometimes the (third_path_token) field.
+There are some repeats in here, designated by file_name containing `Rep_1` (or 2, or 3).  Something will have to be done (mark one as primary, or do we want repeats?)  This is often identified in either the public_track.raw_experiment_type or sometimes the (third_path_token) field.
+
+List unlinked datasets that ought to have public_track matches.  A direct MySQL operation.  Requires completeness.  Maybe do it in SQL at the end.
+
 
 
 EMC_Asthma
 ----------
-(third_path_token): Unknown meaning.  _10x and _0.5x sometimes get parsed out of Experiment_type, though it shouldn't be a problem. #TODO verify this.
+(third_path_token): Unknown meaning.  _10x and _0.5x sometimes gets parsed away from Experiment_type, though it shouldn't be a problem. #TODO verify this.
 
 
 EMC_BluePrint
 -------------
-(third_path_token): This values takes the following forms: GR, H3_nTC, Mono or nTC.  nTC (no Template Control?)  So far, this is ignored.
+(third_path_token): Values take the following forms: GR, H3_nTC, Mono or nTC.  nTC (no Template Control?)  So far, this is ignored.
 
 Repeats present.  For instance:
 EMC_BluePrint/S000X1/nTC/ChIP_2_H3K4me1/peak_call/S000X1_nTC_ChIP_2_H3K4me1_1_peaks.broadPeak.bb
@@ -35,11 +40,58 @@ EMC_Bone
 --------
 (third_path_token): Cort_Bone or Trab_Bone.  Probably a tissue type.  Ignored.
 
+Some of the unmapped NChIP experiment_types are here.
+
+According to mEGAdata UI, there are donors and samples, but no datasets.  #TODO Some will probably have to be defined.
+
 
 EMC_BrainBank
 --------------
-(third_path_token): Probably tissue types.  Ignored.
-EMC_BrainBank/S133/CE_Brain/NChIP_H3K27me3/peak_call/S133_CE_Brain_NChIP_H3K27me3_1_peaks.broadPeak.bb
+(third_path_token): Special.  Careful.
+
+Some not automatically linked datasets are because there are sample names AND experiment_types in the (third_path_token).  Intervene manually for these cases.
+
+Uh-oh.  There is some kind of 'pooling' going on here.  Not sure what it is, or whether it has implicatons for repetitions.  Most of the mEGAdata metadata (only 15 datasets exist) are matched to 'pools'.  The variable number of _'s in the sample.private_name are because these pools have different numbers of constituents.
+
+Question: What to do with the non-pooled (single sample) analysed data?  Does it get released?  There does not appear to be any metadata exclusive to them (only have data from pools).
+
+There are data files for BA11_Brain_RNASeq (part of S133_BA11_Brain pool?). There are files for BA11_BS, but no metadata.
+
+BA8_BA9 BS versus BA8_BA9_Brain RNASeq?
+
+See logs/EMC_BrainBankLog_noMatch.txt for annotated details.
+
+# Do a quick check that the linked datasets are indeed properly linked.  Done.  Yes.
+
+(scripts-venv) assez@heap:~/projects/megadata/scripts$ grep -c "No map" brainLog.txt 
+12 - All are unmapped NChiPs. (There are more unmapped NCHiPs in other projects too.)
+
+grep -c "None or multiple corresponding" brainLog.txt 
+grep -c "mapping to all of:" brainLog.txt
+grep -c "Dataset linked" brainLog.txt
+grep -c "No mapping experiment_type.name for" brainLog.txt 
+
+(scripts-venv) assez@heap:~/projects/megadata/scripts$ grep -c "None or multiple corresponding" brainLog.txt 
+106 - *** Check if these no corresponding dataset found are appropriate.***
+(scripts-venv) assez@heap:~/projects/megadata/scripts$ grep -c "mapping to all of:" brainLog.txt
+0
+(scripts-venv) assez@heap:~/projects/megadata/scripts$ grep -c "Dataset linked" brainLog.txt
+170 - Spotcheck a few.  They look good.
+(scripts-venv) assez@heap:~/projects/megadata/scripts$ grep -c "No mapping experiment_type.name for" brainLog.txt 
+12 - These are NCHiPs.
+
+Any manual pairings required?  Yes.  And ask about the ChIP2.
+
+1) Check for unlinked public_tracks.
+SELECT pt.*
+FROM public_track pt
+ where path like 'EMC_Brain%'
+  and pt.assembly = 'hg38'
+   and dataset_id is null
+
+2) Check for orphaned datasets.
+Going through donor_metadata.value = 'EMC_Brain%'
+14 datasets orphaned. (That's a lot!)
 
 
 EMC_Cagekid
@@ -47,11 +99,21 @@ EMC_Cagekid
 (third_path_token): Kidney types, though possible indications of repeats.
 
 
+EMC_COPD
+--------
+What is this?  Only one Donor/Sample
+
+
+EMC_Drouin
+----------
+fastq.gz files only.  Should ask about this project.  Only two samples, but they've got 16 datasets.
+
+
 EMC_iPSC
 --------
 (third_path_token): Always 'iPS'.  Ignored.
 
-What species are these?
+Has three human donors (others are other primates).
 
 
 EMC_Leukemia
@@ -85,15 +147,37 @@ EMC_MSCs/454T/MSC_Tagmentation-ChIP_100K/H3K4ME1/peak_call/454T_MSC_Tagmentation
 Will have to examine this project closely.
 
 
+EMC_Primate
+-----------
+fastq.gz files only.
+Are any of these human primates?  Unknown.
+
+
+EMC_Rodent_Brain
+----------------
+fastq.gz files only.
+IHEC does take mice data, after all...
+No records of mice donors in DB.
+
+
 EMC_SARDs
 ---------
-(third_path_token): Mono or TC.  This looks important, possibly some indicator of repetition, or assay_type.
+(third_path_token): TC or Mono.  Not important (see below).
 EMC_SARDs/012/Mono/NChIP_H3K27me3/peak_call/012_Mono_NChIP_H3K27me3_1_peaks.broadPeak.bb
+
+TC = T Cell
+BC = B Cell
+Mono = Monocyte 
+Ce sont toutes des cellules du système immunitaire.
+
+Lots of fastq.gz that don't have corresponding .bb or .bw.  (Possibly in other projects too.  Only looked here.)
 
 
 EMC_Temporal_Change
 -------------------
-(third_path_token): TC, BC or Mono.  Probably a cell_type.  Should ask.
+If these are "changes over time", should all datasets be included?
+
+(third_path_token): TC, or Mono.  (Same as EMC_SARDs.)
 
 # Also, path & filename seem to have conflicting indicators (H3K9me3 or Input - which is it?)
 # EMC_Temporal_Change/BCU1799/TC/H3K9me3/tracks/BCU1799_TC_ChIP_Input_1.bw

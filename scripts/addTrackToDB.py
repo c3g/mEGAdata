@@ -29,10 +29,8 @@ def main():
             public_track.path = my_track_file.path
             public_track.file_name = my_track_file.file_name
             public_track.file_type = my_track_file.file_type
-            public_track.raw_experiment_type = my_track_file.raw_experiment_type
-            
-            print(my_track_file)
-            # public_track.save()
+            public_track.raw_experiment_type = my_track_file.raw_experiment_type            
+            public_track.save()
 
     finally:
         f.close()
