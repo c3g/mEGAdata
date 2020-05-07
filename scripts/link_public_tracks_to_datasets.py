@@ -9,10 +9,11 @@ from logger_settings import logger
 # Link public_tracks (data files) to their existant datasets (metadata).
 
 def main():
-    # Handle each project separately.
+    # Due to variations, handle each project separately.
 
-    # link_EMC_Mature_Adipocytes()
-    link_EMC_BrainBank()
+    link_EMC_Mature_Adipocytes()
+    # link_EMC_BrainBank()
+    # link_EMC_CageKid()
 
 # Attempt to pair with an existant dataset, based on (1) sample.private_name within public_track.file_name and (2) raw_experiment_type similar to a known experiment_type (.name, .internal_assay_name or ihec_name).
 def link_EMC_Mature_Adipocytes():
@@ -81,6 +82,11 @@ def link_EMC_BrainBank():
     # Handle some unlinked exceptional cases.
     link_manually_EMC_BrainBank()
 
+
+def link_EMC_CageKid():
+    pass
+
+
 # Handle some tricky cases manually.
 def link_manually_EMC_Mature_Adipocytes():
     # Manual pairing:
@@ -110,6 +116,7 @@ def link_manually_EMC_Mature_Adipocytes():
     logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
 
 
+# Treat exceptional cases manually.
 def link_manually_EMC_BrainBank():
     # Manual pairing to compensate for an abbreviation ("Pl11" versus "Pool11") in 2 experiment_type.names.
     # Note: There is an experiment_type.name for ChIP, but not ChIP2, as in the file name.

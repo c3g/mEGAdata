@@ -6,3 +6,6 @@ lists/*
 !lists/structured_data_ls_bwBb.txt
 
 scripts-venv/*
+
+# ignore subfolders, but not files inside logs/
+logs/*/

@@ -8,7 +8,7 @@ Note: mEGAdata.experiment_type corresponds to IHEC.assay
 
 (third_path_token) takes on a few forms, depending on the project.  Often it is sample.tissue_type or a cell_type.  Doesn't appear to be relevant to 2016 McGill IHEC DH but could have implications for matching mEGAdata.public_track to mEGAdata.experiment_type.
 
-# TODO: Currently, all files are inserted in to DB as hg38 public_tracks.  Probably shouldn't be inserting the primate and mouse tracks at all.  Or at least change their assemblies! 
+# TODO: Currently, all files are inserted in to DB as hg38 public_tracks.  Probably shouldn't be inserting the non-humna primate tracks at all.  Mouse tracks should be mm10 assembly.
 
 
 General thoughts
@@ -19,6 +19,25 @@ There are some repeats in here, designated by file_name containing `Rep_1` (or 2
 
 List unlinked datasets that ought to have public_track matches.  A direct MySQL operation.  Requires completeness.  Maybe do it in SQL at the end.
 
+
+Operation
+---------
+Setup:
+Configure MySQL for no-password access.
+Activate scripts/scripts-venv.
+
+Config:
+Generally, work one EMC project at a time.
+cd scripts/
+Uncomment the project in link_public_tracks_to_datasets.py main()
+Specify project name in run_and_log.sh
+Specify the project wildcard in findOrphanedDatasets.sql and findUnlinkedPublicTracks.sql
+
+Running:
+./run_and_log.sh
+
+Diagnosis:
+Examine the /logs/
 
 
 EMC_Asthma
@@ -53,7 +72,7 @@ Some not automatically linked datasets are because there are sample names AND ex
 
 Uh-oh.  There is some kind of 'pooling' going on here.  Not sure what it is, or whether it has implicatons for repetitions.  Most of the mEGAdata metadata (only 15 datasets exist) are matched to 'pools'.  The variable number of _'s in the sample.private_name are because these pools have different numbers of constituents.
 
-Question: What to do with the non-pooled (single sample) analysed data?  Does it get released?  There does not appear to be any metadata exclusive to them (only have data from pools).
+Question: What to do with the non-pooled (single sample) analysed data?  Does it get released?  There does not appear to be any metadata exclusive to them (only have meatadata from pools).
 
 There are data files for BA11_Brain_RNASeq (part of S133_BA11_Brain pool?). There are files for BA11_BS, but no metadata.
 
@@ -63,10 +82,7 @@ See logs/EMC_BrainBankLog_noMatch.txt for annotated details.
 
 # Do a quick check that the linked datasets are indeed properly linked.  Done.  Yes.
 
-(scripts-venv) assez@heap:~/projects/megadata/scripts$ grep -c "No map" brainLog.txt 
-12 - All are unmapped NChiPs. (There are more unmapped NCHiPs in other projects too.)
-
-grep -c "None or multiple corresponding" brainLog.txt 
+grep -c "None or multiple corresponding" brainLog.txt
 grep -c "mapping to all of:" brainLog.txt
 grep -c "Dataset linked" brainLog.txt
 grep -c "No mapping experiment_type.name for" brainLog.txt 
@@ -78,25 +94,28 @@ grep -c "No mapping experiment_type.name for" brainLog.txt
 (scripts-venv) assez@heap:~/projects/megadata/scripts$ grep -c "Dataset linked" brainLog.txt
 170 - Spotcheck a few.  They look good.
 (scripts-venv) assez@heap:~/projects/megadata/scripts$ grep -c "No mapping experiment_type.name for" brainLog.txt 
-12 - These are NCHiPs.
+12 - All are unmapped NChiPs. (There are more unmapped NCHiPs in other projects too.)
 
-Any manual pairings required?  Yes.  And ask about the ChIP2.
+Any manual pairings required?  Yes.  #TODO: And ask about the ChIP2.
 
-1) Check for unlinked public_tracks.
-SELECT pt.*
-FROM public_track pt
- where path like 'EMC_Brain%'
-  and pt.assembly = 'hg38'
-   and dataset_id is null
+Validation scripts:
+1) findUnlinkedPublicTracks.sql
+104 results.
 
-2) Check for orphaned datasets.
+2) findOrphanDatasets.sql
 Going through donor_metadata.value = 'EMC_Brain%'
-14 datasets orphaned. (That's a lot!)
+14 datasets orphaned. (That's a fair amount, almost 1/9th of this project.  Most of the orphans are RNA-Seq.)
 
 
 EMC_Cagekid
 -----------
-(third_path_token): Kidney types, though possible indications of repeats.
+(third_path_token): Kidney types, Normal or Tumour tissue.
+
+Every kidney has a 'normal' sample (named N1 or N2) or a tumour (T1) sample.  This info should be present in the `additional_information` and `disease` columns of mEGAdata (though it didn't transfer to the .ods version, for some reason.)
+
+#TODO: Should both be included in the IHEC submission?  Probably.
+
+We've got both BS and BS2 tracks.  What is the diff, which should be used?
 
 
 EMC_COPD
