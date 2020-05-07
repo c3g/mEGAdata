@@ -82,11 +82,6 @@ See logs/EMC_BrainBankLog_noMatch.txt for annotated details.
 
 # Do a quick check that the linked datasets are indeed properly linked.  Done.  Yes.
 
-grep -c "None or multiple corresponding" brainLog.txt
-grep -c "mapping to all of:" brainLog.txt
-grep -c "Dataset linked" brainLog.txt
-grep -c "No mapping experiment_type.name for" brainLog.txt 
-
 (scripts-venv) assez@heap:~/projects/megadata/scripts$ grep -c "None or multiple corresponding" brainLog.txt 
 106 - *** Check if these no corresponding dataset found are appropriate.***
 (scripts-venv) assez@heap:~/projects/megadata/scripts$ grep -c "mapping to all of:" brainLog.txt
@@ -113,7 +108,7 @@ EMC_Cagekid
 
 Every kidney has a 'normal' sample (named N1 or N2) or a tumour (T1) sample.  This info should be present in the `additional_information` and `disease` columns of mEGAdata (though it didn't transfer to the .ods version, for some reason.)
 
-#TODO: Should both be included in the IHEC submission?  Probably.
+#TODO: Should both be included in the IHEC submission?  Probably yes.
 
 We've got both BS and BS2 tracks.  What is the diff, which should be used?
 

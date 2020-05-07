@@ -17,7 +17,8 @@ WHERE dm.donor_id = d.id
   and et.id = ds.experiment_type_id
   and dp.property = 'project_name'
   and pt.id is null  -- Orphan datasets.
---  and dm.value like 'EMC_%'  -- Use to select all projects.
+--   and dm.value like 'EMC_%'  -- Use to select all projects.
   and dm.value like 'EMC_Mature_Adipocytes%'  -- Specify project name.
---  and dm.value like 'EMC_Brain%'  -- Specify project name.
+--   and dm.value like 'EMC_Brain%'  -- Specify project name.
+--   and dm.value like 'EMC_CageKid%'
 ;
