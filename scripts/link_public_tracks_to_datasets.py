@@ -11,16 +11,18 @@ from logger_settings import logger
 def main():
     # Due to variations, handle each project separately.
 
-    link_EMC_Mature_Adipocytes()
+    # link_EMC_Mature_Adipocytes()
     # link_EMC_BrainBank()
-    # link_EMC_CageKid()
+    link_EMC_CageKid()
+    # link_EMC_iPSC()
 
-# Attempt to pair with an existant dataset, based on (1) sample.private_name within public_track.file_name
+
+# Attempt to pair with an existant dataset.
 def link_EMC_Mature_Adipocytes():
     pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_Mature_adipocytes"))
 
     for pt in pt_query:
-        # (1) sample.private_name within beginning of public_track.file_name
+        # sample.private_name within beginning of public_track.file_name
         # substring up until third "_".  #TODO: This regex could probably be refactored.
         all_ = [m.start() for m in re.finditer(r"_", pt.file_name)]
         prefix = pt.file_name[0: all_[2]]
@@ -40,7 +42,6 @@ def link_EMC_BrainBank():
         # In EMC_BrainBank, there is a small number of unique third_path_tokens, *mostly* ending in Brain.  Use public_track.filename up until and including this third_path_token to match against the beginning of sample.private_name).
         # Applicable tokens: "BA11_Brain", "BA11", "BA44_Brain", "BA8_BA9", "CE_Brain", "LatAmy_Brain"
         
-        # (1) Match the first part of public_track.file_name against sample.private_name.
         match = re.search(r".*((BA11_Brain)|(BA11)|(BA44_Brain)|(BA8_BA9)|(CE_Brain)|(LatAmy_Brain))", pt.file_name)
         prefix = match.group()
         # logger.debug(f"prefix: {prefix}")
@@ -51,6 +52,7 @@ def link_EMC_BrainBank():
     link_manually_EMC_BrainBank()
 
 
+# Attempt to pair with an existant dataset.
 def link_EMC_CageKid():
     pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_CageKid"))
     for pt in pt_query:
@@ -60,13 +62,25 @@ def link_EMC_CageKid():
         prefix = re.sub(r"T_1_Kidney", r"T1_Kidney", init_prefix)
         prefix = re.sub(r"T_2_Kidney", r"T2_Kidney", prefix)
         prefix = re.sub(r"N_1_Kidney", r"N1_Kidney", prefix)
-        prefix = re.sub(r"N_2_Kidney", r"T2_Kidney", prefix)
+        prefix = re.sub(r"N_2_Kidney", r"N2_Kidney", prefix)
         
-        # Now called as a method.
         link_public_track(pt, prefix)
 
     # No manually linkable cases found.
     # link_manually_EMC_CageKid()
+
+
+# Attempt to pair with an existant dataset.
+def link_EMC_iPSC():
+    # Only include humans, not the non-human primates, for now.
+    pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_iPSC"))
+    for pt in pt_query:
+        # match = re.search(r"Human_[^_]*", pt.file_name)
+        match = re.search(r"Human_\w*_iPS", pt.file_name)
+        if match is not None: # Skip the non-human public_tracks, for now.
+            prefix = match.group()
+            link_public_track(pt, prefix)
+
 
 # Handle some tricky cases manually.
 def link_manually_EMC_Mature_Adipocytes():
@@ -134,9 +148,11 @@ def link_manually_EMC_BrainBank():
                 logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
 
 
-# Prefix definition is project dependant - Could pass the project name and put the prefix logic inside this method here.
-# Links based on raw_experiment_type similar to a known experiment_type (.name, .internal_assay_name or ihec_name).
+# (1) sample.private_name within public_track.file_name, based on the project and public_track dependent prefix.
+# (2) Links based on raw_experiment_type similar to a known experiment_type (.name, .internal_assay_name or ihec_name).
 def link_public_track(pt, prefix):
+    # Prefix definition is project dependant - Could pass the project name and put the prefix logic inside this method here.
+
     # public_track.raw_experiment_type "similar" to a known experiment_type.name.
     exp_t_name = map_raw_exp_name_to_exp_type_name(pt.raw_experiment_type)
 
@@ -185,7 +201,11 @@ def map_raw_exp_name_to_exp_type_name(raw_experiment_type):
 if __name__ == "__main__":
   main()
 
+
+# Note that for link_manual interventions, logs will include tracks multiple times.
+
 # Aviso and future improvement:
+# sample.private_name often follows a format such as: CONCATENATE(donor.private_name, some-kind-of-cell-type)
 # When joining on sample.private_name, there is the chance that:
 # i) A Donor is shared between projects.
 # A check could be made agaist project name.  Using (donor_metadata.value like 'EMC_[project name]%' where donor_property.property = 'project_name') would accomplish this since all donors have been assigned to a normalized project (except EMC_Rodent_Brain, a project which, for now, doesn't matter and has bigger problems.)
@@ -194,4 +214,4 @@ if __name__ == "__main__":
 
 # No action has been taken since no donor is ever shared between projects and no donor.private_name is ever repeated between projects.  So far.
 
-# However, there is probably no unique project and naming constraint implemented so far.
+# However, there is probably no unique project, donor and sample naming constraints implemented so far.

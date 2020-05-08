@@ -107,15 +107,16 @@ EMC_Cagekid
 (third_path_token): Kidney types, Normal or Tumour tissue.
 
 Every kidney has a 'normal' sample (named N1 or N2) or a tumour (T1) sample.  This info should be present in the `additional_information` and `disease` columns of mEGAdata (though it didn't transfer to the .ods version, for some reason.)
-
 #TODO: Should both be included in the IHEC submission?  Probably yes.
 
-We've got both BS and BS2 tracks.  What is the diff, which should be used?
+We've got both BS and BS2 tracks.  What is the diff, which should be used?  For now, they are being linked to datasets.
+
+Dataset for R398_T2_Kidney ATAC-seq is truly an orphan (no corresponding data files.)
 
 
 EMC_COPD
 --------
-What is this?  Only one Donor/Sample
+What is this?  Only one Donor/Sample and no datasets defined.  No public_track files either.
 
 
 EMC_Drouin
@@ -125,9 +126,25 @@ fastq.gz files only.  Should ask about this project.  Only two samples, but they
 
 EMC_iPSC
 --------
-(third_path_token): Always 'iPS'.  Ignored.
+(third_path_token): Always 'iPS'.  Not a problem.
 
-Has three human donors (others are other primates).
+#TODO: add_tracks_to_db.py imported the non-human primates as assembly = 'hg38' into mEGAdata.  Should be changed.
+
+Has 3 human donors (all are other non-human primates).  For now, including the humans only.
+Only have tracks for 2 of the 3 human donors.
+
+#TODO: Look at the structured_data directory and you'll see that the collection of files is a bit weird.
+
+Overall, there are 103 orphaned datasets (including all species).
+
+#PROBLEM: Only have .bw & .bb tracks for 2 human datasets (there are 29 datasets for the 2 humans in mEGAdata!)  The raw fastq.gz files exist - it looks like .bw and .bb were never generated.
+
+Even non-human primates have fastq.gz, but there are only a few .bw & .bb.  Looks like the new .bw & .bb tracks were never generated for most non-human datasets.
+
+#TODO: For now, not pairing the non-human primates for IHEC DH purposes. (Though the species do exist in the IHEC DB.)
+IHEC DH doesn't seem to include species information (other than assembly) anywhere in its generated DH.  These non-humna primates are already in the IHEC DP now.  Should their files have even been aligned to hg38? 
+What is the value of publishing non-human primates to IHEC DP if their species is never identified (though there are many ~60 tracks in total)?
+What to do?
 
 
 EMC_Leukemia
@@ -172,6 +189,7 @@ EMC_Rodent_Brain
 fastq.gz files only.
 IHEC does take mice data, after all...
 No records of mice donors in DB.
+#TODO: add_tracks_to_db.py imported the mice as assembly = 'hg38'.  Should be changed, at least.
 
 
 EMC_SARDs

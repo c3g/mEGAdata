@@ -5,7 +5,7 @@
 # Specify project name in the following files:
 # Here, in this file.
 # In the main() method of link_public_tracks_to_datasets.py
-# In the three .sql query files.
+# In the two .sql query files.
 
 # Refresh DB
 mysql mEGAdata < "/home/assez/sql/megadata-with-addTrackToDB.sql"
@@ -14,9 +14,10 @@ mysql mEGAdata < "/home/assez/sql/megadata-with-addTrackToDB.sql"
 python link_public_tracks_to_datasets.py 2> log.log
 
 # Variables
-project="EMC_Mature_Adipocytes"
+# project="EMC_Mature_Adipocytes"
 # project="EMC_BrainBank"
-# project="EMC_CageKid"
+project="EMC_CageKid"
+# project="EMC_iPSC"
 
 dir="logs/${project}/"
 

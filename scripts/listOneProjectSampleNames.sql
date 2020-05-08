@@ -11,7 +11,8 @@ WHERE dm.donor_id = d.id
   and dm.donor_property_id = dp.id
   and s.donor_id = d.id
   and dp.property = 'project_name'
-  and dm.value like 'EMC_Mature_Adipocytes%'  -- Specify project name.
---   and dm.value like 'EMC_BrainBank%'  -- Specify project name.
+--   and dm.value like 'EMC_Mature_Adipocytes%'  -- Specify project name.
+  and dm.value like 'EMC_BrainBank%'  -- Specify project name.
 --   and dm.value like 'EMC_CageKid%'  -- Specify project name.
+--   and dm.value like 'EMC_iPSC%'  -- Specify project name.
 ;

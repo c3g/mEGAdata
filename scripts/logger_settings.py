@@ -15,7 +15,8 @@ handler.setLevel(logging.DEBUG)
 
 # Create formatter and add it to the handler
 # logger_format = logging.Formatter('%(name)s : %(funcName)s : %(levelname)s : %(message)s')
-logger_format = logging.Formatter('%(levelname)s: %(filename)s:%(funcName)s:%(lineno)d: %(message)s')
+# logger_format = logging.Formatter('%(levelname)s: %(filename)s:%(funcName)s:%(lineno)d: %(message)s')
+logger_format = logging.Formatter('%(levelname)s: %(funcName)s: %(message)s')
 handler.setFormatter(logger_format)
 
 # Add handler to the logger
