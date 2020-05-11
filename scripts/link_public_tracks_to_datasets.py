@@ -13,9 +13,10 @@ def main():
 
     # link_EMC_Mature_Adipocytes()
     # link_EMC_BrainBank()
-    link_EMC_CageKid()
+    # link_EMC_CageKid()
     # link_EMC_iPSC()
-
+    # link_EMC_Leukemia()
+    link_EMC_Mitochondrial_Disease()
 
 # Attempt to pair with an existant dataset.
 def link_EMC_Mature_Adipocytes():
@@ -80,6 +81,27 @@ def link_EMC_iPSC():
         if match is not None: # Skip the non-human public_tracks, for now.
             prefix = match.group()
             link_public_track(pt, prefix)
+
+
+# Attempt to pair with an existant dataset.
+def link_EMC_Leukemia():
+    pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_Leukemia"))
+    for pt in pt_query:
+        match = re.search(r"\w+Pre{0,1}BC", pt.file_name)
+        # if match is not None:
+        prefix = match.group()
+        link_public_track(pt, prefix)
+
+
+# Attempt to pair with an existant dataset.
+def link_EMC_Mitochondrial_Disease():
+    pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_Mitochondrial_Disease"))
+    for pt in pt_query:
+        #Prefix definition: Track file_name sometimes contain `_Muscle`, sometimes not.  However, sample.private_name always contain `_Muscle`.
+        match = re.match(r"\w{2,3}_", pt.file_name) #re.match() since we are looking from the beginning of the string, not within.  Probably the case for all other projects too.  #TODO - should change all re.search() to re.match().
+        # prefix = match.group().strip("_")
+        prefix = match.group() + r"Muscle"
+        link_public_track(pt, prefix)
 
 
 # Handle some tricky cases manually.
@@ -179,7 +201,8 @@ def map_raw_exp_name_to_exp_type_name(raw_experiment_type):
     elif re.search(r"^BS", raw_experiment_type) is not None:
         return "Bisulfite-seq"
     elif re.search(r"^CM", raw_experiment_type) is not None:
-        return "capture Methylome"
+        # return "capture Methylome"
+        return "Capture Methylome"  # I think this was supposed to be capitalized.
     elif re.search(r"ChIP_Input", raw_experiment_type) is not None:
         return "ChIP-Seq Input"
     elif re.search(r"^chipmentation_", raw_experiment_type) is not None:

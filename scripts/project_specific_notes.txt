@@ -23,7 +23,7 @@ List unlinked datasets that ought to have public_track matches.  A direct MySQL 
 Operation
 ---------
 Setup:
-Configure MySQL for no-password access.
+Configure MySQL for no-password access (so that run_and_log.sh can run smoothly.)
 Activate scripts/scripts-venv.
 
 Config:
@@ -37,7 +37,7 @@ Running:
 ./run_and_log.sh
 
 Diagnosis:
-Examine the /logs/
+Examine the /logs/ for the project.
 
 
 EMC_Asthma
@@ -48,6 +48,8 @@ EMC_Asthma
 EMC_BluePrint
 -------------
 (third_path_token): Values take the following forms: GR, H3_nTC, Mono or nTC.  nTC (no Template Control?)  So far, this is ignored.
+
+This is a large project (many files).
 
 Repeats present.  For instance:
 EMC_BluePrint/S000X1/nTC/ChIP_2_H3K4me1/peak_call/S000X1_nTC_ChIP_2_H3K4me1_1_peaks.broadPeak.bb
@@ -141,20 +143,32 @@ Overall, there are 103 orphaned datasets (including all species).
 
 Even non-human primates have fastq.gz, but there are only a few .bw & .bb.  Looks like the new .bw & .bb tracks were never generated for most non-human datasets.
 
-#TODO: For now, not pairing the non-human primates for IHEC DH purposes. (Though the species do exist in the IHEC DB.)
-IHEC DH doesn't seem to include species information (other than assembly) anywhere in its generated DH.  These non-humna primates are already in the IHEC DP now.  Should their files have even been aligned to hg38? 
-What is the value of publishing non-human primates to IHEC DP if their species is never identified (though there are many ~60 tracks in total)?
+#TODO: For now, not pairing the non-human primates for IHEC DH purposes (though the species do exist in the IHEC DB.)
+IHEC DH doesn't seem to include species information (aside from assemlby 'other') anywhere in its generated DH.  These non-human primates are already in the IHEC DP now.  Remove them?  Should their files have even been aligned to hg38? 
+What is the value of publishing non-human primates to IHEC DP if their species is never clearly specified (though there are many ~60 tracks in total)?
 What to do?
+Note: the raw file names of the non-human primates
 
 
 EMC_Leukemia
 ------------
-(third_path_token): Always 'PreBC' or 'PreBC'.  Ignored.
+(third_path_token): Always 'PreBC' or 'PrBC'.  Not a problem.
+
+Don't have metadata for this "Pool" track:
+./EMC_Leukemia/Pool/PreBC/BS/tracks/Pool_PreBC_BS_1.coverage.bw
+(What is a "Pool" anyways?)
+
+No datasets defined in MEGAdata (despite metadata existing)
+883_PrBC
+898_PrBC
+
+No metadata (or datasets) defined (despite tracks existing):
+Pool_PreBC_BS_1
 
 
 EMC_Mature_Adipocytes
 ---------------------
-Donors EG011 -> EG020: No entry in the DB.  These are all ATACSeq (non-core IHEC assay, so maybe best to ignore them).  These missing donor represent about 3/8 of the EMC_Mature_Adiposytes tracks. ATACSeq is an IHEC non-core assay.
+Donors EG011 -> EG020: No entry in the DB.  These are all ATACSeq (non-core IHEC assay, so maybe best to ignore them).  These missing donor represent about 3/8 of the EMC_Mature_Adiposytes tracks.  ATACSeq is an IHEC non-core assay.
 
 Also, EG010 is ATACSeq, but IS present in the DB.  Manually joined.
 
@@ -167,7 +181,23 @@ Using hook that sample.private_name is within public_track.file_name (INsufficie
 
 EMC_Mitochondrial_Disease
 -------------------------
-(third_path_token): Always Muscle.  Ignored.
+(third_path_token): Always Muscle.  No problem.
+
+350 datasets linked, but there are many (86) orphan datasets.  I think this is going to require a closer look.  Every donor seems to be rather unique, no identifieable pattern.
+
+For example, donour: MA, prefix: MA_Muscle
+Orphans:
+smRNASeq - Raw reads present, not .bw or .bb generated.
+ChIP_Input - No sign of any files present (raw or processed).
+ChIP_H3K9me3 - No sign of any files present (raw of processed).
+
+For another example, donor: TB, prefix TB_Muscle
+Orphans:
+Bisulfite-seq - No files (raw or processed) present.
+smRNA-seq - Raw files present, no processed files.
+ChIP-Seq Input - No files (raw or processed) present.
+H3K4me3 - No files (raw or processed) present.
+H3K9me3 - There are some ChIP2_H3K9me3 raw files, but no .bw or .bb present.
 
 
 EMC_MSCs

@@ -10,7 +10,9 @@ WHERE
   dataset_id IS NULL
 --   AND path LIKE 'EMC_Mature_Adipocytes%'
 --   AND path LIKE 'EMC_Brain%'
-  AND path LIKE 'EMC_CageKid%'
+--   AND path LIKE 'EMC_CageKid%'
 --   AND path LIKE 'EMC_iPSC%'
+--   AND path LIKE 'EMC_Leukemia%'
+  AND path LIKE 'EMC_Mitochondrial_Disease%'
 
 ;
