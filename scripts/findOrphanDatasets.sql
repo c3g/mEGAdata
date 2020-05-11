@@ -23,10 +23,11 @@ WHERE dm.donor_id = d.id
 
 --   and dm.value like 'EMC_%'  -- Use to select all projects.
 --   and dm.value like 'EMC_Mature_Adipocytes%'  -- Specify project name.
+  and dm.value like 'EMC_Asthma%'
 --   and dm.value like 'EMC_Brain%'  -- Specify project name.
 --   and dm.value like 'EMC_CageKid%'
 --   and dm.value like 'EMC_iPSC%'
 --   and dm.value like 'EMC_Leukemia%'
-  and dm.value like 'EMC_Mitochondrial_Disease%'
+--   and dm.value like 'EMC_Mitochondrial_Disease%'
 
 ;

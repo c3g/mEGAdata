@@ -12,10 +12,11 @@ WHERE dm.donor_id = d.id
   and s.donor_id = d.id
   and dp.property = 'project_name'
 --   and dm.value like 'EMC_Mature_Adipocytes%'  -- Specify project name.
+  and dm.value like 'EMC_Asthma%'  -- Specify project name.
 --   and dm.value like 'EMC_BrainBank%'  -- Specify project name.
 --   and dm.value like 'EMC_CageKid%'  -- Specify project name.
 --   and dm.value like 'EMC_iPSC%'  -- Specify project name.
 --   and dm.value like 'EMC_Leukemia%'  -- Specify project name.
-  and dm.value like 'EMC_Mitochondrial_Disease%'  -- Specify project name.
+--   and dm.value like 'EMC_Mitochondrial_Disease%'  -- Specify project name.
 
 ;

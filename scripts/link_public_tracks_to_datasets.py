@@ -12,16 +12,27 @@ def main():
     # Due to variations, handle each project separately.
 
     # link_EMC_Mature_Adipocytes()
+    link_EMC_Asthma()
     # link_EMC_BrainBank()
     # link_EMC_CageKid()
     # link_EMC_iPSC()
     # link_EMC_Leukemia()
-    link_EMC_Mitochondrial_Disease()
+    # link_EMC_Mitochondrial_Disease()
+
+# Attempt to pair with an existant dataset.
+def link_EMC_Asthma():
+    pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_Asthma"))
+    for pt in pt_query:
+        match = re.match(r"[\w.]+((_Eos)|((ATAC)(Seq)?(CP)?))", pt.file_name)
+        prefix = match.group()
+        # logger.debug(f"Prefix: {prefix}")
+        
+        link_public_track(pt, prefix)
+
 
 # Attempt to pair with an existant dataset.
 def link_EMC_Mature_Adipocytes():
     pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_Mature_adipocytes"))
-
     for pt in pt_query:
         # sample.private_name within beginning of public_track.file_name
         # substring up until third "_".  #TODO: This regex could probably be refactored.
@@ -97,7 +108,7 @@ def link_EMC_Leukemia():
 def link_EMC_Mitochondrial_Disease():
     pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_Mitochondrial_Disease"))
     for pt in pt_query:
-        #Prefix definition: Track file_name sometimes contain `_Muscle`, sometimes not.  However, sample.private_name always contain `_Muscle`.
+        #Prefix definition: Track file_name sometimes contain `_Muscle`, sometimes not.  However, sample.private_name always contains `_Muscle`.
         match = re.match(r"\w{2,3}_", pt.file_name) #re.match() since we are looking from the beginning of the string, not within.  Probably the case for all other projects too.  #TODO - should change all re.search() to re.match().
         # prefix = match.group().strip("_")
         prefix = match.group() + r"Muscle"
@@ -173,9 +184,9 @@ def link_manually_EMC_BrainBank():
 # (1) sample.private_name within public_track.file_name, based on the project and public_track dependent prefix.
 # (2) Links based on raw_experiment_type similar to a known experiment_type (.name, .internal_assay_name or ihec_name).
 def link_public_track(pt, prefix):
-    # Prefix definition is project dependant - Could pass the project name and put the prefix logic inside this method here.
+    # (1) Prefix definition is project dependant - Could pass the project name and put the prefix logic inside this method here.
 
-    # public_track.raw_experiment_type "similar" to a known experiment_type.name.
+    # (2) public_track.raw_experiment_type "similar" to a known experiment_type.name.
     exp_t_name = map_raw_exp_name_to_exp_type_name(pt.raw_experiment_type)
 
     ds_query = Dataset.select(Dataset, Sample.private_name, ExperimentType.name)\
@@ -225,7 +236,7 @@ if __name__ == "__main__":
   main()
 
 
-# Note that for link_manual interventions, logs will include tracks multiple times.
+# Note that for link_manual interventions, tracks will be repeated in the logs.
 
 # Aviso and future improvement:
 # sample.private_name often follows a format such as: CONCATENATE(donor.private_name, some-kind-of-cell-type)

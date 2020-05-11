@@ -7,19 +7,17 @@
 # In the main() method of link_public_tracks_to_datasets.py
 # In the two .sql query files.
 
-# Refresh DB
-mysql mEGAdata < "/home/assez/sql/megadata-with-addTrackToDB.sql"
-
 # Generate full log
 python link_public_tracks_to_datasets.py 2> log.log
 
 # Variables
 # project="EMC_Mature_Adipocytes"
+project="EMC_Asthma"
 # project="EMC_BrainBank"
 # project="EMC_CageKid"
 # project="EMC_iPSC"
 # project="EMC_Leukemia"
-project="EMC_Mitochondrial_Disease"
+# project="EMC_Mitochondrial_Disease"
 
 dir="logs/${project}/"
 
@@ -52,5 +50,9 @@ mv log.log ${dir}full.log
 #SQL scripts
 mysql mEGAdata < findUnlinkedPublicTracks.sql > ${dir}unlinkedPublicTracks.tsv
 mysql mEGAdata < findOrphanDatasets.sql > ${dir}orphanDatasets.tsv
+
+# Refresh DB, ready for next time!
+# Turn off if you want to see the results of the run script. 
+mysql mEGAdata < "/home/assez/sql/megadata-with-addTrackToDB.sql"
 
 

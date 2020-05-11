@@ -42,7 +42,22 @@ Examine the /logs/ for the project.
 
 EMC_Asthma
 ----------
-(third_path_token): Unknown meaning.  _10x and _0.5x sometimes gets parsed away from Experiment_type, though it shouldn't be a problem. #TODO verify this.
+(third_path_token): Unknown meaning.  Probably doesn't matter.
+
+Datasets defined only for the following sample.private_names (and no corresponding files exist):
+610_2000_748_0004_Eos
+748_3001_855_3001_Eos
+5x_asthma_maxIgE_Eos
+
+All other sample.private_names don't have any datasets defined in mEGAdata.
+
+_10x and _0.5x sometimes gets parsed away from Experiment_type, though it shouldn't be a problem.  prefix regex seems to be grabbing enough.
+
+Appears to be some pooling going on (multiple names in the sample.private_names)
+5x_asthma_maxIgE_Eos is a strange sample.private_name.
+There is also a 10x in sample.private_name that seems odd.
+
+File_names 837_0001 might have some repeats (containing 0.5x or "_2").  This data file did not find a match, anyways.
 
 
 EMC_BluePrint
@@ -185,13 +200,13 @@ EMC_Mitochondrial_Disease
 
 350 datasets linked, but there are many (86) orphan datasets.  I think this is going to require a closer look.  Every donor seems to be rather unique, no identifieable pattern.
 
-For example, donour: MA, prefix: MA_Muscle
+For example, donour: MA, sample.private_name prefix: MA_Muscle
 Orphans:
 smRNASeq - Raw reads present, not .bw or .bb generated.
 ChIP_Input - No sign of any files present (raw or processed).
 ChIP_H3K9me3 - No sign of any files present (raw of processed).
 
-For another example, donor: TB, prefix TB_Muscle
+For another example, donor: TB, sample.private_name prefix TB_Muscle
 Orphans:
 Bisulfite-seq - No files (raw or processed) present.
 smRNA-seq - Raw files present, no processed files.
