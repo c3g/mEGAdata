@@ -55,7 +55,7 @@ _10x and _0.5x sometimes gets parsed away from Experiment_type, though it should
 
 Appears to be some pooling going on (multiple names in the sample.private_names)
 5x_asthma_maxIgE_Eos is a strange sample.private_name.
-There is also a 10x in sample.private_name that seems odd.
+There is also a 10x in some file names that seems odd.
 
 File_names 837_0001 might have some repeats (containing 0.5x or "_2").  This data file did not find a match, anyways.
 
@@ -107,6 +107,7 @@ See logs/EMC_BrainBankLog_noMatch.txt for annotated details.
 170 - Spotcheck a few.  They look good.
 (scripts-venv) assez@heap:~/projects/megadata/scripts$ grep -c "No mapping experiment_type.name for" brainLog.txt 
 12 - All are unmapped NChiPs. (There are more unmapped NCHiPs in other projects too.)
+#TODO: Some of the unmapped NCHiP's are in this project.
 
 Any manual pairings required?  Yes.  #TODO: And ask about the ChIP2.
 

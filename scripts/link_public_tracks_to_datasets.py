@@ -6,142 +6,105 @@ from models import Dataset, Sample, ExperimentType, PublicTrack, Donor
 from models import User
 from logger_settings import logger
 
-# Link public_tracks (data files) to their existant datasets (metadata).
-
+# Link public_tracks (data files) to their existant datasets (mEGAdata DB metadata).
 def main():
-    # Due to variations, handle each project separately.
+    # Due to variations, it is helpful to handle projects separately.
+    project_names = [
+        "EMC_Asthma", # Coded.
+        # "EMC_BluePrint", # Not yet started.
+        # "EMC_Bone", # No datasets - never implemented.
+        "EMC_BrainBank", # Coded, but #TODO: Some of the unmapped NCHiP's are in this project.
+        "EMC_CageKid", # Coded.
+        # "EMC_COPD", # Almost nothing here.  Never implemented.
+        # "EMC_Drouin", # Only two samples.  Never implemented.
+        "EMC_iPSC", # Coded, but handled exceptionally. 
+        "EMC_Leukemia", # Coded.
+        "EMC_Mature_Adipocytes", # Coded.
+        "EMC_Mitochondrial_Disease", # Coded.
+        # "EMC_MSCs", # Not yet implemented
+        # "EMC_Primate", # Not yet implemented.  Should it be?
+        # "EMC_Rodent_Brain", # Not yet implemented.  Should it be?
+        # "EMC_SARDs", # Not yet implemented.
+        # "EMC_Temporal_Change", # Not yet implemented.
+    ]
+    for project_name in project_names:
+        link_project_tracks(project_name)
 
-    # link_EMC_Mature_Adipocytes()
-    link_EMC_Asthma()
-    # link_EMC_BrainBank()
-    # link_EMC_CageKid()
-    # link_EMC_iPSC()
-    # link_EMC_Leukemia()
-    # link_EMC_Mitochondrial_Disease()
 
-# Attempt to pair with an existant dataset.
-def link_EMC_Asthma():
-    pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_Asthma"))
+# project_name takes the form: "EMC_..."
+def link_project_tracks(project_name):
+    # Get the project's public_tracks
+    pt_query = PublicTrack.select().where(PublicTrack.path.startswith(project_name))
     for pt in pt_query:
-        match = re.match(r"[\w.]+((_Eos)|((ATAC)(Seq)?(CP)?))", pt.file_name)
-        prefix = match.group()
-        # logger.debug(f"Prefix: {prefix}")
-        
+        if project_name == "EMC_Asthma":
+            match = re.match(r"[\w.]+((_Eos)|((ATAC)(Seq)?(CP)?))", pt.file_name) # Need to include the 0.5x case 
+            prefix = match.group()
+        elif project_name == "EMC_BrainBank":
+            # sample.private_name has is a highly variable number of _'s that have been lumped together with the remainder of the public_track.file_name.  It is impossible to know how much of the beginning of the public_track.file_name to use.
+            # In EMC_BrainBank, there is a small number of unique third_path_tokens, *mostly* ending in Brain.  Use public_track.filename up until and including this third_path_token to match against the beginning of sample.private_name).
+            # Applicable tokens: "BA11_Brain", "BA11", "BA44_Brain", "BA8_BA9", "CE_Brain", "LatAmy_Brain"
+            match = re.match(r".*((BA11_Brain)|(BA11)|(BA44_Brain)|(BA8_BA9)|(CE_Brain)|(LatAmy_Brain))", pt.file_name)
+            prefix = match.group()
+        elif project_name == "EMC_CageKid":
+            # (1) This project's public_track.file_names often have an extra "_" in them, but the metadata sample.private_names don't.
+            match = re.match(r".*Kidney", pt.file_name)
+            init_prefix = match.group()
+            prefix = re.sub(r"T_1_Kidney", r"T1_Kidney", init_prefix)
+            prefix = re.sub(r"T_2_Kidney", r"T2_Kidney", prefix)
+            prefix = re.sub(r"N_1_Kidney", r"N1_Kidney", prefix)
+            prefix = re.sub(r"N_2_Kidney", r"N2_Kidney", prefix)
+        # elif project_name == "EMC_BluePrint": # Not yet started.
+        # elif project_name == "EMC_Bone": # No datasets - never implemented.
+        # elif project_name == "EMC_COPD": # Almost nothing here.  Never implemented.
+        # elif project_name == "EMC_Drouin": # Only two samples.  Never implemented.
+        elif project_name == "EMC_iPSC": # Coded, but treat as an exceptional case.
+            continue
+        elif project_name == "EMC_Leukemia":
+            match = re.match(r"\w+Pre{0,1}BC", pt.file_name)
+            # if match is not None:
+            prefix = match.group()
+        elif project_name == "EMC_Mature_Adipocytes":
+            # sample.private_name within beginning of public_track.file_name
+            # substring up until third "_".  #TODO: This regex could probably be refactored.
+            all_ = [m.start() for m in re.finditer(r"_", pt.file_name)]
+            prefix = pt.file_name[0: all_[2]]
+        elif project_name == "EMC_Mitochondrial_Disease":
+            #Prefix definition: Track file_name sometimes contain `_Muscle`, sometimes not.  However, sample.private_name always contains `_Muscle`.
+            match = re.match(r"\w{2,3}_", pt.file_name)
+            prefix = match.group() + r"Muscle"
+        # elif project_name == "EMC_MSCs": # Not yet implemented
+        # elif project_name == "EMC_Primate": # Not yet implemented.  Should it be?
+        # elif project_name == "EMC_Rodent_Brain": # Not yet implemented.  Should it be?
+        # elif project_name == "EMC_SARDs": # Not yet implemented.
+        # elif project_name == "EMC_Temporal_Change": # Not yet implemented.
+        else:
+            logger.critical("Unknown EMC project.  Exiting script.")
+            return None
+
+        # Attempt to pair with an existant dataset.
         link_public_track(pt, prefix)
 
-
-# Attempt to pair with an existant dataset.
-def link_EMC_Mature_Adipocytes():
-    pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_Mature_adipocytes"))
-    for pt in pt_query:
-        # sample.private_name within beginning of public_track.file_name
-        # substring up until third "_".  #TODO: This regex could probably be refactored.
-        all_ = [m.start() for m in re.finditer(r"_", pt.file_name)]
-        prefix = pt.file_name[0: all_[2]]
-
-        link_public_track(pt, prefix)
-
-    # Handle the unlinked exceptional cases.
-    link_manually_EMC_Mature_Adipocytes()
+    # Handle manual cases
+    if project_name == "EMC_BrainBank":
+        link_manually_EMC_BrainBank()
+    elif project_name == "EMC_Mature_Adipocytes":
+        link_manually_EMC_Mature_Adipocytes()
+    # Handle exceptional projects
+    elif project_name == "EMC_iPSC":
+        link_EMC_iPSC()
 
 
 # Attempt to pair with an existant dataset.
-# #TODO: Some of the unmapped NCHiP's are in this project.
-def link_EMC_BrainBank():
-    pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_BrainBank"))
-    for pt in pt_query:
-        # sample.private_name has is a highly variable number of _'s that have been lumped together with the remainder of the public_track.file_name.  It is impossible to know how much of the beginning of the public_track.file_name to use.
-        # In EMC_BrainBank, there is a small number of unique third_path_tokens, *mostly* ending in Brain.  Use public_track.filename up until and including this third_path_token to match against the beginning of sample.private_name).
-        # Applicable tokens: "BA11_Brain", "BA11", "BA44_Brain", "BA8_BA9", "CE_Brain", "LatAmy_Brain"
-        
-        match = re.search(r".*((BA11_Brain)|(BA11)|(BA44_Brain)|(BA8_BA9)|(CE_Brain)|(LatAmy_Brain))", pt.file_name)
-        prefix = match.group()
-        # logger.debug(f"prefix: {prefix}")
-
-        link_public_track(pt, prefix)
-
-    # Handle some unlinked exceptional cases.
-    link_manually_EMC_BrainBank()
-
-
-# Attempt to pair with an existant dataset.
-def link_EMC_CageKid():
-    pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_CageKid"))
-    for pt in pt_query:
-        # (1) This project's public_track.file_names often have an extra "_" in them, but the metadata sample.private_names don't.
-        match = re.search(r".*Kidney", pt.file_name)
-        init_prefix = match.group()
-        prefix = re.sub(r"T_1_Kidney", r"T1_Kidney", init_prefix)
-        prefix = re.sub(r"T_2_Kidney", r"T2_Kidney", prefix)
-        prefix = re.sub(r"N_1_Kidney", r"N1_Kidney", prefix)
-        prefix = re.sub(r"N_2_Kidney", r"N2_Kidney", prefix)
-        
-        link_public_track(pt, prefix)
-
-    # No manually linkable cases found.
-    # link_manually_EMC_CageKid()
-
-
-# Attempt to pair with an existant dataset.
+# Keep this as an independent method to allow filtering of non-human primates.
 def link_EMC_iPSC():
     # Only include humans, not the non-human primates, for now.
     pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_iPSC"))
     for pt in pt_query:
-        # match = re.search(r"Human_[^_]*", pt.file_name)
-        match = re.search(r"Human_\w*_iPS", pt.file_name)
+        # match = re.match(r"Human_[^_]*", pt.file_name)
+        match = re.match(r"Human_\w*_iPS", pt.file_name)
         if match is not None: # Skip the non-human public_tracks, for now.
             prefix = match.group()
             link_public_track(pt, prefix)
-
-
-# Attempt to pair with an existant dataset.
-def link_EMC_Leukemia():
-    pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_Leukemia"))
-    for pt in pt_query:
-        match = re.search(r"\w+Pre{0,1}BC", pt.file_name)
-        # if match is not None:
-        prefix = match.group()
-        link_public_track(pt, prefix)
-
-
-# Attempt to pair with an existant dataset.
-def link_EMC_Mitochondrial_Disease():
-    pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_Mitochondrial_Disease"))
-    for pt in pt_query:
-        #Prefix definition: Track file_name sometimes contain `_Muscle`, sometimes not.  However, sample.private_name always contains `_Muscle`.
-        match = re.match(r"\w{2,3}_", pt.file_name) #re.match() since we are looking from the beginning of the string, not within.  Probably the case for all other projects too.  #TODO - should change all re.search() to re.match().
-        # prefix = match.group().strip("_")
-        prefix = match.group() + r"Muscle"
-        link_public_track(pt, prefix)
-
-
-# Handle some tricky cases manually.
-def link_manually_EMC_Mature_Adipocytes():
-    # Manual pairing:
-    # EG006_IA_mADPs two cases.  Compensating for a typo (`Stoma`, not `Stroma`)
-    ds = (Dataset.select(Dataset, Sample)
-        .join(Sample).where(Sample.private_name == "EG006_SC_Stroma")).get()
-        # TODO: verify against experiment_type.name; ensure only one dataset returned.
-    pt = PublicTrack.get(PublicTrack.file_name == "EG006_SC_Stoma_RNASeq_1.forward.bw")
-    pt.dataset = ds
-    logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
-
-    pt = PublicTrack.get(PublicTrack.file_name == "EG006_SC_Stoma_RNASeq_1.reverse.bw")
-    pt.dataset = ds
-    logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
-
-    # Unique case for sample.private_name = EG010_SC_mADPs_1 (first of the ATAC-Seq with two tracks).
-    # There is only one dataset associated with this sample. (No need to check against experiment_type.name.)
-    ds = (Dataset.select(Dataset, Sample)
-        .join(Sample).where(Sample.private_name == "EG010_SC_mADPs_1")).get()
-    pt = PublicTrack.get(PublicTrack.file_name == "EG010_SC_mADPs_ATACSeqCP_1_peaks.narrowPeak.bb")
-    pt.dataset = ds
-    logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
-
-    # Second track
-    pt = PublicTrack.get(PublicTrack.file_name == "EG010_SC_mADPs_ATACSeqCP_1.bw")
-    pt.dataset = ds
-    logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
 
 
 # Treat exceptional cases manually.
@@ -179,6 +142,35 @@ def link_manually_EMC_BrainBank():
                 pt = PublicTrack.get(PublicTrack.file_name == pt_f_n)
                 pt.dataset = ds.id
                 logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
+
+
+# Handle some tricky cases manually.
+def link_manually_EMC_Mature_Adipocytes():
+    # Manual pairing:
+    # EG006_IA_mADPs two cases.  Compensating for a typo (`Stoma`, not `Stroma`)
+    ds = (Dataset.select(Dataset, Sample)
+        .join(Sample).where(Sample.private_name == "EG006_SC_Stroma")).get()
+        # TODO: verify against experiment_type.name; ensure only one dataset returned.
+    pt = PublicTrack.get(PublicTrack.file_name == "EG006_SC_Stoma_RNASeq_1.forward.bw")
+    pt.dataset = ds
+    logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
+
+    pt = PublicTrack.get(PublicTrack.file_name == "EG006_SC_Stoma_RNASeq_1.reverse.bw")
+    pt.dataset = ds
+    logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
+
+    # Unique case for sample.private_name = EG010_SC_mADPs_1 (first of the ATAC-Seq with two tracks).
+    # There is only one dataset associated with this sample. (No need to check against experiment_type.name.)
+    ds = (Dataset.select(Dataset, Sample)
+        .join(Sample).where(Sample.private_name == "EG010_SC_mADPs_1")).get()
+    pt = PublicTrack.get(PublicTrack.file_name == "EG010_SC_mADPs_ATACSeqCP_1_peaks.narrowPeak.bb")
+    pt.dataset = ds
+    logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
+
+    # Second track
+    pt = PublicTrack.get(PublicTrack.file_name == "EG010_SC_mADPs_ATACSeqCP_1.bw")
+    pt.dataset = ds
+    logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
 
 
 # (1) sample.private_name within public_track.file_name, based on the project and public_track dependent prefix.

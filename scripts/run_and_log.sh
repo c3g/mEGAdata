@@ -11,12 +11,13 @@
 python link_public_tracks_to_datasets.py 2> log.log
 
 # Variables
-# project="EMC_Mature_Adipocytes"
-project="EMC_Asthma"
+project="All_EMC"
+# project="EMC_Asthma"
 # project="EMC_BrainBank"
 # project="EMC_CageKid"
 # project="EMC_iPSC"
 # project="EMC_Leukemia"
+# project="EMC_Mature_Adipocytes"
 # project="EMC_Mitochondrial_Disease"
 
 dir="logs/${project}/"
