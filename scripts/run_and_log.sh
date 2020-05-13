@@ -13,13 +13,14 @@ python link_public_tracks_to_datasets.py 2> log.log
 # Variables
 # project="All_EMC"
 # project="EMC_Asthma"
-project="EMC_BluePrint"
+# project="EMC_BluePrint"
 # project="EMC_BrainBank"
 # project="EMC_CageKid"
 # project="EMC_iPSC"
 # project="EMC_Leukemia"
 # project="EMC_Mature_Adipocytes"
 # project="EMC_Mitochondrial_Disease"
+project="EMC_MSCs"
 
 dir="logs/${project}/"
 
@@ -51,7 +52,10 @@ mv log.log ${dir}full.log
 
 #SQL scripts
 mysql mEGAdata < findUnlinkedPublicTracks.sql > ${dir}unlinkedPublicTracks.tsv
+echo "Orphan datasets" >> ${counts_file}
+mysql mEGAdata --skip-column-names < findOrphanDatasets.sql | wc -l >> ${counts_file}
 mysql mEGAdata < findOrphanDatasets.sql > ${dir}orphanDatasets.tsv
+
 
 # Refresh DB, ready for next time!
 # Turn off if you want to see the results of the run script. 

@@ -1,6 +1,6 @@
 -- Find datasets that were not linked to data files, for a particular project.
 -- Effectively checks for missing data files (from the structured_data dir).
--- Usage: Manually fill in the last line of this query with the project's name.
+-- Usage: Manually fill in the project name at the end of this query.
 -- Inspect orphaned_dataset_if_null column in results.
 
 SELECT dm.value as project, ds.id as dataset_id, pt.id as orphaned_dataset_if_null, 'dataset', ds.*, 'experiment_type', et.*, 'sample', s.*, 'public_track', pt.*
@@ -21,14 +21,15 @@ WHERE dm.donor_id = d.id
   and pt.id is null  -- Orphan datasets.
 --   and pt.id is not null  -- Matched datasets.
 
-  and dm.value like 'EMC_%'  -- Select all projects.
---   and dm.value like 'EMC_Mature_Adipocytes%'  -- Specify project name.
+--   and dm.value like 'EMC_%'  -- Select all projects.
 --   and dm.value like 'EMC_Asthma%'
---   and dm.value like 'EMC_Brain%'  -- Specify project name.
+--   and dm.value like 'EMC_BluePrint%'
+--   and dm.value like 'EMC_Brain%'
 --   and dm.value like 'EMC_CageKid%'
 --   and dm.value like 'EMC_iPSC%'
 --   and dm.value like 'EMC_Leukemia%'
+--   and dm.value like 'EMC_Mature_Adipocytes%'  -- Specify project name.
 --   and dm.value like 'EMC_Mitochondrial_Disease%'
-  and dm.value like 'EMC_BluePrint%'
+  and dm.value like 'EMC_MSCs%'
 
 ;

@@ -11,7 +11,7 @@ def main():
     # Due to variations, it is helpful to handle projects separately.
     project_names = [
         # "EMC_Asthma", # Coded.
-        "EMC_BluePrint", # Coded, but very little linked.
+        # "EMC_BluePrint", # Coded, but very little linked.
         # "EMC_Bone", # No datasets - never implemented.
         # "EMC_BrainBank", # Coded, but #TODO: Some of the unmapped NCHiP's are in this project.
         # "EMC_CageKid", # Coded.
@@ -21,7 +21,7 @@ def main():
         # "EMC_Leukemia", # Coded.
         # "EMC_Mature_Adipocytes", # Coded.
         # "EMC_Mitochondrial_Disease", # Coded.
-        # "EMC_MSCs", # Pass - almost no metadata.
+        "EMC_MSCs", # Pass - almost no metadata.
         # "EMC_Primate", # Not yet implemented.  Should it be?
         # "EMC_Rodent_Brain", # Not yet implemented.  Should it be?
         # "EMC_SARDs", # Not yet implemented.
@@ -63,7 +63,7 @@ def link_project_tracks(project_name):
         # elif project_name == "EMC_Bone": # No datasets - never implemented.
         # elif project_name == "EMC_COPD": # Almost nothing here.  Never implemented.
         # elif project_name == "EMC_Drouin": # Only two samples.  Never implemented.
-        elif project_name == "EMC_iPSC": # Coded, but treat as an exceptional, separate case.
+        elif project_name == "EMC_iPSC": # Coded, but treat as an exceptional, seperate case.
             continue
         elif project_name == "EMC_Leukemia":
             match = re.match(r"\w+Pre{0,1}BC", pt.file_name)
@@ -78,7 +78,14 @@ def link_project_tracks(project_name):
             #Prefix definition: Track file_name sometimes contain `_Muscle`, sometimes not.  However, sample.private_name always contains `_Muscle`.
             match = re.match(r"\w{2,3}_", pt.file_name)
             prefix = match.group() + r"Muscle"
-        # elif project_name == "EMC_MSCs": # Almost no datasets here.  No attempt at linking made, yet.
+        elif project_name == "EMC_MSCs":
+            # Only 4 datasets in DB. Only wrote this to generate the logs.
+            # match = re.match(r"594P_MSC|391P_MSC|454T_MSC|588P_MSC", pt.file_name)
+            match = re.match(r"[a-zA-Z0-9]+_[a-zA-Z0-9]+", pt.file_name) # first two `terms` of file_name.  Don't use this except to generate logs.
+            if match:
+                prefix = match.group()
+            else:
+                continue
         # elif project_name == "EMC_Primate": # Not yet implemented.  Should it be?
         # elif project_name == "EMC_Rodent_Brain": # Not yet implemented.  Should it be?
         # elif project_name == "EMC_SARDs": # Not yet implemented.

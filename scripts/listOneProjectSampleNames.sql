@@ -1,6 +1,6 @@
 -- Find one project's sample names.
 -- Good for discerning the public_track.file_name prefix to be used to match against sample.private_name.
--- Usage: Manually fill in the last line of this query with the project's name.
+-- Usage: Manually fill in the project name at the end of this query.
 
 SELECT s.*
 FROM donor d,
@@ -12,7 +12,7 @@ WHERE dm.donor_id = d.id
   and s.donor_id = d.id
   and dp.property = 'project_name'
 --   and dm.value like 'EMC_Asthma%'
---   and dm.value like 'EMC_BluePrint%'  
+--   and dm.value like 'EMC_BluePrint%'
 --   and dm.value like 'EMC_BrainBank%'
 --   and dm.value like 'EMC_CageKid%'
 --   and dm.value like 'EMC_iPSC%'
