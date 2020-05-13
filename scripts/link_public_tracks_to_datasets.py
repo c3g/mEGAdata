@@ -21,7 +21,7 @@ def main():
         # "EMC_Leukemia", # Coded.
         # "EMC_Mature_Adipocytes", # Coded.
         # "EMC_Mitochondrial_Disease", # Coded.
-        # "EMC_MSCs", # Not yet implemented
+        # "EMC_MSCs", # Pass - almost no metadata.
         # "EMC_Primate", # Not yet implemented.  Should it be?
         # "EMC_Rodent_Brain", # Not yet implemented.  Should it be?
         # "EMC_SARDs", # Not yet implemented.
@@ -50,7 +50,7 @@ def link_project_tracks(project_name):
             match = re.search(r".*_nTC|_GR|_Mono", pt.file_name)
             if match: # match found
                 prefix = match.group()
-            else: # file_name does not meet the criteria
+            else: # file_name does not meet the criteria.  There are a few cases like this.
                 continue
         elif project_name == "EMC_CageKid":
             # (1) This project's public_track.file_names often have an extra "_" in them, but the metadata sample.private_names don't.
@@ -78,7 +78,7 @@ def link_project_tracks(project_name):
             #Prefix definition: Track file_name sometimes contain `_Muscle`, sometimes not.  However, sample.private_name always contains `_Muscle`.
             match = re.match(r"\w{2,3}_", pt.file_name)
             prefix = match.group() + r"Muscle"
-        # elif project_name == "EMC_MSCs": # Not yet implemented
+        # elif project_name == "EMC_MSCs": # Almost no datasets here.  No attempt at linking made, yet.
         # elif project_name == "EMC_Primate": # Not yet implemented.  Should it be?
         # elif project_name == "EMC_Rodent_Brain": # Not yet implemented.  Should it be?
         # elif project_name == "EMC_SARDs": # Not yet implemented.
@@ -156,7 +156,7 @@ def link_manually_EMC_Mature_Adipocytes():
     # EG006_IA_mADPs two cases.  Compensating for a typo (`Stoma`, not `Stroma`)
     ds = (Dataset.select(Dataset, Sample)
         .join(Sample).where(Sample.private_name == "EG006_SC_Stroma")).get()
-        # TODO: verify against experiment_type.name; ensure only one dataset returned.
+        # Only one dataset with one experiment_type returned.
     pt = PublicTrack.get(PublicTrack.file_name == "EG006_SC_Stoma_RNASeq_1.forward.bw")
     pt.dataset = ds
     logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")

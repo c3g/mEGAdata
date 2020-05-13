@@ -19,6 +19,8 @@ There are some repeats in here, designated by file_name containing `Rep_1` (or 2
 
 List unlinked datasets that ought to have public_track matches.  A direct MySQL operation.  Requires completeness.  Maybe do it in SQL at the end.
 
+Big picture: I suspect there is a benefit to the C3G lab for improved metadata tracking.  Right now, there are significant unmatched data files and orphaned datasets (ie. a lot of 'stuff' is missing).  Possibly something could be linked into the LIMS.  Linking metadata to files retroactively is tricky enough, but to hunt it down (when absent) is an whole other matter (really hard to do remotely).  It must be somewhere, even if it is in an .xls in someone's ~ dir.
+
 
 Operation
 ---------
@@ -248,6 +250,9 @@ EMC_MSCs
 
 One parsing error effecting raw_experiment_type - manually moved:
 EMC_MSCs/454T/MSC_Tagmentation-ChIP_100K/H3K4ME1/peak_call/454T_MSC_Tagmentation-ChIP_100K_H3K4ME1_2_peaks.broadPeak.bb
+
+Only 4 samples in mEGAdata with 4 datasets listed (one each), but 358 data files.  What is going on here?
+Not going to do anything for this project until there is some clarification (only 4 tracks would be matched anyways to 2 datasets).
 
 Will have to examine this project closely.
 
