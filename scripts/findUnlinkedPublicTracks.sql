@@ -8,7 +8,7 @@ FROM
 WHERE
 --    pt.assembly = 'hg38' and pt.id >= 2859 -- These are the newly inserted EMC tracks, aligned to hg38
   dataset_id IS NULL
-  AND path like 'EMC_%'  -- Use to select all projects.
+--   AND path like 'EMC_%'  -- Select all projects.
 --   AND path LIKE 'EMC_Mature_Adipocytes%'
 --   AND path LIKE 'EMC_Asthma%'
 --   AND path LIKE 'EMC_Brain%'
@@ -16,5 +16,6 @@ WHERE
 --   AND path LIKE 'EMC_iPSC%'
 --   AND path LIKE 'EMC_Leukemia%'
 --   AND path LIKE 'EMC_Mitochondrial_Disease%'
+  AND path LIKE 'EMC_BluePrint%'
 
 ;

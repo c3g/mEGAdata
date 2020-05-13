@@ -11,8 +11,9 @@
 python link_public_tracks_to_datasets.py 2> log.log
 
 # Variables
-project="All_EMC"
+# project="All_EMC"
 # project="EMC_Asthma"
+project="EMC_BluePrint"
 # project="EMC_BrainBank"
 # project="EMC_CageKid"
 # project="EMC_iPSC"

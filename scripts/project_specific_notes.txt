@@ -64,12 +64,38 @@ EMC_BluePrint
 -------------
 (third_path_token): Values take the following forms: GR, H3_nTC, Mono or nTC.  nTC (no Template Control?)  So far, this is ignored.
 
-This is a large project (many files).
+This is a large project and wacky project (many files).
+Is this related to the BluePrint that is already in the IHEC DP?  Want to avoid repeats.
 
-Repeats present.  For instance:
+Repeats possibly present.  For instance:
 EMC_BluePrint/S000X1/nTC/ChIP_2_H3K4me1/peak_call/S000X1_nTC_ChIP_2_H3K4me1_1_peaks.broadPeak.bb
+Going to need an explanation of the _2_, _3_, etc. that are present.  Haven't looked into them very much, so far.
 
-./EMC_BluePrint/nTC/nTC/ChIP_Input/tracks/nTC_ChIP_Input.bw seems incorrectly named (nTC twice)
+Data files not detected by r"BluePrint.*(_nTC|_GR). These have "_Mono" in the file_name:
+./EMC_BluePrint/S002FT/Mono/ChIP_H3K27ac/tracks/S002FT_Mono_ChIP_H3K27ac_1.bw
+./EMC_BluePrint/S002FT/Mono/ChIP_H3K27ac/peak_call/S002FT_Mono_ChIP_H3K27ac_1_peaks.narrowPeak.bb
+./EMC_BluePrint/S0026A/Mono/ChIP_H3K4me1/tracks/S0026A_Mono_ChIP_H3K4me1_1.bw
+./EMC_BluePrint/S0026A/Mono/ChIP_H3K4me1/peak_call/S0026A_Mono_ChIP_H3K4me1_1_peaks.broadPeak.bb
+./EMC_BluePrint/S0026A/Mono/ChIP_H3K27ac/tracks/S0026A_Mono_ChIP_H3K27ac_1.bw
+./EMC_BluePrint/S0026A/Mono/ChIP_H3K27ac/peak_call/S0026A_Mono_ChIP_H3K27ac_1_peaks.narrowPeak.bb
+./EMC_BluePrint/S002KJ/Mono/ChIP_H3K4me1/peak_call/S002KJ_Mono_ChIP_H3K4me1_1_peaks.broadPeak.bb
+./EMC_BluePrint/S002KJ/Mono/ChIP_H3K4me1/tracks/S002KJ_Mono_ChIP_H3K4me1_1.bw
+./EMC_BluePrint/S002KJ/Mono/ChIP_H3K27ac/peak_call/S002KJ_Mono_ChIP_H3K27ac_1_peaks.narrowPeak.bb
+./EMC_BluePrint/S002KJ/Mono/ChIP_H3K27ac/tracks/S002KJ_Mono_ChIP_H3K27ac_1.bw
+
+These file_names seem to be missing the sample names (and have nTC|GR|Mono twice in the path):
+./EMC_BluePrint/nTC/nTC/ChIP_Input/tracks/nTC_ChIP_Input.bw
+./EMC_BluePrint/GR/GR/ChIP_Input/tracks/GR_ChIP_Input.bw
+./EMC_BluePrint/Mono/Mono/ChIP_Input/tracks/Mono_ChIP_Input.bw
+
+nTC and GR (and Mono) mean something, possibly important.
+
+In all withMatch.log cases (onyl 28), ChIP_H3K27ac files are getting matched to plain, old H3K27ac datasets (through find_raw_experiment_type()).  
+Okay, so according to mEGAdata.experiment_type, for all the H3Kxxx types, they are equivalent to the ChIP_H3Kxxx type (ie. H3K27me3 = ChIP_H3K27me3 = Histone H3K27me3).  However, there are many repeats here (ie. no underscore, _3, _4)
+
+mEGAdata has datasets 'mostly' for RNA-seq, MRNA-seq and Capture Methylome.  However, there aren't any data files for these experiment_types.  In general, there are raw data files, but no processed .bw or .bb for these 3 experiment_types.
+
+There are over 1K files for ChIP_H3Kxxx, but no datasets defined in mEGAdata.  Does ChIP possibly refer to "Chipmentation" in this context (I doubt it)?  I suspect just missing defined datasets.
 
 
 EMC_Bone
@@ -218,7 +244,9 @@ H3K9me3 - There are some ChIP2_H3K9me3 raw files, but no .bw or .bb present.
 
 EMC_MSCs
 --------
-(third_path_token): A mess.  One parsing error effecting raw_experiment_type - manually moved:
+(third_path_token): A mess.
+
+One parsing error effecting raw_experiment_type - manually moved:
 EMC_MSCs/454T/MSC_Tagmentation-ChIP_100K/H3K4ME1/peak_call/454T_MSC_Tagmentation-ChIP_100K_H3K4ME1_2_peaks.broadPeak.bb
 
 Will have to examine this project closely.
@@ -234,7 +262,7 @@ EMC_Rodent_Brain
 ----------------
 fastq.gz files only.
 IHEC does take mice data, after all...
-No records of mice donors in DB.
+No records of mice donors in DB (no metadata in mEGAdata).
 #TODO: add_tracks_to_db.py imported the mice as assembly = 'hg38'.  Should be changed, at least.
 
 

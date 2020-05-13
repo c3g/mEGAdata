@@ -10,17 +10,17 @@ from logger_settings import logger
 def main():
     # Due to variations, it is helpful to handle projects separately.
     project_names = [
-        "EMC_Asthma", # Coded.
-        # "EMC_BluePrint", # Not yet started.
+        # "EMC_Asthma", # Coded.
+        "EMC_BluePrint", # Coded, but very little linked.
         # "EMC_Bone", # No datasets - never implemented.
-        "EMC_BrainBank", # Coded, but #TODO: Some of the unmapped NCHiP's are in this project.
-        "EMC_CageKid", # Coded.
+        # "EMC_BrainBank", # Coded, but #TODO: Some of the unmapped NCHiP's are in this project.
+        # "EMC_CageKid", # Coded.
         # "EMC_COPD", # Almost nothing here.  Never implemented.
         # "EMC_Drouin", # Only two samples.  Never implemented.
-        "EMC_iPSC", # Coded, but handled exceptionally. 
-        "EMC_Leukemia", # Coded.
-        "EMC_Mature_Adipocytes", # Coded.
-        "EMC_Mitochondrial_Disease", # Coded.
+        # "EMC_iPSC", # Coded, but handled exceptionally in its own method.
+        # "EMC_Leukemia", # Coded.
+        # "EMC_Mature_Adipocytes", # Coded.
+        # "EMC_Mitochondrial_Disease", # Coded.
         # "EMC_MSCs", # Not yet implemented
         # "EMC_Primate", # Not yet implemented.  Should it be?
         # "EMC_Rodent_Brain", # Not yet implemented.  Should it be?
@@ -45,6 +45,13 @@ def link_project_tracks(project_name):
             # Applicable tokens: "BA11_Brain", "BA11", "BA44_Brain", "BA8_BA9", "CE_Brain", "LatAmy_Brain"
             match = re.match(r".*((BA11_Brain)|(BA11)|(BA44_Brain)|(BA8_BA9)|(CE_Brain)|(LatAmy_Brain))", pt.file_name)
             prefix = match.group()
+        elif project_name == "EMC_BluePrint": #
+            # sample.private_names always end in "_nTC" or "_GR".  Nice!  "_Mono"s follow the pattern, but there are no corresponding sample.private_names.
+            match = re.search(r".*_nTC|_GR|_Mono", pt.file_name)
+            if match: # match found
+                prefix = match.group()
+            else: # file_name does not meet the criteria
+                continue
         elif project_name == "EMC_CageKid":
             # (1) This project's public_track.file_names often have an extra "_" in them, but the metadata sample.private_names don't.
             match = re.match(r".*Kidney", pt.file_name)
@@ -53,11 +60,10 @@ def link_project_tracks(project_name):
             prefix = re.sub(r"T_2_Kidney", r"T2_Kidney", prefix)
             prefix = re.sub(r"N_1_Kidney", r"N1_Kidney", prefix)
             prefix = re.sub(r"N_2_Kidney", r"N2_Kidney", prefix)
-        # elif project_name == "EMC_BluePrint": # Not yet started.
         # elif project_name == "EMC_Bone": # No datasets - never implemented.
         # elif project_name == "EMC_COPD": # Almost nothing here.  Never implemented.
         # elif project_name == "EMC_Drouin": # Only two samples.  Never implemented.
-        elif project_name == "EMC_iPSC": # Coded, but treat as an exceptional case.
+        elif project_name == "EMC_iPSC": # Coded, but treat as an exceptional, separate case.
             continue
         elif project_name == "EMC_Leukemia":
             match = re.match(r"\w+Pre{0,1}BC", pt.file_name)
