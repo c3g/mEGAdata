@@ -21,10 +21,10 @@ def main():
         # "EMC_Leukemia", # Coded.
         # "EMC_Mature_Adipocytes", # Coded.
         # "EMC_Mitochondrial_Disease", # Coded.
-        "EMC_MSCs", # Pass - almost no metadata.
-        # "EMC_Primate", # Not yet implemented.  Should it be?
-        # "EMC_Rodent_Brain", # Not yet implemented.  Should it be?
-        # "EMC_SARDs", # Not yet implemented.
+        # "EMC_MSCs", # Coded only enough to generate logs.  Will have to be done seriously, at some point.
+        # "EMC_Primate", # Should this be implemented?
+        # "EMC_Rodent_Brain", # Should it be implemented?
+        "EMC_SARDs", # Coding progressing...
         # "EMC_Temporal_Change", # Not yet implemented.
     ]
     for project_name in project_names:
@@ -87,8 +87,11 @@ def link_project_tracks(project_name):
             else:
                 continue
         # elif project_name == "EMC_Primate": # Not yet implemented.  Should it be?
-        # elif project_name == "EMC_Rodent_Brain": # Not yet implemented.  Should it be?
-        # elif project_name == "EMC_SARDs": # Not yet implemented.
+        # elif project_name == "EMC_Rodent_Brain": # Should this be implemented?
+        elif project_name == "EMC_SARDs":
+            # match = re.match(r".*_(Mono|BC|TC)", pt.file_name) # No BC present.
+            match = re.match(r".*_(Mono|TC)", pt.file_name)
+            prefix = match.group()
         # elif project_name == "EMC_Temporal_Change": # Not yet implemented.
         else:
             logger.critical("Unknown EMC project.  Exiting script.")

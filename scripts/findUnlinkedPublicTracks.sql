@@ -17,6 +17,7 @@ WHERE
 --   AND path LIKE 'EMC_Leukemia%'
 --   AND path LIKE 'EMC_Mature_Adipocytes%'
 --   AND path LIKE 'EMC_Mitochondrial_Disease%'
-  AND path LIKE 'EMC_MSCs%'
+--   AND path LIKE 'EMC_MSCs%'
+  AND path LIKE 'EMC_SARDs%'  -- Specify project name.
 
 ;

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Run and log one EMC project at a time.
+# Run and log one EMC project at a time (or everything all at once).
 
 # Specify project name in the following files:
 # Here, in this file.
-# In the main() method of link_public_tracks_to_datasets.py
-# In the two .sql query files.
+# In the main() method list of link_public_tracks_to_datasets.py
+# In the two .sql query files referenced below.
 
 # Generate full log
 python link_public_tracks_to_datasets.py 2> log.log
@@ -20,7 +20,8 @@ python link_public_tracks_to_datasets.py 2> log.log
 # project="EMC_Leukemia"
 # project="EMC_Mature_Adipocytes"
 # project="EMC_Mitochondrial_Disease"
-project="EMC_MSCs"
+# project="EMC_MSCs"
+project="EMC_SARDs"
 
 dir="logs/${project}/"
 
@@ -62,3 +63,19 @@ mysql mEGAdata < findOrphanDatasets.sql > ${dir}orphanDatasets.tsv
 mysql mEGAdata < "/home/assez/sql/megadata-with-addTrackToDB.sql"
 
 
+#---------------------------------------------
+# Logs may be generated for one project, or all projects (but not some projects).
+# Log files are saved to a subdir called $PWD/logs/${project}/
+# 
+# Log file explanations:
+#
+# counts.log : Summary counts.  Quite useful.
+# full.log : Full output.
+# multipleMatches.log : When more than one dataset was matched unexpectedly.
+# noMatch.log : Data files that could not be paired.
+# orphanDatasets.tsv : Existant datasets that could not be linked to data files.  Best opened in OpenOffice Calc.
+# rawExperimentTypeMappingProblem.log : Indicates a problem in map_raw_exp_name_to_exp_type_name()
+# unlinkedPublicTracks.tsv : Data files that could not be paired (essentially a repeat of noMatch.log, but more descriptive).
+# withMatch.log : Data files successfully linked to mEGAdata dataset metadata.
+#
+# Note that since these are logs, not pure reports, some tracks (and counts) can be repeated in the logs (such as for link_manual interventions).

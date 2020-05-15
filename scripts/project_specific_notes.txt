@@ -17,9 +17,7 @@ What are these called: (forward|reverse|narrowPeak|broadPeak|coverage|methylatio
 
 There are some repeats in here, designated by file_name containing `Rep_1` (or 2, or 3).  Something will have to be done (mark one as primary, or do we want repeats?)  This is often identified in either the public_track.raw_experiment_type or sometimes the (third_path_token) field.
 
-List unlinked datasets that ought to have public_track matches.  A direct MySQL operation.  Requires completeness.  Maybe do it in SQL at the end.
-
-Big picture: I suspect there is a benefit to the C3G lab for improved metadata tracking.  Right now, there are significant unmatched data files and orphaned datasets (ie. a lot of 'stuff' is missing).  Possibly something could be linked into the LIMS.  Linking metadata to files retroactively is tricky enough, but to hunt it down (when absent) is an whole other matter (really hard to do remotely).  It must be somewhere, even if it is in an .xls in someone's ~ dir.
+Which project is the Barreiro project?
 
 
 Operation
@@ -259,7 +257,7 @@ Will have to examine this project closely.
 
 EMC_Primate
 -----------
-fastq.gz files only.
+Raw fastq.gz files only, no .bw or .bb.
 Are any of these human primates?  Unknown.
 
 
@@ -273,15 +271,39 @@ No records of mice donors in DB (no metadata in mEGAdata).
 
 EMC_SARDs
 ---------
+SARDs = Systemic Autoimmune Rheumatic Diseases?
+
 (third_path_token): TC or Mono.  Not important (see below).
-EMC_SARDs/012/Mono/NChIP_H3K27me3/peak_call/012_Mono_NChIP_H3K27me3_1_peaks.broadPeak.bb
 
 TC = T Cell
 BC = B Cell
 Mono = Monocyte 
 Ce sont toutes des cellules du système immunitaire.
 
-Lots of fastq.gz that don't have corresponding .bb or .bw.  (Possibly in other projects too.  Only looked here.)
+There is a large number (and %age) of orphanDatasets (150), but very few unjustified noMatch public_tracks.  This could be related to...  Lots of fastq.gz without corresponding .bb or .bw in structured_data.
+
+29 (of 125) sample.private_name end in 'BC', though there are zero (0) public_tracks with 'BC'.  Strange, since datasets (28 of 150) do exist.  This could be related to absent .bb & .bw (as above).
+
+rawExperimentTypeMappingProblems (24 cases) are all for NChIP.  Need to decide how to handle these, eventually.
+
+Looks like some kind of pooling for the following sample.private_names:
+247KASP_251BRID_Mono
+254FUNR_247KASP_TC
+243GAGL_248GOUE_TC
+247KASP_254FUNR_TC
+237LAQC_243GAGL_248GOUE_TC
+
+Multiple matches:  All from sample.private_name 243GAGL_Mono.  There are duplicates in the DB, except one has a BS-Seq, and one doesn't. Duplicates already have EGA_EGAN values (meaning they were already submitted?)
+
+sample.private_name 243GAGL_TC is also duplicated in mEGAdata but one sample doesn't have any datasets defined.
+
+From the noMatch.log (in order):
+248GOUE_Mono_ChIP_H3K27me3a: Looks like the dataset just wasn't created, possibly by accident.
+012_etc... are the NChIPs...  24 cases
+254FUNR_Mono_ChIP_H3K27ac: Again, looks like the dataset just wasn't created, possibly by accident.
+247KASP_251BRID_Mono: Again, looks like the dataset just wasn't created, possibly by accident.
+
+Observation: There are very few samples without an RNA-Seq dataset (accidental omission?).  However, no potentially corresponding public_track files are present.  Probably not an issue.
 
 
 EMC_Temporal_Change
