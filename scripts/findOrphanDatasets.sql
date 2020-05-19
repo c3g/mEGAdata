@@ -21,16 +21,17 @@ WHERE dm.donor_id = d.id
   and pt.id is null  -- Orphan datasets.
 --   and pt.id is not null  -- Matched datasets.
 
---   and dm.value like 'EMC_%'  -- Select all projects.
+  and dm.value like 'EMC_%'  -- Select all projects.
 --   and dm.value like 'EMC_Asthma%'
 --   and dm.value like 'EMC_BluePrint%'
---   and dm.value like 'EMC_Brain%'
+--   and dm.value like 'EMC_BrainBank%'
 --   and dm.value like 'EMC_CageKid%'
 --   and dm.value like 'EMC_iPSC%'
 --   and dm.value like 'EMC_Leukemia%'
 --   and dm.value like 'EMC_Mature_Adipocytes%'
 --   and dm.value like 'EMC_Mitochondrial_Disease%'
 --   and dm.value like 'EMC_MSCs%'
-  and dm.value like 'EMC_SARDs%'  -- Specify project name.
+--   and dm.value like 'EMC_SARDs%'
+--   and dm.value like 'EMC_Temporal_Change%'  -- Specify project name.
 
 ;

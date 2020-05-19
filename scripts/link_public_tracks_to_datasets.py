@@ -2,7 +2,7 @@
 import peewee
 import re
 
-from models import Dataset, Sample, ExperimentType, PublicTrack, Donor
+from models import Dataset, Sample, ExperimentType, PublicTrack, Donor, SampleMetadata, SampleProperty
 from models import User
 from logger_settings import logger
 
@@ -12,20 +12,20 @@ def main():
     project_names = [
         # "EMC_Asthma", # Coded.
         # "EMC_BluePrint", # Coded, but very little linked.
-        # "EMC_Bone", # No datasets - never implemented.
+        # # "EMC_Bone", # No datasets - never implemented.
         # "EMC_BrainBank", # Coded, but #TODO: Some of the unmapped NCHiP's are in this project.
         # "EMC_CageKid", # Coded.
-        # "EMC_COPD", # Almost nothing here.  Never implemented.
-        # "EMC_Drouin", # Only two samples.  Never implemented.
+        # # "EMC_COPD", # Almost nothing here.  Never implemented.
+        # # "EMC_Drouin", # Only two samples.  Never implemented.
         # "EMC_iPSC", # Coded, but handled exceptionally in its own method.
         # "EMC_Leukemia", # Coded.
         # "EMC_Mature_Adipocytes", # Coded.
         # "EMC_Mitochondrial_Disease", # Coded.
         # "EMC_MSCs", # Coded only enough to generate logs.  Will have to be done seriously, at some point.
-        # "EMC_Primate", # Should this be implemented?
-        # "EMC_Rodent_Brain", # Should it be implemented?
-        "EMC_SARDs", # Coding progressing...
-        # "EMC_Temporal_Change", # Not yet implemented.
+        # # "EMC_Primate", # Should this be implemented?
+        # # "EMC_Rodent_Brain", # Should this be implemented?
+        # "EMC_SARDs", # Coded enough for logs.  Many orphans and unmatched.
+        # "EMC_Temporal_Change", #  Coded. 
     ]
     for project_name in project_names:
         link_project_tracks(project_name)
@@ -89,10 +89,13 @@ def link_project_tracks(project_name):
         # elif project_name == "EMC_Primate": # Not yet implemented.  Should it be?
         # elif project_name == "EMC_Rodent_Brain": # Should this be implemented?
         elif project_name == "EMC_SARDs":
-            # match = re.match(r".*_(Mono|BC|TC)", pt.file_name) # No BC present.
+            # match = re.match(r".*_(Mono|BC|TC)", pt.file_name) # No BC present in filenames (though there are datasets...)
             match = re.match(r".*_(Mono|TC)", pt.file_name)
             prefix = match.group()
-        # elif project_name == "EMC_Temporal_Change": # Not yet implemented.
+        elif project_name == "EMC_Temporal_Change": # Not yet implemented.
+            continue
+        #     match = re.match(r".*_(Mono|BC|TC)", pt.file_name)
+        #     prefix = match.group()
         else:
             logger.critical("Unknown EMC project.  Exiting script.")
             return None
@@ -108,6 +111,8 @@ def link_project_tracks(project_name):
     # Handle exceptional projects
     elif project_name == "EMC_iPSC":
         link_EMC_iPSC()
+    elif project_name == "EMC_Temporal_Change":
+        link_EMC_Temporal_Change()
 
 
 # Attempt to pair with an existant dataset.
@@ -121,6 +126,42 @@ def link_EMC_iPSC():
         if match is not None: # Skip the non-human public_tracks, for now.
             prefix = match.group()
             link_public_track(pt, prefix)
+
+# This project has multiple time-points that need to be handled specially.
+def link_EMC_Temporal_Change():
+    pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_Temporal_Change"))
+    for pt in pt_query:
+        match = re.match(r".*_(Mono|BC|TC)", pt.file_name)
+        prefix = match.group()
+
+        # Match right-most "_\d" of public_track.file_name against sample_property.property = 'time_point' &&sample_metadata.value = \d.
+        trailing_match = re.search(r"_\d\.", pt.file_name)
+        # logger.debug(f"Found match: {trailing_match.group()}")
+        if trailing_match is not None:
+            time_point = trailing_match.group().lstrip("_").rstrip(".")
+            # logger.debug(f"Time Point: {time_point}")
+        else:
+            time_point = 1 # Default value in mEGAdata. 
+
+        # (2) public_track.raw_experiment_type "similar" to a known experiment_type.name.
+        exp_t_name = map_raw_exp_name_to_exp_type_name(pt.raw_experiment_type)
+
+        ds_query = Dataset.select(Dataset, Sample.private_name, ExperimentType.name, SampleMetadata.value)\
+            .join(Sample).where(Sample.private_name == prefix)\
+            .join(SampleMetadata).where(SampleMetadata.value == time_point)\
+            .join(SampleProperty).where(SampleProperty.property == "time_point")\
+            .switch(Dataset).join(ExperimentType).where(ExperimentType.name == exp_t_name)
+
+        # Match to (hopefully) a single dataset
+        if ds_query.count() != 1:
+            logger.warning(f"None or multiple corresponding datasets, {ds_query.count()}, found for {pt.file_name}")
+            for dataset in ds_query.execute():
+                logger.error(f"{pt.file_name} mapping to multiple datasets: {dataset.id}")
+        else:  # One single dataset found
+            result = ds_query.execute()
+            for dataset in result:
+                pt.dataset = dataset.id  # Can also be written as pt.dataset = ds OR pt.dataset_id = ds.id
+                logger.info(f"Dataset linked for public_track {pt.file_name}. Saved: {pt.save()}")
 
 
 # Treat exceptional cases manually.

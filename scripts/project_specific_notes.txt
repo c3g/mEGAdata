@@ -57,7 +57,16 @@ Appears to be some pooling going on (multiple names in the sample.private_names)
 5x_asthma_maxIgE_Eos is a strange sample.private_name.
 There is also a 10x in some file names that seems odd.
 
-File_names 837_0001 might have some repeats (containing 0.5x or "_2").  This data file did not find a match, anyways.
+File_names 837_0001 might have some repeats (containing 0.5x or trailing "_2").  No data file matches, anyways.
+
+Note the trailing "_2" and the ATACSeqCP (CoPy?)
+./EMC_Asthma/837_0001/CD4_0.5x/ATACSeqCP/tracks/837_0001_CD4_0.5x_ATACSeqCP_1.bw
+./EMC_Asthma/837_0001/CD4_0.5x/ATACSeqCP/peak_call/837_0001_CD4_0.5x_ATACSeqCP_1_peaks.narrowPeak.bb
+./EMC_Asthma/837_0001/CD4/ATACSeq/peak_call/837_0001_CD4_ATACSeq_2_peaks.narrowPeak.bb
+./EMC_Asthma/837_0001/CD4/ATACSeq/tracks/837_0001_CD4_ATACSeq_2.bw
+./EMC_Asthma/837_0001/Eos_10x/ATACSeq/peak_call/837_0001_Eos_10x_ATACSeq_1_peaks.narrowPeak.bb
+./EMC_Asthma/837_0001/Eos_10x/ATACSeq/tracks/837_0001_Eos_10x_ATACSeq_1.bw
+
 
 
 EMC_BluePrint
@@ -220,6 +229,8 @@ Using hook that sample.private_name is within public_track.file_name (INsufficie
 
 'EG006' has a typo: 'SC_Stoma'
 
+There are some filenames ending in a trailing "_2".  Doesn't seem to affect anything since there are no corresponding "_1" filenames.
+
 
 EMC_Mitochondrial_Disease
 -------------------------
@@ -293,13 +304,15 @@ Looks like some kind of pooling for the following sample.private_names:
 247KASP_254FUNR_TC
 237LAQC_243GAGL_248GOUE_TC
 
-Multiple matches:  All from sample.private_name 243GAGL_Mono.  There are duplicates in the DB, except one has a BS-Seq, and one doesn't. Duplicates already have EGA_EGAN values (meaning they were already submitted?)
+Multiple matches:  All from sample.private_name 243GAGL_Mono.  There are two in the DB, except one has a BS-Seq, and one doesn't. Duplicates already have EGA_EGAN values (meaning they were already submitted?).
+Ahha! The time_point column (links to sample_property.property = 'time_point') is in use (sometimes) and takes the value "_1" or "_2".
+All other cases of time_point "_1" and "_2" are inconsequential (since there are no data files, or no datasets defined, or BC/TC/Mono are sufficient to differentiate.)  So overall, except for 243GAGL, the time_point column doesn't cause any conflicts (multiple datasets) and doesn't really matter.
 
 sample.private_name 243GAGL_TC is also duplicated in mEGAdata but one sample doesn't have any datasets defined.
 
 From the noMatch.log (in order):
 248GOUE_Mono_ChIP_H3K27me3a: Looks like the dataset just wasn't created, possibly by accident.
-012_etc... are the NChIPs...  24 cases
+012_etc... are the NChIPs...  24 cases.
 254FUNR_Mono_ChIP_H3K27ac: Again, looks like the dataset just wasn't created, possibly by accident.
 247KASP_251BRID_Mono: Again, looks like the dataset just wasn't created, possibly by accident.
 
@@ -308,9 +321,21 @@ Observation: There are very few samples without an RNA-Seq dataset (accidental o
 
 EMC_Temporal_Change
 -------------------
-If these are "changes over time", should all datasets be included?
+If these are "changes over time", should all datasets be included?  If not, which one?  Was there any other dimension tested, other than change over time (such as a treatment, or some such?)
 
-(third_path_token): TC, or Mono.  (Same as EMC_SARDs.)
+(third_path_token): TC, BC or Mono.
 
-# Also, path & filename seem to have conflicting indicators (H3K9me3 or Input - which is it?)
+In this project, the time_point column is in effect (from sample_property.property = time_point).
+The trailing regex"_\d.(bb|bw)" of the filename relates to time_point.
+
+Reviewing noMatch.log:
+All BF775_.*: No CM datasets defined in mEGAdata.  No CM datasets in mEGAdata at all, despite the presence of CM public_tracks.
+All BF772_.*: No corresponding datasets defined in mEGAdata.
+Both BCU566_.*: No CM datasets defined in mEGAdata.
+BCU582_.*: Odd use of timepoints.  public_tracks use timepoints 1,  2 and 3, but mEGAdata uses only 1 and 2.  Some missing datasets as well.
+Both BCU768_TC_RNASeq_2: No time_point = 2 in mEGAdata.
+
+Alright, withought going through each and every unmatched public_track (115), the algorithm is effective.  Unmatched public_tracks are due to problems with the data.  Unmatched tracks will have to be examined on individual bases.
+
+Strange case:  Path & filename seem to have conflicting indicators (H3K9me3 or Input - which is it?).  Check structured_data DirTree
 # EMC_Temporal_Change/BCU1799/TC/H3K9me3/tracks/BCU1799_TC_ChIP_Input_1.bw
