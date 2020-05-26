@@ -1,6 +1,9 @@
 settings.py
 junk/
 
+# dolphin junk file
+.directory
+
 lists/*
 !lists/md5sumBwBb.csv
 !lists/structured_data_ls_bwBb.txt

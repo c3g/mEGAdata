@@ -38,7 +38,7 @@ echo "None or multiple corresponding datasets" >> ${counts_file}
 grep -c "None or multiple corresponding datasets" log.log >> ${counts_file}
 echo "mapping to multiple datasets" >> ${counts_file}
 grep -c "mapping to multiple datasets" log.log >> ${counts_file}
-echo "Dataset linked" >> ${counts_file}
+echo "public_track linked" >> ${counts_file}
 grep -c "Dataset linked" log.log >> ${counts_file}
 echo "No mapping experiment_type.name for" >> ${counts_file}
 grep -c "No mapping experiment_type.name for" log.log >> ${counts_file}

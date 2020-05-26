@@ -144,5 +144,6 @@ class TrackFile:
 
     # Portray the base line we are dealing with
     def __repr__(self):
-        return self.full_line
+        # return self.full_line
+        return self.path + " " + self.file_name
 
