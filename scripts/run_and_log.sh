@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Run and log one EMC project at a time (or everything all at once).
+# Run and log link_public_tracks_to_dataset.py one EMC project at a time (or everything all at once).
 
 # Specify project name in the following files:
 # Here, in this file.

@@ -29,9 +29,10 @@ class TrackFile:
     file_extension - file extension
     file_type - BigWig, BigBed, etc.
     assembly - hg38  #TODO: verify this - it might not be the case (for non-human primates & mice)
-    track_type - signal_forward, signal_reverse, etc. - NEEDS REWORKING
+    track_type - signal_forward, signal_reverse, etc. - #TODO NEEDS REWORKING
     raw_experiment_type - Unrefined experiment_type.
     md5sum - md5sum of the file.
+    ihec_metrics - relative path and filename of ihec_metrics/.txt file (iff exists) 
     """
 
     # Constructor
@@ -89,7 +90,8 @@ class TrackFile:
         else:
             self.track_type = "Unknown"  # This category should be unused.
 
-    # raw_experiment_type is still messy and intended to map to experiment_type.name.
+    # Don't save this messy value as a DB field - keep it as a TrackFile property.
+    # raw_experiment_type is still messy and intended to map to mEGAdata.experiment_type.name.
     # These will ultimately need to map to (edcc.track_metadata key: EXPERIMENT_TYPE)(maybe) or edcc.assay (probably).
     def find_raw_experiment_type(self):
         # The path is "mostly" structured as such: Project/Donor/(third_path_token)/Experiment_type/(tracks|peak_call)/
@@ -128,6 +130,34 @@ class TrackFile:
             print("Cannot open file")
         else:
             cls.md5sum_dict = {k:v for k,v in key_value}
+
+
+    # Attempt to find a corresponding ihec_metrics/.txt file.
+    # Must have the structured_data hierarchy recreated in ./lists/ihec_metrics/ containing full paths and the ihec_metrics/.txt and ihec_metrics/read_stats.txt files (the raw data files, .bw & .bb files are not neccessary (and besides, way too large)).
+    def get_ihec_metrics(self):
+        # Define the path    
+        metric_path = re.sub(r"(/tracks)|(/peak_call)", r"/ihec_metrics", self.path)
+        metric_rel_path = r"./lists/ihec_metrics/" + metric_path + r"/" # Relative location of recreated structured_data hierarchy.
+        # Define the file name
+        metric_base_file_name = self.file_name.replace(r"_peaks", r"")
+        metric_basic_file_name = re.sub(r"(\..*)", r".txt", metric_base_file_name)
+        metric_read_stats_file_name = re.sub(r"(\..*)", r".read_stats.txt", metric_base_file_name)
+        # Test for a match.
+        if os.path.isfile(metric_rel_path + metric_basic_file_name):
+            self.ihec_metrics = metric_rel_path + metric_basic_file_name
+        elif os.path.isfile(metric_rel_path + metric_read_stats_file_name):
+            self.ihec_metrics = metric_rel_path + metric_read_stats_file_name
+        else:
+            self.ihec_metrics = None
+
+
+    # Construct and return a TrackFile from a Peewee PublicTrack
+    @classmethod
+    def from_PublicTrack(cls, PublicTrack):
+        pt = cls(f"./{PublicTrack.path}/{PublicTrack.file_name}") # Recreate as a full_line to reuse the __init__ constructor.
+        pt.get_ihec_metrics()
+        return pt
+
 
     # Better displayed as a string
     def __str__(self):

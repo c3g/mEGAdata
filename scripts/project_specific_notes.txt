@@ -240,7 +240,7 @@ EMC_Mitochondrial_Disease
 
 For example, donour: MA, sample.private_name prefix: MA_Muscle
 Orphans:
-smRNASeq - Raw reads present, not .bw or .bb generated.
+smRNASeq - Raw reads present, no .bw or .bb generated.
 ChIP_Input - No sign of any files present (raw or processed).
 ChIP_H3K9me3 - No sign of any files present (raw of processed).
 

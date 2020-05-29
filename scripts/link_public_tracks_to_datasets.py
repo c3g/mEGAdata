@@ -10,22 +10,22 @@ from logger_settings import logger
 def main():
     # Due to variations, it is helpful to handle projects separately.
     project_names = [
-        # "EMC_Asthma", # Coded.
-        # "EMC_BluePrint", # Coded, but very little linked.
-        # # "EMC_Bone", # No datasets - never implemented.
-        # "EMC_BrainBank", # Coded, but #TODO: Some of the unmapped NCHiP's are in this project.
-        # "EMC_CageKid", # Coded.
-        # # "EMC_COPD", # Almost nothing here.  Never implemented.
-        # # "EMC_Drouin", # Only two samples.  Never implemented.
-        # "EMC_iPSC", # Coded, but handled exceptionally in its own method.
-        # "EMC_Leukemia", # Coded.
-        # "EMC_Mature_Adipocytes", # Coded.
-        # "EMC_Mitochondrial_Disease", # Coded.
-        # "EMC_MSCs", # Coded only enough to generate logs.  Will have to be done seriously, at some point.
-        # # "EMC_Primate", # Should this be implemented?
-        # # "EMC_Rodent_Brain", # Should this be implemented?
-        # "EMC_SARDs", # Coded enough for logs.  Many orphans and unmatched.
-        # "EMC_Temporal_Change", #  Coded. 
+        "EMC_Asthma", # Coded.
+        "EMC_BluePrint", # Coded, but very little linked.
+        # "EMC_Bone", # No datasets - never implemented.
+        "EMC_BrainBank", # Coded, but #TODO: Some of the unmapped NCHiP's are in this project.
+        "EMC_CageKid", # Coded.
+        # "EMC_COPD", # Almost nothing here.  Never implemented.
+        # "EMC_Drouin", # Only two samples.  Never implemented.
+        "EMC_iPSC", # Coded, but handled exceptionally in its own method.
+        "EMC_Leukemia", # Coded.
+        "EMC_Mature_Adipocytes", # Coded.
+        "EMC_Mitochondrial_Disease", # Coded.
+        "EMC_MSCs", # Coded only enough to generate logs.  Will have to be done seriously, at some point.
+        # "EMC_Primate", # Should this be implemented?
+        # "EMC_Rodent_Brain", # Should this be implemented?
+        "EMC_SARDs", # Coded enough for logs.  Many orphans and unmatched.
+        "EMC_Temporal_Change", #  Coded. 
     ]
     for project_name in project_names:
         link_project_tracks(project_name)
@@ -71,7 +71,7 @@ def link_project_tracks(project_name):
             prefix = match.group()
         elif project_name == "EMC_Mature_Adipocytes":
             # sample.private_name within beginning of public_track.file_name
-            # substring up until third "_".  #TODO: This regex could probably be refactored.
+            # substring up until third "_".  #TODO: This regex could probably be refactored as r"^(.+_){3}"
             all_ = [m.start() for m in re.finditer(r"_", pt.file_name)]
             prefix = pt.file_name[0: all_[2]]
         elif project_name == "EMC_Mitochondrial_Disease":
@@ -92,10 +92,8 @@ def link_project_tracks(project_name):
             # match = re.match(r".*_(Mono|BC|TC)", pt.file_name) # No BC present in filenames (though there are datasets...)
             match = re.match(r".*_(Mono|TC)", pt.file_name)
             prefix = match.group()
-        elif project_name == "EMC_Temporal_Change": # Not yet implemented.
+        elif project_name == "EMC_Temporal_Change": # Implemented separately
             continue
-        #     match = re.match(r".*_(Mono|BC|TC)", pt.file_name)
-        #     prefix = match.group()
         else:
             logger.critical("Unknown EMC project.  Exiting script.")
             return None
@@ -113,6 +111,30 @@ def link_project_tracks(project_name):
         link_EMC_iPSC()
     elif project_name == "EMC_Temporal_Change":
         link_EMC_Temporal_Change()
+
+
+# (1) sample.private_name within public_track.file_name, based on the project and public_track dependent prefix.
+# (2) Links based on raw_experiment_type similar to a known experiment_type (.name, .internal_assay_name or ihec_name).
+def link_public_track(pt, prefix):
+    # (1) Prefix definition is project dependant - Could pass the project name and put the prefix logic inside this method here.
+
+    # (2) public_track.raw_experiment_type "similar" to a known experiment_type.name.
+    exp_t_name = map_raw_exp_name_to_exp_type_name(pt.raw_experiment_type)
+
+    ds_query = Dataset.select(Dataset, Sample.private_name, ExperimentType.name)\
+        .join(Sample).where(Sample.private_name == prefix)\
+        .switch(Dataset).join(ExperimentType).where(ExperimentType.name == exp_t_name)
+
+    # Match to (hopefully) a single dataset
+    if ds_query.count() != 1:
+        logger.warning(f"None or multiple corresponding datasets, {ds_query.count()}, found for {pt.file_name}")
+        for dataset in ds_query.execute():
+            logger.error(f"{pt.file_name} mapping to multiple datasets: {dataset.id}")
+    else:  # One single dataset found
+        result = ds_query.execute()
+        for dataset in result:
+            pt.dataset = dataset.id  # Can also be written as pt.dataset = ds OR pt.dataset_id = ds.id
+            logger.info(f"Dataset linked for public_track {pt.file_name}. Saved: {pt.save()}")
 
 
 # Attempt to pair with an existant dataset.
@@ -230,39 +252,15 @@ def link_manually_EMC_Mature_Adipocytes():
     logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
 
 
-# (1) sample.private_name within public_track.file_name, based on the project and public_track dependent prefix.
-# (2) Links based on raw_experiment_type similar to a known experiment_type (.name, .internal_assay_name or ihec_name).
-def link_public_track(pt, prefix):
-    # (1) Prefix definition is project dependant - Could pass the project name and put the prefix logic inside this method here.
-
-    # (2) public_track.raw_experiment_type "similar" to a known experiment_type.name.
-    exp_t_name = map_raw_exp_name_to_exp_type_name(pt.raw_experiment_type)
-
-    ds_query = Dataset.select(Dataset, Sample.private_name, ExperimentType.name)\
-        .join(Sample).where(Sample.private_name == prefix)\
-        .switch(Dataset).join(ExperimentType).where(ExperimentType.name == exp_t_name)
-
-    # Match to (hopefully) a single dataset
-    if ds_query.count() != 1:
-        logger.warning(f"None or multiple corresponding datasets, {ds_query.count()}, found for {pt.file_name}")
-        for dataset in ds_query.execute():
-            logger.error(f"{pt.file_name} mapping to multiple datasets: {dataset.id}")
-    else:  # One single dataset found
-        result = ds_query.execute()
-        for dataset in result:
-            pt.dataset = dataset.id  # Can also be written as pt.dataset = ds OR pt.dataset_id = ds.id
-            logger.info(f"Dataset linked for public_track {pt.file_name}. Saved: {pt.save()}")
-
-
-# Maps public_track.raw_experiment_type to experiment_type.name, in a slightly fuzzy manner.
+# Maps public_track.raw_experiment_type to mEGAdata.experiment_type.name, in a slightly fuzzy manner.
 def map_raw_exp_name_to_exp_type_name(raw_experiment_type):
+    # Rather than is not None, make the comparison as if ___:
     if re.search(r"ATAC", raw_experiment_type) is not None:
         return "ATAC-seq"
     elif re.search(r"^BS", raw_experiment_type) is not None:
         return "Bisulfite-seq"
     elif re.search(r"^CM", raw_experiment_type) is not None:
-        # return "capture Methylome"
-        return "Capture Methylome"  # I think this was supposed to be capitalized.
+        return "Capture Methylome"
     elif re.search(r"ChIP_Input", raw_experiment_type) is not None:
         return "ChIP-Seq Input"
     elif re.search(r"^chipmentation_", raw_experiment_type) is not None:
@@ -273,6 +271,7 @@ def map_raw_exp_name_to_exp_type_name(raw_experiment_type):
         return res.group()
     elif re.search(r"^RNASeq", raw_experiment_type) is not None:
         return "RNA-seq"
+    # Haven't handled mRNA-seq case (since there aren't any data files of this type, though there are a few orphan datasets in EMC_BluePrint).
     elif re.search(r"^smRNASeq", raw_experiment_type) is not None:
         return "smRNA-seq"
     # TODO - Still must handle NChIP and Tagmentation cases.
