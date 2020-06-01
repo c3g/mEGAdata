@@ -21,7 +21,7 @@ def main():
         for l in fl:
             # Convert a file line into a TrackFile object
             my_track_file = TrackFile(l)
-            # Convert TrackFile object to a peewee PublicTrack model, using only the relevant fields from TrackFile
+            # Convert TrackFile object to a peewee PublicTrack model, using only the relevant fields from TrackFile # TODO better written as a TrackFile function, named something like TrackFile.to_public_track()
             public_track = PublicTrack.create()
             public_track.assembly = my_track_file.assembly
             public_track.track_type = my_track_file.track_type
@@ -29,7 +29,7 @@ def main():
             public_track.path = my_track_file.path
             public_track.file_name = my_track_file.file_name
             public_track.file_type = my_track_file.file_type
-            public_track.raw_experiment_type = my_track_file.raw_experiment_type            
+            # public_track.raw_experiment_type = my_track_file.raw_experiment_type            
             public_track.save()
 
     finally:

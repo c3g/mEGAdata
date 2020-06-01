@@ -31,6 +31,7 @@ class TrackFile:
     assembly - hg38  #TODO: verify this - it might not be the case (for non-human primates & mice)
     track_type - signal_forward, signal_reverse, etc. - #TODO NEEDS REWORKING
     raw_experiment_type - Unrefined experiment_type.
+    experiment_type_name - Corresponds to a mEGAdata.experiment_type.name
     md5sum - md5sum of the file.
     ihec_metrics - relative path and filename of ihec_metrics/.txt file (iff exists) 
     """
@@ -45,7 +46,8 @@ class TrackFile:
         # Call class methods to assign additional attributes
         self.find_file_type()
         self.find_track_type()
-        self.find_raw_experiment_type()
+        self.find_raw_experiment_type()  # TODO combine with map_raw_experiment...() in to one function. 
+        self.map_raw_experiment_type_to_experiment_type_name()
         self.find_md5sum(full_line.strip())
         self.assembly = "hg38" # All datasets in this directory are hg38.
 
@@ -91,7 +93,7 @@ class TrackFile:
             self.track_type = "Unknown"  # This category should be unused.
 
     # Don't save this messy value as a DB field - keep it as a TrackFile property.
-    # raw_experiment_type is still messy and intended to map to mEGAdata.experiment_type.name.
+    # raw_experiment_type is still messy and intended to map to mEGAdata.experiment_type.name through map_raw_experiment_type_to_experiment_type_name()
     # These will ultimately need to map to (edcc.track_metadata key: EXPERIMENT_TYPE)(maybe) or edcc.assay (probably).
     def find_raw_experiment_type(self):
         # The path is "mostly" structured as such: Project/Donor/(third_path_token)/Experiment_type/(tracks|peak_call)/
@@ -102,6 +104,7 @@ class TrackFile:
         if "MSC_Tagmentation-ChIP_100K" in self.path:
             self.raw_experiment_type = "Tagmentation-ChIP_100K_H3K4ME1"
 
+        # These cases are handled in map_raw_experiment_type_to_experiment_type_name()
         # elif "ATAC" in self.file_name:
         #     self.track_type = "ATAC"
         # elif "smRNASeq" in self.file_name:
@@ -110,6 +113,34 @@ class TrackFile:
         #     self.track_type = "chipmentation"
         # elif "_BS_" in self.file_name and "BS" in self.path:
         #     self.track_type = "_BS_" # Bisulfite sequencing determines methylation.
+
+
+    # Maps public_track.raw_experiment_type to mEGAdata.experiment_type.name, in a slightly fuzzy manner, when possible.
+    # mEGAdata.experiment_type.name is used (rather than .internal_assay_short_name or .ihec_name).
+    def map_raw_experiment_type_to_experiment_type_name(self):
+        if re.search(r"ATAC", self.raw_experiment_type):
+            self.experiment_type_name = "ATAC-seq"
+        elif re.search(r"^BS", self.raw_experiment_type):
+            self.experiment_type_name = "Bisulfite-seq"
+        elif re.search(r"^CM", self.raw_experiment_type):
+            self.experiment_type_name = "Capture Methylome"
+        elif re.search(r"ChIP_Input", self.raw_experiment_type):
+            self.experiment_type_name = "ChIP-Seq Input"
+        elif re.search(r"^chipmentation_", self.raw_experiment_type):
+            res = re.search(r"H3K[\w]*", self.raw_experiment_type)
+            self.experiment_type_name = "Chipmentation_" + res.group()
+        elif re.search(r"H3K\d{1,2}(me\d|ac)", self.raw_experiment_type) and re.search(r"NChIP", self.raw_experiment_type) is None:
+            res = re.search(r"H3K\d{1,2}(me\d|ac)", self.raw_experiment_type)
+            self.experiment_type_name = res.group()
+        elif re.search(r"^RNASeq", self.raw_experiment_type):
+            self.experiment_type_name = "RNA-seq"
+        # Haven't handled mRNA-seq case (since there aren't any data files of this type, though there are a few orphan datasets in EMC_BluePrint).
+        elif re.search(r"^smRNASeq", self.raw_experiment_type):
+            self.experiment_type_name = "smRNA-seq"
+        # TODO - Still must handle NChIP and Tagmentation cases.
+        else:
+            self.experiment_type_name = "unmatched"
+
 
     # full_line must not contain any \n 
     def find_md5sum(self, full_line):
@@ -155,7 +186,7 @@ class TrackFile:
     @classmethod
     def from_PublicTrack(cls, PublicTrack):
         pt = cls(f"./{PublicTrack.path}/{PublicTrack.file_name}") # Recreate as a full_line to reuse the __init__ constructor.
-        pt.get_ihec_metrics()
+        pt.get_ihec_metrics()  # Should this be here?
         return pt
 
 

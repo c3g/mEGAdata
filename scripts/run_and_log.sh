@@ -59,9 +59,9 @@ mysql mEGAdata --skip-column-names < findOrphanDatasets.sql | wc -l >> ${counts_
 mysql mEGAdata < findOrphanDatasets.sql > ${dir}orphanDatasets.tsv
 
 
-# Refresh DB, ready for next time!
-# Turn off if you want to see the results of the run script. 
-mysql mEGAdata < "/home/assez/sql/megadata-with-addTrackToDB.sql"
+# Refresh DB, ready for next time.  Only used for iterative debugging.
+# Turn off if you want to persist the results of this script. 
+# mysql mEGAdata < "/home/assez/sql/megadata-with-addTrackToDB.sql"
 
 
 #---------------------------------------------

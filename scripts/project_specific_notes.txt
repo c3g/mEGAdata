@@ -8,17 +8,22 @@ Note: mEGAdata.experiment_type corresponds to IHEC.assay
 
 (third_path_token) takes on a few forms, depending on the project.  Often it is sample.tissue_type or a cell_type.  Doesn't appear to be relevant to 2016 McGill IHEC DH but could have implications for matching mEGAdata.public_track to mEGAdata.experiment_type.
 
-# TODO: Currently, all files are inserted in to DB as hg38 public_tracks.  Probably shouldn't be inserting the non-humna primate tracks at all.  Mouse tracks should be mm10 assembly.
+# TODO: Currently, all files are inserted in to DB as hg38 public_tracks.  Probably shouldn't be inserting the non-human primate tracks at all.  Mouse tracks should be mm10 assembly.
 
 
 General thoughts
 ----------------
 What are these called: (forward|reverse|narrowPeak|broadPeak|coverage|methylation).  track_type is not a very good name (since it often means assay), but seems to be used here in public_track.track_type.
 
-There are some repeats in here, designated by file_name containing `Rep_1` (or 2, or 3).  Something will have to be done (mark one as primary, or do we want repeats?)  This is often identified in either the public_track.raw_experiment_type or sometimes the (third_path_token) field.
+There are some repeats in here, designated by file_name containing `Rep_1` (or 2, or 3).  Something will have to be done (mark one as primary, or do we want repeats?)  This is often identified in either the TrackFile.raw_experiment_type or sometimes the (third_path_token) field.
 
 Which project is the Barreiro project?
 
+Dev note: After refactoring, there were 44 (instead of 50) rawExperimentTypeMappingProblems.  Not sure why the difference (pretty minor, possibly best ignored).
+
+Refactoring issues: Plan: Start with recreating all .sql files from scratch.  Maybe do line-by-line comparisons with original files.  Removing one raw_experiment_type field shouldn't make that much of a difference.
+Next, try to re-create individual project logs, one project at a time, and verify that counts are the same.
+Can always do a git roll-back, if all else fails.
 
 Operation
 ---------
@@ -99,7 +104,7 @@ These file_names seem to be missing the sample names (and have nTC|GR|Mono twice
 
 nTC and GR (and Mono) mean something, possibly important.
 
-In all withMatch.log cases (onyl 28), ChIP_H3K27ac files are getting matched to plain, old H3K27ac datasets (through find_raw_experiment_type()).  
+In all withMatch.log cases (onyl 28), ChIP_H3K27ac files are getting matched to plain, old H3K27ac datasets (through find_raw_experiment_type()).  This should be fine.
 Okay, so according to mEGAdata.experiment_type, for all the H3Kxxx types, they are equivalent to the ChIP_H3Kxxx type (ie. H3K27me3 = ChIP_H3K27me3 = Histone H3K27me3).  However, there are many repeats here (ie. no underscore, _3, _4)
 
 mEGAdata has datasets 'mostly' for RNA-seq, MRNA-seq and Capture Methylome.  However, there aren't any data files for these experiment_types.  In general, there are raw data files, but no processed .bw or .bb for these 3 experiment_types.

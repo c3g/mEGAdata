@@ -134,7 +134,7 @@ class PublicTrack(BaseModel):
     path = CharField(null=True)
     track_type = CharField(null=True)
     url = CharField(null=True)
-    raw_experiment_type = CharField(null=True)
+    # raw_experiment_type = CharField(null=True)
 
     class Meta:
         table_name = 'public_track'
