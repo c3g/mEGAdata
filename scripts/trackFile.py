@@ -46,9 +46,10 @@ class TrackFile:
         # Call class methods to assign additional attributes
         self.find_file_type()
         self.find_track_type()
-        self.find_raw_experiment_type()  # TODO combine with map_raw_experiment...() in to one function. 
-        self.map_raw_experiment_type_to_experiment_type_name()
         self.find_md5sum(full_line.strip())
+        self.find_raw_experiment_type()  # TODO combine with map_raw_experiment...() in to one function?
+        self.map_raw_experiment_type_to_experiment_type_name()
+        self.get_ihec_metrics() # requires recreated ihec_metrics/.txt dir structure.
         self.assembly = "hg38" # All datasets in this directory are hg38.
 
     def find_file_type(self):
@@ -186,7 +187,7 @@ class TrackFile:
     @classmethod
     def from_PublicTrack(cls, PublicTrack):
         pt = cls(f"./{PublicTrack.path}/{PublicTrack.file_name}") # Recreate as a full_line to reuse the __init__ constructor.
-        pt.get_ihec_metrics()  # Should this be here?
+        # pt.get_ihec_metrics()  # Should this be here?
         return pt
 
 
