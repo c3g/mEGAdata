@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 import peewee
+from peewee import fn, JOIN
+from settings import db
 
-# from models import Dataset, Sample, ExperimentType, PublicTrack, Donor, SampleMetadata, SampleProperty
 from models import PublicTrack, Dataset, ExperimentType
+from models import Sample, Donor, DonorMetadata, DonorProperty #, SampleMetadata, SampleProperty
 
 from trackFile import TrackFile
 
@@ -27,7 +29,7 @@ def main():
     ]
     for project_name in project_names:
         # Tracks with dataset match
-        print(f"{project_name} tracks WITH dataset match")
+        print(f"\n{project_name} tracks WITH dataset match")
         pt_query = (PublicTrack.select(PublicTrack, Dataset.id, ExperimentType.name)\
             .join(Dataset)\
             .switch(Dataset)\
@@ -75,7 +77,7 @@ def main():
         col_headers_printed = False
         previous_experiment_type = None
 
-        #  Need a list of results, sorted by TrackFile.experiment_type_name
+        # Need a list of results, sorted by TrackFile.experiment_type_name
         my_track_files = []
         for pt in pt_results:
             my_track_files.append(TrackFile.from_PublicTrack(pt))
@@ -105,6 +107,21 @@ def main():
                     col_headers_printed = False
                     previous_experiment_type = my_track_file.experiment_type_name
                 print(f"{my_track_file.file_name}\tNo ihec_metrics/.txt available")
+
+        # Orphan datasets, grouped by experiment_type.  Counts only.
+        # Based on ./findOrphanDatasets.sql
+        # Kinda ugly to drop down into raw SQL, but Peewee didn't like the complexity required.
+        print(f"{project_name} orphan datasets")
+        cursor = db.execute_sql(f"select et.name, count(*) "\
+            f"FROM donor d, donor_metadata dm, donor_property dp, sample s, experiment_type et, dataset ds "\
+            f"LEFT OUTER JOIN public_track pt on (ds.id = pt.dataset_id AND pt.assembly = 'hg38' AND pt.id >= 2859) "\
+            f"WHERE dm.donor_id = d.id and dm.donor_property_id = dp.id and s.donor_id = d.id and ds.sample_id = s.id "\
+            f"and et.id = ds.experiment_type_id and dp.property = 'project_name' and dm.value = '{project_name}' "\
+            # pt.id is null identifies only the orphaned datasets
+            f"and pt.id is null "\
+            f"group by et.name")
+        for row in cursor.fetchall():
+            print(f"{row[0]}\t{row[1]}")
 
 
 if __name__ == "__main__":
