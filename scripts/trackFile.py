@@ -140,7 +140,7 @@ class TrackFile:
             self.experiment_type_name = "smRNA-seq"
         # TODO - Still must handle NChIP and Tagmentation cases.
         else:
-            self.experiment_type_name = "unmatched"
+            self.experiment_type_name = "Indeterminate"
 
 
     # full_line must not contain any \n 

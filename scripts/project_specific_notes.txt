@@ -25,6 +25,13 @@ Refactoring issues: Plan: Start with recreating all .sql files from scratch.  Ma
 Next, try to re-create individual project logs, one project at a time, and verify that counts are the same.
 Can always do a git roll-back, if all else fails.
 
+
+ihec_metrics Report
+-------------------
+EMC_Temporal_Change H3K9me3 has an odd file format (not like the other projects` H3K9me3).
+EMC_Mitochondrial_Disease	H3K4me3 has an odd file format (not like the other projects).
+
+
 Operation
 ---------
 Setup:

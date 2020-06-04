@@ -10,11 +10,11 @@ import re, os
 # 1. A listing of only the .bigwig and .bigbed files from the root directory containing all the files, generated through: `find . -type f | egrep "(\.bw$)|(\.bb$)" > lists/ls_bwbb.txt` 
 # 2. Recreate the structured_data hierarchy in ./lists/ihec_metrics/ containing only full paths and the ihec_metrics/.txt and ihec_metrics/read_stats.txt files (the raw data files and the .bw & .bb files are not neccessary).
 
+# All the significant code got refactored into TrackFile.get_ihec_metrics().
+
 def main():
-    #Open and read list of files
     try:
         f = open("lists/structured_data_ls_bwBb.txt", "r") # Could add this filename as a command line param.
-        # f = open("lists/structured_data_ls_bwBb_short.txt", "r")
     except OSError:
         print("Cannot open file")
     else:

@@ -124,7 +124,7 @@ def link_project_tracks(project_name):
 # prefix - a string.
 def link_public_track(pt, prefix):
     tf = TrackFile.from_PublicTrack(pt)
-    if tf.experiment_type_name == "unmatched":
+    if tf.experiment_type_name == "Indeterminate":
         logger.warning(f"No mapping experiment_type.name for {tf.file_name}.")
 
     ds_query = Dataset.select(Dataset, Sample.private_name, ExperimentType.name)\
@@ -173,7 +173,7 @@ def link_EMC_Temporal_Change():
 
         # (2) PublicTrack.experiment_type_name matches a known mEGAdata.experiment_type.name.
         tf = TrackFile.from_PublicTrack(pt)
-        if tf.experiment_type_name == "unmatched":
+        if tf.experiment_type_name == "Indeterminate":
             logger.warning(f"No mapping experiment_type.name for {tf.file_name}.")
 
         ds_query = Dataset.select(Dataset, Sample.private_name, ExperimentType.name, SampleMetadata.value)\
