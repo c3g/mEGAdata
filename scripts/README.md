@@ -7,6 +7,9 @@ The main mEGAdata program (running Peewee 2.5.1) has its models incorrectly defi
 
 However, to prevent furthering the mess and complicating future repairs, new development on these database-heavy export scripts is done within its own virtualenv.
 
+### Must have gnumeric installed to run ssconvert (for ihec_metri_report.py)
+sudo apt-get install gnumeric
+
 ### Software platform
 Current versions in use:
 * python 3.6.9

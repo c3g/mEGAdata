@@ -25,11 +25,26 @@ Refactoring issues: Plan: Start with recreating all .sql files from scratch.  Ma
 Next, try to re-create individual project logs, one project at a time, and verify that counts are the same.
 Can always do a git roll-back, if all else fails.
 
+Maybe have a look at the pre-existing hg38 files.  What are they and do they belong?
+
 
 ihec_metrics Report
 -------------------
-EMC_Temporal_Change H3K9me3 has an odd file format (not like the other projects` H3K9me3).
-EMC_Mitochondrial_Disease	H3K4me3 has an odd file format (not like the other projects).
+EMC_Temporal_Change Histones have an odd file format (not like the other projects` Histones).
+EMC_Mitochondrial_Disease	Histones have an odd file format (not like the other projects).
+
+Only the histone files have two different file formats (and they are all the same format).  Other assays are the same.
+
+This report lists all the ihec_metrics for .bw & .bb files only.
+
+EMC_Temporal_Change: _Input files are supposed to be the same for all histone markers.  However, in many cases, H3K27ac has a different _Input than all the other histone files.  I have no idea why.  All other histone _Inputs are the same (as found, so far).  The _Input file is different and the ihec_metrics/.txt are different too.
+In EMC_Mitochondrial_Disease, H3K27ac _Input is the same as the other histone _Inputs.
+
+Paul recommended NOT giving ihec_metrics/.txt per file, but giving them per sample-assay dyad.
+
+We've got repeated files inserted into the DB.  These are all of them:
+-- where file_name like '%nput%'  These are exactly the same files, copies in multiple directories.  However, there are already repeats of the mEGAdata.dataset.  Each sample (and the files are successfully linked).
+-- where file_name like '%peak%'  These are just repeated filenames (different files), and correctly linked.
 
 
 Operation
@@ -264,6 +279,8 @@ ChIP-Seq Input - No files (raw or processed) present.
 H3K4me3 - No files (raw or processed) present.
 H3K9me3 - There are some ChIP2_H3K9me3 raw files, but no .bw or .bb present.
 
+Similar to EMC_Temporal_Change, about 15 samples have both ChIP_H3K... and H3K... directories, but the files are not repeated between them (track in one, peaks and _Input in the other).  This doesn't look like a problem.
+
 
 EMC_MSCs
 --------
@@ -350,4 +367,6 @@ Both BCU768_TC_RNASeq_2: No time_point = 2 in mEGAdata.
 Alright, withought going through each and every unmatched public_track (115), the algorithm is effective.  Unmatched public_tracks are due to problems with the data.  Unmatched tracks will have to be examined on individual bases.
 
 Strange case:  Path & filename seem to have conflicting indicators (H3K9me3 or Input - which is it?).  Check structured_data DirTree
-# EMC_Temporal_Change/BCU1799/TC/H3K9me3/tracks/BCU1799_TC_ChIP_Input_1.bw
+# EMC_Temporal_Change/BCU1799/TC/H3K9me3/tracks/BCU1799_TC_ChIP_Input_1.bw  This is fine.  All histones need an Input track. 
+
+There are 19 cases in this project where there are both ChIP_H3K... and H3K... directories for most histones (with and without ChIP prefix). What is the difference between the ChIP and non-ChIP histones?  Isn't related to timepoints.  Peaks and input in one directory, tracks in the other.  So this shouldn't be a problem after all.  (For example, BCU1053_TC).

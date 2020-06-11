@@ -162,7 +162,7 @@ def link_EMC_Temporal_Change():
         match = re.match(r".*_(Mono|BC|TC)", pt.file_name)
         prefix = match.group()
 
-        # Match right-most "_\d" of public_track.file_name against sample_property.property = 'time_point' &&sample_metadata.value = \d.
+        # Match right-most "_\d" of public_track.file_name against sample_property.property = 'time_point' && sample_metadata.value = \d.
         trailing_match = re.search(r"_\d\.", pt.file_name)
         # logger.debug(f"Found match: {trailing_match.group()}")
         if trailing_match is not None:

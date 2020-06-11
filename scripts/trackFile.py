@@ -187,7 +187,6 @@ class TrackFile:
     @classmethod
     def from_PublicTrack(cls, PublicTrack):
         pt = cls(f"./{PublicTrack.path}/{PublicTrack.file_name}") # Recreate as a full_line to reuse the __init__ constructor.
-        # pt.get_ihec_metrics()  # Should this be here?
         return pt
 
 

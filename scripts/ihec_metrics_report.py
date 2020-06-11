@@ -1,156 +1,82 @@
 #!/usr/bin/python3
+import re
 import peewee
-from peewee import fn, JOIN
-from settings import db
 
-from models import PublicTrack, Dataset, ExperimentType
+from models import PublicTrack, ExperimentType
 
 from trackFile import TrackFile
 
 # Generates a report of all tracks with their respective ihec_metrics/.txt stats.
 #
-# See bottom of this file for report formatting.
+# Merge separate .tsv files as worksheets into one common workbook spreadsheet with:
+# ssconvert --merge-to=ihec_metrics_report.ods ./reports/*.tsv
+#
+# Note: Histone files have two separate formats (col definitions) which cannot be munged together.  They are presented in separate worksheets.
 
 def main():
-    project_names = [
-        "EMC_Asthma", # Coded.
-        "EMC_BluePrint", # Coded, but very little linked.
-        # "EMC_Bone", # No datasets - never implemented.
-        "EMC_BrainBank", # Coded, but #TODO: Some of the unmapped NCHiP's are in this project.
-        "EMC_CageKid", # Coded.
-        # "EMC_COPD", # Almost nothing here.  Never implemented.
-        # "EMC_Drouin", # Only two samples.  Never implemented.
-        "EMC_iPSC", # Coded, but handled exceptionally in its own method.
-        "EMC_Leukemia", # Coded.
-        "EMC_Mature_Adipocytes", # Coded.
-        "EMC_Mitochondrial_Disease", # Coded.
-        "EMC_MSCs", # Coded only enough to generate logs.  Will have to be done seriously, at some point.
-        # "EMC_Primate", # Should this be implemented?
-        # "EMC_Rodent_Brain", # Should this be implemented?
-        "EMC_SARDs", # Coded enough for logs.  Many orphans and unmatched.
-        "EMC_Temporal_Change", #  Coded. 
-    ]
-    print(f"EMC ihec_metrics")
-    print(f"Use this file with AutoFilter to filter by 1) project_name and 2) experiment_type.name (though always display row when experiment_type.name is empty so as to include WITH / WITHOUT / UNMATCHED title info.)")
-    for project_name in project_names:
-        # Tracks with dataset match
-        print(f"\n{project_name}\t\tTracks WITH dataset match")
-        pt_query = (PublicTrack.select(PublicTrack, Dataset.id, ExperimentType.name)\
-            .join(Dataset)\
-            .switch(Dataset)\
-            .join(ExperimentType)\
-            .where((PublicTrack.path.startswith(project_name)) & (PublicTrack.dataset_id.is_null(False))))\
-            .order_by(ExperimentType.name, PublicTrack.file_name)
+    # Process most (but not all) mEGAdata.experiment_type.names.  Ignore Chipmentation.  mRNA-seq doesn't have any track files.
+    et_query = (ExperimentType.select(ExperimentType.name)\
+        .where(~ExperimentType.name.startswith("Chipmentation") & ~ExperimentType.name.startswith("mRNA-seq"))\
+        .order_by(ExperimentType.name))
+    et_results = et_query.execute()
+    for et in et_results:
+        # Get all the hg38 aligned public tracks.
+        # Histones for EMC_Temporal_Change and EMC_Mitochondrial_Disease have a different format, so don't treat them here.
+        if re.match("H3K", et.name):
+            pt_query = (PublicTrack.select(PublicTrack).where(PublicTrack.path.is_null(False))\
+                .where(~PublicTrack.path.startswith("EMC_Mitochondrial_Disease") & ~PublicTrack.path.startswith("EMC_Temporal_Change"))\
+                .order_by(PublicTrack.path, PublicTrack.file_name))
+            # Write headers and data to a file 
+            write_ihec_metrics(pt_query, et.name, et.name)
 
-        pt_results = pt_query.execute()
-        col_headers_printed = False
-        previous_experiment_type = None
-        for pt in pt_results:
-            my_track_file = TrackFile.from_PublicTrack(pt)
-            current_experiment_type = pt.dataset.experiment_type.name # Current experiment_type.name, used to determine if col headers need to be printed again.
-            if my_track_file.ihec_metrics:
-                try:
-                    im = open(my_track_file.ihec_metrics, "r")
-                except OSError:
-                    print("Cannot open ihec_metrics/ .txt file")
-                else:
-                    headers = im.readline()
-                    # Only print col headers once.
-                    if col_headers_printed is False or current_experiment_type != previous_experiment_type:
-                        print(f"{project_name}\t{pt.dataset.experiment_type.name}\t\t{headers}", end="") # im.readline already contains a \n
-                        col_headers_printed = True
-                    # Always print data cols
-                    print(f"{project_name}\t{pt.dataset.experiment_type.name}\t{pt.file_name}\t{im.readline()}", end="")
-                finally:
-                    im.close()
-                    previous_experiment_type = pt.dataset.experiment_type.name
-            else:
-                # if col_headers_printed is False or current_experiment_type != previous_experiment_type:
-                #     # print(f"{project_name}\t{pt.dataset.experiment_type.name}\t", end="")
-                #     col_headers_printed = False
-                #     previous_experiment_type = pt.dataset.experiment_type.name
-                print(f"{project_name}\t{pt.dataset.experiment_type.name}\t{pt.file_name}\tNo ihec_metrics/.txt available")
+            # Handle the special case of EMC_Mitochondrial_Disease & EMC_Temporal_Change histones, with their alternate format.
+            pt_query = (PublicTrack.select(PublicTrack).where(PublicTrack.path.is_null(False))\
+                .where(PublicTrack.path.startswith("EMC_Mitochondrial_Disease") | PublicTrack.path.startswith("EMC_Temporal_Change"))\
+                .order_by(PublicTrack.path, PublicTrack.file_name))
+            write_ihec_metrics(pt_query, et.name, et.name+"_alternate_metrics")
+        else:
+            pt_query = (PublicTrack.select(PublicTrack).where(PublicTrack.path.is_null(False))\
+                .order_by(PublicTrack.path, PublicTrack.file_name))
+            write_ihec_metrics(pt_query, et.name, et.name)
 
-        # Tracks without dataset match.
-        # Kinda an ugly copy & paste of the "Tracks WITH dataset match" bit, but there are enough necessary differences.
-        print(f"\n{project_name}\t\tTracks WITHOUT dataset match")
-        pt_query = (PublicTrack.select(PublicTrack)
-            .where((PublicTrack.path.startswith(project_name)) & (PublicTrack.dataset_id.is_null(True)))\
-            .order_by(PublicTrack.file_name))
+# pt_query: Query yeilding public tracks.
+# et_name: mEGAdata.experiment_type.name.
+# out_file_name: handle for the tsv.
+def write_ihec_metrics(pt_query, et_name, out_file_name):
+    pt_results = pt_query.execute()
+    # Transform to PublicTrack objects.
+    all_track_files = []
+    for pt in pt_results:
+        track_file = TrackFile.from_PublicTrack(pt)
+        if track_file.experiment_type_name == et_name:
+            all_track_files.append(track_file)
+    
+    f = open(f"reports/{out_file_name}.tsv", "wt")
+    # Write headers line of the first PublicTrack that has an ihec_metrics/.txt file.
+    for tf in all_track_files:
+        if tf.ihec_metrics:
+            im_file = open(all_track_files[0].ihec_metrics)
+            f.write("Project\tPath & File\t" + im_file.readline())
+            im_file.close()
+            break # Just write headers once.
+        else:
+            pass
 
-        pt_results = pt_query.execute()
-        col_headers_printed = False
-        previous_experiment_type = None
+    # For all track files, write data cols.
+    for tf in all_track_files:
+        # Write the project name, taken from the first token of the TrackFile.path
+        match = re.match(r"[\w]+/", tf.path)
+        f.write(match.group().rstrip("/", ) + "\t") # Project name
+        if tf.ihec_metrics:
+            im_file = open(tf.ihec_metrics)
+            im_file.readline() # read and discard header line
+            f.write(f"{tf.path}/{tf.file_name}\t")
+            f.write(im_file.readline()) # write data cols
+            im_file.close()
+        else:
+            f.write(f"{tf.path}/{tf.file_name}\tNo metrics available\n")
 
-        # Need a list of results, sorted by TrackFile.experiment_type_name
-        my_track_files = []
-        for pt in pt_results:
-            my_track_files.append(TrackFile.from_PublicTrack(pt))
-        my_track_files.sort(key=lambda x: x.experiment_type_name)
-        # ut.sort(key=lambda x: x.count, reverse=True)
-        for my_track_file in my_track_files:
-            current_experiment_type = my_track_file.experiment_type_name # Current experiment_type_name, used to determine if col headers need to be printed again.
-            if my_track_file.ihec_metrics:
-                try:
-                    im = open(my_track_file.ihec_metrics, "r")
-                except OSError:
-                    print("Cannot open ihec_metrics/ .txt file")
-                else:
-                    headers = im.readline()
-                    # Only print col headers once.
-                    if col_headers_printed is False or current_experiment_type != previous_experiment_type:
-                        print(f"{project_name}\t{my_track_file.experiment_type_name}\t\t{headers}", end="") # im.readline already contains a \n
-                        col_headers_printed = True
-                    # Always print data cols
-                    print(f"{project_name}\t{my_track_file.experiment_type_name}\t{my_track_file.file_name}\t{im.readline()}", end="")
-                finally:
-                    im.close()
-                    previous_experiment_type = my_track_file.experiment_type_name
-            else:
-                # if col_headers_printed is False or current_experiment_type != previous_experiment_type:
-                #     # print(f"{project_name}\t{my_track_file.experiment_type_name}\t", end="")
-                #     col_headers_printed = False
-                #     previous_experiment_type = my_track_file.experiment_type_name
-                print(f"{project_name}\t{my_track_file.experiment_type_name}\t{my_track_file.file_name}\tNo ihec_metrics/.txt available")
-
-        # Orphan datasets, grouped by experiment_type.  Counts only.
-        # Based on ./findOrphanDatasets.sql
-        # Kinda ugly to drop down into raw SQL, but Peewee didn't like the complexity required.
-        print(f"\n{project_name}\t\tDatasets unmatched to tracks")
-        cursor = db.execute_sql(f"select et.name, count(*) "\
-            f"FROM donor d, donor_metadata dm, donor_property dp, sample s, experiment_type et, dataset ds "\
-            f"LEFT OUTER JOIN public_track pt on (ds.id = pt.dataset_id AND pt.assembly = 'hg38' AND pt.id >= 2859) "\
-            f"WHERE dm.donor_id = d.id and dm.donor_property_id = dp.id and s.donor_id = d.id and ds.sample_id = s.id "\
-            f"and et.id = ds.experiment_type_id and dp.property = 'project_name' and dm.value = '{project_name}' "\
-            # pt.id is null identifies only the orphaned datasets
-            f"and pt.id is null "\
-            f"group by et.name")
-        for row in cursor.fetchall():
-            print(f"{project_name}\t{row[0]}\t{row[1]}")
-
+    f.close()
 
 if __name__ == "__main__":
   main()
-
-# ------------------------------
-# ihec_metrics_report format
-# ------------------------------
-#
-# Creates a .tsv file, suitable to opening as a spreadsheet.
-# The intention is to use the AutoFilter to filter by 1) project_name and 2) experiment_type.name (though always display row when experiment_type.name is empty for WITH / WITHOUT / UNMATCHED info.)
-#
-# Column def's
-# project_name, experiment_type.name, file_name, headers/data/no_metrics
-# 
-# By project
-#     Tracks WITH dataset match
-#         By experiment_type.name
-#             project_name, experiment_type.name, \t, ihec_metrics/.txt column headers
-#             project_name, experiment_type.name, public_track.file_name, ihec_metrics/.txt (data cols, iff available)
-#     Tracks WITHOUT dataset match
-#         By experiment_type_name
-#             project_name, TrackFile.experiment_type_name, \t, ihec_metrics/.txt column headers
-#             project_name, TrackFile.experiment_type_name, TrackFile.file_name, ihec_metrics/.txt (data cols, iff available)
-#     Datasets unmatched to tracks
-#         By experiment_type:
-#             project_name, experiment_type.name, count(of experiment_type) (only applicable types) 
