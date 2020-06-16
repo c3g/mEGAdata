@@ -47,6 +47,11 @@ We've got repeated files inserted into the DB.  These are all of them:
 -- where file_name like '%peak%'  These are just repeated filenames (different files), and correctly linked.
 
 
+IHEC Data Hub generation
+------------------------
+datasets.analysis_attributes: Just used the BWA and TopHat versions from the previously submitted hubs.  Are these valid?
+
+
 Operation
 ---------
 Setup:
