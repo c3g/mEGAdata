@@ -73,23 +73,26 @@ class TrackFile:
         else:
             self.file_type = "Unknown"  # This category should never be used.
 
-    # TrackType ought to basically be (signal_forward|signal_reverse|signal_unstranded|peak_calls|methylation_profile|narrowPeak|broadPeak|coverage)
-    # #TODO This is still very incomplete and will eventually be needed for IHEC DP browser definitions
+    # TrackType ought to be one of: signal_forward|signal_reverse|signal_unstranded|peak_calls|methylation_profile|contigs
+    # All peaks are considered peak_calls...
+    # coverage is something else.
+    
+    # #TODO This is still very incomplete and will eventually be needed for IHEC DH browser definitions
     def find_track_type(self):
-        if ".forward." in self.file_name:
+        if ".forward." in self.file_name: # This one is fine.
             self.track_type = "signal_forward"
-        elif ".reverse." in self.file_name:
+        elif ".reverse." in self.file_name: # This one is fine.
             self.track_type = "signal_reverse"
-        elif "_peaks" in self.file_name:
+        elif "_peaks" in self.file_name: # This one is fine.
             self.track_type = "peak_calls"
+        elif "methylation" in self.file_name: # This one is fine.
+            self.track_type = "methylation_profile"
         elif "ChIP" in self.file_name:  # I don't trust this part yet.
             self.track_type = "signal_unstranded"
-        elif "methylation" in self.file_name:
-            self.track_type = "methylation_profile"
         ## Unknown file types - ALL BELOW MUST STILL BE FURTHER CATEGORIZED
         ## These are not always mutually exclusive.  Argh!
         elif "coverage" in self.file_name:
-            self.track_type = "coverage"  # always alongside methylation files.
+            self.track_type = "coverage"  # always alongside methylation files.  What is this?  What category does this fit into?
         else:
             self.track_type = "Unknown"  # This category should be unused.
 
