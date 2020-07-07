@@ -1,17 +1,18 @@
-# Hub Dataset
-
 import json
 import datetime
 import peewee
-from models import PublicTrack, Dataset, Sample, ExperimentType, ExperimentMetadata, ExperimentProperty
 
+from models import PublicTrack, Dataset, Sample, ExperimentType, ExperimentMetadata, ExperimentProperty
+from models import SampleMetadata, SampleProperty, Donor, DonorMetadata, DonorProperty
+
+# Generates an IHEC data hub for all successfully linked public tracks.
 
 class Hub:
     def __init__(self):
         self.data = {
             "datasets": {},
             "hub_description": {},
-            # "samples": {"0":0},
+            "samples": {},
             }
 
     def jsonify(self):
@@ -58,20 +59,25 @@ class Hub_Description:
 def main():
     h = Hub()
 
-    # Find datasets with linked public_tracks, not any orphaned ones.
+    # Find datasets with linked public_tracks; exclude any orphaned ones.
     LinkedDS = PublicTrack.alias()
     linked_ds = (LinkedDS.select(LinkedDS.dataset_id)\
         .where(LinkedDS.path.is_null(False))\
+        .distinct()\
         .alias('linked_ds')\
         )
+
+    # Select these Datasets with other needed info.
     ds_query = (Dataset.select(Dataset, ExperimentType, Sample)\
+        # Just one dataset, for testing.
+        # .where(Dataset.id == 4954)\
         .join(linked_ds, on=(Dataset.id == linked_ds.c.dataset_id))\
         .switch(Dataset)\
         .join(ExperimentType)\
         .switch(Dataset)\
         .join(Sample)\
-        # .where(Dataset.id == 4954)\  # Just one dataset, for testing.
         )
+
     ds_results = ds_query.execute()
     for ds in ds_results:
         # Dataset section
@@ -99,41 +105,53 @@ def main():
 
         # browser
         # TODO: Need track_type categorized first.
+        # Work with what we have; when in doubt, default everything to `signal`
 
         # download section never seems to be used... 
 
+        # Lots of extraneous metadata here - should all fields really be included?
+        # Samples
+        sm_query = (SampleMetadata.select(SampleMetadata, SampleProperty)\
+            .where(SampleMetadata.sample_id == ds.sample_id)\
+            .join(SampleProperty)\
+            )
+        
+        # Sample Attributes (Properties)
+        sa = {}
+        for sm in sm_query.dicts():
+            sa[sm["property"]] = sm["value"]
+        
+        # Find the Donor
+        d_query = (Donor.select(Donor, Sample)\
+            .join(Sample)\
+            .where(Sample.id == ds.sample_id)\
+            )
+        d_query.execute()
+        for d in d_query:
+            donorID = d.id # The Donor
+
+        # Donor Attributes (Properties)
+        dm_query = (DonorMetadata.select(DonorMetadata, DonorProperty)\
+            .where(DonorMetadata.donor_id == donorID)\
+            .join(DonorProperty)\
+            )
+        da = {}
+        for dm in dm_query.dicts():
+            da[dm["property"]] = dm["value"]
+        
+        # Combine the Sample and Donor metadata; place it into the data hub.
+        samples_metadata = sa.copy()
+        samples_metadata.update(da)
+        h.data["samples"][ds.sample.public_name] = samples_metadata
+
     # Hub description
     h.data["hub_description"] = Hub_Description().h_d
-
-    # Samples
-    # Could just dump all the samples, regardless of whether we need them or not.
-    # Need both sample and donor metadata
     
-
     print(h.jsonify())
 
 
 def junk(self):
     pass
-    # h.data = {
-    #     "datasets": {"0":0},
-    #     "hub_description": {"0":0},
-    #     "samples": {"0":0},
-    #     }
-
-    # print(json.dumps(hd.__dict__, indent = 4))
-    # print(json.dumps(hd__dict__, indent = 4))
-
-            # print(em.id, em.dataset_id, em.value)
-            # print(em.toJSON())
-            # print(em, em.value)
-    # em_query = (ExperimentMetadata.select(ExperimentMetadata.value, ExperimentProperty.property)\
-    #     .where(ExperimentMetadata.dataset_id == ds.id))\
-    #     .join(ExperimentProperty))
-
-    # em_results = em_query.execute()
-            # print(f"{em.experiment_property.property}: {em.value}")
-        #     h.data["datasets"][dataset_id]["experiment_attributes"]f"{em.experiment_property.property}: {em.value}")
 
 
 if __name__ == "__main__":

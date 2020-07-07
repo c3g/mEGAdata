@@ -71,7 +71,7 @@ Questions for Rola:
 4) What was her involvement?
 3) Thoughts on the report (unmatched and orphaned).
 5) Lots of questions about specific projects.
-1) Analysis software versions - GenPipes 3.1.0, (based on version dates).
+1) Analysis software versions - GenPipes 3.1.0, (based on version dates).  Is this the right software?  Is there a way to confirm it? (How much does it matter?)
 2) Classification.
 
 
