@@ -104,12 +104,10 @@ def main():
         h.data["datasets"][dataset_id]["experiment_attributes"] = ea
 
         # browser
-        # TODO: Need track_type categorized first.
-        # Work with what we have; when in doubt, default everything to `signal`
 
         # download section never seems to be used... 
 
-        # Lots of extraneous metadata here - should all fields really be included?
+        # Lots of extraneous metadata here - should all fields really be included? #TODO: see if they get filtered during the ingestion step.
         # Samples
         sm_query = (SampleMetadata.select(SampleMetadata, SampleProperty)\
             .where(SampleMetadata.sample_id == ds.sample_id)\
@@ -147,6 +145,7 @@ def main():
     # Hub description
     h.data["hub_description"] = Hub_Description().h_d
     
+    # Output to terminal
     print(h.jsonify())
 
 

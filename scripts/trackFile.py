@@ -29,7 +29,7 @@ class TrackFile:
     file_extension - file extension
     file_type - BigWig, BigBed, etc.
     assembly - hg38  #TODO: verify this - it might not be the case (for non-human primates & mice)
-    track_type - signal_forward, signal_reverse, etc. - #TODO NEEDS REWORKING
+    track_type - signal_forward, signal_reverse, etc.  Defaults to signal_unstranded.
     raw_experiment_type - Unrefined experiment_type.
     experiment_type_name - Corresponds to a mEGAdata.experiment_type.name
     md5sum - md5sum of the file.
@@ -74,10 +74,8 @@ class TrackFile:
             self.file_type = "Unknown"  # This category should never be used.
 
     # TrackType ought to be one of: signal_forward|signal_reverse|signal_unstranded|peak_calls|methylation_profile|contigs
-    # All peaks are considered peak_calls...
-    # coverage is something else.
-    
-    # #TODO This is still very incomplete and will eventually be needed for IHEC DH browser definitions
+    # All peak-type files are included in the peak_calls category...
+    #TODO This will eventually be needed for IHEC DH browser definitions
     def find_track_type(self):
         if ".forward." in self.file_name: # This one is fine.
             self.track_type = "signal_forward"
@@ -87,16 +85,11 @@ class TrackFile:
             self.track_type = "peak_calls"
         elif "methylation" in self.file_name: # This one is fine.
             self.track_type = "methylation_profile"
-        elif "ChIP" in self.file_name:  # I don't trust this part yet.
+        else: # All ChIP, non-peak ATACSeq, smRNA, coverage and chipmentation files are included here.
+            # According to edcc/....../migration/1.3.4_to_1.3.5.sql, dataset_track.view='coverage' files were reassigned to the 'signal' category.
             self.track_type = "signal_unstranded"
-        ## Unknown file types - ALL BELOW MUST STILL BE FURTHER CATEGORIZED
-        ## These are not always mutually exclusive.  Argh!
-        elif "coverage" in self.file_name:
-            self.track_type = "coverage"  # always alongside methylation files.  What is this?  What category does this fit into?
-        else:
-            self.track_type = "Unknown"  # This category should be unused.
 
-    # Don't save this messy value as a DB field - keep it as a TrackFile property.
+    # Don't save this messy value as a DB field - keep it as a private TrackFile property.
     # raw_experiment_type is still messy and intended to map to mEGAdata.experiment_type.name through map_raw_experiment_type_to_experiment_type_name()
     # These will ultimately need to map to (edcc.track_metadata key: EXPERIMENT_TYPE)(maybe) or edcc.assay (probably).
     def find_raw_experiment_type(self):
@@ -107,16 +100,6 @@ class TrackFile:
         # Manual intervention for some wacky-named file exceptions.
         if "MSC_Tagmentation-ChIP_100K" in self.path:
             self.raw_experiment_type = "Tagmentation-ChIP_100K_H3K4ME1"
-
-        # These cases are handled in map_raw_experiment_type_to_experiment_type_name()
-        # elif "ATAC" in self.file_name:
-        #     self.track_type = "ATAC"
-        # elif "smRNASeq" in self.file_name:
-        #     self.track_type = "smRNASeq"
-        # elif "chipmentation" in self.file_name:
-        #     self.track_type = "chipmentation"
-        # elif "_BS_" in self.file_name and "BS" in self.path:
-        #     self.track_type = "_BS_" # Bisulfite sequencing determines methylation.
 
 
     # Maps public_track.raw_experiment_type to mEGAdata.experiment_type.name, in a slightly fuzzy manner, when possible.
@@ -200,7 +183,6 @@ class TrackFile:
         # file_name = self.file_root + ": " + self.file_extension
         # file_type = self.file_type
         # return full_line + path + "\n" + file_name + "\n" + file_type + "\n"
-        # return self.track_type
         # return self.full_line + ": " + self.md5sum
         # return self.path + "/"+ self.file_name + ": " + self.md5sum
         # return self.path + "/" + self.file_name + "," + self.raw_experiment_type

@@ -74,6 +74,8 @@ Questions for Rola:
 1) Analysis software versions - GenPipes 3.1.0, (based on version dates).  Is this the right software?  Is there a way to confirm it? (How much does it matter?)
 2) Classification.
 
+In mEGAdata, all the released hg19 Bisulfite-Seq's have 3 tracks: a methylation_profile, signal_forward and signal_reverse.  However, in mp2 (hg38), all the BS have only a methylation.bw and a coverage.bw.  Why aren't there any signal files? 
+
 
 Operation
 ---------
