@@ -76,6 +76,12 @@ Questions for Rola:
 
 In mEGAdata, all the released hg19 Bisulfite-Seq's have 3 tracks: a methylation_profile, signal_forward and signal_reverse.  However, in mp2 (hg38), all the BS have only a methylation.bw and a coverage.bw.  Why aren't there any signal files? 
 
+What is up with the hg38 tracks that were previously in mEGAdata.  What are they and do they belong?
+
+What CLI should I implement to make this a better script?
+
+A bunch of datasets have multiple signal_unstranded tracks (often both _input and track itself).   Thid doesn't look right.  For example, "MS002401.H3K36me3" (though here there are also two _input tracks...)
+
 
 Operation
 ---------

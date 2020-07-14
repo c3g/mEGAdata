@@ -17,7 +17,7 @@ class Hub:
 
     def jsonify(self):
         # Legible and pretty representation
-        return json.dumps(self.data, indent=2, sort_keys=True)
+        return json.dumps(self.data, indent=4, sort_keys=True)
 
 class Analysis_Attributes:
     # All values taken from previous 2016 and 2017 McGill submissions.
@@ -86,7 +86,7 @@ def main():
         h.data["datasets"][dataset_id] = {}
 
         # analysis_attributes
-        h.data["datasets"][dataset_id]["analysis_attributes"] = Analysis_Attributes().a_a # TODO: use actual experiment_type value.
+        h.data["datasets"][dataset_id]["analysis_attributes"] = Analysis_Attributes().a_a # TODO: use actual values for actual experiment_type.
 
         # sample_id
         h.data["datasets"][dataset_id]["sample_id"] = ds.sample.public_name
@@ -104,6 +104,28 @@ def main():
         h.data["datasets"][dataset_id]["experiment_attributes"] = ea
 
         # browser
+        # Find tracks linked to this dataset.
+        track_query = (PublicTrack.select(PublicTrack)\
+            # Restrict to new, hg38 tracks (path not null)
+            .where((PublicTrack.dataset_id == ds.id) & (PublicTrack.path.is_null(False)))\
+            )
+        track_results = track_query.execute()
+
+        browser = {}
+        for track in track_results:
+            track_type = []
+            browser_track = {}
+
+            browser_track["big_data_url"] = track.path + track.file_name
+            browser_track["md5sum"] = track.md5sum
+            track_type.append(browser_track)
+            # browser.track_type can have one or more list entries.  First entry taken as `primary` unless otherwise stated.
+            if track.track_type in browser:
+                browser[track.track_type].extend(track_type)
+            else:
+                browser[track.track_type] = track_type
+        
+        h.data["datasets"][dataset_id]["browser"] = browser 
 
         # download section never seems to be used... 
 
