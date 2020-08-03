@@ -10,5 +10,7 @@ lists/*
 
 scripts-venv/*
 
+lnOriginalToStructuredData/*/
+
 # ignore subfolders, but not files inside logs/
 logs/*/
