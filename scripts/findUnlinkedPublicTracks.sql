@@ -20,5 +20,4 @@ WHERE
 --   AND path LIKE 'EMC_MSCs%'
 --   AND path LIKE 'EMC_SARDs%'
 --   AND path LIKE 'EMC_Temporal_Change%'  -- Specify project name.
-
 ;

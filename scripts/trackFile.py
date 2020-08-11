@@ -119,11 +119,13 @@ class TrackFile:
         elif re.search(r"H3K\d{1,2}(me\d|ac)", self.raw_experiment_type) and re.search(r"NChIP", self.raw_experiment_type) is None:
             res = re.search(r"H3K\d{1,2}(me\d|ac)", self.raw_experiment_type)
             self.experiment_type_name = res.group()
-        elif re.search(r"^RNASeq", self.raw_experiment_type):
+        elif re.search(r"^RNASeq", self.raw_experiment_type): # TODO: What about the case of RNA?  Though there shouldn't be any .bw, .bb in RNA directories (they were stored in RNASeq directories). 
             self.experiment_type_name = "RNA-seq"
-        # Haven't handled mRNA-seq case (since there aren't any data files of this type, though there are a few orphan datasets in EMC_BluePrint).
         elif re.search(r"^smRNASeq", self.raw_experiment_type):
             self.experiment_type_name = "smRNA-seq"
+        # TODO: Now need to handle mRNA-seq case (since there are now data files of this type in EMC_BluePrint).
+        elif re.search(r"^mRNASeq", self.raw_experiment_type): # TODO: UNTESTED!!!
+            self.experiment_type_name = "mRNA-seq"
         # TODO - Still must handle NChIP and Tagmentation cases.
         else:
             self.experiment_type_name = "Indeterminate"
@@ -138,7 +140,10 @@ class TrackFile:
             # Class var dictionary of all md5sums is empty and must be populated.
             self.load_md5sum()
         if self.file_type in ['BigWig', 'BigBed']:  # md5sum list should only contain the .bw and .bb files.
-            self.md5sum = self.md5sum_dict[full_line]
+            if full_line in self.md5sum_dict:
+                self.md5sum = self.md5sum_dict[full_line]
+            else:
+                self.md5sum = "Uncalculated" 
 
     @classmethod
     def load_md5sum(cls):

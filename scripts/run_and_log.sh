@@ -60,7 +60,7 @@ mysql mEGAdata < findOrphanDatasets.sql > ${dir}orphanDatasets.tsv
 
 
 # Refresh DB, ready for next time.  Only used for iterative debugging.
-# Turn off if you want to persist the results of this script. 
+# Comment out if you want to persist the results of this script. 
 # mysql mEGAdata < "/home/assez/sql/megadata-with-addTrackToDB.sql"
 
 

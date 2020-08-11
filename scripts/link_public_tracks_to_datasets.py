@@ -26,8 +26,8 @@ def main():
         "EMC_MSCs", # Coded only enough to generate logs.  Will have to be done seriously, at some point.
         # "EMC_Primate", # Should this be implemented?
         # "EMC_Rodent_Brain", # Should this be implemented?
-        "EMC_SARDs", # Coded enough for logs.  Many orphans and unmatched.
-        "EMC_Temporal_Change", #  Coded. 
+        "EMC_SARDs", # Coded.  Many orphans and unmatched.
+        "EMC_Temporal_Change", # Coded. 
     ]
     for project_name in project_names:
         link_project_tracks(project_name)
@@ -40,7 +40,10 @@ def link_project_tracks(project_name):
     pt_query = PublicTrack.select().where(PublicTrack.path.startswith(project_name))
     for pt in pt_query:
         if project_name == "EMC_Asthma":
-            match = re.match(r"[\w.]+((_Eos)|((ATAC)(Seq)?(CP)?))", pt.file_name) # Need to include the 0.5x case 
+            if re.match(r"C|M", pt.file_name):  # Treat all the C00, C32M and MSC16 stuff uniquely.  Besides, there are no matching datasets.
+                match = re.match(r"[A-Za-z0-9]", pt.file_name)
+            else: # Usual case.
+                match = re.match(r"[\w.-]+((_Eos)|((ATAC)(Seq)?(CP)?)|CD4)", pt.file_name) # Need to include the 0.5x case 
             prefix = match.group()
         elif project_name == "EMC_BluePrint": #
             # sample.private_names always end in "_nTC" or "_GR".  Nice!  "_Mono"s follow the pattern, but there are no corresponding sample.private_names.
@@ -92,8 +95,12 @@ def link_project_tracks(project_name):
         # elif project_name == "EMC_Primate": # Not yet implemented.  Should it be?
         # elif project_name == "EMC_Rodent_Brain": # Should this be implemented?
         elif project_name == "EMC_SARDs":
-            # match = re.match(r".*_(Mono|BC|TC)", pt.file_name) # No BC present in filenames (though there are datasets...)
-            match = re.match(r".*_(Mono|TC)", pt.file_name)
+            logger.debug(f"Working on: {pt.file_name}")
+            if re.match(r"EPI", pt.file_name): # Unsure what these are.  Mostly just filtering them out.
+                match = re.match(r".*_(CONT|CD4)", pt.file_name)
+            else:
+                match = re.match(r".*_(Mono|BC|TC)", pt.file_name)
+            # match = re.match(r".*_(Mono|TC)", pt.file_name)
             prefix = match.group()
         elif project_name == "EMC_Temporal_Change": # Implemented separately
             continue
@@ -155,7 +162,7 @@ def link_EMC_iPSC():
             prefix = match.group()
             link_public_track(pt, prefix)
 
-# This project has multiple time-points that need to be handled specially.
+# This project has multiple time_points that need to be handled specially.
 def link_EMC_Temporal_Change():
     pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_Temporal_Change"))
     for pt in pt_query:

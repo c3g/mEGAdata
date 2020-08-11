@@ -27,17 +27,39 @@ Can always do a git roll-back, if all else fails.
 
 Maybe have a look at the pre-existing hg38 files.  What are they and do they belong?
 
+TODO: change name of run_and_log.sh to link_and_log.sh
+TODO: set logging to a file (not 2>)
+
+
+Project line number ranges (TODO: These will be different after the BigLn)
+--------------------------
+├── EMC_Asthma:                      2  ->  1 245
+├── EMC_BluePrint:               1 246  -> 11 006
+├── EMC_Bone:                   11 007  -> 11 229
+├── EMC_BrainBank:              11 230  -> 12 805
+├── EMC_Cagekid:                12 806  -> 13 724
+├── EMC_Drouin:                 13 725  -> 13 876
+├── EMC_iPSC:                   13 877  -> 14 248
+├── EMC_Leukemia:               14 249  -> 14 520
+├── EMC_Mature_Adipocytes:      14 521  -> 15 024
+├── EMC_Mitochondrial_Disease:  15 025  -> 17 493
+├── EMC_MSCs:                   17 494  -> 19 762
+├── EMC_Primate:                19 763  -> 19 909
+├── EMC_Rodent_Brain:           19 910  -> 20 378
+├── EMC_SARDs:                  20 379  -> 21 895
+└── EMC_Temporal_Change:        21 896  -> 26 950
+
 
 ihec_metrics Report
 -------------------
 EMC_Temporal_Change Histones have an odd file format (not like the other projects` Histones).
 EMC_Mitochondrial_Disease	Histones have an odd file format (not like the other projects).
 
-Only the histone files have two different file formats (and they are all the same format).  Other assays are the same.
+Only the histone files have two different file formats (columns) (and they are all the same format).  Other assays are the same.
 
 This report lists all the ihec_metrics for .bw & .bb files only.
 
-EMC_Temporal_Change: _Input files are supposed to be the same for all histone markers.  However, in many cases, H3K27ac has a different _Input than all the other histone files.  I have no idea why.  All other histone _Inputs are the same (as found, so far).  The H3K27ac _Input files are different and their ihec_metrics/.txt are different too.
+EMC_Temporal_Change: _Input files are usually the same for all histone markers.  However, in many cases, H3K27ac has a different _Input than all the other histone files.  I have no idea why.  All other histone _Inputs are the same (as found, so far).  The H3K27ac _Input files are different and their ihec_metrics/.txt are different too.
 In EMC_Mitochondrial_Disease, H3K27ac _Input is the same as the other histone _Inputs.
 
 Paul recommended NOT giving ihec_metrics/.txt per file, but giving them per sample-assay dyad.
@@ -80,7 +102,11 @@ What is up with the hg38 tracks that were previously in mEGAdata.  What are they
 
 What CLI should I implement to make this a better script?
 
-A bunch of datasets have multiple signal_unstranded tracks (often both _input and track itself).   Thid doesn't look right.  For example, "MS002401.H3K36me3" (though here there are also two _input tracks...)
+A bunch of datasets have multiple signal_unstranded tracks (often both _input and track itself).   This doesn't look right.  For example, "MS002401.H3K36me3" (though here there are also two _input tracks...)
+
+Lots of _input files are getting mixed in with non-Input datasets.  Seems to be due to location in file dir.  Project-specific.
+
+MS002202, column O has the spreadsheet error.
 
 
 Operation
@@ -169,6 +195,9 @@ mEGAdata has datasets 'mostly' for RNA-seq, MRNA-seq and Capture Methylome.  How
 
 There are over 1K files for ChIP_H3Kxxx, but no datasets defined in mEGAdata.  Does ChIP possibly refer to "Chipmentation" in this context (I doubt it)?  I suspect just missing defined datasets.
 
+There is a README.txt file explaining the merging of input files:
+/structured_data/EMC_BluePrint/README/README/input/ihec_metrics/README_input.txt
+
 
 EMC_Bone
 --------
@@ -246,6 +275,8 @@ EMC_iPSC
 
 #TODO: add_tracks_to_db.py imported the non-human primates as assembly = 'hg38' into mEGAdata.  Should be changed.
 
+Should this study just be ignored completely (not included in data hub)?
+
 Has 3 human donors (all are other non-human primates).  For now, including the humans only.
 Only have tracks for 2 of the 3 human donors.
 
@@ -315,7 +346,7 @@ ChIP-Seq Input - No files (raw or processed) present.
 H3K4me3 - No files (raw or processed) present.
 H3K9me3 - There are some ChIP2_H3K9me3 raw files, but no .bw or .bb present.
 
-Similar to EMC_Temporal_Change, about 15 samples have both ChIP_H3K... and H3K... directories, but the files are not repeated between them (track in one, peaks and _Input in the other).  This looks like a problem since the _Input file is repeated and shouldn't even be together with the histone marker (it should be in an ChIP_Input directory).  For now, the _Input file is getting associated with the particular histone as a track.
+Similar to EMC_Temporal_Change, about 15 samples have both ChIP_H3K... and H3K... directories, but the files are not repeated between them (tracks in one, peaks and _Input in the other).  This looks like a problem since the _Input file is repeated and shouldn't even be together with the histone marker (it should be in an ChIP_Input directory).  For now, the _Input file is getting associated with the particular histone as a track.
 
 
 EMC_MSCs
@@ -356,13 +387,13 @@ BC = B Cell
 Mono = Monocyte 
 Ce sont toutes des cellules du système immunitaire.
 
-There is a large number (and %age) of orphanDatasets (150), but very few unjustified noMatch public_tracks.  This could be related to...  Lots of fastq.gz without corresponding .bb or .bw in structured_data.  122 RNA-Seq with only /raw_reads and no processed /tracks .bw/.bb.  (Many are towards the bottom of the directory tree.)
-
-Observation: There are very few samples without an RNA-Seq dataset (accidental omission?).  However, no potentially corresponding public_track files are present.  Probably not an issue.
-
 29 (of 125) sample.private_name end in 'BC', though there are zero (0) public_tracks with 'BC'.  Strange, since datasets (28 of 150) do exist.  This could be related to absent .bb & .bw (as above).
 
+A bunch of RNASeq_1 and RNASeq_2's.  Which one to use?
+
 rawExperimentTypeMappingProblems (24 cases) are all for NChIP.  Need to decide how to handle these, eventually.
+
+Search for sample `EPI` and you'll see a bunch of raw RNA reads for controls and some other things.  Confusing.
 
 Looks like some kind of pooling for the following sample.private_names:
 247KASP_251BRID_Mono
@@ -371,9 +402,7 @@ Looks like some kind of pooling for the following sample.private_names:
 247KASP_254FUNR_TC
 237LAQC_243GAGL_248GOUE_TC
 
-Multiple matches:  All from sample.private_name 243GAGL_Mono.  There are two in the DB, except one has a BS-Seq, and one doesn't. Duplicates already have EGA_EGAN values (meaning they were already submitted?).
-Ahha! The time_point column (links to sample_property.property = 'time_point') is in use (sometimes) and takes the value "_1" or "_2".
-All other cases of time_point "_1" and "_2" are inconsequential (since there are no data files, or no datasets defined, or BC/TC/Mono are sufficient to differentiate.)  So overall, except for 243GAGL, the time_point column doesn't cause any conflicts (multiple datasets) and doesn't really matter.
+Multile matches: These are caused by the use of the time_point flag.  Duplicates already have EGA_EGAN values (meaning they were already submitted?).  The time_point column (links to sample_property.property = 'time_point') is in use (sometimes) and takes the value "_1" or "_2".  More work should be done to make use of the time_point flag to create the distinction.
 
 sample.private_name 243GAGL_TC is also duplicated in mEGAdata but one sample doesn't have any datasets defined.
 
@@ -403,7 +432,9 @@ Both BCU768_TC_RNASeq_2: No time_point = 2 in mEGAdata.
 Alright, withought going through each and every unmatched public_track (115), the algorithm is effective.  Unmatched public_tracks are due to problems with the data.  Unmatched tracks will have to be examined on individual bases.
 
 Strange case:  Path & filename seem to have conflicting indicators (H3K9me3 or Input - which is it?).  Check structured_data DirTree
-# EMC_Temporal_Change/BCU1799/TC/H3K9me3/tracks/BCU1799_TC_ChIP_Input_1.bw  This is fine.  All histones need an Input track. 
+# EMC_Temporal_Change/BCU1799/TC/H3K9me3/tracks/BCU1799_TC_ChIP_Input_1.bw  This is fine.  All histones need an Input track, but it should be a separate dataset.
+
+A bunch of RNASeq_1 and RNASeq_2's (even _3 and _4's).  Which one to use?
 
 There are 19 cases in this project where there are both ChIP_H3K... and H3K... directories for most histones (with and without ChIP prefix). What is the difference between the ChIP and non-ChIP histones?  Isn't related to timepoints.  Peaks and input in one directory, tracks in the other.  This is a problem because the _Input file is needlessly repeated many times.  Besides, it should be inside a ChIP_Input directory (which only has fastq.gz's anyways and empty of any .(bw|bb)).  It is getting linked to the histone dataset, not the ChIP_Input dataset. (For example, BCU1053_TC).
 
