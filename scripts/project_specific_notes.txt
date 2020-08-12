@@ -30,6 +30,8 @@ Maybe have a look at the pre-existing hg38 files.  What are they and do they bel
 TODO: change name of run_and_log.sh to link_and_log.sh
 TODO: set logging to a file (not 2>)
 
+Project-specific (EMC_Mitochondrial & EMC_Temporal_Change): Lots of _input files are repeated and prone to getting mixed in with non _Input datasets.  To avoid trouble, they have been removed in the add_tracks_to_db.py script. 
+
 
 Project line number ranges (TODO: These will be different after the BigLn)
 --------------------------
@@ -103,8 +105,6 @@ What is up with the hg38 tracks that were previously in mEGAdata.  What are they
 What CLI should I implement to make this a better script?
 
 A bunch of datasets have multiple signal_unstranded tracks (often both _input and track itself).   This doesn't look right.  For example, "MS002401.H3K36me3" (though here there are also two _input tracks...)
-
-Lots of _input files are getting mixed in with non-Input datasets.  Seems to be due to location in file dir.  Project-specific.
 
 MS002202, column O has the spreadsheet error.
 
@@ -191,7 +191,7 @@ nTC and GR (and Mono) mean something, possibly important.
 In all withMatch.log cases (onyl 28), ChIP_H3K27ac files are getting matched to plain, old H3K27ac datasets (through find_raw_experiment_type()).  This should be fine.
 Okay, so according to mEGAdata.experiment_type, for all the H3Kxxx types, they are equivalent to the ChIP_H3Kxxx type (ie. H3K27me3 = ChIP_H3K27me3 = Histone H3K27me3).  However, there are many repeats here (ie. no underscore, _3, _4)
 
-mEGAdata has datasets 'mostly' for RNA-seq, MRNA-seq and Capture Methylome.  However, there aren't any data files for these experiment_types.  In general, there are raw data files, but no processed .bw or .bb for these 3 experiment_types.
+mEGAdata has datasets 'mostly' for MRNA-seq and Capture Methylome.  However, there aren't any data files for these experiment_types.  In general, there are raw data files, but no processed .bw or .bb for these 2 experiment_types.
 
 There are over 1K files for ChIP_H3Kxxx, but no datasets defined in mEGAdata.  Does ChIP possibly refer to "Chipmentation" in this context (I doubt it)?  I suspect just missing defined datasets.
 

@@ -1,20 +1,20 @@
 import re, os, logging
 
-# Runs only under python 2.7 (not python3) since mp2 uses python 2.7.
-
 # Move RNA, mRNA tracks and IHEC_metrics from original_data/ to their places in structured_data/, renaming as appropriate.
 
-# Make sure user umask is set to 007 before running. # TODO: write this into the script with os.umask()
+# Set default group before running script.  Use `newgrp def-bourqueg`.
+# Then set umask to 0007 before running.
 
-# Beware _'s in sample.names. (to be confused with directory separators)
+# Runs only under python 2.7 (not python3) since mp2 uses python 2.7.
+# Beware _'s in sample.names. (easy to confuse with directory separators)
 
 # Establish logging.
 logging.basicConfig(
     filename="structureOriginal_data.log",
     filemode="w",
     format='%(levelname)s: %(message)s',
-    level=logging.INFO)
-    # level=logging.DEBUG)
+    # level=logging.INFO)
+    level=logging.DEBUG)
 
 def main():
     # Applies to EMC_Asthma, EMC_BluePrint and EMC_SARDs only.
@@ -56,7 +56,7 @@ def main():
                     new_track_path = structuredRoot + tokens[0] + "/" + tokens[0] + "/RNASeq/tracks/"
                     new_metrics_path = structuredRoot + tokens[0] + "/" + tokens[0] + "/RNASeq/ihec_metrics/"
 
-            elif project == "EMC_BluePrint" or project == "EMC_SARDs":
+            elif project == "EMC_BluePrint" or project == "EMC_SARDs": # EMC_SARDs has _1 and _2 present.
                 # Skip exceptional filenames.  There aren't any.
                 # Parse filename.  Allow for both RNASeq and mRNASeq separately.
                 parsed_filename = parse_BluePrint_SARDs_filename(track_file)
@@ -69,9 +69,6 @@ def main():
 
                 new_track_path = structuredRoot + parsed_filename["donor"] + "/" + parsed_filename["sample"] + "/" + parsed_filename["experiment"] + "/tracks/"
                 new_metrics_path = structuredRoot + parsed_filename["donor"] + "/" + parsed_filename["sample"] + "/" + parsed_filename["experiment"] + "/ihec_metrics/"
-
-            # elif project == "EMC_SARDs":
-                # There are _1 and _2 present.
 
             # Create the new m?RNASeq track and ihec_metrics directories, if they don't exist already.
             if (not os.path.isdir(new_track_path)) and (not os.path.isdir(new_metrics_path)):
