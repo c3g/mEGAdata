@@ -12,7 +12,7 @@ def main():
 
     #Open and read list of files
     try:
-        f = open("lists/ls_bwBb_afterBigLn.txt", "r") # Could add this filename as a command line param.
+        f = open("lists/ls_bwBb.txt", "r") # Could add this filename as a command line param.
         # f = open("lists/structured_data_ls_bwBb.txt", "r") # Could add this filename as a command line param.
         # f = open("lists/structured_data_ls_bwBb_short.txt", "r") # Could add this filename as a comand line param.
     except OSError:
