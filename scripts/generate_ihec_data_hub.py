@@ -149,16 +149,22 @@ def main():
         d_query.execute()
         for d in d_query:
             donorID = d.id # The Donor
-
+            donor_public_name = d.public_name
+            
         # Donor Attributes (Properties)
         dm_query = (DonorMetadata.select(DonorMetadata, DonorProperty)\
             .where(DonorMetadata.donor_id == donorID)\
             .join(DonorProperty)\
             )
-        da = {}
+        da = {} # Dict to hold the data
+        da["donor_id"] = donor_public_name # required element.  Part of donor table (not donor_metadata).
         for dm in dm_query.dicts():
             da[dm["property"]] = dm["value"]
         
+            # Convert donor_age into number value (not a string), if applicable.
+            if dm["property"] == "donor_age" and dm["value"].isdigit():
+                da["donor_age"] = int(dm["value"])
+
         # Combine the Sample and Donor metadata; place it into the data hub.
         samples_metadata = sa.copy()
         samples_metadata.update(da)
@@ -169,10 +175,6 @@ def main():
     
     # Output to terminal
     print(h.jsonify())
-
-
-def junk(self):
-    pass
 
 
 if __name__ == "__main__":

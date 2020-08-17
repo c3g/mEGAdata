@@ -32,24 +32,26 @@ TODO: set logging to a file (not 2>)
 
 Project-specific (EMC_Mitochondrial & EMC_Temporal_Change): Lots of _input files are repeated and prone to getting mixed in with non _Input datasets.  To avoid trouble, they have been removed in the add_tracks_to_db.py script. 
 
+Rola left some files from her realignment in the Google drive at: C3GMtl -> RolaDaliFiles -> projects -> IHEC
 
-Project line number ranges (TODO: These will be different after the BigLn)
+
+Project line number ranges
 --------------------------
-├── EMC_Asthma:                      2  ->  1 245
-├── EMC_BluePrint:               1 246  -> 11 006
-├── EMC_Bone:                   11 007  -> 11 229
-├── EMC_BrainBank:              11 230  -> 12 805
-├── EMC_Cagekid:                12 806  -> 13 724
-├── EMC_Drouin:                 13 725  -> 13 876
-├── EMC_iPSC:                   13 877  -> 14 248
-├── EMC_Leukemia:               14 249  -> 14 520
-├── EMC_Mature_Adipocytes:      14 521  -> 15 024
-├── EMC_Mitochondrial_Disease:  15 025  -> 17 493
-├── EMC_MSCs:                   17 494  -> 19 762
-├── EMC_Primate:                19 763  -> 19 909
-├── EMC_Rodent_Brain:           19 910  -> 20 378
-├── EMC_SARDs:                  20 379  -> 21 895
-└── EMC_Temporal_Change:        21 896  -> 26 950
+├── EMC_Asthma:                      2  ->  1 977
+├── EMC_BluePrint:               1 978  -> 12 939
+├── EMC_Bone:                   12 940  -> 13 162
+├── EMC_BrainBank:              13 163  -> 14 738
+├── EMC_Cagekid:                14 739  -> 15 657
+├── EMC_Drouin:                 15 658  -> 15 809
+├── EMC_iPSC:                   15 810  -> 16 181
+├── EMC_Leukemia:               16 182  -> 16 453
+├── EMC_Mature_Adipocytes:      16 454  -> 16 957
+├── EMC_Mitochondrial_Disease:  16 958  -> 19 426
+├── EMC_MSCs:                   19 427  -> 21 695
+├── EMC_Primate:                21 696  -> 21 842
+├── EMC_Rodent_Brain:           21 843  -> 22 311
+├── EMC_SARDs:                  22 312  -> 24 658
+└── EMC_Temporal_Change:        24 659  -> 29 713
 
 
 ihec_metrics Report
@@ -191,7 +193,7 @@ nTC and GR (and Mono) mean something, possibly important.
 In all withMatch.log cases (onyl 28), ChIP_H3K27ac files are getting matched to plain, old H3K27ac datasets (through find_raw_experiment_type()).  This should be fine.
 Okay, so according to mEGAdata.experiment_type, for all the H3Kxxx types, they are equivalent to the ChIP_H3Kxxx type (ie. H3K27me3 = ChIP_H3K27me3 = Histone H3K27me3).  However, there are many repeats here (ie. no underscore, _3, _4)
 
-mEGAdata has datasets 'mostly' for MRNA-seq and Capture Methylome.  However, there aren't any data files for these experiment_types.  In general, there are raw data files, but no processed .bw or .bb for these 2 experiment_types.
+mEGAdata has many datasets for Capture Methylome.  However, there aren't any data files for these experiment_types.  In general, there are raw data files, but no processed .bw or .bb for this experiment_type.
 
 There are over 1K files for ChIP_H3Kxxx, but no datasets defined in mEGAdata.  Does ChIP possibly refer to "Chipmentation" in this context (I doubt it)?  I suspect just missing defined datasets.
 
