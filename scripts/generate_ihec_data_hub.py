@@ -1,6 +1,7 @@
 import json
 import datetime
 import peewee
+import re
 
 from models import PublicTrack, Dataset, Sample, ExperimentType, ExperimentMetadata, ExperimentProperty
 from models import SampleMetadata, SampleProperty, Donor, DonorMetadata, DonorProperty
@@ -20,24 +21,22 @@ class Hub:
         return json.dumps(self.data, indent=4, sort_keys=True)
 
 class Analysis_Attributes:
-    # All values taken from previous 2016 and 2017 McGill submissions.
-    # v0.6.1 is from 2011, so probably not applicable to this hg38 alignment.
-    # #TODO This is probably different for the hg38 alignment. (Alignment is different than sequencing.) 
+    # Vales taken from GenPipes 3.1.0 base.ini files.
     # et_name is experiment_type.name.
     def __init__(self, et_name=""):
-        if not et_name: # Default values for most experiment_type.names.
+        if re.match("H3K", et_name) or re.search("Input", et_name):
             self.a_a = {"alignment_software": "BWA", 
-            "alignment_software_version": "0.6.1", 
-            "analysis_group": "McGill EMC", 
-            "analysis_software": "NA", 
-            "analysis_software_version": "NA",
-            }
-        elif et_name == "RNA-seq" or et_name == "mRNA-seq" or et_name == "smRNA-seq":
-            self.a_a = {"alignment_software": "TopHat", 
-                "alignment_software_version": "1.4.1", 
+                "alignment_software_version": "0.7.12", 
                 "analysis_group": "McGill EMC", 
-                "analysis_software": "NA", 
-                "analysis_software_version": "NA",
+                "analysis_software": "GenPipes", 
+                "analysis_software_version": "3.1.0",
+                }
+        else: # Default values for most experiment_type.names.
+            self.a_a = {"alignment_software": "BWA", 
+                "alignment_software_version": "0.7.15", 
+                "analysis_group": "McGill EMC", 
+                "analysis_software": "GenPipes", 
+                "analysis_software_version": "3.1.0",
                 }
 
 class Hub_Description:
@@ -69,8 +68,6 @@ def main():
 
     # Select these Datasets with other needed info.
     ds_query = (Dataset.select(Dataset, ExperimentType, Sample)\
-        # Just one dataset, for testing.
-        # .where(Dataset.id == 4954)\
         .join(linked_ds, on=(Dataset.id == linked_ds.c.dataset_id))\
         .switch(Dataset)\
         .join(ExperimentType)\
@@ -86,7 +83,7 @@ def main():
         h.data["datasets"][dataset_id] = {}
 
         # analysis_attributes
-        h.data["datasets"][dataset_id]["analysis_attributes"] = Analysis_Attributes().a_a # TODO: use actual values for actual experiment_type.
+        h.data["datasets"][dataset_id]["analysis_attributes"] = Analysis_Attributes(et_name=ds.experiment_type.name).a_a
 
         # sample_id
         h.data["datasets"][dataset_id]["sample_id"] = ds.sample.public_name
@@ -150,7 +147,7 @@ def main():
         for d in d_query:
             donorID = d.id # The Donor
             donor_public_name = d.public_name
-            
+
         # Donor Attributes (Properties)
         dm_query = (DonorMetadata.select(DonorMetadata, DonorProperty)\
             .where(DonorMetadata.donor_id == donorID)\
