@@ -2,11 +2,14 @@ import json
 import datetime
 import peewee
 import re
+from numpy import loadtxt, str
+import os.path
 
 from models import PublicTrack, Dataset, Sample, ExperimentType, ExperimentMetadata, ExperimentProperty
 from models import SampleMetadata, SampleProperty, Donor, DonorMetadata, DonorProperty
 
 # Generates an IHEC data hub for all successfully linked public tracks.
+# Note that generated EpiRR references are incomplete (since not always present in the database).
 
 class Hub:
     def __init__(self):
@@ -53,10 +56,23 @@ class Hub_Description:
             "releasing_group": "McGill", 
             "taxon_id": 9606
         }
-  
+
+# Make a list of public_tracks to exclude, place it inside lists/.  One track per line.
+# Could make the list of input files a json dict.  Might be cleaner and easier to load.
+class Tracks_To_Exclude:
+    def __init__(self):
+        if os.path.isfile("lists/tracksToExclude.csv"):
+            try:
+                track = loadtxt("lists/tracksToExclude.csv", dtype=str)  # numpy.loadtxt and numpy.str
+            except OSError:
+                print("Cannot open track exclusion file.")
+            else:
+                self.tracksToExclude_list = [t for t in track]
+
 
 def main():
     h = Hub()
+    tte = Tracks_To_Exclude()
 
     # Find datasets with linked public_tracks; exclude any orphaned ones.
     LinkedDS = PublicTrack.alias()
@@ -66,7 +82,7 @@ def main():
         .alias('linked_ds')\
         )
 
-    # Select these Datasets with other needed info.
+    # Join these Datasets with other needed info.
     ds_query = (Dataset.select(Dataset, ExperimentType, Sample)\
         .join(linked_ds, on=(Dataset.id == linked_ds.c.dataset_id))\
         .switch(Dataset)\
@@ -100,6 +116,18 @@ def main():
             ea[ep["property"]] = ep["value"]
         h.data["datasets"][dataset_id]["experiment_attributes"] = ea
 
+        # Pull the epirr_id from sample_metadata.value where sample_property_id = 'reference_registry_id'
+        epirr_id_query = SampleMetadata.select()\
+            .join(Sample).where(Sample.id == ds.sample.id)\
+            .switch(SampleMetadata)\
+            .join(SampleProperty)\
+            .where(SampleProperty.property == "reference_registry_id")
+        
+        if epirr_id_query.count() >= 1:
+            epirr_id_results = epirr_id_query.execute()
+            for sm in epirr_id_results:
+                h.data["datasets"][dataset_id]["experiment_attributes"]["reference_registry_id"] = sm.value
+
         # browser
         # Find tracks linked to this dataset.
         track_query = (PublicTrack.select(PublicTrack)\
@@ -110,10 +138,15 @@ def main():
 
         browser = {}
         for track in track_results:
+            # Exclude corrupted, misaligned, or empty tracks from the data hub.
+            if track.path + "/" + track.file_name in tte.tracksToExclude_list:
+                continue
+
+            # Include public_track in datahub (normal case).
             track_type = []
             browser_track = {}
 
-            browser_track["big_data_url"] = track.path + track.file_name
+            browser_track["big_data_url"] = track.path + "/" + track.file_name
             browser_track["md5sum"] = track.md5sum
             track_type.append(browser_track)
             # browser.track_type can have one or more list entries.  First entry taken as `primary` unless otherwise stated.

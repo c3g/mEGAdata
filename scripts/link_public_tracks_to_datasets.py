@@ -19,7 +19,7 @@ def main():
         "EMC_CageKid", # Coded.
         # "EMC_COPD", # Almost nothing here.  Never implemented.
         # "EMC_Drouin", # Only two samples.  Never implemented.
-        "EMC_iPSC", # Coded, but handled exceptionally in its own method.
+        "EMC_iPSC", # Coded, but handled exceptionally in its own method.  Contains non-human primates.
         "EMC_Leukemia", # Coded.
         "EMC_Mature_Adipocytes", # Coded.
         "EMC_Mitochondrial_Disease", # Coded.

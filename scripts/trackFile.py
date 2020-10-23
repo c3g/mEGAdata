@@ -156,7 +156,7 @@ class TrackFile:
 
 
     # Attempt to find a corresponding ihec_metrics/.txt file.
-    # Must have the structured_data hierarchy recreated in ./lists/ihec_metrics/ containing full paths and the ihec_metrics/.txt and ihec_metrics/read_stats.txt files (the raw data files, .bw & .bb files are not neccessary (and besides, way too large)).
+    # Must have the structured_data hierarchy recreated in ./lists/ihec_metrics/ containing full paths and the ihec_metrics/.txt and ihec_metrics/read_stats.txt files (the raw data files, .bw & .bb files are not neccessary (and besides, way too large)).  See find_ihec_metrics.py for input description.
     def get_ihec_metrics(self):
         # Define the path    
         metric_path = re.sub(r"(/tracks)|(/peak_call)", r"/ihec_metrics", self.path)

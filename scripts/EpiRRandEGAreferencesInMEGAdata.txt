@@ -1,0 +1,21 @@
+EpiRR and EGA relations to mEGAdata
+
+The only place in mEGAdata that has EpiRR references (IHECRE00...) is sample_metadata (sample_property = reference_registry_id). It has 284 instances.  There are a total of 520 samples registered.  Why is EpiRR_id even in this table?  It should be a dataset property, no?
+
+EpiRR website has 343 IHECRE00.. entries (for datasets).  I suspect some of these were never put back into mEGAdata.
+
+
+EGA references in mEGAdata:
+release_set (EGAD): 26
+dataset (EGAX): ~1000 (of ~1580)
+sample (EGAN): ~350
+run (EGAR): ~1750 (of 2242)
+
+I would assume that mEGAdata submissions to EpiRR and EGA are incomplete, possibly about 2/3 complete.  Possibly out of sync, too.
+
+
+
+In IDP, 284 distinct dataset.epirr_id, the exact same as from mEGAdata.sample_property (reference_registry_id)
+
+
+For the 2020-10 release datahub, 259 epirr_id's were cited.

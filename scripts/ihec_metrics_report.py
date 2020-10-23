@@ -9,7 +9,11 @@ from trackFile import TrackFile
 # Generates a report of all tracks with their respective ihec_metrics/.txt stats.
 #
 # Merge separate .tsv files as worksheets into one common workbook spreadsheet with:
-# ssconvert --merge-to=ihec_metrics_report.ods ./reports/*.tsv
+# ssconvert --merge-to=./reports/ihec_metrics_report.ods ./reports/*.tsv
+#
+# (Don't worry about any generated errors.)
+#
+# TODO: This needs more doc.  What/where are the inputs?
 #
 # Note: Histone files have two separate formats (col definitions) which cannot be munged together.  They are presented in separate worksheets.
 

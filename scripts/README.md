@@ -22,3 +22,16 @@ pip install -r requirements.txt
 
 ### Steps to install
 cp settings_example.py setting.py  # and make your configurations.
+
+### Running
+The general files to run are (in order):
+
+add_tracks_to_db.py
+
+run_and_log.sh script (which runs link_public_tracks_to_datasets.py for all, or one, project)
+
+ihec_metrics_report.py - A stats report about the .bw & .bb files.
+
+generate_ihec_data_hub.py > yourHubName.json
+
+The *.sql files are used to specify particular projects (useful when generating project-specific stats) (see run_and_log.sh for their usage).

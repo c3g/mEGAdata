@@ -12,6 +12,8 @@ from trackFile import TrackFile
 # See prerequisites in find_ihec_metrics.py
 #
 # See bottom of this file for report formatting.
+#
+# This script is deprecated in favour of ihec_metrics_one_page_report.py
 
 def main():
     project_names = [

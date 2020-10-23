@@ -56,8 +56,8 @@ Project line number ranges
 
 ihec_metrics Report
 -------------------
-EMC_Temporal_Change Histones have an odd file format (not like the other projects` Histones).
-EMC_Mitochondrial_Disease	Histones have an odd file format (not like the other projects).
+EMC_Temporal_Change Histones ihec_metrics have an odd file format (not like the other projects` Histones).
+EMC_Mitochondrial_Disease	Histone ihec_metrics have an odd file format (not like the other projects).
 
 Only the histone files have two different file formats (columns) (and they are all the same format).  Other assays are the same.
 
@@ -275,8 +275,6 @@ EMC_iPSC
 --------
 (third_path_token): Always 'iPS'.  Not a problem.
 
-#TODO: add_tracks_to_db.py imported the non-human primates as assembly = 'hg38' into mEGAdata.  Should be changed.
-
 Should this study just be ignored completely (not included in data hub)?
 
 Has 3 human donors (all are other non-human primates).  For now, including the humans only.
@@ -288,9 +286,9 @@ Overall, there are 103 orphaned datasets (including all species).
 
 #PROBLEM: Only have .bw & .bb tracks for 2 human datasets (there are 29 datasets for the 2 humans in mEGAdata!)  The raw fastq.gz files exist - it looks like .bw and .bb were never generated.
 
-Even non-human primates have fastq.gz, but there are only a few .bw & .bb.  Looks like the new .bw & .bb tracks were never generated for most non-human datasets.
+Even non-human primates have fastq.gz, but there are only a few .bw & .bb.  Looks like the new .bw & .bb tracks were never generated for most non-human datasets (rightly so, if we are aligning to hg38).
 
-#TODO: For now, not pairing the non-human primates for IHEC DH purposes (though the species do exist in the IHEC DB.)
+#TODO: For now, not pairing the non-human primates for IHEC DH purposes (though the non-human species do exist in the IHEC DB.)
 IHEC DH doesn't seem to include species information (aside from assemlby 'other') anywhere in its generated DH.  These non-human primates are already in the IHEC DP now.  Remove them?  Should their files have even been aligned to hg38? 
 What is the value of publishing non-human primates to IHEC DP if their species is never clearly specified (though there are many ~60 tracks in total)?
 What to do?

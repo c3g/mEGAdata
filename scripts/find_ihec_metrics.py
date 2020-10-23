@@ -14,6 +14,7 @@ import re, os
 # tar -cvzf ihec_metrics.tgz --files-from=ls_ihec_metrics.txt
 
 # All the significant code from this file got refactored into TrackFile.get_ihec_metrics().
+# This script is really just a testing wrapper of TrackFile.get_ihec_metrics(), but the description of Inputs is still useful.
 
 def main():
     try:
