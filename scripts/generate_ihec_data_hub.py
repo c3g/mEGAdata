@@ -10,6 +10,10 @@ from models import SampleMetadata, SampleProperty, Donor, DonorMetadata, DonorPr
 
 # Generates an IHEC data hub for all successfully linked public tracks.
 # Note that generated EpiRR references are incomplete (since not always present in the database).
+#
+# Usage:
+# (Activate the venv)
+# python generate_ihec_data_hub.py > assembly.consortium.json 
 
 class Hub:
     def __init__(self):
