@@ -3,9 +3,11 @@ import json
 from functools import wraps
 from flask import Response, request
 from flask_login import current_user
-
 from app import app
-from queries import *
+
+from queries import listUsers, createUser, updateUser, deleteUser
+from queries import insertDonor, insertDonorMetadata, insertDonorProperty, getOrInsertDonorProperty, appendDonorsMetadata, appendSamplesMetadata, insertSample, insertSampleMetadata, insertSampleProperty, getSamplePropertiesNames, insertDataset, updateDataset, insertExperimentMetadata, insertExperimentProperty, insertRun
+from queries import getDonorList, getSampleList, getDatasetsForSample, getExperimentPropertiesNames, getRunsForDataset, getRunFilesForRun, getDonorProperties, getSampleProperties, getSpeciesList, getExperimentTypeList, getPublicTracksList, getExperimentMetadata
 
 def JSONResponse(value):
     return Response(json.dumps(value), mimetype='application/json')
@@ -223,7 +225,8 @@ def _sample_add():
 @app.route("/api/sample_metadata", methods=['GET'])
 @api_function()
 def _sample_metadata_get():
-    return getSampleMetadataList()
+    # return getSampleMetadataList()
+    pass
 
 
 @app.route("/api/sample_metadata", methods=['POST'])

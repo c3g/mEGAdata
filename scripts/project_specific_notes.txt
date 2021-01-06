@@ -1,0 +1,446 @@
+Project-specific notes:
+=======================
+
+File and path naming 'convention' of the source file directory:
+Path: Project/Donor/(third_path_token)/Experiment_type/(tracks|peak_call)/
+File: (Donor)_(third_path_token)_(Experiment_type)_(Repetition)_(peaks){0,1}.(forward|reverse|narrowPeak|broadPeak|coverage|methylation).(bb|bw)
+Note: mEGAdata.experiment_type corresponds to IHEC.assay
+
+(third_path_token) takes on a few forms, depending on the project.  Often it is sample.tissue_type or a cell_type.  Doesn't appear to be relevant to 2016 McGill IHEC DH but could have implications for matching mEGAdata.public_track to mEGAdata.experiment_type.
+
+# TODO: Currently, all files are inserted in to DB as hg38 public_tracks.  Probably shouldn't be inserting the non-human primate tracks at all.  Mouse tracks should be mm10 assembly.
+
+
+General thoughts
+----------------
+What are these called: (forward|reverse|narrowPeak|broadPeak|coverage|methylation).  track_type is not a very good name (since it often means assay), but seems to be used here in public_track.track_type.
+
+There are some repeats in here, designated by file_name containing `Rep_1` (or 2, or 3).  Something will have to be done (mark one as primary, or do we want repeats?)  This is often identified in either the TrackFile.raw_experiment_type or sometimes the (third_path_token) field.
+
+Which project is the Barreiro project?
+
+Dev note: After refactoring, there were 44 (instead of 50) rawExperimentTypeMappingProblems.  Not sure why the difference (pretty minor, possibly best ignored).
+
+Refactoring issues: Plan: Start with recreating all .sql files from scratch.  Maybe do line-by-line comparisons with original files.  Removing one raw_experiment_type field shouldn't make that much of a difference.
+Next, try to re-create individual project logs, one project at a time, and verify that counts are the same.
+Can always do a git roll-back, if all else fails.
+
+Maybe have a look at the pre-existing hg38 files.  What are they and do they belong?
+
+TODO: change name of run_and_log.sh to link_and_log.sh
+TODO: set logging to a file (not 2>)
+
+Project-specific (EMC_Mitochondrial & EMC_Temporal_Change): Lots of _input files are repeated and prone to getting mixed in with non _Input datasets.  To avoid trouble, they have been removed in the add_tracks_to_db.py script. 
+
+Rola left some files from her realignment in the Google drive at: C3GMtl -> RolaDaliFiles -> projects -> IHEC
+
+
+Project line number ranges
+--------------------------
+├── EMC_Asthma:                      2  ->  1 977
+├── EMC_BluePrint:               1 978  -> 12 939
+├── EMC_Bone:                   12 940  -> 13 162
+├── EMC_BrainBank:              13 163  -> 14 738
+├── EMC_Cagekid:                14 739  -> 15 657
+├── EMC_Drouin:                 15 658  -> 15 809
+├── EMC_iPSC:                   15 810  -> 16 181
+├── EMC_Leukemia:               16 182  -> 16 453
+├── EMC_Mature_Adipocytes:      16 454  -> 16 957
+├── EMC_Mitochondrial_Disease:  16 958  -> 19 426
+├── EMC_MSCs:                   19 427  -> 21 695
+├── EMC_Primate:                21 696  -> 21 842
+├── EMC_Rodent_Brain:           21 843  -> 22 311
+├── EMC_SARDs:                  22 312  -> 24 658
+└── EMC_Temporal_Change:        24 659  -> 29 713
+
+
+ihec_metrics Report
+-------------------
+EMC_Temporal_Change Histones ihec_metrics have an odd file format (not like the other projects` Histones).
+EMC_Mitochondrial_Disease	Histone ihec_metrics have an odd file format (not like the other projects).
+
+Only the histone files have two different file formats (columns) (and they are all the same format).  Other assays are the same.
+
+This report lists all the ihec_metrics for .bw & .bb files only.
+
+EMC_Temporal_Change: _Input files are usually the same for all histone markers.  However, in many cases, H3K27ac has a different _Input than all the other histone files.  I have no idea why.  All other histone _Inputs are the same (as found, so far).  The H3K27ac _Input files are different and their ihec_metrics/.txt are different too.
+In EMC_Mitochondrial_Disease, H3K27ac _Input is the same as the other histone _Inputs.
+
+Paul recommended NOT giving ihec_metrics/.txt per file, but giving them per sample-assay dyad.
+
+There are repeated filenames in /structured_data. These are all of them:
+-- where file_name like '%nput%'  These are exactly the same files, copies in multiple (histone) directories.  Each files is linked to a dataset. (The H3K27ac's tend to have different _Input files than the other histones.)  Some have _Input files without any other .(bw|bb) alongside.  This problem has been reported in EMC_Mitochondrial_Disease and EMC_Temporal_Change (ChIP_histone and histone repeated directories.)
+-- where file_name like '%peak%'  These are just repeated filenames (different files), and correctly linked.  No problem.
+This could be due to multiple time_points?
+
+
+select dataset_id, file_name, count(*)
+from public_track pt
+where file_name in 
+(
+SELECT file_name-- , count(*)
+FROM mEGAdata.public_track
+-- where file_name like '%nput%'
+-- where file_name like '%peak%'
+group by file_name
+having count(*) > 1
+)
+group by dataset_id, file_name
+;
+
+
+IHEC Data Hub generation
+------------------------
+datasets.analysis_attributes: Just used the BWA and TopHat versions from the previously submitted hubs.  Are these valid (especially after everything was realligned to hg38, probably with different software)...  Almost certainly not valid.
+
+Questions for Rola:
+4) What was her involvement?
+3) Thoughts on the report (unmatched and orphaned).
+5) Lots of questions about specific projects.
+1) Analysis software versions - GenPipes 3.1.0, (based on version dates).  Is this the right software?  Is there a way to confirm it? (How much does it matter?)
+2) Classification.
+
+In mEGAdata, all the released hg19 Bisulfite-Seq's have 3 tracks: a methylation_profile, signal_forward and signal_reverse.  However, in mp2 (hg38), all the BS have only a methylation.bw and a coverage.bw.  Why aren't there any signal files? 
+
+What is up with the hg38 tracks that were previously in mEGAdata.  What are they and do they belong?
+
+What CLI should I implement to make this a better script?
+
+A bunch of datasets have multiple signal_unstranded tracks (often both _input and track itself).   This doesn't look right.  For example, "MS002401.H3K36me3" (though here there are also two _input tracks...)
+
+MS002202, column O has the spreadsheet error.
+
+
+Operation
+---------
+Setup:
+Configure MySQL for no-password access (so that run_and_log.sh can run smoothly.)
+Activate scripts/scripts-venv.
+
+Config:
+Generally, work one EMC project at a time.
+cd scripts/
+Uncomment the project in link_public_tracks_to_datasets.py main()
+Specify project name in run_and_log.sh
+Specify the project wildcard in findOrphanedDatasets.sql and findUnlinkedPublicTracks.sql
+
+Running:
+./run_and_log.sh
+
+Diagnosis:
+Examine the /logs/ for the project.
+
+
+EMC_Asthma
+----------
+(third_path_token): Unknown meaning.  Probably doesn't matter.
+
+Datasets defined only for the following sample.private_names (and no corresponding files exist):
+610_2000_748_0004_Eos
+748_3001_855_3001_Eos
+5x_asthma_maxIgE_Eos
+
+All other sample.private_names don't have any datasets defined in mEGAdata.
+
+_10x and _0.5x sometimes gets parsed away from Experiment_type, though it shouldn't be a problem.  prefix regex seems to be grabbing enough.
+
+Appears to be some pooling going on (multiple names in the sample.private_names)
+5x_asthma_maxIgE_Eos is a strange sample.private_name.
+There is also a 10x in some file names that seems odd.
+
+File_names 837_0001 might have some repeats (containing 0.5x or trailing "_2").  No data file matches, anyways.
+
+Note the trailing "_2" and the ATACSeqCP (CoPy?)
+./EMC_Asthma/837_0001/CD4_0.5x/ATACSeqCP/tracks/837_0001_CD4_0.5x_ATACSeqCP_1.bw
+./EMC_Asthma/837_0001/CD4_0.5x/ATACSeqCP/peak_call/837_0001_CD4_0.5x_ATACSeqCP_1_peaks.narrowPeak.bb
+./EMC_Asthma/837_0001/CD4/ATACSeq/peak_call/837_0001_CD4_ATACSeq_2_peaks.narrowPeak.bb
+./EMC_Asthma/837_0001/CD4/ATACSeq/tracks/837_0001_CD4_ATACSeq_2.bw
+./EMC_Asthma/837_0001/Eos_10x/ATACSeq/peak_call/837_0001_Eos_10x_ATACSeq_1_peaks.narrowPeak.bb
+./EMC_Asthma/837_0001/Eos_10x/ATACSeq/tracks/837_0001_Eos_10x_ATACSeq_1.bw
+
+
+
+EMC_BluePrint
+-------------
+(third_path_token): Values take the following forms: GR, H3_nTC, Mono or nTC.  nTC (no Template Control?)  So far, this is ignored.
+
+This is a large project and wacky project (many files).
+Is this related to the BluePrint that is already in the IHEC DP?  Want to avoid repeats.
+
+Repeats possibly present.  For instance:
+EMC_BluePrint/S000X1/nTC/ChIP_2_H3K4me1/peak_call/S000X1_nTC_ChIP_2_H3K4me1_1_peaks.broadPeak.bb
+Going to need an explanation of the _2_, _3_, etc. that are present.  Haven't looked into them very much, so far.
+
+Data files not detected by r"BluePrint.*(_nTC|_GR). These have "_Mono" in the file_name:
+./EMC_BluePrint/S002FT/Mono/ChIP_H3K27ac/tracks/S002FT_Mono_ChIP_H3K27ac_1.bw
+./EMC_BluePrint/S002FT/Mono/ChIP_H3K27ac/peak_call/S002FT_Mono_ChIP_H3K27ac_1_peaks.narrowPeak.bb
+./EMC_BluePrint/S0026A/Mono/ChIP_H3K4me1/tracks/S0026A_Mono_ChIP_H3K4me1_1.bw
+./EMC_BluePrint/S0026A/Mono/ChIP_H3K4me1/peak_call/S0026A_Mono_ChIP_H3K4me1_1_peaks.broadPeak.bb
+./EMC_BluePrint/S0026A/Mono/ChIP_H3K27ac/tracks/S0026A_Mono_ChIP_H3K27ac_1.bw
+./EMC_BluePrint/S0026A/Mono/ChIP_H3K27ac/peak_call/S0026A_Mono_ChIP_H3K27ac_1_peaks.narrowPeak.bb
+./EMC_BluePrint/S002KJ/Mono/ChIP_H3K4me1/peak_call/S002KJ_Mono_ChIP_H3K4me1_1_peaks.broadPeak.bb
+./EMC_BluePrint/S002KJ/Mono/ChIP_H3K4me1/tracks/S002KJ_Mono_ChIP_H3K4me1_1.bw
+./EMC_BluePrint/S002KJ/Mono/ChIP_H3K27ac/peak_call/S002KJ_Mono_ChIP_H3K27ac_1_peaks.narrowPeak.bb
+./EMC_BluePrint/S002KJ/Mono/ChIP_H3K27ac/tracks/S002KJ_Mono_ChIP_H3K27ac_1.bw
+
+These file_names seem to be missing the sample names (and have nTC|GR|Mono twice in the path):
+./EMC_BluePrint/nTC/nTC/ChIP_Input/tracks/nTC_ChIP_Input.bw
+./EMC_BluePrint/GR/GR/ChIP_Input/tracks/GR_ChIP_Input.bw
+./EMC_BluePrint/Mono/Mono/ChIP_Input/tracks/Mono_ChIP_Input.bw
+
+nTC and GR (and Mono) mean something, possibly important.
+
+In all withMatch.log cases (onyl 28), ChIP_H3K27ac files are getting matched to plain, old H3K27ac datasets (through find_raw_experiment_type()).  This should be fine.
+Okay, so according to mEGAdata.experiment_type, for all the H3Kxxx types, they are equivalent to the ChIP_H3Kxxx type (ie. H3K27me3 = ChIP_H3K27me3 = Histone H3K27me3).  However, there are many repeats here (ie. no underscore, _3, _4)
+
+mEGAdata has many datasets for Capture Methylome.  However, there aren't any data files for these experiment_types.  In general, there are raw data files, but no processed .bw or .bb for this experiment_type.
+
+There are over 1K files for ChIP_H3Kxxx, but no datasets defined in mEGAdata.  Does ChIP possibly refer to "Chipmentation" in this context (I doubt it)?  I suspect just missing defined datasets.
+
+There is a README.txt file explaining the merging of input files:
+/structured_data/EMC_BluePrint/README/README/input/ihec_metrics/README_input.txt
+
+
+EMC_Bone
+--------
+(third_path_token): Cort_Bone or Trab_Bone.  Probably a tissue type.  Ignored.
+
+Some of the unmapped NChIP experiment_types are here.
+
+According to mEGAdata UI, there are donors and samples, but no datasets.  #TODO Some will probably have to be defined.
+
+
+EMC_BrainBank
+--------------
+(third_path_token): Special.  Careful.
+
+Some not automatically linked datasets are because there are sample names AND experiment_types in the (third_path_token).  Intervene manually for these cases.
+
+Uh-oh.  There is some kind of 'pooling' going on here.  Not sure what it is, or whether it has implicatons for repetitions.  Most of the mEGAdata metadata (only 15 datasets exist) are matched to 'pools'.  The variable number of _'s in the sample.private_name are because these pools have different numbers of constituents.
+
+Question: What to do with the non-pooled (single sample) analysed data?  Does it get released?  There does not appear to be any metadata exclusive to them (only have meatadata from pools).
+
+There are data files for BA11_Brain_RNASeq (part of S133_BA11_Brain pool?). There are files for BA11_BS, but no metadata.
+
+BA8_BA9 BS versus BA8_BA9_Brain RNASeq?
+
+See logs/EMC_BrainBankLog_noMatch.txt for annotated details.
+
+# Do a quick check that the linked datasets are indeed properly linked.  Done.  Yes.
+
+(scripts-venv) assez@heap:~/projects/megadata/scripts$ grep -c "None or multiple corresponding" brainLog.txt 
+106 - *** Check if these no corresponding dataset found are appropriate.***
+(scripts-venv) assez@heap:~/projects/megadata/scripts$ grep -c "mapping to all of:" brainLog.txt
+0
+(scripts-venv) assez@heap:~/projects/megadata/scripts$ grep -c "Dataset linked" brainLog.txt
+170 - Spotcheck a few.  They look good.
+(scripts-venv) assez@heap:~/projects/megadata/scripts$ grep -c "No mapping experiment_type.name for" brainLog.txt 
+12 - All are unmapped NChiPs. (There are more unmapped NCHiPs in other projects too.)
+#TODO: Some of the unmapped NCHiP's are in this project.
+
+Any manual pairings required?  Yes.  #TODO: And ask about the ChIP2.
+
+Validation scripts:
+1) findUnlinkedPublicTracks.sql
+104 results.
+
+2) findOrphanDatasets.sql
+Going through donor_metadata.value = 'EMC_Brain%'
+14 datasets orphaned. (That's a fair amount, almost 1/9th of this project.  Most of the orphans are RNA-Seq.)
+
+
+EMC_Cagekid
+-----------
+(third_path_token): Kidney types, Normal or Tumour tissue.
+
+Every kidney has a 'normal' sample (named N1 or N2) or a tumour (T1) sample.  This info should be present in the `additional_information` and `disease` columns of mEGAdata (though it didn't transfer to the .ods version, for some reason.)
+#TODO: Should both be included in the IHEC submission?  Probably yes.
+
+We've got both BS and BS2 tracks.  What is the diff, which should be used?  For now, they are being linked to datasets.
+
+Dataset for R398_T2_Kidney ATAC-seq is truly an orphan (no corresponding data files.)
+
+
+EMC_COPD
+--------
+What is this?  Only one Donor/Sample and no datasets defined.  No public_track files either.
+
+
+EMC_Drouin
+----------
+fastq.gz files only.  Should ask about this project.  Only two samples, but they've got 16 datasets.
+
+
+EMC_iPSC
+--------
+(third_path_token): Always 'iPS'.  Not a problem.
+
+Should this study just be ignored completely (not included in data hub)?
+
+Has 3 human donors (all are other non-human primates).  For now, including the humans only.
+Only have tracks for 2 of the 3 human donors.
+
+#TODO: Look at the structured_data directory and you'll see that the collection of files is a bit weird.
+
+Overall, there are 103 orphaned datasets (including all species).
+
+#PROBLEM: Only have .bw & .bb tracks for 2 human datasets (there are 29 datasets for the 2 humans in mEGAdata!)  The raw fastq.gz files exist - it looks like .bw and .bb were never generated.
+
+Even non-human primates have fastq.gz, but there are only a few .bw & .bb.  Looks like the new .bw & .bb tracks were never generated for most non-human datasets (rightly so, if we are aligning to hg38).
+
+#TODO: For now, not pairing the non-human primates for IHEC DH purposes (though the non-human species do exist in the IHEC DB.)
+IHEC DH doesn't seem to include species information (aside from assemlby 'other') anywhere in its generated DH.  These non-human primates are already in the IHEC DP now.  Remove them?  Should their files have even been aligned to hg38? 
+What is the value of publishing non-human primates to IHEC DP if their species is never clearly specified (though there are many ~60 tracks in total)?
+What to do?
+Note: the raw file names of the non-human primates
+
+
+EMC_Leukemia
+------------
+(third_path_token): Always 'PreBC' or 'PrBC'.  Not a problem.
+
+Don't have metadata for this "Pool" track:
+./EMC_Leukemia/Pool/PreBC/BS/tracks/Pool_PreBC_BS_1.coverage.bw
+(What is a "Pool" anyways?)
+
+No datasets defined in MEGAdata (despite metadata existing)
+883_PrBC
+898_PrBC
+
+No metadata (or datasets) defined (despite tracks existing):
+Pool_PreBC_BS_1
+
+
+EMC_Mature_Adipocytes
+---------------------
+Donors EG011 -> EG020: No entry in the DB.  These are all ATACSeq (non-core IHEC assay, so maybe best to ignore them).  These missing donor represent about 3/8 of the EMC_Mature_Adiposytes tracks.  ATACSeq is an IHEC non-core assay.
+
+Also, EG010 is ATACSeq, but IS present in the DB.  Manually joined.
+
+Using hook that sample.private_name is within public_track.file_name (INsufficiently distinct).
+
+(third_path_token): Appears to be cell types.  Ignored.
+
+'EG006' has a typo: 'SC_Stoma'
+
+There are some filenames ending in a trailing "_2".  Doesn't seem to affect anything since there are no corresponding "_1" filenames.
+
+
+EMC_Mitochondrial_Disease
+-------------------------
+(third_path_token): Always Muscle.  No problem.
+
+350 datasets linked, but there are many (86) orphan datasets.  I think this is going to require a closer look.  Every donor seems to be rather unique, no identifieable pattern.
+
+For example, donour: MA, sample.private_name prefix: MA_Muscle
+Orphans:
+smRNASeq - Raw reads present, no .bw or .bb generated.
+ChIP_Input - No sign of any files present (raw or processed).
+ChIP_H3K9me3 - No sign of any files present (raw of processed).
+
+For another example, donor: TB, sample.private_name prefix TB_Muscle
+Orphans:
+Bisulfite-seq - No files (raw or processed) present.
+smRNA-seq - Raw files present, no processed files.
+ChIP-Seq Input - No files (raw or processed) present.
+H3K4me3 - No files (raw or processed) present.
+H3K9me3 - There are some ChIP2_H3K9me3 raw files, but no .bw or .bb present.
+
+Similar to EMC_Temporal_Change, about 15 samples have both ChIP_H3K... and H3K... directories, but the files are not repeated between them (tracks in one, peaks and _Input in the other).  This looks like a problem since the _Input file is repeated and shouldn't even be together with the histone marker (it should be in an ChIP_Input directory).  For now, the _Input file is getting associated with the particular histone as a track.
+
+
+EMC_MSCs
+--------
+(third_path_token): A mess.
+
+One parsing error effecting raw_experiment_type - manually moved:
+EMC_MSCs/454T/MSC_Tagmentation-ChIP_100K/H3K4ME1/peak_call/454T_MSC_Tagmentation-ChIP_100K_H3K4ME1_2_peaks.broadPeak.bb
+
+Only 4 samples in mEGAdata with 4 datasets listed (one each), but 358 data files.  What is going on here?
+Not going to do anything for this project until there is some clarification (only 4 tracks would be matched anyways to 2 datasets).
+
+Will have to examine this project closely.
+
+
+EMC_Primate
+-----------
+Raw fastq.gz files only, no .bw or .bb.
+Are any of these human primates?  Unknown.
+
+
+EMC_Rodent_Brain
+----------------
+fastq.gz files only.
+IHEC does take mice data, after all...
+No records of mice donors in DB (no metadata in mEGAdata).
+#TODO: add_tracks_to_db.py imported the mice as assembly = 'hg38'.  Should be changed, at least.
+
+
+EMC_SARDs
+---------
+SARDs = Systemic Autoimmune Rheumatic Diseases?
+
+(third_path_token): TC or Mono.  Not important (see below).
+
+TC = T Cell
+BC = B Cell
+Mono = Monocyte 
+Ce sont toutes des cellules du système immunitaire.
+
+29 (of 125) sample.private_name end in 'BC', though there are zero (0) public_tracks with 'BC'.  Strange, since datasets (28 of 150) do exist.  This could be related to absent .bb & .bw (as above).
+
+A bunch of RNASeq_1 and RNASeq_2's.  Which one to use?
+
+rawExperimentTypeMappingProblems (24 cases) are all for NChIP.  Need to decide how to handle these, eventually.
+
+Search for sample `EPI` and you'll see a bunch of raw RNA reads for controls and some other things.  Confusing.
+
+Looks like some kind of pooling for the following sample.private_names:
+247KASP_251BRID_Mono
+254FUNR_247KASP_TC
+243GAGL_248GOUE_TC
+247KASP_254FUNR_TC
+237LAQC_243GAGL_248GOUE_TC
+
+Multile matches: These are caused by the use of the time_point flag.  Duplicates already have EGA_EGAN values (meaning they were already submitted?).  The time_point column (links to sample_property.property = 'time_point') is in use (sometimes) and takes the value "_1" or "_2".  More work should be done to make use of the time_point flag to create the distinction.
+
+sample.private_name 243GAGL_TC is also duplicated in mEGAdata but one sample doesn't have any datasets defined.
+
+From the noMatch.log (in order):
+248GOUE_Mono_ChIP_H3K27me3a: Looks like the dataset just wasn't created, possibly by accident.
+012_etc... are the NChIPs...  24 cases.
+254FUNR_Mono_ChIP_H3K27ac: Again, looks like the dataset just wasn't created, possibly by accident.
+247KASP_251BRID_Mono: Again, looks like the dataset just wasn't created, possibly by accident.
+
+
+EMC_Temporal_Change
+-------------------
+If these are "changes over time", should all datasets be included?  If not, which one?  Was there any other dimension tested, other than change over time (such as a treatment, or some such?)
+
+(third_path_token): TC, BC or Mono.
+
+In this project, the time_point column is in effect (from sample_property.property = time_point).
+The trailing regex"_\d.(bb|bw)" of the filename relates to time_point.
+
+Reviewing noMatch.log:
+All BF775_.*: No CM datasets defined in mEGAdata.  No CM datasets in mEGAdata at all, despite the presence of CM public_tracks.
+All BF772_.*: No corresponding datasets defined in mEGAdata.
+Both BCU566_.*: No CM datasets defined in mEGAdata.
+BCU582_.*: Odd use of timepoints.  public_tracks use timepoints 1,  2 and 3, but mEGAdata uses only 1 and 2.  Some missing datasets as well.
+Both BCU768_TC_RNASeq_2: No time_point = 2 in mEGAdata.
+
+Alright, withought going through each and every unmatched public_track (115), the algorithm is effective.  Unmatched public_tracks are due to problems with the data.  Unmatched tracks will have to be examined on individual bases.
+
+Strange case:  Path & filename seem to have conflicting indicators (H3K9me3 or Input - which is it?).  Check structured_data DirTree
+# EMC_Temporal_Change/BCU1799/TC/H3K9me3/tracks/BCU1799_TC_ChIP_Input_1.bw  This is fine.  All histones need an Input track, but it should be a separate dataset.
+
+A bunch of RNASeq_1 and RNASeq_2's (even _3 and _4's).  Which one to use?
+
+There are 19 cases in this project where there are both ChIP_H3K... and H3K... directories for most histones (with and without ChIP prefix). What is the difference between the ChIP and non-ChIP histones?  Isn't related to timepoints.  Peaks and input in one directory, tracks in the other.  This is a problem because the _Input file is needlessly repeated many times.  Besides, it should be inside a ChIP_Input directory (which only has fastq.gz's anyways and empty of any .(bw|bb)).  It is getting linked to the histone dataset, not the ChIP_Input dataset. (For example, BCU1053_TC).
+
+BF758_Mono has time_points 1 and 3, but not 2.
+
+The following have time_points 2, but not 1.  What does the _M_ refer to (it goes against the usual naming convention)?
+BF764_M_BC
+BF764_M_Mono
+BF764_M_TC

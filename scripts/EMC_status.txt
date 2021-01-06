@@ -1,0 +1,123 @@
+EMC Status
+==========
+
+Status
+======
+Found 1K RNASeq files in /original_data.  Linking them to /structured_data.  Working on integrating the new files.
+Generating ihec_metics reports.
+Generating an IHEC Data Hub (parsable, though producing errors in metadator, mostly of same type due to schema changes).
+Correlation files received from UdeSher - need to be installed (low priority).
+Logging data bugs as they appear (ie. different count of files for same assay type).
+Obstacles are generally scientific and organizational structure of the data, not programming ones.
+
+
+General
+=======
+Review summary linking stats (though EMC_Asthma and EMC_SARDs still being integrated).
+    Many missing mEGAdata datasets.  Should they just be created?
+
+What to do about _Input files? (repeated, but different for H3K27ac histone in EMC_Temporal_Change)
+
+IHEC_metrics report - Cleaning up the repeated _input files.
+
+Missing files - logged and moving on.
+    All CM files missing (where they ever realigned)? XiaoXing?
+    H3K9me3 - Also missing files.
+
+EMC_iPSC - include or not?  (3 human donors, rest are non-human primates).  (Currently in IHEC DP, probably erroneously.)
+
+New data:
+    EpiHK data hub - Have asked EBI for it (twice).  ONly has 1 sample & 1 dataset.
+    FANTOM5 (RIKEN) data hub?  Do we have it?  Not for next release.  Community hub.
+    Ricardo del Rosario data? Send reminder.  Ask for an update?
+
+EpiRR/EGA submission process?  Any guidance?  Just upload a whole new set.  Look into scripts in mEGAdata.  Need like 7 XML.
+
+Tony, Albena or Marie-Michelle as scientific advisor?  Paul and Rola mostly focused on pipelines.  Tony with DBu in CC:
+
+Breaking updates with 2.0 JSON schemas - No consortium's data hub currently passing, according to Thomas's stats.  Plan to do the release based on old schema, then work on updates.
+
+Intention: GET A RELEASE OUT; correct further data issues in ongoing updates.
+
+
+Specific
+========
+BWA and TopHat aligners version numbers - base it on the file date and whatever was in GenPipes (3.1.0) at the time?
+
+Handling multiple timepoint (EMC_Temporal_Change)
+
+Handling repeats (_2, _3, ...) occurs often enough, ~50 times)).
+
+In mEGAdata, all the released hg19 Bisulfite-Seq's have 3 tracks: a methylation_profile, signal_forward and signal_reverse.  However, in mp2 (hg38), all the BS have only a methylation.bw and a coverage.bw.  Why aren't there any signal files? [From project_notes]
+
+EMC_Rodent_Brain - Include or not?  Nothing in mEGAdata, and only raw data files in mp2.
+
+
+Email questions to Tony Kwan
+============================
+
+Hello Tony Kwan,
+
+Hi there!
+
+Over the past while I've been working with the EMC data described in mEGAdata (http://megadata.vhost38.genap.ca/home).  My goal has been to link the datasets (and metadata) described in mEGAdata to the data files which were realigned to hg38 and stored on mp2.  The intention is to add this newly aligned data to the IHEC Data Portal.  The task has proved somewhat more complex than expected.
+
+Included are a few files for reference.
+1. mEGAdataAsSpreadsheet.ods - This is the mEGAdata, presented more friendily as a spreadsheet.
+2. summaryLinkingStats_allEMCProjects_simplified.ods.  Summary stats of the linking process.   Complete logs showing specific examples are available, though quite detailed.
+
+Please take a look inside the summaryLinkingStats.ods file.
+
+Overall, only about half of the track files found defined datasets (blue background) and a third of datasets do not match to any data (yellow background).  The counts can be further divided by project.  Large project-specific counts of data tracks without a corresponding defined mEGAdata dataset are highlighted in green.  Large project-specific mEGAdata datasets without any corresponding data have a red background.
+
+So I'm trying to figure out what is going on here.  There are lots of smaller questions per project, but starting with a high-level view,
+
+1) Do you know why there are so many data files without defined datasets?  The matching metadata exists in mEGAdata (often), there are just no datasets explicitly defined. 
+2) Similarly, why are there datasets without any relevant data?
+3) Can you suggest anyone else who might be aware of the specifics of this data and able to fill in some of the holes or provide opinions?  (I've already talked to David Bujold, Paul Stretenovich and Rola).  Albena and Marie-Michelle have been mentioned as possible references, though I have not yet contacted them.
+
+It might be easier and more efficient to discuss these issues by voice, if you are available sometime soon.
+
+
+Any input would be greatly appreciated,
+
+-David Brownlee
+
+
+Spot Checking
+=============
+
+185 .bw that are less than 10MB.  Almost all from EMC_Mito & EMC_Temporal.  All are RNA and smRNA.
+
+For smRNA, files tend to be very small, regardless.  A 500k file size cutoff is best.
+
+Therefore, 123 RNA and smRNA files <500k.  And they look empty.  Their ihec_metrics stats (RawReads) are also really small.
+
+Right, there aren't any CM files (no realignments) to spot check.
+
+
+Okay, so investigating these tiny RNASeq files.
+The raw data (.fastq.gz) RNA-Seq files are all plenty large in EMC (>1 GB, usually more like ~5 GB)
+CEEHRC hg19 RNA-Seq from IDP files are all normal sizes (almost all > 100 MB)
+
+So it is only the new hg38 files that are tiny, and only from these two projects.  But it represents about 7% of total data release.
+There must have been something wrong with the hg38 processing.
+My suggestion is to exlcude them from this data release.  Log the discrepancy & possibly get the files reprocessed (if anyone ever gets around to it).
+
+RNAs to exclude (<1M)
+find . -name *RNASeq*.bw -size -1000k -exec ls -lhS {} + | grep -v smRNASeq | wc
+    128
+
+smRNA to exclude: (<300k)
+find . -name *smRNA*.bw -size -300k -exec ls -lhS {} + | wc
+     22     198    2744
+
+Delete these (for EMC_Mito and EMC_Temporal):
+find . -name *RNASeq*.bw -size -1000k | grep -v smRNASeq | xargs -n1 md5sum | sed 's/\s.*/ junk\//g' | sed 's/^/mv /' >> tooTinyRNA.sh
+find EMC_Temporal_Change/ -name *smRNA*.bw -size -300k | xargs -n1 md5sum | sed 's/\s.*/ junk\//g' | sed 's/^/mv /' >> tooTinysmRNA.sh
+(Though not all are matched to datasets and in the data hub.)
+
+Comparing _Input files in EMC_Temporal.  H3K27ac is different than all the other histone _Input files.
+Well, the two _Input files are certainly different.  It is hard to tell if they are even related. (More difference than, say, hg19 versus hg38 validations).  Files are usually similar sizes, but significantly different.
+
+Compare an hg19 H3K27ac with an hg38 H3K27ac - they look fine (similar).

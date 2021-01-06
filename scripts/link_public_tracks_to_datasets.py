@@ -1,0 +1,287 @@
+#!/usr/bin/python3
+import peewee
+import re
+
+from models import Dataset, Sample, ExperimentType, PublicTrack, Donor, SampleMetadata, SampleProperty
+from models import User
+from logger_settings import logger
+
+from trackFile import TrackFile
+
+# Link public_tracks (data files) to their existant datasets (mEGAdata DB metadata).
+def main():
+    # Due to variations, it is helpful to handle projects separately.
+    project_names = [
+        "EMC_Asthma", # Coded.
+        "EMC_BluePrint", # Coded, but very little linked.
+        # "EMC_Bone", # No datasets - never implemented.
+        "EMC_BrainBank", # Coded, but #TODO: Some of the unmapped NCHiP's are in this project.
+        "EMC_CageKid", # Coded.
+        # "EMC_COPD", # Almost nothing here.  Never implemented.
+        # "EMC_Drouin", # Only two samples.  Never implemented.
+        "EMC_iPSC", # Coded, but handled exceptionally in its own method.  Contains non-human primates.
+        "EMC_Leukemia", # Coded.
+        "EMC_Mature_Adipocytes", # Coded.
+        "EMC_Mitochondrial_Disease", # Coded.
+        "EMC_MSCs", # Coded only enough to generate logs.  Will have to be done seriously, at some point.
+        # "EMC_Primate", # Should this be implemented?
+        # "EMC_Rodent_Brain", # Should this be implemented?
+        "EMC_SARDs", # Coded.  Many orphans and unmatched.
+        "EMC_Temporal_Change", # Coded. 
+    ]
+    for project_name in project_names:
+        link_project_tracks(project_name)
+
+
+# project_name takes the form: "EMC_..."
+# (1) Prefix definition is project dependant
+def link_project_tracks(project_name):
+    # Get the project's public_tracks
+    pt_query = PublicTrack.select().where(PublicTrack.path.startswith(project_name))
+    for pt in pt_query:
+        if project_name == "EMC_Asthma":
+            if re.match(r"C|M", pt.file_name):  # Treat all the C00, C32M and MSC16 stuff uniquely.  Besides, there are no matching datasets.
+                match = re.match(r"[A-Za-z0-9]", pt.file_name)
+            else: # Usual case.
+                match = re.match(r"[\w.-]+((_Eos)|((ATAC)(Seq)?(CP)?)|CD4)", pt.file_name) # Need to include the 0.5x case 
+            prefix = match.group()
+        elif project_name == "EMC_BluePrint": #
+            # sample.private_names always end in "_nTC" or "_GR".  Nice!  "_Mono"s follow the pattern, but there are no corresponding sample.private_names.
+            match = re.search(r".*_nTC|_GR|_Mono", pt.file_name)
+            if match: # match found
+                prefix = match.group()
+            else: # file_name does not meet the criteria.  There are a few cases like this.
+                continue
+        elif project_name == "EMC_BrainBank":
+            # sample.private_name has is a highly variable number of _'s that have been lumped together with the remainder of the public_track.file_name.  It is impossible to know how much of the beginning of the public_track.file_name to use.
+            # In EMC_BrainBank, there is a small number of unique third_path_tokens, *mostly* ending in Brain.  Use public_track.filename up until and including this third_path_token to match against the beginning of sample.private_name).
+            # Applicable tokens: "BA11_Brain", "BA11", "BA44_Brain", "BA8_BA9", "CE_Brain", "LatAmy_Brain"
+            match = re.match(r".*((BA11_Brain)|(BA11)|(BA44_Brain)|(BA8_BA9)|(CE_Brain)|(LatAmy_Brain))", pt.file_name)
+            prefix = match.group()
+        elif project_name == "EMC_CageKid":
+            # (1) This project's public_track.file_names often have an extra "_" in them, but the metadata sample.private_names don't.
+            match = re.match(r".*Kidney", pt.file_name)
+            init_prefix = match.group()
+            prefix = re.sub(r"T_1_Kidney", r"T1_Kidney", init_prefix)
+            prefix = re.sub(r"T_2_Kidney", r"T2_Kidney", prefix)
+            prefix = re.sub(r"N_1_Kidney", r"N1_Kidney", prefix)
+            prefix = re.sub(r"N_2_Kidney", r"N2_Kidney", prefix)
+        # elif project_name == "EMC_Bone": # No datasets - never implemented.
+        # elif project_name == "EMC_COPD": # Almost nothing here.  Never implemented.
+        # elif project_name == "EMC_Drouin": # Only two samples.  Never implemented.
+        elif project_name == "EMC_iPSC": # Coded, but treat as an exceptional, seperate case.
+            continue
+        elif project_name == "EMC_Leukemia":
+            match = re.match(r"\w+Pre{0,1}BC", pt.file_name)
+            # if match is not None:
+            prefix = match.group()
+        elif project_name == "EMC_Mature_Adipocytes":
+            # sample.private_name within beginning of public_track.file_name
+            # substring up until third "_".  #TODO: This regex could probably be refactored as r"^(.+_){3}"
+            all_ = [m.start() for m in re.finditer(r"_", pt.file_name)]
+            prefix = pt.file_name[0: all_[2]]
+        elif project_name == "EMC_Mitochondrial_Disease":
+            #Prefix definition: Track file_name sometimes contain `_Muscle`, sometimes not.  However, sample.private_name always contains `_Muscle`.
+            match = re.match(r"\w{2,3}_", pt.file_name)
+            prefix = match.group() + r"Muscle"
+        elif project_name == "EMC_MSCs":
+            # Only 4 datasets in DB. Only wrote this to generate the logs.
+            # match = re.match(r"594P_MSC|391P_MSC|454T_MSC|588P_MSC", pt.file_name)
+            match = re.match(r"[a-zA-Z0-9]+_[a-zA-Z0-9]+", pt.file_name) # first two `terms` of file_name.  Don't use this except to generate logs.
+            if match:
+                prefix = match.group()
+            else:
+                continue
+        # elif project_name == "EMC_Primate": # Not yet implemented.  Should it be?
+        # elif project_name == "EMC_Rodent_Brain": # Should this be implemented?
+        elif project_name == "EMC_SARDs":
+            logger.debug(f"Working on: {pt.file_name}")
+            if re.match(r"EPI", pt.file_name): # Unsure what these are.  Mostly just filtering them out.
+                match = re.match(r".*_(CONT|CD4)", pt.file_name)
+            else:
+                match = re.match(r".*_(Mono|BC|TC)", pt.file_name)
+            # match = re.match(r".*_(Mono|TC)", pt.file_name)
+            prefix = match.group()
+        elif project_name == "EMC_Temporal_Change": # Implemented separately
+            continue
+        else:
+            logger.critical("Unknown EMC project.  Exiting script.")
+            return None
+
+        # Attempt to pair with an existant dataset.
+        link_public_track(pt, prefix)
+
+    # Handle manual cases
+    if project_name == "EMC_BrainBank":
+        link_manually_EMC_BrainBank()
+    elif project_name == "EMC_Mature_Adipocytes":
+        link_manually_EMC_Mature_Adipocytes()
+    # Handle exceptional projects
+    elif project_name == "EMC_iPSC":
+        link_EMC_iPSC()
+    elif project_name == "EMC_Temporal_Change":
+        link_EMC_Temporal_Change()
+
+# Matches based on:
+# (1) sample.private_name within public_track.file_name, based on the project and public_track dependent prefix.
+# (2) PublicTrack.experiment_type_name matches a known mEGAdata.experiment_type.name.
+#
+# Takes as input:
+# pt - a PublicTrack object.
+# prefix - a string.
+def link_public_track(pt, prefix):
+    tf = TrackFile.from_PublicTrack(pt)
+    if tf.experiment_type_name == "Indeterminate":
+        logger.warning(f"No mapping experiment_type.name for {tf.file_name}.")
+
+    ds_query = Dataset.select(Dataset, Sample.private_name, ExperimentType.name)\
+        .join(Sample).where(Sample.private_name == prefix)\
+        .switch(Dataset).join(ExperimentType).where(ExperimentType.name == tf.experiment_type_name)
+
+    # Match to (hopefully) a single dataset
+    if ds_query.count() != 1:
+        logger.warning(f"None or multiple corresponding datasets, {ds_query.count()}, found for {pt.file_name}")
+        for dataset in ds_query.execute():
+            logger.error(f"{pt.file_name} mapping to multiple datasets: {dataset.id}")
+    else:  # One single dataset found
+        result = ds_query.execute()
+        for dataset in result:
+            pt.dataset = dataset.id  # Can also be written as pt.dataset = ds OR pt.dataset_id = ds.id
+            logger.info(f"Dataset linked for public_track {pt.file_name}. Saved: {pt.save()}")
+
+
+# Attempt to pair with an existant dataset.
+# Keep this as an independent method to allow filtering of non-human primates.
+def link_EMC_iPSC():
+    # Only include humans, not the non-human primates, for now.
+    pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_iPSC"))
+    for pt in pt_query:
+        # match = re.match(r"Human_[^_]*", pt.file_name)
+        match = re.match(r"Human_\w*_iPS", pt.file_name)
+        if match is not None: # Skip the non-human public_tracks, for now.
+            prefix = match.group()
+            link_public_track(pt, prefix)
+
+# This project has multiple time_points that need to be handled specially.
+def link_EMC_Temporal_Change():
+    pt_query = PublicTrack.select().where(PublicTrack.path.startswith("EMC_Temporal_Change"))
+    for pt in pt_query:
+        match = re.match(r".*_(Mono|BC|TC)", pt.file_name)
+        prefix = match.group()
+
+        # Match right-most "_\d" of public_track.file_name against sample_property.property = 'time_point' && sample_metadata.value = \d.
+        trailing_match = re.search(r"_\d\.", pt.file_name)
+        # logger.debug(f"Found match: {trailing_match.group()}")
+        if trailing_match is not None:
+            time_point = trailing_match.group().lstrip("_").rstrip(".")
+            # logger.debug(f"Time Point: {time_point}")
+        else:
+            time_point = 1 # Default value in mEGAdata. 
+
+        # (2) PublicTrack.experiment_type_name matches a known mEGAdata.experiment_type.name.
+        tf = TrackFile.from_PublicTrack(pt)
+        if tf.experiment_type_name == "Indeterminate":
+            logger.warning(f"No mapping experiment_type.name for {tf.file_name}.")
+
+        ds_query = Dataset.select(Dataset, Sample.private_name, ExperimentType.name, SampleMetadata.value)\
+            .join(Sample).where(Sample.private_name == prefix)\
+            .join(SampleMetadata).where(SampleMetadata.value == time_point)\
+            .join(SampleProperty).where(SampleProperty.property == "time_point")\
+            .switch(Dataset).join(ExperimentType).where(ExperimentType.name == tf.experiment_type_name)
+
+        # Match to (hopefully) a single dataset
+        if ds_query.count() != 1:
+            logger.warning(f"None or multiple corresponding datasets, {ds_query.count()}, found for {pt.file_name}")
+            for dataset in ds_query.execute():
+                logger.error(f"{pt.file_name} mapping to multiple datasets: {dataset.id}")
+        else:  # One single dataset found
+            result = ds_query.execute()
+            for dataset in result:
+                pt.dataset = dataset.id  # Can also be written as pt.dataset = ds OR pt.dataset_id = ds.id
+                logger.info(f"Dataset linked for public_track {pt.file_name}. Saved: {pt.save()}")
+
+
+# Treat exceptional cases manually.
+def link_manually_EMC_BrainBank():
+    # Manual pairing to compensate for an abbreviation ("Pl11" versus "Pool11") in 2 experiment_type.names, for H3K36me3 and H3K27me3.
+    # Note: There is an experiment_type.name for ChIP, but not ChIP2, as in the file name.
+    #TODO: Ask whether these are valid.
+    
+    # Previously not used.
+    ds_query = (Dataset.select(Dataset, Sample, ExperimentType)
+        .join(Sample).where(Sample.private_name == "134_171_225_227_Pool11_LatAmy_Brain")
+        .switch(Dataset).join(ExperimentType).where(ExperimentType.internal_assay_short_name == "ChIP_H3K36me3")) # Need to use ExperimentType.internal_assay_short_name here.
+    if ds_query.count() != 1:
+        logger.warning(f"None or multiple corresponding datasets, {ds_query.count()}")
+    else:
+        result = ds_query.execute()
+        pt_file_names = ["134_171_225_227_Pl11_LatAmy_Brain_ChIP2_H3K36me3_1.bw",
+            "134_171_225_227_Pl11_LatAmy_Brain_ChIP2_H3K36me3_1_peaks.broadPeak.bb"]
+        for ds in result:
+            for pt_f_n in pt_file_names:
+                pt = PublicTrack.get(PublicTrack.file_name == pt_f_n)
+                pt.dataset = ds.id
+                logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}. Saved: {pt.save()}")
+
+    ds_query = (Dataset.select(Dataset, Sample, ExperimentType)
+        .join(Sample).where(Sample.private_name == "134_171_225_227_Pool11_LatAmy_Brain")
+        .switch(Dataset).join(ExperimentType).where(ExperimentType.internal_assay_short_name == "ChIP_H3K27me3")) # Need to use ExperimentType.internal_assay_short_name here.
+    if ds_query.count() != 1:
+        logger.warning(f"None or multiple corresponding datasets, {ds_query.count()}")
+    else:
+        result = ds_query.execute()
+        pt_file_names = ["134_171_225_227_Pl11_LatAmy_Brain_ChIP_H3K27me3_1.bw",
+            "134_171_225_227_Pl11_LatAmy_Brain_ChIP_H3K27me3_1_peaks.broadPeak.bb"]
+        for ds in result:
+            for pt_f_n in pt_file_names:
+                pt = PublicTrack.get(PublicTrack.file_name == pt_f_n)
+                pt.dataset = ds.id
+                logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
+
+
+# Handle some tricky cases manually.
+def link_manually_EMC_Mature_Adipocytes():
+    # Manual pairing:
+    # EG006_IA_mADPs two cases.  Compensating for a typo (`Stoma`, not `Stroma`)
+    ds = (Dataset.select(Dataset, Sample)
+        .join(Sample).where(Sample.private_name == "EG006_SC_Stroma")).get()
+        # Only one dataset with one experiment_type returned.
+    pt = PublicTrack.get(PublicTrack.file_name == "EG006_SC_Stoma_RNASeq_1.forward.bw")
+    pt.dataset = ds
+    logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
+
+    pt = PublicTrack.get(PublicTrack.file_name == "EG006_SC_Stoma_RNASeq_1.reverse.bw")
+    pt.dataset = ds
+    logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
+
+    # Unique case for sample.private_name = EG010_SC_mADPs_1 (first of the ATAC-Seq with two tracks).
+    # There is only one dataset associated with this sample. (No need to check against experiment_type.name.)
+    ds = (Dataset.select(Dataset, Sample)
+        .join(Sample).where(Sample.private_name == "EG010_SC_mADPs_1")).get()
+    pt = PublicTrack.get(PublicTrack.file_name == "EG010_SC_mADPs_ATACSeqCP_1_peaks.narrowPeak.bb")
+    pt.dataset = ds
+    logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
+
+    # Second track
+    pt = PublicTrack.get(PublicTrack.file_name == "EG010_SC_mADPs_ATACSeqCP_1.bw")
+    pt.dataset = ds
+    logger.info(f"Dataset linked manually for public_track {pt.file_name} to {ds.id}.  Saved: {pt.save()}")
+
+
+if __name__ == "__main__":
+  main()
+
+
+# Note that for link_manual interventions, tracks will be repeated in the logs.
+
+# Aviso and future improvement:
+# sample.private_name often follows a format such as: CONCATENATE(donor.private_name, some-kind-of-cell-type)
+# When joining on sample.private_name, there is the chance that:
+# i) A Donor is shared between projects.
+# A check could be made agaist project name.  Using (donor_metadata.value like 'EMC_[project name]%' where donor_property.property = 'project_name') would accomplish this since all donors have been assigned to a normalized project (except EMC_Rodent_Brain, a project which, for now, doesn't matter and has bigger problems.)
+# 
+# ii) A donor.private_name could be *repeated* between projects (since some donor.private_names are incredibly terse (ie. two digits.)
+
+# No action has been taken since no donor is ever shared between projects and no donor.private_name is ever repeated between projects.  So far.
+
+# However, there is probably no unique project, donor and sample naming constraints implemented so far.

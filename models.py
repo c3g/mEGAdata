@@ -4,6 +4,27 @@ from app import db
 import peewee
 from playhouse.shortcuts import model_to_dict
 
+#----------------------------------
+# All the ForeignKeys have been defined oddly in this model file.  However, it does work.
+# As far as I can tell, everything seems to work by virtue of the side effect of an ORM bug, but only in Peewee 2.5.1.  Higher peewee versions have corrected the bug and thus broken the functionality.  peewee cannot be upgraded without some rework of the models.  Since this is an internal project, rarely used for data entry and the handsOnTable version is already pretty outdated (0.25.0 versus 7.4.2), no attempt at repair has been made so far.  UI presentation works fine (unknown how UI data entry is affected.)
+#  
+# Foreign keys should NOT be defined twice, as both an xxx_id field and a ForeignKey field, as such (example taken from DonorMetadata)
+#    donor_id = peewee.IntegerField()
+#    donor_property_id = peewee.IntegerField()
+#
+#    donor = peewee.ForeignKeyField(Donor)
+#    donor_property = peewee.ForeignKeyField(DonorProperty)
+#
+# ForeignKeyFields should be defined as such:
+#    donor = ForeignKeyField(db_column='donor_id', rel_model=Donor, to_field='id')
+#    donor_property = ForeignKeyField(db_column='donor_property_id', rel_model=DonorProperty, to_field='id')
+#
+# Such duplicate definitons have created a situation where one field is used for joins by the ORM (ie. donor) but doesn't really exist in the database and another field (xxx_id) is expected through the API.
+# Corrections will require changes to queries.py and possibly a good deal of the javascript stuff now that xxx_id fields are expected everywhere.
+# 
+# Addendum: Perhaps it would be possible to correct models.py then alter the queries.py and still preserve the API.  At least then the javascript could be preserved.  Some simple automated testing (possibly python assert statements, or some javascript testing method) could assist with bug correction validations.
+# ---------------------------------
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Peewee Objects
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -22,7 +43,7 @@ class User(BaseModel):
     email = peewee.CharField()
     can_edit = peewee.BooleanField()
 
-    def is_authenticated():
+    def is_authenticated(self):
         """
         This property should return True if the user is authenticated, i.e. they
         have provided valid credentials. (Only authenticated users will fulfill
@@ -30,7 +51,7 @@ class User(BaseModel):
         """
         return True
 
-    def is_active():
+    def is_active(self):
         """
         This property should return True if this is an active user - in addition
         to being authenticated, they also have activated their account, not been
@@ -39,7 +60,7 @@ class User(BaseModel):
         """
         return True
 
-    def is_anonymous():
+    def is_anonymous(self):
         """
         This property should return True if this is an anonymous user. (Actual users
         should return False instead.)
@@ -218,12 +239,15 @@ class DatasetToReleaseSet(BaseModel):
 
 
 class PublicTrack(BaseModel):
-    id = peewee.IntegerField()
+    id = peewee.IntegerField(primary_key=True)
     dataset_id = peewee.IntegerField()
     assembly = peewee.CharField()
     track_type = peewee.CharField()
     md5sum = peewee.CharField()
     url = peewee.CharField()
+    path = peewee.CharField()
+    file_name = peewee.CharField()
+    file_type = peewee.CharField()
 
     dataset = peewee.ForeignKeyField(Dataset)
 
