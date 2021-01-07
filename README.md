@@ -28,7 +28,7 @@ mysql -uuser -ppasswd  mEGAdata < default_data.sql
 ```
 
 ### Install external Python dependencies
-sudo apt-get install libmysqlclient-dev
+sudo apt-get install python3-dev libmysqlclient-dev build-essential
 ```
 virtualenv venv
 . venv/bin/activate
@@ -53,11 +53,26 @@ cd static/
 npm install
 npm run build
 ```
-### Execute flask the server
+### To execute the flask server on a desktop, use:
 ```
 cd megadata/
 . venv/bin/activate
 python main.py
+```
+
+### On prod, it is located at:
+```bash
+cd /opt/megadata
+```
+
+### On prod (megadata.vhost38.genap.ca), it is running as a service.  Confirm with:
+```bash
+systemctl | grep megadata
+``` 
+
+### Restart the prod service with:
+```bash
+sudo systemctl restart megadata
 ```
 
 ### Usage

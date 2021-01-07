@@ -12,13 +12,16 @@ sudo apt-get install gnumeric
 
 ### Software platform
 Current versions in use:
-* python 3.6.9
+* python 3.6.9 (though on megadata prod, since it is Ubuntu 16.04 LTS, only python 3.5.2 was available.)
 * pip 20.0.2
 
 ### Install external Python dependencies
-virtualenv scripts-venv # Create a fresh virtualenv for the scripts to run in.
+```bash
+cd scripts/
+virtualenv -p /usr/bin/python3 scripts-venv # Create a fresh virtualenv for the scripts to run in.
 . scripts-venv/bin/activate
 pip install -r requirements.txt
+```
 
 ### Steps to install
 cp settings_example.py setting.py  # and make your configurations.

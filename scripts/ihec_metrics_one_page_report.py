@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+# -*- coding: future_fstrings -*-
 import peewee
 # from peewee import fn, JOIN
 from settings import db
@@ -13,7 +13,7 @@ from trackFile import TrackFile
 #
 # See bottom of this file for report formatting.
 #
-# This script is deprecated in favour of ihec_metrics_one_page_report.py
+# This script is deprecated in favour of ihec_metrics_report.py
 
 def main():
     project_names = [

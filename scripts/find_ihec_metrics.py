@@ -7,7 +7,7 @@ import re, os
 # Reads a directory listing of public_track data files and matches them to an ihec_metric/.txt (or read_stats.txt) file.
 
 # Inputs [inside the `./lists` sub-dir]:
-# 1. A listing of only the .bigwig and .bigbed files from the root directory containing all the files, generated through: `find . -type f | egrep "(\.bw$)|(\.bb$)" > lists/ls_bwbb.txt` 
+# 1. A listing of only the .bigwig and .bigbed files from the root directory containing all the files, generated through: `find . -type f | egrep "(\.bw$)|(\.bb$)" > lists/ls_bwBb.txt` 
 # 2. Recreate the structured_data hierarchy in ./lists/ihec_metrics/ containing only full paths and the ihec_metrics/.txt and ihec_metrics/read_stats.txt files (the raw data files and the .bw & .bb files are not neccessary).
 # This can be accomplished with:
 # find . -type f | egrep "\.txt$" | grep "ihec_metrics" > ls_ihec_metrics.txt

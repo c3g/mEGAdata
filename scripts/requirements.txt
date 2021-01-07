@@ -1,6 +1,7 @@
 # To install everything:
 # pip install -r requirements.txt
 
+future-fstrings==1.2.0
 mysqlclient==1.4.6
 numpy==1.18.3
 peewee==3.13.2
