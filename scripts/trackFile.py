@@ -1,4 +1,4 @@
-#!/usr/bin/python
+# -*- coding: future_fstrings -*-
 import os
 import re
 
