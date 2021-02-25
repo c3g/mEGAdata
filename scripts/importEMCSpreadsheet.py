@@ -1,3 +1,4 @@
+# -*- coding: future_fstrings -*-
 import peewee
 import models
 import pyexcel as pe
@@ -16,7 +17,7 @@ tables = []
 
 # EMC1 - Data divisions
 tables.append({'sheet':'EMC1', 'name':'donor', 'start':2, 'end':3})
-tables.append({'sheet':'EMC1', 'name':'donor_metadata', 'start':6, 'end':12})
+tables.append({'sheet':'EMC1', 'name':'donor_metadata', 'start':6, 'end':12, 'col_limit':3})
 tables.append({'sheet':'EMC1', 'name':'sample', 'start':15, 'end':16})
 tables.append({'sheet':'EMC1', 'name':'sample_metadata', 'start':19, 'end':30, 'col_limit':3})
 tables.append({'sheet':'EMC1', 'name':'dataset', 'start':33, 'end':41, 'col_limit':6})
