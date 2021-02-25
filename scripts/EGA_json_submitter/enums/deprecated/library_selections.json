@@ -1,0 +1,173 @@
+{
+  "header" : {
+    "apiVersion" : "v1",
+    "code" : "200",
+    "service" : "submitterportal",
+    "developerMessage" : "",
+    "userMessage" : "OK",
+    "errorCode" : "1",
+    "docLink" : "https://ega.crg.eu",
+    "errorStack" : ""
+  },
+  "response" : {
+    "numTotalResults" : 26,
+    "resultType" : "eu.crg.ega.microservice.dto.submitter.AttributeData",
+    "result" : [ {
+      "tag" : "16",
+      "value" : "5-methylcytidine antibody",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "18",
+      "value" : "CAGE",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "10",
+      "value" : "ChIP",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "12",
+      "value" : "DNase",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "4",
+      "value" : "HMPR",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "13",
+      "value" : "Hybrid Selection",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "23",
+      "value" : "Inverse rRNA selection",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "17",
+      "value" : "MBD2 protein methyl-CpG binding domain",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "20",
+      "value" : "MDA",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "5",
+      "value" : "MF",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "11",
+      "value" : "MNase",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "8",
+      "value" : "MSLL",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "22",
+      "value" : "Oligo-dT",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "1",
+      "value" : "PCR",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "19",
+      "value" : "RACE",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "0",
+      "value" : "RANDOM",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "2",
+      "value" : "RANDOM PCR",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "3",
+      "value" : "RT-PCR",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "14",
+      "value" : "Reduced Representation",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "15",
+      "value" : "Restriction Digest",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "9",
+      "value" : "cDNA",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "24",
+      "value" : "other",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "21",
+      "value" : "padlock probes capture method",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "6",
+      "value" : "repeat fractionation",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "7",
+      "value" : "size fractionation",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "25",
+      "value" : "unspecified",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    } ]
+  }
+}

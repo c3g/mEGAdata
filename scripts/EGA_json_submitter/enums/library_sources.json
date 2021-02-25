@@ -1,0 +1,71 @@
+{
+  "header" : {
+    "apiVersion" : "v1",
+    "code" : "200",
+    "service" : "submitterportal",
+    "developerMessage" : "",
+    "userMessage" : "OK",
+    "errorCode" : "1",
+    "docLink" : "https://ega-archive.org",
+    "errorStack" : ""
+  },
+  "response" : {
+    "numTotalResults" : 9,
+    "resultType" : "eu.crg.ega.microservice.dto.submitter.AttributeData",
+    "result" : [ {
+      "tag" : "0",
+      "value" : "GENOMIC",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "1",
+      "value" : "GENOMIC SINGLE CELL",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "4",
+      "value" : "METAGENOMIC",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "5",
+      "value" : "METATRANSCRIPTOMIC",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "8",
+      "value" : "OTHER",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "6",
+      "value" : "SYNTHETIC",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "2",
+      "value" : "TRANSCRIPTOMIC",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "3",
+      "value" : "TRANSCRIPTOMIC SINGLE CELL",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    }, {
+      "tag" : "7",
+      "value" : "VIRAL RNA",
+      "label" : null,
+      "unit" : null,
+      "group" : null
+    } ]
+  }
+}

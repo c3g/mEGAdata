@@ -1,0 +1,90 @@
+{
+    "alias": "",
+    "title": "",
+    "description": "",
+    "caseOrControlId": "3",
+    "genderId": "0",
+    "organismPart": "Osteoblast",
+    "cellLine": "SaOS-2",
+    "region": "",
+    "phenotype": "Osteosarcoma",
+    "subjectId": "McGill0489",
+    "anonymizedName": "",
+    "bioSampleId": "",
+    "sampleAge": "11",
+    "sampleDetail": "",
+    "attributes": [
+        {
+            "tag": "taxon_id",
+            "value": "9606"
+        },
+        {
+            "tag": "phenotype",
+            "value": "Osteosarcoma"
+        },
+        {
+            "tag": "donor_age",
+            "value": "11"
+        },
+        {
+            "tag": "donor_age_unit",
+            "value": "years"
+        },
+        {
+            "tag": "donor_health_status",
+            "value": "Unknown"
+        },
+        {
+            "tag": "donor_ethnicity",
+            "value": "Caucasian"
+        },
+        {
+            "tag": "donor_sex",
+            "value": "female"
+        },
+        {
+            "tag": "biomaterial_type",
+            "value": "Cell Line"
+        },
+        {
+            "tag": "line",
+            "value": "SaOS-2"
+        },
+        {
+            "tag": "lineage",
+            "value": "Osteoblast"
+        },
+        {
+            "tag": "medium",
+            "value": "McCoy 5A; 15% FBS; 1% Pen/Strep"
+        },
+        {
+            "tag": "sex",
+            "value": "Female"
+        },
+        {
+            "tag": "sample_ontology_uri",
+            "value": "http://purl.obolibrary.org/obo/CLO_0008947"
+        },
+        {
+            "tag": "disease_ontology_uri",
+            "value": "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&code=C9145"
+        },
+        {
+            "tag": "disease",
+            "value": "osteosarcoma"
+        },
+        {
+            "tag": "differentiation_stage",
+            "value": "Undifferentiated"
+        },
+        {
+            "tag": "cell_type",
+            "value": "SaOS-2"
+        },
+        {
+            "tag": "project_name",
+            "value": "EMC1"
+        }
+    ]
+}

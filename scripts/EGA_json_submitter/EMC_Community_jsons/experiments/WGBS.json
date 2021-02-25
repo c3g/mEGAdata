@@ -1,0 +1,16 @@
+{
+    "alias": "",
+    "title": "",
+    "instrumentModelId": "53",
+    "librarySourceId": "8",
+    "librarySelectionId": "30",
+    "libraryStrategyId": "21",
+    "designDescription": "NxSeq AmpFREE Low DNA libary (Lucigen)",
+    "libraryName": "WGBS",
+    "libraryConstructionProtocol": "NxSeq AmpFREE Low DNA libary (Lucigen)",
+    "libraryLayoutId": "0",
+    "pairedNominalLength": 0,
+    "pairedNominalSdev": 0,
+    "sampleId": "",
+    "studyId": ""
+  }
