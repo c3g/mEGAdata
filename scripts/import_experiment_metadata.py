@@ -3,10 +3,10 @@ import peewee
 from models import Dataset, ExperimentMetadata
 import pyexcel as pe
 
-# Inserts experiment_metadata for all datasets, based on the experiment_type.internal_assay_short_name.
+# Inserts experiment_metadata into mEGAdata DB for all datasets, based on the experiment_type.internal_assay_short_name.
 
 # Usage:
-# Define the experiment_metadata in the JSONs for each assay type.
+# Define the experiment_metadata in the JSONs below for each assay type.
 # Define datasets in a .ods.
 # Run this script after datasets are created by importEMCSpreadsheet.py
 
@@ -50,7 +50,7 @@ def main():
                             
 
 
-# JSONs of experiment_metadata, one for each assay.
+# JSONs of experiment_metadata, one for each assay, copied from the .ods MM provided.
 # experiment_metadata for all experiment_type.internal_short_name types.
 exp_meta = {
     "BS": [
@@ -78,12 +78,13 @@ exp_meta = {
         {"experiment_property_id":"", "value":"SO:0000991"}, # molecule_ontology_curie
         {"experiment_property_id":"", "value":"None"}, # overconversion_control_genome
     ],
-    ## INCOMPLETE
     "RNASeq": [
         {"experiment_property_id":1, "value":"RNA-Seq"},
         {"experiment_property_id":2, "value":"http://purl.obolibrary.org/obo/OBI_0001271"},
-        {"experiment_property_id":21, "value":"miRNeasy Mini Kit (Qiagen)"},
-        {"experiment_property_id":33, "value":"500 ng"},
+        {"experiment_property_id":3, "value":"miRNeasy Mini Kit (Qiagen)"},
+        {"experiment_property_id":22, "value":"94°C for 8 minutes"},
+        {"experiment_property_id":29, "value":"30°C for 10 minutes"},
+        {"experiment_property_id":30, "value":"30°C for 10 minutes"},
         {"experiment_property_id":34, "value":"Enzyme : SuperScript II Reverse Transcriptase (Illumina)"},
         {"experiment_property_id":35, "value":"12"},
         {"experiment_property_id":36, "value":"Truseq Stranded RNA Core LP (Illumina)"},
@@ -92,10 +93,16 @@ exp_meta = {
         {"experiment_property_id":40, "value":"CAA GCA GAA GAC GGC ATA CGA"},
         {"experiment_property_id":64, "value":"total RNA"},
         {"experiment_property_id":65, "value":"RNA-Seq"},
+        {"experiment_property_id":"", "value":"SO:0000356"},
+        {"experiment_property_id":"", "value":"miRNeasy Mini Kit (Qiagen)"},
+        {"experiment_property_id":"", "value":"500 ng"},
     ],    
     "Chipmentation_H3K27ac": [
         {"experiment_property_id":1, "value":"Histone H3K27ac"},
         {"experiment_property_id":2, "value":"http://purl.obolibrary.org/obo/OBI_0001858"},
+        {"experiment_property_id":3, "value":"Auto Chipmentation Kit for Histones (Diagenode)"},
+        {"experiment_property_id":4, "value":"Bioruptor 300"},
+        {"experiment_property_id":5, "value":"45"},
         {"experiment_property_id":38, "value":"300bp"},
         {"experiment_property_id":45, "value":"Auto Chipmentation Kit for Histones (Diagenode)"},
         {"experiment_property_id":46, "value":"370 ng"},
@@ -116,7 +123,7 @@ exp_meta = {
         {"experiment_property_id":1, "value":"Histone H3K4me3"},
         {"experiment_property_id":2, "value":"http://purl.obolibrary.org/obo/OBI_0001858"},
         {"experiment_property_id":3, "value":"Auto Chipmentation Kit for Histones (Diagenode)"},
-        {"experiment_property_id":4, "value":"Bioroptor300 (Diagenode)"},
+        {"experiment_property_id":4, "value":"Bioruptor 300"},
         {"experiment_property_id":5, "value":"45"},
         {"experiment_property_id":38, "value":"300bp"},
         {"experiment_property_id":45, "value":"Auto Chipmentation Kit for Histones (Diagenode)"},
@@ -138,7 +145,7 @@ exp_meta = {
         {"experiment_property_id":1, "value":"Histone H3K4me1"},
         {"experiment_property_id":2, "value":"http://purl.obolibrary.org/obo/OBI_0001858"},
         {"experiment_property_id":3, "value":"Auto Chipmentation Kit for Histones (Diagenode)"},
-        {"experiment_property_id":4, "value":"Bioroptor300 (Diagenode)"},
+        {"experiment_property_id":4, "value":"Bioruptor 300"},
         {"experiment_property_id":5, "value":"45"},
         {"experiment_property_id":38, "value":"300bp"},
         {"experiment_property_id":45, "value":"Auto Chipmentation Kit for Histones (Diagenode)"},
@@ -160,7 +167,7 @@ exp_meta = {
         {"experiment_property_id":1, "value":"Histone H3K27me3"},
         {"experiment_property_id":2, "value":"http://purl.obolibrary.org/obo/OBI_0001858"},
         {"experiment_property_id":3, "value":"Auto Chipmentation Kit for Histones (Diagenode)"},
-        {"experiment_property_id":4, "value":"Bioroptor300 (Diagenode)"},
+        {"experiment_property_id":4, "value":"Bioruptor 300"},
         {"experiment_property_id":5, "value":"45"},
         {"experiment_property_id":38, "value":"300bp"},
         {"experiment_property_id":45, "value":"Auto Chipmentation Kit for Histones (Diagenode)"},
@@ -182,7 +189,7 @@ exp_meta = {
         {"experiment_property_id":1, "value":"Histone H3K36me3"},
         {"experiment_property_id":2, "value":"http://purl.obolibrary.org/obo/OBI_0001858"},
         {"experiment_property_id":3, "value":"Auto Chipmentation Kit for Histones (Diagenode)"},
-        {"experiment_property_id":4, "value":"Bioroptor300 (Diagenode)"},
+        {"experiment_property_id":4, "value":"Bioruptor 300"},
         {"experiment_property_id":5, "value":"45"},
         {"experiment_property_id":38, "value":"300bp"},
         {"experiment_property_id":45, "value":"Auto Chipmentation Kit for Histones (Diagenode)"},
@@ -204,7 +211,7 @@ exp_meta = {
         {"experiment_property_id":1, "value":"Histone H3K9me3"},
         {"experiment_property_id":2, "value":"http://purl.obolibrary.org/obo/OBI_0001858"},
         {"experiment_property_id":3, "value":"Auto Chipmentation Kit for Histones (Diagenode)"},
-        {"experiment_property_id":4, "value":"Bioroptor300 (Diagenode)"},
+        {"experiment_property_id":4, "value":"Bioruptor 300"},
         {"experiment_property_id":5, "value":"45"},
         {"experiment_property_id":38, "value":"300bp"},
         {"experiment_property_id":45, "value":"Auto Chipmentation Kit for Histones (Diagenode)"},
