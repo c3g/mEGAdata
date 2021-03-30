@@ -86,7 +86,7 @@ Many objects (Policy, DAC, Study) can be reused from previous Submission.
 * Ingestion of all metadata from .ods into mEGAdata automated through maintainable scripts.
 * Sample and Experiment objects all Sent, Validated and Submitted (to test server).
 * Proof of JSON submission workflow accomplished, including File objects and Validation/Submission through Submission subsets (on prod server).
-* 
+
 
 ## Moving forward:
 * Quick check of Experiment JSONs and updates to spreadsheet import to reflect MM's latest changes - it only remains to assign experiment_property_id's for new fields.
@@ -98,7 +98,7 @@ Many objects (Policy, DAC, Study) can be reused from previous Submission.
 * Create and Send Datasets objects: EMC1, EMC2, EMC3.
 * Ensure no duplicates sent (possibly already handled with the unique alias constraint).
 * Detect or treat http errors - may need a http retry function for network timeouts.  This has sometimes been an issue.
-* Retrieval and updates of EGA Id's back into mEGAdata (can only be performed after SUBMISSION).
+* Retrieval and updates of EGA Id's back into mEGAdata (can only be performed after SUBMISSION).  This could be slightly tricky.  Yes, it is possible to retrieve a JSON of just one Submission's objects (for each Object type).  Alternatively, perhaps the response from the whole-Submission SUBMIT operation will be sufficient (since it will contain all Submission Objects, with EGAIDs).
 * Test on prod.
 * Mapping on abacus through symlinks of raw file names to MS00xxx names (McGill Sample format) (abacus account has already been obtained). (This task is independant.)
 

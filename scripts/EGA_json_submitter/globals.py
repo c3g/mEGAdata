@@ -34,6 +34,7 @@ write_config()
 samples = []
 experiments = []
 runs = []
+datasets = []
 
 # Submission, global for now...
 mySub = Submission()
