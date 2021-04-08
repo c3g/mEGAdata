@@ -83,7 +83,7 @@ def process_rows():
         Sample(row["SampleAlias"])
         Experiment(row["SampleAlias"], row["ExperimentAlias"])
 
-# Dumping globals.obj_registry in quasi-json formatting, to record final state of Submission.
+# Dump globals.obj_registry in quasi-json formatting, to record final state of Submission.
 def record_obj_registry():
     for obj_type in globals.obj_registry:
         try:

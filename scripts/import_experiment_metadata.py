@@ -10,10 +10,6 @@ import pyexcel as pe
 # Define datasets in a .ods.
 # Run this script after datasets are created by importEMCSpreadsheet.py
 
-### REVIEW RNA AND ALL CHIPMENTATIONS SINCE MM'S MODS.
-###  STILL NEED TO CREATE THE METADATA_PROPERTIES
-
-
 # .ods spreadsheet containing the datasets
 importFile = "/home/assez/Documents/projectDocs/EMC_Community/allEMCcommunity.ods"
 
@@ -35,11 +31,10 @@ def main():
             start_row=table['start'] - 1, row_limit=table['end'] - table['start'] + 1,\
             column_limit=table['col_limit'] if 'col_limit' in table else -1,\
             )
-        for record in records: # Essentailly for each dataset; returns an OrderedDict
+        for record in records: # Essentially, for each dataset; returns an OrderedDict
             for key, value in record.items(): # returns dict of all key, values
                 if key == "id": # select only the id column.
                     myDataset = Dataset.get_by_id(value) # Instantiate the Dataset model.
-                    # print(myDataset.experiment_type.internal_assay_short_name)
                     metadata = exp_meta[myDataset.experiment_type.internal_assay_short_name] # link to proper experiment_metadata dict below.
                     for entry in metadata:
                         entry["dataset_id"]=myDataset.id # Include dataset.id in metadata entry row.
@@ -48,7 +43,6 @@ def main():
                         except:
                             print("Error saving to DB.")
                             
-
 
 # JSONs of experiment_metadata, one for each assay, copied from the .ods MM provided.
 # experiment_metadata for all experiment_type.internal_short_name types.
@@ -75,8 +69,8 @@ exp_meta = {
         {"experiment_property_id":36, "value":"NxSeq AmpFREE Low DNA libary (Lucigen)"},
         {"experiment_property_id":64, "value":"genomic DNA"},
         {"experiment_property_id":65, "value":"Bisulfite-Seq"},
-        {"experiment_property_id":"", "value":"SO:0000991"}, # molecule_ontology_curie
-        {"experiment_property_id":"", "value":"None"}, # overconversion_control_genome
+        {"experiment_property_id":66, "value":"SO:0000991"}, # molecule_ontology_curie
+        {"experiment_property_id":67, "value":"None"}, # overconversion_control_genome
     ],
     "RNASeq": [
         {"experiment_property_id":1, "value":"RNA-Seq"},
@@ -93,9 +87,9 @@ exp_meta = {
         {"experiment_property_id":40, "value":"CAA GCA GAA GAC GGC ATA CGA"},
         {"experiment_property_id":64, "value":"total RNA"},
         {"experiment_property_id":65, "value":"RNA-Seq"},
-        {"experiment_property_id":"", "value":"SO:0000356"},
-        {"experiment_property_id":"", "value":"miRNeasy Mini Kit (Qiagen)"},
-        {"experiment_property_id":"", "value":"500 ng"},
+        {"experiment_property_id":66, "value":"SO:0000356"}, # molecule_ontology_curie
+        {"experiment_property_id":68, "value":"miRNeasy Mini Kit (Qiagen)"}, # extraction_protocol_rna_enrichment
+        {"experiment_property_id":69, "value":"500 ng"}, # preparation_initial_rna_qnty
     ],    
     "Chipmentation_H3K27ac": [
         {"experiment_property_id":1, "value":"Histone H3K27ac"},
@@ -116,8 +110,8 @@ exp_meta = {
         {"experiment_property_id":54, "value":"10 mins"},
         {"experiment_property_id":64, "value":"genomic DNA"},
         {"experiment_property_id":65, "value":"Chipmentation"},
-        {"experiment_property_id":"", "value":"H3K27ac"}, # experiment_target_histone
-        {"experiment_property_id":"", "value":"SO:0000991"}, # molecule_ontology_curie
+        {"experiment_property_id":70, "value":"H3K27ac"}, # experiment_target_histone
+        {"experiment_property_id":66, "value":"SO:0000991"}, # molecule_ontology_curie
     ],
     "Chipmentation_H3K4me3": [
         {"experiment_property_id":1, "value":"Histone H3K4me3"},
@@ -138,8 +132,8 @@ exp_meta = {
         {"experiment_property_id":54, "value":"10 mins"},
         {"experiment_property_id":64, "value":"genomic DNA"},
         {"experiment_property_id":65, "value":"Chipmentation"},
-        {"experiment_property_id":"", "value":"H3K4me3"}, # experiment_target_histone
-        {"experiment_property_id":"", "value":"SO:0000991"}, # molecule_ontology_curie
+        {"experiment_property_id":70, "value":"H3K4me3"}, # experiment_target_histone
+        {"experiment_property_id":66, "value":"SO:0000991"}, # molecule_ontology_curie
     ],
     "Chipmentation_H3K4me1": [
         {"experiment_property_id":1, "value":"Histone H3K4me1"},
@@ -160,8 +154,8 @@ exp_meta = {
         {"experiment_property_id":54, "value":"10 mins"},
         {"experiment_property_id":64, "value":"genomic DNA"},
         {"experiment_property_id":65, "value":"Chipmentation"},
-        {"experiment_property_id":"", "value":"H3K4me1"}, # experiment_target_histone
-        {"experiment_property_id":"", "value":"SO:0000991"}, # molecule_ontology_curie
+        {"experiment_property_id":70, "value":"H3K4me1"}, # experiment_target_histone
+        {"experiment_property_id":66, "value":"SO:0000991"}, # molecule_ontology_curie
     ],
     "Chipmentation_H3K27me3": [
         {"experiment_property_id":1, "value":"Histone H3K27me3"},
@@ -182,8 +176,8 @@ exp_meta = {
         {"experiment_property_id":54, "value":"10 mins"},
         {"experiment_property_id":64, "value":"genomic DNA"},
         {"experiment_property_id":65, "value":"Chipmentation"},
-        {"experiment_property_id":"", "value":"H3K27me3"}, # experiment_target_histone
-        {"experiment_property_id":"", "value":"SO:0000991"}, # molecule_ontology_curie
+        {"experiment_property_id":70, "value":"H3K27me3"}, # experiment_target_histone
+        {"experiment_property_id":66, "value":"SO:0000991"}, # molecule_ontology_curie
     ],
     "Chipmentation_H3K36me3": [
         {"experiment_property_id":1, "value":"Histone H3K36me3"},
@@ -204,8 +198,8 @@ exp_meta = {
         {"experiment_property_id":54, "value":"10 mins"},
         {"experiment_property_id":64, "value":"genomic DNA"},
         {"experiment_property_id":65, "value":"Chipmentation"},
-        {"experiment_property_id":"", "value":"H3K36me3"}, # experiment_target_histone
-        {"experiment_property_id":"", "value":"SO:0000991"}, # molecule_ontology_curie
+        {"experiment_property_id":70, "value":"H3K36me3"}, # experiment_target_histone
+        {"experiment_property_id":66, "value":"SO:0000991"}, # molecule_ontology_curie
     ],
     "Chipmentation_H3K9me3": [
         {"experiment_property_id":1, "value":"Histone H3K9me3"},
@@ -226,8 +220,8 @@ exp_meta = {
         {"experiment_property_id":54, "value":"10 mins"},
         {"experiment_property_id":64, "value":"genomic DNA"},
         {"experiment_property_id":65, "value":"Chipmentation"},
-        {"experiment_property_id":"", "value":"H3K9me3"}, # experiment_target_histone
-        {"experiment_property_id":"", "value":"SO:0000991"}, # molecule_ontology_curie
+        {"experiment_property_id":70, "value":"H3K9me3"}, # experiment_target_histone
+        {"experiment_property_id":66, "value":"SO:0000991"}, # molecule_ontology_curie
     ],
 }
 

@@ -86,10 +86,11 @@ Many objects (Policy, DAC, Study) can be reused from previous Submission.
 * Ingestion of all metadata from .ods into mEGAdata automated through maintainable scripts.
 * Sample and Experiment objects all Sent, Validated and Submitted (to test server).
 * Proof of JSON submission workflow accomplished, including File objects and Validation/Submission through Submission subsets (on prod server).
+* Quick check of Experiment JSONs and updates to spreadsheet import to reflect MM's latest changes - experiment_property_id's assigned for new fields.
 
 
 ## Moving forward:
-* Quick check of Experiment JSONs and updates to spreadsheet import to reflect MM's latest changes - it only remains to assign experiment_property_id's for new fields.
+* Generate the relations.ods from mEGAdata DB (as csv).
 * Send Run objects (reusing old files existent on test server first).
 * Ensure no premature Submission SUBMITion. (Leave a single trailing VALIDATED Object to prevent progression to SUBMITTED?)
 * Link the Study into the Submission - reuse "EMC".
