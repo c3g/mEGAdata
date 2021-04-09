@@ -114,6 +114,6 @@ Many objects (Policy, DAC, Study) can be reused from previous Submission.
 
 
 ## Future works
-* Currently, there are only hg19-aligned tracks.  MM or Paul will realign everything to hg38 (timeline unknown). 
+* Currently, there are only hg19-aligned tracks.  MM or Paul will realign everything to hg38 (timeline circa mid-end May). 
 * EpiRR submission.
 * IHEC DP hub generation has already been scripted (back during the EMC hg38 realignment project) so IDP submission will be relatively straightforward.  However, new submissions need to follow schema V2.0.
