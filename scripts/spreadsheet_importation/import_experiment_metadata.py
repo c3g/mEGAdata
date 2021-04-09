@@ -1,4 +1,10 @@
 # -*- coding: future_fstrings -*-
+import os
+import sys
+# Make models.py accessible
+SCRIPTS_ROOT_DIR = os.path.dirname(os.getcwd())
+sys.path.append(SCRIPTS_ROOT_DIR)
+
 import peewee
 from models import Dataset, ExperimentMetadata
 import pyexcel as pe
