@@ -2,7 +2,7 @@
 
 The current location of *useful* submission documentation is here:  
 https://ega-archive.org/submission/quickguide  
-The SP UI docs also apply to the the JSON API.  
+The SP UI docs and videos also apply to the the JSON API.  
 Its submission portal:  
 https://ega-archive.org/submitter-portal/#/
 
@@ -63,14 +63,14 @@ Use the EgaCryptor logs to update the spreadsheets with md5sums and encrypted_md
 
 ## 4) Ingest metadata into mEGAdata DB
 ### Tools for metadata ingestion
-* scripts/importEMCSpreadsheet.py - Ingests .ods into mEGAdata DB.  
-* scripts/import_experiment_metadata.py - Ingests experiment_metadata into mEGAdata DB.  
+* scripts/spreadsheet_importation/importEMCSpreadsheet.py - Ingests .ods into mEGAdata DB.  
+* scripts/spreadsheet_importation/import_experiment_metadata.py - Ingests experiment_metadata into mEGAdata DB.  
 
 ## 5) Prepare and send the JSONs
 
 ### JSON preparation
 Some JSONs (such as Sample and Experiment) can be prepared manually from the source spreadsheets with minimal effort since their numbers are small.  
-Many objects (Policy, DAC, Study) can be reused from previous Submission.
+Many objects (Policy, DAC, Study) can be reused from previous a Submission.
 
 
 ## Submission workflow (the only one that will work):
@@ -86,11 +86,11 @@ Many objects (Policy, DAC, Study) can be reused from previous Submission.
 * Ingestion of all metadata from .ods into mEGAdata automated through maintainable scripts.
 * Sample and Experiment objects all Sent, Validated and Submitted (to test server).
 * Proof of JSON submission workflow accomplished, including File objects and Validation/Submission through Submission subsets (on prod server).
-* Quick check of Experiment JSONs and updates to spreadsheet import to reflect MM's latest changes - experiment_property_id's assigned for new fields.
+* Quick check of Experiment JSONs and updates to spreadsheet import to reflect MM's latest changes - experiment_property_id's assigned for new fields.  release_set and release_set_to_dataset entries added.
+* Generate the relations.ods from mEGAdata DB (as csv).  Initial version done.
 
 
 ## Moving forward:
-* Generate the relations.ods from mEGAdata DB (as csv).
 * Send Run objects (reusing old files existent on test server first).
 * Ensure no premature Submission SUBMITion. (Leave a single trailing VALIDATED Object to prevent progression to SUBMITTED?)
 * Link the Study into the Submission - reuse "EMC".
@@ -101,7 +101,10 @@ Many objects (Policy, DAC, Study) can be reused from previous Submission.
 * Detect or treat http errors - may need a http retry function for network timeouts.  This has sometimes been an issue.
 * Retrieval and updates of EGA Id's back into mEGAdata (can only be performed after SUBMISSION).  This could be slightly tricky.  Yes, it is possible to retrieve a JSON of just one Submission's objects (for each Object type).  Alternatively, perhaps the response from the whole-Submission SUBMIT operation will be sufficient (since it will contain all Submission Objects, with EGAIDs).
 * Test on prod.
+
 * Mapping on abacus through symlinks of raw file names to MS00xxx names (McGill Sample format) (abacus account has already been obtained). (This task is independant.)
+
+* Document.
 
 
 ## Difficulties encountered, unmentioned in ega-archive API documentation, though resolved thanks to the ega-helpdesk@ebi.ac.uk.

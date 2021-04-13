@@ -14,7 +14,7 @@ import pyexcel as pe
 # Works best if there is only one blank row between spreadsheet tables (don't know why...)
 
 # .ods spreadsheet
-importFile = "/home/assez/projects/megadata/scripts/EGA_json_submitter/spreadsheet_importation/allEMCcommunity.ods"
+importFile = "/home/assez/projects/megadata/scripts/spreadsheet_importation/allEMCcommunity.ods"
 
 # table rows in the spreadsheet.  Start at header row, end at last row of data.
 # Rightmost COMMENTS columns may be skipped by defining col_limit.
