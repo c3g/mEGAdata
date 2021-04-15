@@ -104,7 +104,7 @@ Many objects (Policy, DAC, Study) can be reused from previous a Submission.
 
 * Mapping on abacus through symlinks of raw file names to MS00xxx names (McGill Sample format) (abacus account has already been obtained). (This task is independant.)
 
-* Document.
+* Document. (One page done, so far.  It might be enough.)
 
 
 ## Difficulties encountered, unmentioned in ega-archive API documentation, though resolved thanks to the ega-helpdesk@ebi.ac.uk.

@@ -14,7 +14,7 @@ class EgaObj():
     def __init__(self):
         self.data = {} # "Empty"
         self.path_to_template = ""
-        self.registration_status = "INSTANTIATED"
+        # self.registration_status = "INSTANTIATED"
 
     # Pretty print
     def __str__(self):
@@ -90,7 +90,7 @@ class EgaObj():
                 logging.debug(f"Found {alias} in globals.obj_registry {obj_type}.")
                 return obj
         # Nothing found.
-        raise Exception(f"Lookup of alias {alias} failed.")
+        raise Exception(f"Lookup of alias {alias} failed for type {obj_type}.")
 
 
 # Corresponds to an EGA Submission object.
@@ -208,7 +208,7 @@ class Submission(EgaObj):
 class Sample(EgaObj):
     def __init__(self, alias):
         self.path_to_template = globals.config["directories"]["json_dir"] + _type_to_api(self) + "/" + utils.alias_raw(alias) + ".json"
-        self.registration_status = "INSTANTIATED"
+        # self.registration_status = "INSTANTIATED"
         try:
             f = open(self.path_to_template)
         except:
@@ -219,7 +219,7 @@ class Sample(EgaObj):
         # Append an autoincrement to the alias to ensure unique aliases submitted to EGA during testing.
         self.data["alias"] = utils.alias_testing(alias)
         logging.debug(f"Instantiated Sample: {self.data['alias']}")
-        # if not already in globals.obj_registry, append and send.
+        # if not already in globals.obj_registry.samples, append and send.
         if not self._is_in_registry():
             globals.obj_registry[f"{_type_to_api(self)}"].append(self)
             logging.debug(f"Sample {self.data['alias']} added to global list.")
@@ -238,13 +238,16 @@ class Sample(EgaObj):
 # Rather than lookup up in the obj_registry, could I query EGA directly?  Well, have to query *by* something (alias or id)...
 
 # Corresponds to EGA Experiment object.
-# Despite the EGA documentation regarding the new JSON format (Green Arrow), for Experiments, we need to submit each assay type for each sample.
+# Despite the EGA documentation regarding the new JSON format (Green Arrow), for Experiments, we are submitting an experiment for each sample.
 # We can use a template to generate the EgaObj, but we need somewhere to store the Samples * Assays = 8 * 8 = 64 EGA ids.
 # Options: the relationMapping.ods Spreadsheet.  An internal data structure.  Generate all 64 jsons.
 # Should "design name" be a link to "See http://epigenomesportal.ca/edcc/doc/"?
 class Experiment(EgaObj):
     def __init__(self, sample_alias, exp_alias):
-        self.path_to_template = globals.config["directories"]["json_dir"] + _type_to_api(self) + "/" + utils.alias_raw(exp_alias) + ".json"
+        # TODO Remove SampleAlias + "." from ExperimentAlias.  Not elegant - possibly change.
+        # TODO - Figure out another way to find appropriate template.
+        self.path_to_template = globals.config["directories"]["json_dir"] + _type_to_api(self) + "/" + utils.alias_raw(exp_alias.replace(utils.alias_raw(sample_alias + "."), "")) + ".json"
+        # print(self.path_to_template)
         try:
             f = open(self.path_to_template)
         except:
@@ -253,14 +256,17 @@ class Experiment(EgaObj):
         self.data = json.loads(f.read())
         f.close()
         # Append an autoincrement to the alias to ensure unique aliases submitted to EGA during testing.
-        self.data["alias"] = utils.alias_testing(f"{sample_alias}_{exp_alias}")
+        ### Removed concat with _ now that we have distinct aliases in relationMapping.ods
+        # self.data["alias"] = utils.alias_testing(f"{sample_alias}_{exp_alias}")  # NO LONGER, NOW THAT COLUMN UNIQUE
+        self.data["alias"] = utils.alias_testing(f"{exp_alias}")
         # Include Study and Sample in the Experiment.
         self.data["studyId"] = globals.config["submission"]["studyId"]
         # Lookup sample_alias in globals.obj_registry
         # self.data["sampleId"] = Sample.get_by_alias(sample_alias).data["alias"]
+        # Maybe pass in a sample as a param rather than a string for lookup....
         self.data["sampleId"] = Sample.get_by_alias(sample_alias).data["id"]
         logging.debug(f"Instantiated Experiment: {self.data['alias']}")
-        # if not already in globals.experiments, append and send.
+        # if not already in globals.obj_registry.experiments, append and send.
         if not self._is_in_registry():
             globals.obj_registry[f"{_type_to_api(self)}"].append(self)
             logging.debug(f"Experiment {self.data['alias']} added to global list.")
@@ -272,12 +278,51 @@ class Experiment(EgaObj):
         return cls._get_by_alias(alias, "experiments")
 
 
+# Currently only for paired fastq.gz files - could be extended to other file types later.
 class Run(EgaObj):
-    def __init__(self):
-        pass
+    def __init__(self, sample_alias, exp_alias, run_alias, file1, file2):
+        # pass in objects, rather than strtings...
+        self.data = {}
+        # self.registration_status = "INSTANTIATED"
+        self.data["alias"] = utils.alias_testing(f"{run_alias}")
+        self.data["sampleId"] = Sample.get_by_alias(sample_alias).data["id"]
+        self.data["runFileTypeId"] = 5 # From enums.file_types, for paired .fastq.gz
+        self.data["experimentId"] = Experiment.get_by_alias(exp_alias).data["id"]
+        files = []
+        files.append(file1.data)
+        files.append(file2.data)
+        self.data["files"] = files
+        logging.debug(f"Instantiated Run: {self.data['alias']}")
+        # if not already in globals.obj_registry.runs, append and send.
+        if not self._is_in_registry():
+            globals.obj_registry[f"{_type_to_api(self)}"].append(self)
+            logging.debug(f"Run {self.data['alias']} added to global list.")
+            self.send()
 
-    def send(self):
-        pass
+    def __str__(self):
+        return json.dumps(self.__dict__, indent=4)
+
+    # Find EgaObj in globals.obj_registry by alias
+    @classmethod
+    def get_by_alias(cls, alias):
+        return cls._get_by_alias(alias, "runs")
+
+
+# Non-EgaObj object encapsulating file properties.
+# Currently only for paired fastq.gz files - could be extended to other file types later.
+class File():
+    def __init__(self, fileName, checksum, unencryptedChecksum):
+        self.data = {} # "Empty"
+        self.data["fileId"] = "" # Always empty.
+        self.data["fileName"] = fileName
+        # self.data["alias"] = fileName
+        self.data["checksum"] = checksum
+        self.data["unencryptedChecksum"] = unencryptedChecksum
+        self.data["checksumMethod"] = "" # Empty.
+
+    # Pretty print
+    def __str__(self):
+        return json.dumps(self.__dict__, indent=4)
 
 class Dataset(EgaObj):
     def __init__(self):

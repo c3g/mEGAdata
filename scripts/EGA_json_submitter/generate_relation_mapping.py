@@ -40,7 +40,7 @@ def main():
             f.write(f"{dtrs.release_set.name},,,")
 
         # Write Dataset, Sample and ExperimentType and Run info
-        f.write(f"{ds.sample.public_name},,,{ds.experiment_type.internal_assay_short_name},,,{ds.run.library_name},,,")
+        f.write(f"{ds.sample.public_name},,,{ds.sample.public_name}.{ds.experiment_type.internal_assay_short_name},,,{ds.sample.public_name}.{ds.experiment_type.internal_assay_short_name}.{ds.run.run}.{ds.run.lane},,,")
 
         # Query and write the two run_files, to be written on the same line.
         run_file_query = RunFile.select(RunFile).where(RunFile.run_id == ds.run.id)

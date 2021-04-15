@@ -43,5 +43,5 @@ mySub = Submission()
 obj_registry = {
     "samples": [],\
     "experiments": [],\
-    # "runs": [],\
+    "runs": [],\
     }

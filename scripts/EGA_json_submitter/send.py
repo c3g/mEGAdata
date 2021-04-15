@@ -13,10 +13,11 @@ import utils
 import connection
 
 import globals # A few critical global vars, for use among multiple scripts, defined.
-from egaobj import Submission, Sample, Experiment
+from egaobj import Submission, Sample, Experiment, Run, File
 
 # Process CLA
 parser = argparse.ArgumentParser()
+# TODO: Should this be ? nargs?  (one of, rights)
 parser.add_argument("operation", action="store", nargs="?", choices=["send", "delete-all-objects", "record-EGA-objects", "all-file-info", "pass"], default="", help="Operation to perform.  `pass` to send nothing new.")
 parser.add_argument("--new-submission", "--ns", action="store_true", help="Initiate a new Submission rather than working on the previous one.")
 parser.add_argument("--validate", action="store_true", help="Attempt to VALIDATE all EGA Objects.")
@@ -72,16 +73,21 @@ def process_rows():
     rows = pe.get_records(file_name=globals.config["directories"]["relation_mapping_dir"] + globals.config["directories"]["relation_mapping_file"],
     start_row=2,\
     name_columns_by_row=0,\
-    # 24, # Will need to define this elsewhere.
-    row_limit=6,\
+    # 6 for basic test.
+    # 20, # For full test file.  # Will need to define this elsewhere.
+    row_limit=20,\
     start_column=3,\
-    column_limit=4 #4 to include Experiment.
+    #4 to include Experiment.
+    column_limit=24 
     )
     logging.debug(f"Found {len(rows)} rows in the relation mapping spreadsheet.")
     for row in rows:
         # loggin.debug(f"Working on ")
         Sample(row["SampleAlias"])
         Experiment(row["SampleAlias"], row["ExperimentAlias"])
+        file1 = File(row["File1_fileName"], row["File1_Checksum"], row["File1_Encrypted_Checksum"])
+        file2 = File(row["File2_fileName"], row["File2_Checksum"], row["File2_Encrypted_Checksum"])
+        Run(row["SampleAlias"], row["ExperimentAlias"], row["RunAlias"], file1, file2)
 
 # Dump globals.obj_registry in quasi-json formatting, to record final state of Submission.
 def record_obj_registry():
