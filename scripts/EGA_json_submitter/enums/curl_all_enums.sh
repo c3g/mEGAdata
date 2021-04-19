@@ -13,3 +13,8 @@ curl https:/ega-archive.org/submission-api/v1/enums/library_strategies > library
 curl https:/ega-archive.org/submission-api/v1/enums/reference_chromosomes > reference_chromosomes.json
 curl https:/ega-archive.org/submission-api/v1/enums/reference_genomes > reference_genomes.json
 curl https:/ega-archive.org/submission-api/v1/enums/study_types > study_types.json
+# Download API details
+curl https:/ega-archive.org/submission-api/v1/enums/actions > actions.json
+curl https:/ega-archive.org/submission-api/v1/enums/submission_statuses > submission_statuses.json
+curl https:/ega-archive.org/submission-api/v1/enums/id_types > id_types.json
+curl https:/ega-archive.org/submission-api/v1/enums/entity_statuses > entity_statuses.json

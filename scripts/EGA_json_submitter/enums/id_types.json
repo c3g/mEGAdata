@@ -1,0 +1,17 @@
+{
+  "header" : {
+    "apiVersion" : "v1",
+    "code" : "200",
+    "service" : "submitterportal",
+    "developerMessage" : "",
+    "userMessage" : "OK",
+    "errorCode" : "1",
+    "docLink" : "https://ega-archive.org",
+    "errorStack" : ""
+  },
+  "response" : {
+    "numTotalResults" : 4,
+    "resultType" : "eu.crg.ega.microservice.enums.IdTypes",
+    "result" : [ "INTERNAL_EBI_ID", "INTERNAL_CRG_ID", "EGA_ACCESSION_ID", "ALIAS" ]
+  }
+}

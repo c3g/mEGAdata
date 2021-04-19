@@ -49,7 +49,7 @@ def main():
     # Get info about all Submission objects.
         globals.mySub.record_EGA_objects()
     elif args.operation == "all-file-info":
-    # Get info about all uploaded files.  Inclde as CLA or not?
+    # Get info about all uploaded files.
         all_ftp_uploaded_files_info()
     # Otherwise, pass.
 
@@ -70,12 +70,13 @@ def main():
 # Get one spreadsheet row to work with.
 def process_rows():
     # Define section of relation mapping spreadsheet that contains Sample information
+    # Maybe move all these numbers into a settings.ini section.
     rows = pe.get_records(file_name=globals.config["directories"]["relation_mapping_dir"] + globals.config["directories"]["relation_mapping_file"],
     start_row=2,\
     name_columns_by_row=0,\
     # 6 for basic test.
     # 20, # For full test file.  # Will need to define this elsewhere.
-    row_limit=20,\
+    row_limit=6,\
     start_column=3,\
     #4 to include Experiment.
     column_limit=24 

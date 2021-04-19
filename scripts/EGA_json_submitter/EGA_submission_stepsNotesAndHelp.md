@@ -93,13 +93,15 @@ Many objects (Policy, DAC, Study) can be reused from previous a Submission.
 ## Moving forward:
 * Send Run objects (reusing old files existent on test server first).
 * Ensure no premature Submission SUBMITion. (Leave a single trailing VALIDATED Object to prevent progression to SUBMITTED?)
+
 * Link the Study into the Submission - reuse "EMC".
 * DAC - Find Id and link in.  Reuse from previous Submisison.
 * Policy - Find Id and link in.  Reuse from previous Submisison.
 * Create and Send Datasets objects: EMC1, EMC2, EMC3.
+
 * Ensure no duplicates sent (possibly already handled with the unique alias constraint).
 * Detect or treat http errors - may need a http retry function for network timeouts.  This has sometimes been an issue.
-* Retrieval and updates of EGA Id's back into mEGAdata (can only be performed after SUBMISSION).  This could be slightly tricky.  Yes, it is possible to retrieve a JSON of just one Submission's objects (for each Object type).  Alternatively, perhaps the response from the whole-Submission SUBMIT operation will be sufficient (since it will contain all Submission Objects, with EGAIDs).
+* Retrieval and updates of EGA Id's back into mEGAdata (can only be performed after SUBMISSION).  This slightly strange.  See note at ebaobj.py, record_EGA_objects() for methodology.
 * Test on prod.
 
 * Mapping on abacus through symlinks of raw file names to MS00xxx names (McGill Sample format) (abacus account has already been obtained). (This task is independant.)
