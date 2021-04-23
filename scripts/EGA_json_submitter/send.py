@@ -72,23 +72,27 @@ def process_rows():
     # Define section of relation mapping spreadsheet that contains Sample information
     # Maybe move all these numbers into a settings.ini section.
     rows = pe.get_records(file_name=globals.config["directories"]["relation_mapping_dir"] + globals.config["directories"]["relation_mapping_file"],
-    start_row=2,\
+    start_row=3,\
     name_columns_by_row=0,\
+    # 2 for minimal test.
     # 6 for basic test.
     # 20, # For full test file.  # Will need to define this elsewhere.
     row_limit=6,\
     start_column=3,\
     #4 to include Experiment.
-    column_limit=24 
+    column_limit=19 # Not really needed.
     )
     logging.debug(f"Found {len(rows)} rows in the relation mapping spreadsheet.")
     for row in rows:
         # loggin.debug(f"Working on ")
-        Sample(row["SampleAlias"])
-        Experiment(row["SampleAlias"], row["ExperimentAlias"])
-        file1 = File(row["File1_fileName"], row["File1_Checksum"], row["File1_Encrypted_Checksum"])
-        file2 = File(row["File2_fileName"], row["File2_Checksum"], row["File2_Encrypted_Checksum"])
-        Run(row["SampleAlias"], row["ExperimentAlias"], row["RunAlias"], file1, file2)
+        Sample(row["Sample_alias"], row["Sample_template"])
+        Experiment(row["Sample_alias"], row["Experiment_alias"], row["Experiment_template"])
+        file1 = File(row["File1_fileName"], row["File1_checksum"], row["File1_encrypted_checksum"])
+        file2 = File(row["File2_fileName"], row["File2_checksum"], row["File2_encrypted_checksum"])
+        Run(row["Sample_alias"], row["Experiment_alias"], row["Run_alias"], file1, file2)
+    # Need to submit Datasets AFTER all Runs are send, so as to have the Ids.
+    # Run through .ods again, for each dataset, find all Runs.
+    
 
 # Dump globals.obj_registry in quasi-json formatting, to record final state of Submission.
 def record_obj_registry():

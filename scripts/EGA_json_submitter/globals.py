@@ -27,8 +27,9 @@ def write_config():
         config.write(configfile)
 
 # Define increment to be applied to alias for this submission since EGA does not allow repeated aliases.
-config["session"]["alias_increment"] = str(config.getint("session", "alias_increment") + 1)
-write_config()
+if config.getboolean("global", "alias_increment"):
+    config["global"]["alias_append"] = str(config.getint("global", "alias_append") + 1)
+    write_config()
 
 # Define EgaObject lists
 samples = []

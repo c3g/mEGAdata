@@ -15,6 +15,6 @@ INSERT INTO experiment_property(property, type, is_exported_to_ega) VALUES ('pre
 INSERT INTO experiment_property(property, type, is_exported_to_ega) VALUES ('experiment_target_histone', 'text', 1);
 
 -- New release_set (aka EGA datasets) for R7
-INSERT INTO release_set(`release`, `name`, `description`) VALUES ('R7', 'McGill EMC Release 7 for EMC Community_1 - Brent Richards', 'McGill EMC Release 7 for EMC Community_1 - Brent Richards');
-INSERT INTO release_set(`release`, `name`, `description`) VALUES ('R7', 'McGill EMC Release 7 for EMC Community_2 - Noel Raynal', 'McGill EMC Release 7 for EMC Community_2 - Noel Raynal');
-INSERT INTO release_set(`release`, `name`, `description`) VALUES ('R7', 'McGill EMC Release 7 for EMC Community_3 - Jacques Cote', 'McGill EMC Release 7 for EMC Community_3 - Jacques Cote');
+INSERT INTO release_set(`release`, `name`, `description`) VALUES ('R7', 'McGill EMC Community projects Release 7 for cell line "SaOS-2"','Complete reference epigenome (as defined by IHEC) of a SaOS-2 cell line with osteosarcoma.');
+INSERT INTO release_set(`release`, `name`, `description`) VALUES ('R7', 'McGill EMC Community projects Release 7 for cell line "lung epithelial', 'Complete reference epigenome (as defined by IHEC) of a lung epithelial cell line with non-small Cell Lung Adenocarcinoma');
+INSERT INTO release_set(`release`, `name`, `description`) VALUES ('R7', 'McGill EMC Community projects Release 7 for cell line \"hTERT RPE1', 'Complete reference epigenome (as defined by IHEC) of normal hTERT RPE1 cell line as well as hTERT RPE1 cell lines engineered to express EPC1-PHF1 and JAZF1-SUZ12 fusion proteins, found in Endometrial Stromal Sarcoma.');

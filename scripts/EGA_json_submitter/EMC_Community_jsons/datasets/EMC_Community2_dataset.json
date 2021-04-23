@@ -1,0 +1,14 @@
+{
+    "alias" : "McGill_EMC_Community2",
+    "policyId" : "",
+    "runsReferences" : [],
+    "title" : "McGill EMC Community projects Release 7 for cell line \"lung epithelial\"",
+    "description" : "Complete reference epigenome (as defined by IHEC) of a lung epithelial cell line with non-small Cell Lung Adenocarcinoma",
+    "datasetLinks" : [ ],
+    "attributes" : [
+        {
+            "tag" : "",
+            "value" : ""
+        }
+     ]
+}

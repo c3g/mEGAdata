@@ -17,7 +17,7 @@ import pyexcel as pe
 # Run this script after datasets are created by importEMCSpreadsheet.py
 
 # .ods spreadsheet containing the datasets
-importFile = "/home/assez/Documents/projectDocs/EMC_Community/allEMCcommunity.ods"
+importFile = "/home/assez/projects/megadata/scripts/spreadsheet_importation/allEMCcommunity.ods"
 
 # table rows in the spreadsheet.  Start at header row, end at last row of data.
 # Rightmost COMMENTS columns may be skipped by defining col_limit.

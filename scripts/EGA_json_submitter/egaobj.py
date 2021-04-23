@@ -213,18 +213,18 @@ class Submission(EgaObj):
 
 # Corresponds to EGA Sample object.
 class Sample(EgaObj):
-    def __init__(self, alias):
-        self.path_to_template = globals.config["directories"]["json_dir"] + _type_to_api(self) + "/" + utils.alias_raw(alias) + ".json"
+    def __init__(self, alias, template):
+        self.path_to_template = globals.config["directories"]["json_dir"] + _type_to_api(self) + "/" + template
         # self.registration_status = "INSTANTIATED"
         try:
             f = open(self.path_to_template)
         except:
-            logging.error("Couldn't open Sample file to read.")
+            logging.error("Couldn't open Sample template file to read.")
             raise Exception("Failed to open file.")
         self.data = json.loads(f.read())
         f.close()
-        # Append an autoincrement to the alias to ensure unique aliases submitted to EGA during testing.
-        self.data["alias"] = utils.alias_testing(alias)
+        # Ensure unique aliases submitted to EGA.  Append an autoincrement to the alias during testing.
+        self.data["alias"] = utils.alias_increment(alias)
         logging.debug(f"Instantiated Sample: {self.data['alias']}")
         # if not already in globals.obj_registry.samples, append and send.
         if not self._is_in_registry():
@@ -250,22 +250,17 @@ class Sample(EgaObj):
 # Options: the relationMapping.ods Spreadsheet.  An internal data structure.  Generate all 64 jsons.
 # Should "design name" be a link to "See http://epigenomesportal.ca/edcc/doc/"?
 class Experiment(EgaObj):
-    def __init__(self, sample_alias, exp_alias):
-        # TODO Remove SampleAlias + "." from ExperimentAlias.  Not elegant - possibly change.
-        # TODO - Figure out another way to find appropriate template.
-        self.path_to_template = globals.config["directories"]["json_dir"] + _type_to_api(self) + "/" + utils.alias_raw(exp_alias.replace(utils.alias_raw(sample_alias + "."), "")) + ".json"
-        # print(self.path_to_template)
+    def __init__(self, sample_alias, exp_alias, exp_template):
+        self.path_to_template = globals.config["directories"]["json_dir"] + _type_to_api(self) + "/" + exp_template
         try:
             f = open(self.path_to_template)
         except:
-            logging.error("Couldn't open Experiment file to read.")
+            logging.error("Couldn't open Experiment template file to read.")
             raise Exception("Failed to open file.")
         self.data = json.loads(f.read())
         f.close()
-        # Append an autoincrement to the alias to ensure unique aliases submitted to EGA during testing.
-        ### Removed concat with _ now that we have distinct aliases in relationMapping.ods
-        # self.data["alias"] = utils.alias_testing(f"{sample_alias}_{exp_alias}")  # NO LONGER, NOW THAT COLUMN UNIQUE
-        self.data["alias"] = utils.alias_testing(f"{exp_alias}")
+        # Ensure unique aliases submitted to EGA.  Append an autoincrement to the alias during testing.
+        self.data["alias"] = utils.alias_increment(f"{exp_alias}")
         # Include Study and Sample in the Experiment.
         self.data["studyId"] = globals.config["submission"]["studyId"]
         # Lookup sample_alias in globals.obj_registry
@@ -288,10 +283,11 @@ class Experiment(EgaObj):
 # Currently only for paired fastq.gz files - could be extended to other file types later.
 class Run(EgaObj):
     def __init__(self, sample_alias, exp_alias, run_alias, file1, file2):
-        # pass in objects, rather than strtings...
+        # pass in objects, rather than strings?...
         self.data = {}
         # self.registration_status = "INSTANTIATED"
-        self.data["alias"] = utils.alias_testing(f"{run_alias}")
+        # Ensure unique aliases submitted to EGA.  Append an autoincrement to the alias during testing.
+        self.data["alias"] = utils.alias_increment(f"{run_alias}")
         self.data["sampleId"] = Sample.get_by_alias(sample_alias).data["id"]
         self.data["runFileTypeId"] = 5 # From enums.file_types, for paired .fastq.gz
         self.data["experimentId"] = Experiment.get_by_alias(exp_alias).data["id"]
@@ -320,7 +316,7 @@ class Run(EgaObj):
 class File():
     def __init__(self, fileName, checksum, unencryptedChecksum):
         self.data = {} # "Empty"
-        self.data["fileId"] = "" # Always empty.
+        # self.data["fileId"] = "" # Always empty.
         self.data["fileName"] = fileName
         # self.data["alias"] = fileName
         self.data["checksum"] = checksum

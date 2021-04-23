@@ -1,0 +1,14 @@
+{
+    "alias" : "McGill_EMC_Community3",
+    "policyId" : "",
+    "runsReferences" : [],
+    "title" : "McGill EMC Community projects Release 7 for cell line \"hTERT RPE1\"",
+    "description" : "Complete reference epigenome (as defined by IHEC) of normal hTERT RPE1 cell line as well as hTERT RPE1 cell lines engineered to express EPC1-PHF1 and JAZF1-SUZ12 fusion proteins, found in Endometrial Stromal Sarcoma.",
+    "datasetLinks" : [ ],
+    "attributes" : [
+        {
+            "tag" : "",
+            "value" : ""
+        }
+     ]
+}

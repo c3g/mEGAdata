@@ -14,13 +14,14 @@ from models import Dataset, Sample, ExperimentType, Run, RunFile, DatasetToRelea
 
 def main():
     # Write all that header info.
-    f = open("out.csv", "w")
+    f = open("relationMapping.csv", "w")
     # Spreadsheet Title
     f.write("EMC Community - Unnormalized\n")
+    f.write("Template columns must be manually filled in with the name of the JSON file.\n")
     # EGA Object headers
-    f.write("Dataset,,,Sample,,,Experiment,,,Run,,,Files\n")
+    f.write("Dataset,,,Sample,,,Experiment,,,Run,,Files\n")
     # Column headers
-    f.write("DatasetAlias,ID,EGAD,SampleAlias,ID,EGAN,ExperimentAlias,ID,EGAX,RunAlias,ID,EGAR,File1_Alias,File1_fileName,File1_Checksum,File1_Encrypted_Checksum,File1_ID,File1_EGAF,File2_Alias,File2_fileName,File2_Checksum,File2_Encrypted_Checksum,File2_ID,File2_EGAF\n")
+    f.write("Dataset_alias,Dataset_template,EGAD,Sample_alias,Sample_template,EGAN,Experiment_alias,Experiment_template,EGAX,Run_alias,EGAR,File1_fileName,File1_checksum,File1_encrypted_checksum,File1_EGAF,File2_fileName,File2_checksum,File2_encrypted_checksum,File2_EGAF\n")
 
     # Query Dataset, Sample and ExperimentType and Run info
     query = Dataset.select(Dataset, Sample, ExperimentType, Run)\
@@ -28,6 +29,7 @@ def main():
         .switch(Dataset).join(ExperimentType)\
         .switch(Dataset).join(Run)\
         .where((Dataset.release_status == "R7") ) # & (Dataset.id == 5072))
+    # TODO: Really need to make R7 a CLA!!!
     results = query.execute()
     for ds in results:
         # Query and write the release_set (aka, the EGA Dataset)
@@ -40,13 +42,13 @@ def main():
             f.write(f"{dtrs.release_set.name},,,")
 
         # Write Dataset, Sample and ExperimentType and Run info
-        f.write(f"{ds.sample.public_name},,,{ds.sample.public_name}.{ds.experiment_type.internal_assay_short_name},,,{ds.sample.public_name}.{ds.experiment_type.internal_assay_short_name}.{ds.run.run}.{ds.run.lane},,,")
+        f.write(f"{ds.sample.public_name},,,{ds.sample.public_name}.{ds.experiment_type.internal_assay_short_name},,,{ds.sample.public_name}.{ds.experiment_type.internal_assay_short_name}.{ds.run.run}.{ds.run.lane},,")
 
         # Query and write the two run_files, to be written on the same line.
         run_file_query = RunFile.select(RunFile).where(RunFile.run_id == ds.run.id)
         run_file_results = run_file_query.execute()
         for rf in run_file_results:
-            f.write(f"{rf.name},{rf.name},{rf.md5},{rf.encrypted_md5},,,")
+            f.write(f"{rf.name},{rf.md5},{rf.encrypted_md5},,")
         f.write("\n")
     f.close()
 

@@ -9,16 +9,16 @@ def print_response(r):
 def print_response_status_code(r):
     print(r.status_code)
 
-# Add a reason for this 
-def alias_testing(alias):
-    if globals.config["global"]["test_or_prod"] == "prod":
-        return alias
+# Add an integer increment to the EGA Object alias to ensure uniqueness. 
+def alias_increment(alias):
+    if globals.config.getboolean("global", "alias_increment"):
+        return alias + "_" + globals.config["global"]["alias_append"]
     else:
-        return alias + "_" + globals.config["session"]["alias_increment"]
+        return alias
 
-# Add a reason for this function
+# Strip the alias of any autoincrement.  Used for lookup in the obj_registries.
 def alias_raw(alias):
-    if globals.config["global"]["test_or_prod"] == "prod":
-        return alias
+    if globals.config.getboolean("global", "alias_increment"):
+        return alias.replace("_" + globals.config["global"]["alias_append"], "")
     else:
-        return alias.replace("_" + globals.config["session"]["alias_increment"], "")
+        return alias
