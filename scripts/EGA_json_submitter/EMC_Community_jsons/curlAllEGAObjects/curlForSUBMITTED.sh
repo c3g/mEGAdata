@@ -1,4 +1,5 @@
-# Get dumps of everything SUBMITTED to EGA - parse for EGA accessions later...
+# Get dumps of absolutely everything SUBMITTED to EGA, from all submissions
+# Can parse for EGA accessions later...
 
 # Login to prod SP, get the token from the settings.ini file and paste it here.
 # python send.py pass

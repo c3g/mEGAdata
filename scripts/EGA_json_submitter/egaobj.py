@@ -85,7 +85,7 @@ class EgaObj():
     def _get_by_alias(cls, alias, obj_type):
         # Select which list to use
         for obj in globals.obj_registry[obj_type]:
-            logging.debug(f"Searching through {obj_type} for alias: {utils.alias_raw(obj.data['alias'])}...")
+            # logging.debug(f"Searching through {obj_type} for alias: {utils.alias_raw(obj.data['alias'])}...")
             if utils.alias_raw(obj.data['alias']) == alias:
                 logging.debug(f"Found {alias} in globals.obj_registry {obj_type}.")
                 return obj
@@ -167,6 +167,8 @@ class Submission(EgaObj):
         url = globals.BASE_URL + path
         resp = requests.delete(url, headers=json.loads(globals.config["global"]["headers"]))
         # Not currently verifying that an object was deleted.  Even a failed delete request can returns status_code == 200.
+        # TODO: EGA *often* fails to delete Objects.
+        # Perhaps just a message that not everything was really deleted.
         if resp.status_code != 200:
             logging.debug(f"Failed to DELETE {obj_type} with Id: {Id} \n {resp.text}")
             raise Exception(f"Could not DELETE {obj_type} with Id: {Id}.")
@@ -182,7 +184,9 @@ class Submission(EgaObj):
             self._delete_one_by_id(Id, obj_type)
         logging.debug(f"All {obj_type} DELETED for this Submission.")
 
-    # Deletes all of this Submission's EGA Objects, for all types.
+    # Deletes all of this Submission's EGA Objects, for all types.  Doesn't delete the Submission Object itself.
+    # Sometimes all Objects don't get deleted.  It is safe to run multiple times to ensure complete deletion.
+    # The SP is rather slow to delete objects, so be patient.
     # Might need to code to verfiy that truly nothing remains (http errors can cause deletion failures.)
     def delete_all_objects(self):
         # Probably only want to delete Objects unique to this Submission (samples, experiments, runs and datasets), not those shared with other submissions.
@@ -214,7 +218,9 @@ class Submission(EgaObj):
 # Corresponds to EGA Sample object.
 class Sample(EgaObj):
     def __init__(self, alias, template):
+        # TODO: storing path_to_template is useless for all Objects.
         self.path_to_template = globals.config["directories"]["json_dir"] + _type_to_api(self) + "/" + template
+        # TODO: This is useless too for all Objects.  Right?  Maybe?
         # self.registration_status = "INSTANTIATED"
         try:
             f = open(self.path_to_template)
@@ -245,9 +251,8 @@ class Sample(EgaObj):
 # Rather than lookup up in the obj_registry, could I query EGA directly?  Well, have to query *by* something (alias or id)...
 
 # Corresponds to EGA Experiment object.
-# Despite the EGA documentation regarding the new JSON format (Green Arrow), for Experiments, we are submitting an experiment for each sample.
-# We can use a template to generate the EgaObj, but we need somewhere to store the Samples * Assays = 8 * 8 = 64 EGA ids.
-# Options: the relationMapping.ods Spreadsheet.  An internal data structure.  Generate all 64 jsons.
+# Despite the EGA documentation regarding the new JSON format (Green Arrow), for Experiments, we are submitting separate experiments for each sample.
+# We use a template to generate the EgaObj and store the Ids in the internal obj_registry.
 # Should "design name" be a link to "See http://epigenomesportal.ca/edcc/doc/"?
 class Experiment(EgaObj):
     def __init__(self, sample_alias, exp_alias, exp_template):
@@ -264,8 +269,7 @@ class Experiment(EgaObj):
         # Include Study and Sample in the Experiment.
         self.data["studyId"] = globals.config["submission"]["studyId"]
         # Lookup sample_alias in globals.obj_registry
-        # self.data["sampleId"] = Sample.get_by_alias(sample_alias).data["alias"]
-        # Maybe pass in a sample as a param rather than a string for lookup....
+        # Maybe pass in a Sample as a param rather than a string for lookup....
         self.data["sampleId"] = Sample.get_by_alias(sample_alias).data["id"]
         logging.debug(f"Instantiated Experiment: {self.data['alias']}")
         # if not already in globals.obj_registry.experiments, append and send.
@@ -280,7 +284,7 @@ class Experiment(EgaObj):
         return cls._get_by_alias(alias, "experiments")
 
 
-# Currently only for paired fastq.gz files - could be extended to other file types later.
+# Currently restricted to only paired fastq.gz files - could be extended to other Run types later.
 class Run(EgaObj):
     def __init__(self, sample_alias, exp_alias, run_alias, file1, file2):
         # pass in objects, rather than strings?...
@@ -328,40 +332,58 @@ class File():
         return json.dumps(self.__dict__, indent=4)
 
 class Dataset(EgaObj):
-    def __init__(self):
-        pass
+    def __init__(self, alias, template):
+        self.path_to_template = globals.config["directories"]["json_dir"] + _type_to_api(self) + "/" + template
+        try:
+            f = open(self.path_to_template)
+        except:
+            logging.error("Couldn't open Dataset template file to read.")
+            raise Exception("Failed to open file.")
+        self.data = json.loads(f.read())
+        f.close()
+        # Ensure unique aliases submitted to EGA.  Append an autoincrement to the alias during testing.
+        self.data["alias"] = utils.alias_increment(f"{alias}")
+        self.data["policyId"] = globals.config["submission"]["policyId"]
+        self.data["runsReference"] = []
+        logging.debug(f"Instantiated Dataset: {self.data['alias']}")
+        # if not already present in globals.obj_registry.experiments, append, but DO NOT send().
+        if not self._is_in_registry():
+            globals.obj_registry[f"{_type_to_api(self)}"].append(self)
+            logging.debug(f"Dataset {self.data['alias']} added to global list.")
+            # Don't send() until all Runs have been added!
 
-    def send(self):
-        pass
+    # Run: A Run object to add to data.runsReferences[]
+    def add_run(self, Run):
+        self.data["runsReferences"].append(Run.data["id"])
+        logging.debug(f"Run {Run.data['alias']} added to Dataset {self.data['alias']}.")
 
-class Study(EgaObj):
-    def __init__(self):
-        pass
+    # Update a Dataset, by alias, in the obj_registry.  Usually called after adding Runs to the Dataset.
+    def update_obj_registry(self):
+        if self._is_in_registry():
+            # Find
+            for obj in globals.obj_registry[f"{_type_to_api(self)}"]:
+                if self.data["alias"] == obj.data["alias"]:
+                    # Remove
+                    globals.obj_registry[f"{_type_to_api(self)}"].remove(obj)
+            # Append new Dataset
+            globals.obj_registry[f"{_type_to_api(self)}"].append(self)
+            logging.debug(f"Updated {_type_to_api(self).capitalize()} with alias {self.data['alias']} in the in globals.obj_registry for {_type_to_api(self)}.")
 
-    def send(self):
-        pass
+    def __str__(self):
+        return json.dumps(self.__dict__, indent=4)
 
-class Dac(EgaObj):
-    def __init__(self):
-        pass
+    # send all Datasets in the obj_registry to EGA.
+    @classmethod
+    def send_all(cls):
+        for dataset in globals.obj_registry["datasets"]:
+            dataset.send()
 
-    def send(self):
-        pass
+    # Find EgaObj in globals.obj_registry by alias
+    # Couldn't this be part of EgaObject?
+    @classmethod
+    def get_by_alias(cls, alias):
+        return cls._get_by_alias(alias, "datasets")
 
-class Policy(EgaObj):
-    def __init__(self):
-        pass
-
-    def send(self):
-        pass
-
-# Never implemented.
-class Analysis(EgaObj):
-    def __init__(self):
-        pass
-
-    def send(self):
-        pass
 
 # Maybe rename to better reflect usage.
 def _type_to_api(EgaObj):
@@ -383,109 +405,25 @@ def _type_to_api(EgaObj):
         logging.error("Not implemented")
     else:
         raise Exception("Unknown EGA Object.")
+
+# Never implemented - reusing previously submitted EGA Object.
+class Study(EgaObj):
+    def __init__(self):
+        pass
+
+# Never implemented - reusing previously submitted EGA Object.
+class Dac(EgaObj):
+    def __init__(self):
+        pass
+
+# Never implemented - reusing previously submitted EGA Object.
+class Policy(EgaObj):
+    def __init__(self):
+        pass
+
+# Never implemented.
+class Analysis(EgaObj):
+    def __init__(self):
+        pass
+
     
-
-#### JUNK ####
-'''
-    def send(self):
-        # Send EgaObj only once.  Once sent, it has an id.
-        # if "id" not in self.data:
-        # Remove ids from template for sending to EGA, if present.
-        # if "id" in self.data:
-        #     self.data.pop("id")
-        # if "egaAccessionId" in self.data:
-        #     self.data.pop("egaAccessionId")
-
-    # Saves object data to template file.
-    # def save_to_template(self):
-    #     try:
-    #         f = open(self.path_to_template, "w")
-    #     except:
-    #         logging.error("Couldn't open Sample file to write.")
-    #     f.write(json.dumps(self.data, indent=4))
-    #     f.close()
-
-\"title\" : \"\",\
-	                \"description\" : \"\",\
-
-
-# SUBMISSION
-def validate_subset(self):
-    self._validate_or_submit_subset(action="VALIDATE")
-
-def submit_subset(self):
-    self._validate_or_submit_subset(action="SUBMIT")
-
-# So far, only hard-coded for first row of data.
-def _validate_or_submit_subset(self, action="VALIDATE"):
-    if action not in ("VALIDATE", "SUBMIT"):
-        raise Exception(f"For subset Submissions, only VALIDATE or SUBMIT actions are permitted.")
-    path = f"/submissions/{globals.config['session']['submissionId']}?action={action}"
-    url = globals.BASE_URL + path
-    sample = Sample.get_by_alias("MS048901")
-    sampleId = sample.data["id"]
-    experiment = Experiment.get_by_alias("MS048901_" + "Chipmentation_H3K27ac")
-    experimentId = experiment.data["id"]
-    # print("Using: " + sample.data["id"])
-    # print("Using: " + sample.data["id"])
-    payload = "{\"submissionSubset\" : {\
-                    \"sampleIds\" : [\"" + sampleId + "\"],\
-                    \"analysisIds\" : [],\
-                    \"dacIds\" : [],\
-                    \"datasetIds\" : [],\
-                    \"experimentIds\" : [\"" + experimentId + "\"],\
-                    \"policyIds\" : [],\
-                    \"runIds\" : [],\
-                    \"studyIds\" : []\
-        } }"
-    print(payload)
-    r = requests.put(url, headers=json.loads(globals.config["global"]["headers"]), data=payload)
-    if r.status_code != 200:
-        print(r.text)
-        raise Exception(f"Could not {action} partial Submission.")
-    logging.debug(f"Partial Submission {action}ION accepted.")
-
-Default is reuse Submission. Just use config's.
-Reuse recorded Submission - retrieve from config
-Send initial Submission - store submissionId - same as new Submission. - Needs to be primed.
-New Submission - Send new and overwrite config submissionId
-
-        # Restore later
-        # f"registration_status: {self.registration_status}\n" + \
-        # return f"path_to_template: {self.path_to_template}\n" + \
-        #     json.dumps(self.data, indent=4) + "\n\n"
-
-# self.validate()
-# self.submit()
-
-    # Trying to record_EGA_objects by submission afer SUBMISSION.  Doesn't work - objects are no longer part of the submission.
-    # Record this Submission's custom Object JSONs (as they exist at EGA) to disk (except the Submission object itself).
-    # Once Objects are SUBMITTED to test SP, they seem to no longer belong to the submission and can no longer by queried by submission.  However, they can still be queried individually by type and Id (where they are listed as status = SUBMITTED and they have an EGA accession.)
-    # So this function only works for DRAFT and VALIDATED objects.
-    # Write something to query for the SUBMITTED objects in this submission (will have to be done one by one, with their Ids, not by submission.)
-    # Or just curl for the entire set of prod objects and parse out the EGA accessions from there, based on unique aliases.
-    def record_EGA_objects(self):
-        for obj_type in ["samples", "experiments", "runs", "datasets"]:
-            # for status in ["unSUBMITTED", "SUBMITTED"]:
-            try:
-                # f = open(globals.config["directories"]["json_dir"] + f"/submissionObj/{status}/{obj_type}.json", "w")
-                f = open(globals.config["directories"]["json_dir"] + f"/submissionObj/{obj_type}.json", "w")
-            except:
-                # logging.error(f"Couldn't open file to write {status} {obj_type} from EGA responses.")
-                logging.error(f"Couldn't open file to write {obj_type} from EGA responses.")
-            else:
-                path = globals.BASE_URL + globals.config["session"]["submission_path"] + f"/{obj_type}"
-                # path = path + "?status=SUBMITTED" if status == "SUBMITTED" else path
-                r = requests.get(path, headers=json.loads(globals.config["global"]["headers"]))
-                if r.status_code != 200:
-                    raise Exception(f"Could not retrieve JSON of all {obj_type} from this Submission.")
-                f.write(r.text)
-                f.close()
-                # logging.debug(f"This Submission's {status} {obj_type} retrieved as JSON from EGA.")
-                logging.debug(f"This Submission's {obj_type} retrieved as JSON from EGA.")
-
-
-
-
-
-'''

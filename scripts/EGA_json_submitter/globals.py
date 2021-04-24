@@ -2,9 +2,7 @@ from configparser import ExtendedInterpolation, RawConfigParser
 import logging
 from egaobj import Submission
 
-# def define():
-# Initialize configuration
-# global config
+# Initialize global configuration
 config = RawConfigParser(allow_no_value=True, interpolation=ExtendedInterpolation())  # comment_prefixes=';',
 config.optionxform = lambda option: option
 config.read("settings.ini")
@@ -31,18 +29,13 @@ if config.getboolean("global", "alias_increment"):
     config["global"]["alias_append"] = str(config.getint("global", "alias_append") + 1)
     write_config()
 
-# Define EgaObject lists
-samples = []
-experiments = []
-runs = []
-datasets = []
-
-# Submission, global for now...
+# Submission object, globally accessible.
 mySub = Submission()
 
-# Define local EgaObject registry
+# Local cache of instantiated Ega Objects
 obj_registry = {
     "samples": [],\
     "experiments": [],\
     "runs": [],\
+    "datasets": [],\
     }

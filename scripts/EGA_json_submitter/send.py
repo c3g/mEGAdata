@@ -11,9 +11,8 @@ from configparser import ExtendedInterpolation, RawConfigParser
 # Import custom code, in pwd.
 import utils
 import connection
-
 import globals # A few critical global vars, for use among multiple scripts, defined.
-from egaobj import Submission, Sample, Experiment, Run, File
+from egaobj import Submission, Sample, Experiment, Run, File, Dataset
 
 # Process CLA
 parser = argparse.ArgumentParser()
@@ -26,8 +25,6 @@ parser.add_argument("--submit", action="store_true", help="Attempt to SUBMIT all
 args = parser.parse_args()
 
 # Make sure NOT TO DELETE all studies, dacs, policies, etc, when deleting the Submission's everything else.  If they are status=SUBMITTED, they should resist, but can't be sure...
-
-# Need a better name for this script: EGAtransact, talktoEGA...  EGAzap!
 
 def main():
     logging.debug(f"Running script with arguments: {str(sys.argv)}.")
@@ -77,22 +74,30 @@ def process_rows():
     # 2 for minimal test.
     # 6 for basic test.
     # 20, # For full test file.  # Will need to define this elsewhere.
-    row_limit=6,\
-    start_column=3,\
+    row_limit=20,\
+    # 3
+    start_column=0,\
     #4 to include Experiment.
     column_limit=19 # Not really needed.
     )
     logging.debug(f"Found {len(rows)} rows in the relation mapping spreadsheet.")
     for row in rows:
-        # loggin.debug(f"Working on ")
+        # logging.debug(f"Working on ")
         Sample(row["Sample_alias"], row["Sample_template"])
         Experiment(row["Sample_alias"], row["Experiment_alias"], row["Experiment_template"])
         file1 = File(row["File1_fileName"], row["File1_checksum"], row["File1_encrypted_checksum"])
         file2 = File(row["File2_fileName"], row["File2_checksum"], row["File2_encrypted_checksum"])
         Run(row["Sample_alias"], row["Experiment_alias"], row["Run_alias"], file1, file2)
-    # Need to submit Datasets AFTER all Runs are send, so as to have the Ids.
-    # Run through .ods again, for each dataset, find all Runs.
-    
+        # Create the Datasets, but don't send until AFTER all Runs are sent, since their Ids are required.
+        Dataset(row["Dataset_alias"], row["Dataset_template"])
+    # Run through .ods again, for each dataset, append its Runs and update the obj_registry
+    for row in rows:
+        dataset = Dataset.get_by_alias(row["Dataset_alias"])
+        dataset.add_run(Run.get_by_alias(row["Run_alias"]))
+        dataset.update_obj_registry()
+    # Now that datasets are updated, send() all Datasets in the Dataset obj_registry.  (Assumes there is at least one row being processed.)
+    Dataset.send_all()
+
 
 # Dump globals.obj_registry in quasi-json formatting, to record final state of Submission.
 def record_obj_registry():
@@ -122,80 +127,3 @@ def all_ftp_uploaded_files_info():
 
 if __name__ == "__main__":
   main()
-
-
-#### JUNK ####
-'''
-        # if not mySample._is_present(mySample):
-        # mySample.send()
-            # mySample.validate()
-            # mySample.submit()
-    # Eventually get the id / EGAid back into mEGAdata.
-
-# SAMPLES
-def find_all_samples():
-    # Define section of relation mapping spreadsheet that contains Sample information
-    records = pe.get_records(file_name=globals.config["directories"]["relation_mapping_dir"] + globals.config["directories"]["relation_mapping_file"],
-    start_row=2,\
-    name_columns_by_row=0,\
-    row_limit=16, # Will need to define this elsewhere.
-    start_column=3,\
-    column_limit=3
-    )
-
-    # Find unique Samples in spreadsheet
-    for record in records:
-        mySamples = []
-        if record["Alias"] not in mySamples:
-            mySamples.append(record["Alias"])
-    
-    # Instatiate
-    for sample in mySamples:
-        mySample = Sample(sample)
-        mySample.send()
-        mySample.validate()
-        mySample.submit()
-    # Eventually get the id / EGAid back into mEGAdata.
-
-# import argparse
-
-# # EXPERIMENTS
-# def find_all_experiments():
-#     pass
-
-    # Try a submission subset validation
-    # validate_subset_submission()
-    # submit_subset_submission()
-
-# def validate_subset_submission():
-#     mySub.validate_subset()
-
-# def submit_subset_submission():
-#     mySub.submit_subset()
-
-# SUBMISSIONS
-# def send_submission():
-#     # mySub = Submission()
-#     globals.mySub.send()
-
-def validate_submission():
-    globals.mySub.validate()
-
-def submit_submission():
-    globals.mySub.submit()
-
-
-    Future CLA's (better as args, not options.)
-    --delete-all-objects
-    --process-rows.
-    --validate
-    --submit
-
-    # print(f"Operation: {args.operation}")
-    # if args.operation and args.operation[0] == "send":
-
-# print(globals.mySub.all_ids("experiments"))
-# print(globals.mySub.all_ids("samples"))
-# globals.mySub.delete_all_of("experiments")
-
-'''

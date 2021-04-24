@@ -94,20 +94,18 @@ Many objects (Policy, DAC, Study) can be reused from previous a Submission.
 * Policy - Find Id and link in.  Reuse from previous Submisison.
 * Send Run objects (reusing old files existent on test server first).
 * Refactored relationsMapping.ods to include templates. - DONE!
+* Create and Send Datasets objects: EMC1, EMC2, EMC3.
+    * Test with validate and submit, delete.
+* Test the delete functions on the test SP. (especially for interrupted Submissions) - working well, though SP glitches during large deletes.  Multiple deletes solve this, but some code should compensate, or raise a message.
 
 
 ## Moving forward:
+* Ensure no duplicates sent (possibly already handled with the unique alias constraint).  CAN this even happen?
 * Ensure no premature Submission SUBMITion. (Leave a single trailing VALIDATED Object to prevent progression to SUBMITTED?)
-
-* Create and Send Datasets objects: EMC1, EMC2, EMC3.
-
-* Test the delete functions on the test SP. (especially for interrupted Submissions)
-* Probably need to prepend a dir to the fileNames of prod files or something, to properly find it.
-
-* Ensure no duplicates sent (possibly already handled with the unique alias constraint).
 * Detect or treat http errors - may need a http retry function for network timeouts.  This has sometimes been an issue.
 
 * Test on prod.
+* Probably need to prepend a dir to the fileNames of prod files or something, to properly find it.
 
 * Retrieval and updates of EGA Id's back into mEGAdata (can only be performed after SUBMISSION).  This is slightly strange.  See note at ebaobj.py, record_EGA_objects() for methodology.  Yes, can do this with the test SP.
 * Tell EGA to deploy the release.

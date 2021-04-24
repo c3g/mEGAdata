@@ -1,5 +1,6 @@
 {
     "alias" : "McGill_EMC_Community3",
+    "datasetTypeIds" : [ "3", "7", "13" ],
     "policyId" : "",
     "runsReferences" : [],
     "title" : "McGill EMC Community projects Release 7 for cell line \"hTERT RPE1\"",
