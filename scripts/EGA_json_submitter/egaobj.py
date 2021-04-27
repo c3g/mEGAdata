@@ -2,19 +2,17 @@ import requests
 import json
 import os
 import sys
-# from abc import ABC, abstractmethod
 from configparser import ExtendedInterpolation, RawConfigParser
 import logging
 
 import globals
 import utils
 
-# class EgaObj(ABC):
 class EgaObj():
     def __init__(self):
         self.data = {} # "Empty"
         self.path_to_template = ""
-        # self.registration_status = "INSTANTIATED"
+        self.registration_status = "INSTANTIATED"
 
     # Pretty print
     def __str__(self):
@@ -96,18 +94,24 @@ class EgaObj():
 # Corresponds to an EGA Submission object.
 class Submission(EgaObj):
     def __init__(self):
-        f = open(globals.config["directories"]["json_dir"] + globals.config["session"]["submission_json"])
-        self.data = f.read() # Want json - this might be a string.
+        try:
+            f = open(globals.config["directories"]["template_dir"] + _type_to_api(self) + "/" + globals.config["submission"]["submission_json"])
+        except:
+            logging.error("Couldn't open Submission template file to read.")
+            raise Exception("Failed to open file.")
+        self.data = json.loads(f.read())
+        f.close()
+        logging.debug(f"Instantiated Submission.")
 
-    # Should write this.
     def __str__(self):
-        pass
+        return json.dumps(self.__dict__, indent=4)
 
     # Initial send to EGA server.
     def send(self):
         path = "/submissions"
         url = globals.BASE_URL + path
-        r = requests.post(url, headers=json.loads(globals.config["global"]["headers"]), data=self.data)
+        payload = json.dumps(self.data)
+        r = requests.post(url, headers=json.loads(globals.config["global"]["headers"]), data=payload)
         if r.status_code != 200:
             raise Exception("Could not send Submission json.")
         json_response = r.json()
@@ -132,7 +136,7 @@ class Submission(EgaObj):
             logging.debug(r.text)
             raise Exception(f"Could not complete Submission {action}ION.")
         # Save response
-        f = open(globals.config["directories"]["json_dir"] + f"/submissionObj/submission{action}Reponse.json", "w")
+        f = open(globals.config["directories"]["response_dir"] + f"submission{action}Response.json", "w")
         f.write(r.text)
         logging.debug(f"Submission {action} accepted.")
 
@@ -186,8 +190,9 @@ class Submission(EgaObj):
 
     # Deletes all of this Submission's EGA Objects, for all types.  Doesn't delete the Submission Object itself.
     # Sometimes all Objects don't get deleted.  It is safe to run multiple times to ensure complete deletion.
-    # The SP is rather slow to delete objects, so be patient.
+    # The SP is rather slow to delete objects, so be patient.  The UI can also be used and is faster and deletes more completely.
     # Might need to code to verfiy that truly nothing remains (http errors can cause deletion failures.)
+    # Tested on a 90 Run Submission.  Ran delete-all-objects 3 times and .  Then with one click in the UI, whole submission was deleted very well.  So, conlcusion is that it is better to delete the entire Submission through the UI than its individual objects through this script.  Can an entire Submission be deleted through the API? 
     def delete_all_objects(self):
         # Probably only want to delete Objects unique to this Submission (samples, experiments, runs and datasets), not those shared with other submissions.
         # for obj_type in ["samples", "studies", "experiments", "runs", "dacs", "policies", "datasets", "analyses"]:
@@ -203,7 +208,7 @@ class Submission(EgaObj):
     def record_EGA_objects(self):
         for obj_type in ["samples", "experiments", "runs", "datasets"]:
             try:
-                f = open(globals.config["directories"]["json_dir"] + f"/submissionObj/{obj_type}.json", "w")
+                f = open(globals.config["directories"]["response_dir"] + f"record-EGA-objects/{obj_type}.json", "w")
             except:
                 logging.error(f"Couldn't open file to write {obj_type} from EGA responses.")
             else:
@@ -218,10 +223,7 @@ class Submission(EgaObj):
 # Corresponds to EGA Sample object.
 class Sample(EgaObj):
     def __init__(self, alias, template):
-        # TODO: storing path_to_template is useless for all Objects.
-        self.path_to_template = globals.config["directories"]["json_dir"] + _type_to_api(self) + "/" + template
-        # TODO: This is useless too for all Objects.  Right?  Maybe?
-        # self.registration_status = "INSTANTIATED"
+        self.path_to_template = globals.config["directories"]["template_dir"] + _type_to_api(self) + "/" + template
         try:
             f = open(self.path_to_template)
         except:
@@ -256,7 +258,7 @@ class Sample(EgaObj):
 # Should "design name" be a link to "See http://epigenomesportal.ca/edcc/doc/"?
 class Experiment(EgaObj):
     def __init__(self, sample_alias, exp_alias, exp_template):
-        self.path_to_template = globals.config["directories"]["json_dir"] + _type_to_api(self) + "/" + exp_template
+        self.path_to_template = globals.config["directories"]["template_dir"] + _type_to_api(self) + "/" + exp_template
         try:
             f = open(self.path_to_template)
         except:
@@ -289,7 +291,6 @@ class Run(EgaObj):
     def __init__(self, sample_alias, exp_alias, run_alias, file1, file2):
         # pass in objects, rather than strings?...
         self.data = {}
-        # self.registration_status = "INSTANTIATED"
         # Ensure unique aliases submitted to EGA.  Append an autoincrement to the alias during testing.
         self.data["alias"] = utils.alias_increment(f"{run_alias}")
         self.data["sampleId"] = Sample.get_by_alias(sample_alias).data["id"]
@@ -333,7 +334,7 @@ class File():
 
 class Dataset(EgaObj):
     def __init__(self, alias, template):
-        self.path_to_template = globals.config["directories"]["json_dir"] + _type_to_api(self) + "/" + template
+        self.path_to_template = globals.config["directories"]["template_dir"] + _type_to_api(self) + "/" + template
         try:
             f = open(self.path_to_template)
         except:
@@ -401,6 +402,8 @@ def _type_to_api(EgaObj):
         return "policies"
     elif isinstance(EgaObj, Dataset):
         return "datasets"
+    elif isinstance(EgaObj, Submission):
+        return "submissions"
     elif isinstance(EgaObj, Analysis):
         logging.error("Not implemented")
     else:

@@ -67,19 +67,10 @@ def main():
 # Get one spreadsheet row to work with.
 def process_rows():
     # Define section of relation mapping spreadsheet that contains Sample information
-    # Maybe move all these numbers into a settings.ini section.
-    rows = pe.get_records(file_name=globals.config["directories"]["relation_mapping_dir"] + globals.config["directories"]["relation_mapping_file"],
-    start_row=3,\
-    name_columns_by_row=0,\
-    # 2 for minimal test.
-    # 6 for basic test.
-    # 20, # For full test file.  # Will need to define this elsewhere.
-    row_limit=20,\
-    # 3
-    start_column=0,\
-    #4 to include Experiment.
-    column_limit=19 # Not really needed.
-    )
+    rows = pe.get_records(file_name=globals.config["relations"]["dir"] + globals.config["relations"]["file"],\
+        start_row = globals.config.getint("relations", "start_row"),\
+        name_columns_by_row=globals.config.getint("relations", "name_columns_by_row"),\
+        row_limit=globals.config.getint("relations", "row_limit"))
     logging.debug(f"Found {len(rows)} rows in the relation mapping spreadsheet.")
     for row in rows:
         # logging.debug(f"Working on ")
@@ -103,7 +94,7 @@ def process_rows():
 def record_obj_registry():
     for obj_type in globals.obj_registry:
         try:
-            f = open(globals.config["directories"]["json_dir"] + "/sentEgaObj/" + str(obj_type) + ".json", "w")
+            f = open(f"{globals.config['directories']['response_dir']}obj_registry/{str(obj_type)}.json", "w")
         except:
             logging.error(f"Couldn't open file to write {str(obj_type)}s from object registry.")
         f.write("[\n")
@@ -113,14 +104,14 @@ def record_obj_registry():
         f.write("]")
         f.close()
 
-# Save a JSON of all fastq.gz files recognized by the server.
+# Save a JSON of all data files recognized by the EGA server.
 def all_ftp_uploaded_files_info():
     path = "/files?sourceType=EBI_INBOX&skip=0&limit=0"
     url = globals.BASE_URL + path
     r = requests.get(url, headers=json.loads(globals.config["global"]["headers"]))
     if r.status_code != 200:
         raise Exception("Could not retrieve file info.")
-    f = open(globals.config["directories"]["json_dir"] + "all_files_ega_inbox.json", "w")
+    f = open(globals.config["directories"]["response_dir"] + "all_files_ega_inbox.json", "w")
     f.write(r.text + "\n")
     logging.debug(f"All file information retrieved.")
 
