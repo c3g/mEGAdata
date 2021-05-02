@@ -97,12 +97,14 @@ Many objects (Policy, DAC, Study) can be reused from previous a Submission.
 * Create and Send Datasets objects: EMC1, EMC2, EMC3.
     * Test with validate and submit, delete.
 * Test the delete functions on the test SP. (especially for interrupted Submissions) - working well, though SP glitches during large deletes.  Multiple deletes solve this, but some code should compensate, or raise a message.  Delete whole Submission through the UI works best.
+* Retrieval and updates of EGA accessions back into mEGAdata DB (can only be performed after SUBMISSION, but can be done on test SP).  
 
 
 ## Moving forward:
-* Retrieval and updates of EGA Id's back into mEGAdata (can only be performed after SUBMISSION).  This is slightly strange.  See note at ebaobj.py, _record_EGA_objects() for methodology.  Yes, can do this with the test SP.  What is the best source of info (Absolutely everything, or just the Submission's objects?)
+* Fix the NULLs in sample table of allEMCCommunity.ods and redo .sqls.
 
 * Mapping on abacus through symlinks of raw file names to MS00xxx names (McGill Sample format) (abacus account has already been obtained). (This task is independant.)
+
 
 * Test on prod - going well...
 

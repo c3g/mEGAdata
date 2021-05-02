@@ -27,3 +27,6 @@ curl -X GET -H "X-Token: b658b4d4-08bb-48d4-9372-b4fa35263ad4" "https://ega-arch
 
 # DAC
 curl -X GET -H "X-Token: b658b4d4-08bb-48d4-9372-b4fa35263ad4" "https://ega-archive.org/submission-api/v1/dacs?status=SUBMITTED&skip=0&limit=0" > dacs.json
+
+# Files
+#curl -X GET -H "X-Token: b658b4d4-08bb-48d4-9372-b4fa35263ad4" "https://ega-archive.org/submission-api/v1/files?status=SUBMITTED&skip=0&limit=0" > files.json
