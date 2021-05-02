@@ -3,7 +3,7 @@ import logging
 import json
 
 import globals
-# import utils
+import utils
 
 # Log in
 def login():
@@ -16,7 +16,7 @@ def login():
     json_response = r.json()
     globals.config["login"]["token"] = json_response["response"]["result"][0]["session"]["sessionToken"]
     logging.debug(f"Logged in with token {globals.config['login']['token']}.")
-    globals.write_config()
+    utils.write_config()
 
 # Log out
 def logout():

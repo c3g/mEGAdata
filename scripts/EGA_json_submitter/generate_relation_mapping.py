@@ -41,7 +41,7 @@ def main():
         for dtrs in dtrs_results:
             f.write(f"{dtrs.release_set.name},,,")
 
-        # Write Dataset, Sample and ExperimentType and Run info
+        # Write Sample, ExperimentType and Run info
         f.write(f"{ds.sample.public_name},,,{ds.sample.public_name}.{ds.experiment_type.internal_assay_short_name},,,{ds.sample.public_name}.{ds.experiment_type.internal_assay_short_name}.{ds.run.run}.{ds.run.lane},,")
 
         # Query and write the two run_files, to be written on the same line.

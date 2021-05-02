@@ -1,13 +1,20 @@
 import globals
 
 # Print response
+# Is this still used?
 def print_response(r):
     print_response_status_code(r)
     # print(r.headers)
     print(r.text)
 
+# Is this still used?
 def print_response_status_code(r):
     print(r.status_code)
+
+# Write config file to disk.
+def write_config():
+    with open("settings.ini", "w") as configfile:
+        globals.config.write(configfile)
 
 # Add an integer increment to the EGA Object alias to ensure uniqueness. 
 def alias_increment(alias):

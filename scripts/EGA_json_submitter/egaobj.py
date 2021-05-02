@@ -116,7 +116,7 @@ class Submission(EgaObj):
             raise Exception("Could not send Submission json.")
         json_response = r.json()
         globals.config["session"]["submissionId"] = json_response["response"]["result"][0]["id"]
-        globals.write_config()
+        utils.write_config()
         logging.debug(f"Submission SENT with submissionId {globals.config['session']['submissionId']}")
         
     def validate(self):
@@ -201,10 +201,29 @@ class Submission(EgaObj):
         logging.debug(f"All EGA Objects DELETED for this Submission.")
 
     # Record this Submission's custom Object JSONs (as they exist at EGA) to disk (except the Submission object itself).
-    # Once Objects are SUBMITTED to test SP, they seem to no longer belong to the submission and can no longer by queried by submission.  However, they can still be queried individually by type and Id (where they are listed as status = SUBMITTED and they have an EGA accession.)
-    # So this function only works for DRAFT and VALIDATED objects.
-    # Write something to query for the SUBMITTED objects in this submission (will have to be done one by one, with their Ids, not by submission.)
+    # Once Objects are SUBMITTED to SP, they need to be queried with ?status=SUBMITTED appended to the request.
+    # Write something to query for the SUBMITTED objects in this submission.  Maybe integrate into the SUBMIT method.
+
+    # However, querying individually by type and Id (where they are listed as status = SUBMITTED and they have an EGA accession.) is always possible.
     # Or just curl for the entire set of prod objects and parse out the EGA accessions from there, based on unique aliases.
+    # status is usually one of "DRAFT", "VALIDATED", "SUBMITTED" (though there are other possibilities).
+    def _record_EGA_objects(self, status=""):
+        for obj_type in ["samples", "experiments", "runs", "datasets"]:
+            dir = f"record-EGA-{status}" if status else "record-EGA-objects"
+            try:
+                f = open(globals.config["directories"]["response_dir"] + f"{dir}/{obj_type}.json", "w")
+            except:
+                logging.error(f"Couldn't open file to write {obj_type} from EGA responses.")
+            else:
+                path = globals.BASE_URL + globals.config["session"]["submission_path"] + f"/{obj_type}"
+                path = path + "?status=" + status if status else path
+                r = requests.get(path, headers=json.loads(globals.config["global"]["headers"]))
+                if r.status_code != 200:
+                    raise Exception(f"Could not retrieve JSON of all {obj_type} from this Submission.")
+                f.write(r.text)
+                f.close()
+                logging.debug(f"This Submission's {obj_type} retrieved as JSON from EGA.")
+'''
     def record_EGA_objects(self):
         for obj_type in ["samples", "experiments", "runs", "datasets"]:
             try:
@@ -212,14 +231,14 @@ class Submission(EgaObj):
             except:
                 logging.error(f"Couldn't open file to write {obj_type} from EGA responses.")
             else:
-                path = globals.BASE_URL + globals.config["session"]["submission_path"] + f"/{obj_type}"
+                path = globals.BASE_URL + globals.config["session"]["submission_path"] + f"/{obj_type}" + "?status=SUBMITTED"
                 r = requests.get(path, headers=json.loads(globals.config["global"]["headers"]))
                 if r.status_code != 200:
                     raise Exception(f"Could not retrieve JSON of all {obj_type} from this Submission.")
                 f.write(r.text)
                 f.close()
                 logging.debug(f"This Submission's {obj_type} retrieved as JSON from EGA.")
-
+'''
 # Corresponds to EGA Sample object.
 class Sample(EgaObj):
     def __init__(self, alias, template):

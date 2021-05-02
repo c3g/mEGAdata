@@ -17,7 +17,9 @@ from egaobj import Submission, Sample, Experiment, Run, File, Dataset
 # Process CLA
 parser = argparse.ArgumentParser()
 # TODO: Should this be ? nargs?  (one of, rights)
-parser.add_argument("operation", action="store", nargs="?", choices=["send", "delete-all-objects", "record-EGA-objects", "all-file-info", "pass"], default="", help="Operation to perform.  `pass` to send nothing new.")
+# TODO: Should really make this into mutually exclusive groups so that optional args make sense and only apply to some positional args.
+# TODO: These CLAs are a bit of a mess.
+parser.add_argument("operation", action="store", nargs="?", choices=["send", "delete-all-objects", "record-EGA-objects", "record-EGA-submitted", "all-file-info", "pass"], default="", help="Operation to perform.  `pass` to send nothing new.")
 parser.add_argument("--new-submission", "--ns", action="store_true", help="Initiate a new Submission rather than working on the previous one.")
 parser.add_argument("--validate", action="store_true", help="Attempt to VALIDATE all EGA Objects.")
 parser.add_argument("--submit", action="store_true", help="Attempt to SUBMIT all EGA Objects.")
@@ -33,6 +35,11 @@ def main():
 
     # Continue working on previous Submission by default, unless new Submission is specified as CLA.
     if args.new_submission or not globals.config["session"]["submissionId"]: # No previous submissionId
+        # Define increment to be applied to alias for this submission since EGA does not allow repeated aliases.
+        if globals.config.getboolean("global", "alias_increment"):
+            globals.config["global"]["alias_append"] = str(globals.config.getint("global", "alias_append") + 1)
+            utils.write_config()
+        # Get a new SubmissionId.
         globals.mySub.send()
 
     ## SWITCH of CLA operation to perform
@@ -44,7 +51,10 @@ def main():
         globals.mySub.delete_all_objects()
     elif args.operation == "record-EGA-objects":
     # Get info about all Submission objects.
-        globals.mySub.record_EGA_objects()
+        globals.mySub._record_EGA_objects()
+    elif args.operation == "record-EGA-submitted":
+    # Get info about all status=SUBMITTED Submission objects.
+        globals.mySub._record_EGA_objects(status="SUBMITTED")
     elif args.operation == "all-file-info":
     # Get info about all uploaded files.
         all_ftp_uploaded_files_info()

@@ -100,7 +100,7 @@ Many objects (Policy, DAC, Study) can be reused from previous a Submission.
 
 
 ## Moving forward:
-* Retrieval and updates of EGA Id's back into mEGAdata (can only be performed after SUBMISSION).  This is slightly strange.  See note at ebaobj.py, record_EGA_objects() for methodology.  Yes, can do this with the test SP.  What is the best source of info (Absolutely everything, or just the Submission's objects?)
+* Retrieval and updates of EGA Id's back into mEGAdata (can only be performed after SUBMISSION).  This is slightly strange.  See note at ebaobj.py, _record_EGA_objects() for methodology.  Yes, can do this with the test SP.  What is the best source of info (Absolutely everything, or just the Submission's objects?)
 
 * Mapping on abacus through symlinks of raw file names to MS00xxx names (McGill Sample format) (abacus account has already been obtained). (This task is independant.)
 
