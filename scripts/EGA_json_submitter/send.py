@@ -77,7 +77,7 @@ def main():
 # Get one spreadsheet row to work with.
 def process_rows():
     # Define section of relation mapping spreadsheet that contains Sample information
-    rows = pe.get_records(file_name=globals.config["relations"]["dir"] + globals.config["relations"]["file"],\
+    rows = pe.get_records(file_name=globals.config["directories"]["mapping_dir"] + globals.config["relations"]["relations_file"],\
         start_row = globals.config.getint("relations", "start_row"),\
         name_columns_by_row=globals.config.getint("relations", "name_columns_by_row"),\
         row_limit=globals.config.getint("relations", "row_limit"))
