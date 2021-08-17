@@ -125,7 +125,7 @@ class Submission(EgaObj):
     def submit(self):
         self._validate_or_submit(action="SUBMIT")
 
-    # Internal class function.
+    # The VALIDATE and SUBMIT operation to prod would hang (no response received, but everything was VALIDATED/SUBMITTED...)
     def _validate_or_submit(self, action="VALIDATE"):
         if action not in ("VALIDATE", "SUBMIT"):
             raise Exception(f"For Submissions, only VALIDATE or SUBMIT actions are permitted.")
@@ -190,9 +190,10 @@ class Submission(EgaObj):
 
     # Deletes all of this Submission's EGA Objects, for all types.  Doesn't delete the Submission Object itself.
     # Sometimes all Objects don't get deleted.  It is safe to run multiple times to ensure complete deletion.
+    # Sometimes the script just hangs at this operation.
     # The SP is rather slow to delete objects, so be patient.  The UI can also be used and is faster and deletes more completely.
     # Might need to code to verfiy that truly nothing remains (http errors can cause deletion failures.)
-    # Tested on a 90 Run Submission.  Ran delete-all-objects 3 times and .  Then with one click in the UI, whole submission was deleted very well.  So, conlcusion is that it is better to delete the entire Submission through the UI than its individual objects through this script.  Can an entire Submission be deleted through the API? 
+    # Tested on a 90 Run Submission.  Ran delete-all-objects 3 times and .  Then with one click in the UI, whole submission was deleted very well.  So, conclusion is that it is better to delete the entire Submission through the UI than its individual objects through this script.  Can an entire Submission be deleted through the API? 
     def delete_all_objects(self):
         # Probably only want to delete Objects unique to this Submission (samples, experiments, runs and datasets), not those shared with other submissions.
         # for obj_type in ["samples", "studies", "experiments", "runs", "dacs", "policies", "datasets", "analyses"]:
@@ -211,8 +212,8 @@ class Submission(EgaObj):
             except:
                 logging.error(f"Couldn't open file to write {obj_type} from EGA responses.")
             else:
-                path = globals.BASE_URL + globals.config["session"]["submission_path"] + f"/{obj_type}"
-                path = path + "?status=" + status if status else path
+                path = globals.BASE_URL + globals.config["session"]["submission_path"] + f"/{obj_type}?skip=0&limit=0"
+                path = path + "&status=" + status if status else path
                 r = requests.get(path, headers=json.loads(globals.config["global"]["headers"]))
                 if r.status_code != 200:
                     raise Exception(f"Could not retrieve JSON of all {obj_type} from this Submission.")

@@ -27,10 +27,23 @@ https://gavinband.github.io/bioinformatics/data/2019/05/01/Me_versus_the_Europea
 
 
 # Submission Steps
-## 1) Encrypt the files:
+
+## 1) Change file names:
+Use the standard file name format:
+Sample.Assay.Lane.Run.pair[Read1|Read2].fastq.gz
+ie. MS048901.Chipmentation_H3K27ac.212.1.pair1.fastq.gz
+When renaming files, keep a mapping file alongside the original file names for traceability.
+
+The Lane, Run and Read information can be found in the .fastq.gz header with:
+$ zcat file.fastq.gz | head -1
+@A00266:289:HMC3LDSXX:1:1101:2085:1000 2:N:0:TGGATCTG
+Header format:
+@<instrument>:<run number>:<flowcell ID>:<lane>:<tile>:<x-pos>:<y-pos> <read>:<is filtered>:<control number>:<sample number>
+
+## 2) Encrypt the files:
 Resources & links:
 
-### EGAcryptor
+### EGAcryptor < version 2
 The EGACryptor will work with Openjdk-8.  
 Follow the install directions at:  
 https://ega-archive.org/submission/tools/egacryptor  
@@ -41,7 +54,22 @@ The JCE policy files for unlimited encryption strength need to be manually place
 Run the EgaCryptor on the CWD:  
 java -jar /usr/local/bin/EgaCryptor/EgaCryptor.jar -file * &
 
-## 2) Upload the files:
+### EGAcryptor >= version 2
+On beluga, once the EgaCryptor.zip (version 2.0 or above) is downloaded (and unzipped), everything is ready to go.  There is no need to intall a JCE policy file.  It is important, however, to specify the memory parameters for java to use.
+```bash
+module load java/1.8.0_192
+```
+The following batch script can be used to encrypt the files:
+```bash
+#!/bin/bash
+#SBATCH --time=6-23:59:59
+#SBATCH --account=ctb-bourqueg-ac
+#SBATCH --mem=8G
+java -Xms2g -Xmx8g -jar /lustre03/project/6007512/C3G/projects/EGA_Barreiro/EGACryptor/EGA-Cryptor-2.0.0/ega-cryptor-2.0.0.jar -i /lustre03/project/6007512/C3G/projects/EGA_Barreiro/ATACseq -o /home/davidbr/scratch/EMC_Barreiro/ATACseq
+```
+
+
+## 3) Upload the files:
 To transfer files to EGA, use:  
 ftp ftp.ega.ebi.ac.uk  
 Username : ega-box-209  
@@ -52,21 +80,36 @@ binary
 prompt  
 pass  
 
-Transfer only the encrypted files with:  
-mput *.fastq.gz.gpg  
+Transfer all files (except the original, unencrypted .fast.qz) files with:
+mput *.gpg
+mput *.md5
+
+(mput *.gpg *.md5)?
+
+With ncftp:
+#!/bin/bash
+#SBATCH --time=23:59:59
+#SBATCH --account=ctb-bourqueg-ac
+#SBATCH --mem=2G
+/home/davidbr/ncftp/ncftp-3.2.6/bin/ncftp -u ega-box-209 -p tFM3Lf3E ftp.ega.ebi.ac.uk
+type binary
+lcd /lustre04/scratch/davidbr/EMC_Barreiro/renamed/ATACseq
+cd EMC_Barreiro/ATACseq
+put MS049301.ATACSeq.81.1.pair1.fastq.gz.gpg.md5
+
 
 ### Future work:
 * Register/Send the File objects prior to working on the JSONs?  
 
-## 3)  Retrieve md5sums and encrypted md5sums.
+## 4) Retrieve md5sums and encrypted md5sums.
 Use the EgaCryptor logs to update the spreadsheets with md5sums and encrypted_md5sums.  This involves straightforward text manipulation in an editor (to get one line per file).  Turn the EgaCryptor log into a .tsv with following columns: Filename, md5sum, encrypted_md5sum.  Then some importing, sorting and copy paste in spreadsheets solves the rest.
 
-## 4) Ingest metadata into mEGAdata DB
+## 5) Ingest metadata into mEGAdata DB
 ### Tools for metadata ingestion
 * scripts/spreadsheet_importation/importEMCSpreadsheet.py - Ingests .ods into mEGAdata DB.  
 * scripts/spreadsheet_importation/import_experiment_metadata.py - Ingests experiment_metadata into mEGAdata DB.  
 
-## 5) Prepare and send the JSONs
+## 6) Prepare and send the JSONs
 
 ### JSON preparation
 Some JSONs (such as Sample and Experiment) can be prepared manually from the source spreadsheets with minimal effort since their numbers are small.  
@@ -98,22 +141,15 @@ Many objects (Policy, DAC, Study) can be reused from previous a Submission.
     * Test with validate and submit, delete.
 * Test the delete functions on the test SP. (especially for interrupted Submissions) - working well, though SP glitches during large deletes.  Multiple deletes solve this, but some code should compensate, or raise a message.  Delete whole Submission through the UI works best.
 * Retrieval and updates of EGA accessions back into mEGAdata DB (can only be performed after SUBMISSION, but can be done on test SP).  
+* Test on prod - going well, sort of.
+* Test the absorb_EGA_accession.py script at scale on prod.
 
 
 ## Moving forward:
-* Fix the NULLs in sample table of allEMCCommunity.ods and redo .sqls.
+* Mapping on abacus through symlinks of processed file names to MS00xxx names (McGill Sample format) (abacus account has already been obtained). (This task is independant.)
+* Need md5s of public_files.
 
-* Mapping on abacus through symlinks of raw file names to MS00xxx names (McGill Sample format) (abacus account has already been obtained). (This task is independant.)
-
-
-* Test on prod - going well...
-
-* Ensure no duplicates sent (possibly already handled with the unique alias constraint).  CAN this even happen?
-* Ensure no premature Submission SUBMITion. (Leave a single trailing VALIDATED Object to prevent progression to SUBMITTED?)  Yeah, look into this on test - Submissions seem to submit themselves once all their objects are submitted.
-* Detect or treat http errors - may need a http retry function for network timeouts.  This has sometimes been an issue.  Try many sends and deletes on prod. (Full run?)  Can do a long run (reuse files?) on test SP, eh? <- This send worked; the delete didn't.
-
-* Tell EGA to deploy the release.
-* fix that prod previous submission I seemed to have mutated to draft state...
+* Tell EGA to deploy the release. - DONE!
 * EpiRR submission.
 
 * Document. (One page done, so far.  It might be enough.)

@@ -17,8 +17,7 @@ import utils  # already includes importing globals
 # Update DB with EGA accessions from response_jsons/record-EGA-SUBMITTED/ dir.
 # Relies on all object aliases following the format in generate_relation_mapping.py.
 # Best practice is to run `send.py record-EGA-submitted` immediately prior to this script.
-# During alias_increment = True testing to the test Submitter Portal, response_jsons/record-EGA-SUBMITTED/ JSONs aliases must have the same alias_append value as settings.ini.
-# During alias_increment = False submissions to the production SP, this is irrelevant.
+# During alias_increment = True testing to the test Submitter Portal, response_jsons/record-EGA-SUBMITTED/ JSONs aliases must have the same alias_append value as in settings.ini.  During alias_increment = False submissions to the production SP, this is irrelevant.
 def main():
     for obj_type in ["samples", "experiments", "runs", "datasets"]: # Maybe add files...
         # Locate & open response file

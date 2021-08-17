@@ -83,7 +83,6 @@ def process_rows():
         row_limit=globals.config.getint("relations", "row_limit"))
     logging.debug(f"Found {len(rows)} rows in the relation mapping spreadsheet.")
     for row in rows:
-        # logging.debug(f"Working on ")
         Sample(row["Sample_alias"], row["Sample_template"])
         Experiment(row["Sample_alias"], row["Experiment_alias"], row["Experiment_template"])
         file1 = File(row["File1_fileName"], row["File1_checksum"], row["File1_encrypted_checksum"])
