@@ -1,0 +1,26 @@
+{
+  "alias": "MS050802",
+  "title": "",
+  "description": "",
+  "caseOrControlId": "",
+  "genderId": 1,
+  "organismPart": "Monocyte-derived macrophages",
+  "cellLine": "",
+  "region": "",
+  "phenotype": "NI",
+  "subjectId": "MS050802",
+  "anonymizedName": "",
+  "bioSampleId": "",
+  "sampleAge": 52,
+  "sampleDetail": "",
+  "attributes": [
+    {
+      "tag": "donor_ID",
+      "value": "McGill0508"
+    },
+    {
+      "tag": "donor_ethnicity",
+      "value": "African American"
+    }
+  ]
+}

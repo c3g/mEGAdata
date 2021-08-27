@@ -1,0 +1,26 @@
+{
+  "alias": "MS050901",
+  "title": "",
+  "description": "",
+  "caseOrControlId": "",
+  "genderId": 1,
+  "organismPart": "Monocyte-derived macrophages",
+  "cellLine": "",
+  "region": "",
+  "phenotype": "Flu",
+  "subjectId": "MS050901",
+  "anonymizedName": "",
+  "bioSampleId": "",
+  "sampleAge": 49,
+  "sampleDetail": "",
+  "attributes": [
+    {
+      "tag": "donor_ID",
+      "value": "McGill0509"
+    },
+    {
+      "tag": "donor_ethnicity",
+      "value": "African American"
+    }
+  ]
+}
