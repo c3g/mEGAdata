@@ -1,0 +1,79 @@
+EMC_Barreiro notes
+==================
+
+MS049701.BS.204.6.pair1.fastq.gz
+was originally 204.3.pair2.fastq.gz
+(was originally a typo)
+
+Need a summary of the dataset, for description purposes.  Asked Alain for a bunch of metadata.
+
+experiments->BS.json -> designDescription is required.  Used "See http://epigenomesportal.ca/edcc/doc/" for now...  Not good enough.
+
+
+
+
+(scripts-venv) assez@heap:~/projects/megadata/scripts/EGA_json_submitter$ python send.py --validate pass
+Traceback (most recent call last):
+  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 706, in urlopen
+    chunked=chunked,
+  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 445, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 440, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1373, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 311, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 280, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 756, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 531, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/packages/six.py", line 734, in reraise
+    raise value.with_traceback(tb)
+  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 706, in urlopen
+    chunked=chunked,
+  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 445, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 440, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1373, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 311, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 280, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "send.py", line 129, in <module>
+    main()
+  File "send.py", line 66, in main
+    globals.mySub.validate()
+  File "/home/assez/projects/megadata/scripts/EGA_json_submitter/egaobj.py", line 124, in validate
+    self._validate_or_submit(action="VALIDATE")
+  File "/home/assez/projects/megadata/scripts/EGA_json_submitter/egaobj.py", line 135, in _validate_or_submit
+    r = requests.put(url, headers=json.loads(globals.config["global"]["headers"]))
+  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/requests/api.py", line 134, in put
+    return request('put', url, data=data, **kwargs)
+  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response',))

@@ -1,0 +1,609 @@
+{
+  "header" : {
+    "apiVersion" : "v1",
+    "code" : "200",
+    "service" : "submitterportal",
+    "developerMessage" : "",
+    "userMessage" : "OK",
+    "errorCode" : "1",
+    "docLink" : "https://ega-archive.org",
+    "errorStack" : ""
+  },
+  "response" : {
+    "numTotalResults" : 1,
+    "resultType" : "eu.crg.ega.microservice.dto.submitter.DatasetData",
+    "result" : [ {
+      "xmlRootElement" : {
+        "dataset" : [ {
+          "identifiers" : null,
+          "alias" : "McGill_EMC_Barreiro1_21",
+          "centerName" : "MCGILL-EDCC",
+          "brokerName" : "EGA",
+          "accession" : null,
+          "title" : "McGill EMC Community projects Release 7 for cell line \"SaOS-2\"",
+          "description" : "WGBS and WGS sequencing for... Complete reference epigenome (as defined by IHEC) of a SaOS-2 cell line with osteosarcoma.  ",
+          "datasettype" : [ "WHOLE_GENOME_SEQUENCING", "TRANSCRIPTOME_PROFILING_BY_HIGH_THROUGHPUT_SEQUENCING", "METHYLATION_PROFILING_BY_HIGH_THROUGHPUT_SEQUENCING", "CHIP_SEQ" ],
+          "runref" : [ {
+            "identifiers" : null,
+            "refname" : "MS049301.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049302.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049401.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049402.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049501.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049502.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049601.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049602.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049701.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049702.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049801.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049802.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049901.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049902.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050001.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050002.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050101.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050102.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050201.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050202.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050301.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050302.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050401.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050402.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050501.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050502.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050601.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050602.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050801.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050802.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050901.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050902.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051001.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051002.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051201.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051202.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051301.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051302.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051401.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051402.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051501.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051502.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051601.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051602.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051701.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051702.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051801.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051802.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051901.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051902.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052001.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052002.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052101.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052102.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052201.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052202.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052301.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052302.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052501.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052502.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052601.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052602.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052701.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052702.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052801.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052802.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052901.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052902.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053001.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053002.BS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049302.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049402.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049502.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049602.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049701.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049802.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049902.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050002.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050102.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050201.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050301.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050402.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050502.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050602.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050802.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050901.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051002.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051202.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051302.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051402.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051502.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051602.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051702.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051802.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051902.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052001.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052102.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052202.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052302.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052501.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052601.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052702.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052802.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052902.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053002.WGS_21",
+            "refcenter" : null,
+            "accession" : null
+          } ],
+          "analysisref" : [ ],
+          "policyref" : {
+            "identifiers" : null,
+            "refname" : null,
+            "refcenter" : null,
+            "accession" : "EGAP00001000252"
+          },
+          "datasetlinks" : null,
+          "datasetattributes" : {
+            "datasetattribute" : [ {
+              "tag" : "",
+              "value" : "",
+              "units" : null
+            } ]
+          }
+        } ]
+      },
+      "datasetTypeIds" : [ "0", "3", "7", "13" ],
+      "datasetTypes" : [ "Whole genome sequencing", "Transcriptome profiling by high-throughput sequencing", "Methylation profiling by high-throughput sequencing", "Chip-Seq" ],
+      "policyId" : "EGAP00001000252",
+      "runsReferences" : [ "612fcd7198e25200019e54b8", "612fcd7398e25200019e54be", "612fcd7598e25200019e54c4", "612fcd7898e25200019e54ca", "612fcd7a98e25200019e54d0", "612fcd7c98e25200019e54d6", "612fcd8098e25200019e54dc", "612fcd8298e25200019e54e2", "612fcd8498e25200019e54e8", "612fcd8798e25200019e54ee", "612fcd8998e25200019e54f4", "612fcd8c98e25200019e54fa", "612fcd8e98e25200019e5500", "612fcd8f98e25200019e5506", "612fcd9198e25200019e550c", "612fcd9398e25200019e5512", "612fcd9698e25200019e5518", "612fcd9898e25200019e551e", "612fcd9a98e25200019e5524", "612fcd9d98e25200019e552a", "612fcd9f98e25200019e5530", "612fcda198e25200019e5536", "612fcda398e25200019e553c", "612fcda598e25200019e5542", "612fcda798e25200019e5548", "612fcda898e25200019e554e", "612fcdaa98e25200019e5554", "612fcdac98e25200019e555a", "612fcdaf98e25200019e5560", "612fcdb198e25200019e5566", "612fcdb398e25200019e556c", "612fcdb598e25200019e5572", "612fcdb898e25200019e5578", "612fcdba98e25200019e557e", "612fcdbc98e25200019e5584", "612fcdbe98e25200019e558a", "612fcdc198e25200019e5590", "612fcdc398e25200019e5596", "612fcdc698e25200019e559c", "612fcdc898e25200019e55a2", "612fcdca98e25200019e55a8", "612fcdcc98e25200019e55ae", "612fcdce98e25200019e55b4", "612fcdd098e25200019e55ba", "612fcdd298e25200019e55c0", "612fcdd498e25200019e55c6", "612fcdd698e25200019e55cc", "612fcdd898e25200019e55d2", "612fcdda98e25200019e55d8", "612fcddc98e25200019e55de", "612fcdde98e25200019e55e4", "612fcde198e25200019e55ea", "612fcde498e25200019e55f0", "612fcde698e25200019e55f6", "612fcde898e25200019e55fc", "612fcdea98e25200019e5602", "612fcdec98e25200019e5608", "612fcdee98e25200019e560e", "612fcdf098e25200019e5614", "612fcdf298e25200019e561a", "612fcdf498e25200019e5620", "612fcdf698e25200019e5626", "612fcdf998e25200019e562c", "612fcdfb98e25200019e5632", "612fcdfd98e25200019e5638", "612fce0098e25200019e563e", "612fce0298e25200019e5644", "612fce0598e25200019e564a", "612fce0698e25200019e5650", "612fce0998e25200019e5656", "612fce0b98e25200019e565a", "612fce0c98e25200019e565e", "612fce0e98e25200019e5662", "612fce1098e25200019e5666", "612fce1198e25200019e566a", "612fce1298e25200019e566e", "612fce1498e25200019e5672", "612fce1698e25200019e5676", "612fce1798e25200019e567a", "612fce1898e25200019e567e", "612fce1b98e25200019e5682", "612fce1c98e25200019e5686", "612fce1e98e25200019e568a", "612fce1f98e25200019e568e", "612fce2198e25200019e5692", "612fce2298e25200019e5696", "612fce2398e25200019e569a", "612fce2598e25200019e569e", "612fce2698e25200019e56a2", "612fce2898e25200019e56a6", "612fce2998e25200019e56aa", "612fce2b98e25200019e56ae", "612fce2c98e25200019e56b2", "612fce2d98e25200019e56b6", "612fce2f98e25200019e56ba", "612fce3098e25200019e56be", "612fce3298e25200019e56c2", "612fce3398e25200019e56c6", "612fce3598e25200019e56ca", "612fce3698e25200019e56ce", "612fce3898e25200019e56d2", "612fce3a98e25200019e56d6", "612fce3d98e25200019e56da", "612fce4098e25200019e56de", "612fce4198e25200019e56e2" ],
+      "analysisReferences" : null,
+      "title" : "McGill EMC Community projects Release 7 for cell line \"SaOS-2\"",
+      "description" : "WGBS and WGS sequencing for... Complete reference epigenome (as defined by IHEC) of a SaOS-2 cell line with osteosarcoma.  ",
+      "datasetLinks" : [ ],
+      "attributes" : [ {
+        "tag" : "",
+        "value" : "",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "612fce4398e25200019e56e4",
+      "ebiId" : null,
+      "submissionId" : "612fcd6e98e25200019e54b2",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "DRAFT",
+      "version" : 1,
+      "creationTime" : 1630522947368,
+      "editionTime" : null,
+      "firstPublic" : null,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : null,
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : null,
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<DATASETS>\n    <DATASET alias=\"McGill_EMC_Barreiro1_21\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE>McGill EMC Community projects Release 7 for cell line \"SaOS-2\"</TITLE>\n        <DESCRIPTION>WGBS and WGS sequencing for... Complete reference epigenome (as defined by IHEC) of a SaOS-2 cell line with osteosarcoma.  </DESCRIPTION>\n        <DATASET_TYPE>Whole genome sequencing</DATASET_TYPE>\n        <DATASET_TYPE>Transcriptome profiling by high-throughput sequencing</DATASET_TYPE>\n        <DATASET_TYPE>Methylation profiling by high-throughput sequencing</DATASET_TYPE>\n        <DATASET_TYPE>Chip-Seq</DATASET_TYPE>\n        <RUN_REF refname=\"MS049301.BS_21\"/>\n        <RUN_REF refname=\"MS049302.BS_21\"/>\n        <RUN_REF refname=\"MS049401.BS_21\"/>\n        <RUN_REF refname=\"MS049402.BS_21\"/>\n        <RUN_REF refname=\"MS049501.BS_21\"/>\n        <RUN_REF refname=\"MS049502.BS_21\"/>\n        <RUN_REF refname=\"MS049601.BS_21\"/>\n        <RUN_REF refname=\"MS049602.BS_21\"/>\n        <RUN_REF refname=\"MS049701.BS_21\"/>\n        <RUN_REF refname=\"MS049702.BS_21\"/>\n        <RUN_REF refname=\"MS049801.BS_21\"/>\n        <RUN_REF refname=\"MS049802.BS_21\"/>\n        <RUN_REF refname=\"MS049901.BS_21\"/>\n        <RUN_REF refname=\"MS049902.BS_21\"/>\n        <RUN_REF refname=\"MS050001.BS_21\"/>\n        <RUN_REF refname=\"MS050002.BS_21\"/>\n        <RUN_REF refname=\"MS050101.BS_21\"/>\n        <RUN_REF refname=\"MS050102.BS_21\"/>\n        <RUN_REF refname=\"MS050201.BS_21\"/>\n        <RUN_REF refname=\"MS050202.BS_21\"/>\n        <RUN_REF refname=\"MS050301.BS_21\"/>\n        <RUN_REF refname=\"MS050302.BS_21\"/>\n        <RUN_REF refname=\"MS050401.BS_21\"/>\n        <RUN_REF refname=\"MS050402.BS_21\"/>\n        <RUN_REF refname=\"MS050501.BS_21\"/>\n        <RUN_REF refname=\"MS050502.BS_21\"/>\n        <RUN_REF refname=\"MS050601.BS_21\"/>\n        <RUN_REF refname=\"MS050602.BS_21\"/>\n        <RUN_REF refname=\"MS050801.BS_21\"/>\n        <RUN_REF refname=\"MS050802.BS_21\"/>\n        <RUN_REF refname=\"MS050901.BS_21\"/>\n        <RUN_REF refname=\"MS050902.BS_21\"/>\n        <RUN_REF refname=\"MS051001.BS_21\"/>\n        <RUN_REF refname=\"MS051002.BS_21\"/>\n        <RUN_REF refname=\"MS051201.BS_21\"/>\n        <RUN_REF refname=\"MS051202.BS_21\"/>\n        <RUN_REF refname=\"MS051301.BS_21\"/>\n        <RUN_REF refname=\"MS051302.BS_21\"/>\n        <RUN_REF refname=\"MS051401.BS_21\"/>\n        <RUN_REF refname=\"MS051402.BS_21\"/>\n        <RUN_REF refname=\"MS051501.BS_21\"/>\n        <RUN_REF refname=\"MS051502.BS_21\"/>\n        <RUN_REF refname=\"MS051601.BS_21\"/>\n        <RUN_REF refname=\"MS051602.BS_21\"/>\n        <RUN_REF refname=\"MS051701.BS_21\"/>\n        <RUN_REF refname=\"MS051702.BS_21\"/>\n        <RUN_REF refname=\"MS051801.BS_21\"/>\n        <RUN_REF refname=\"MS051802.BS_21\"/>\n        <RUN_REF refname=\"MS051901.BS_21\"/>\n        <RUN_REF refname=\"MS051902.BS_21\"/>\n        <RUN_REF refname=\"MS052001.BS_21\"/>\n        <RUN_REF refname=\"MS052002.BS_21\"/>\n        <RUN_REF refname=\"MS052101.BS_21\"/>\n        <RUN_REF refname=\"MS052102.BS_21\"/>\n        <RUN_REF refname=\"MS052201.BS_21\"/>\n        <RUN_REF refname=\"MS052202.BS_21\"/>\n        <RUN_REF refname=\"MS052301.BS_21\"/>\n        <RUN_REF refname=\"MS052302.BS_21\"/>\n        <RUN_REF refname=\"MS052501.BS_21\"/>\n        <RUN_REF refname=\"MS052502.BS_21\"/>\n        <RUN_REF refname=\"MS052601.BS_21\"/>\n        <RUN_REF refname=\"MS052602.BS_21\"/>\n        <RUN_REF refname=\"MS052701.BS_21\"/>\n        <RUN_REF refname=\"MS052702.BS_21\"/>\n        <RUN_REF refname=\"MS052801.BS_21\"/>\n        <RUN_REF refname=\"MS052802.BS_21\"/>\n        <RUN_REF refname=\"MS052901.BS_21\"/>\n        <RUN_REF refname=\"MS052902.BS_21\"/>\n        <RUN_REF refname=\"MS053001.BS_21\"/>\n        <RUN_REF refname=\"MS053002.BS_21\"/>\n        <RUN_REF refname=\"MS049302.WGS_21\"/>\n        <RUN_REF refname=\"MS049402.WGS_21\"/>\n        <RUN_REF refname=\"MS049502.WGS_21\"/>\n        <RUN_REF refname=\"MS049602.WGS_21\"/>\n        <RUN_REF refname=\"MS049701.WGS_21\"/>\n        <RUN_REF refname=\"MS049802.WGS_21\"/>\n        <RUN_REF refname=\"MS049902.WGS_21\"/>\n        <RUN_REF refname=\"MS050002.WGS_21\"/>\n        <RUN_REF refname=\"MS050102.WGS_21\"/>\n        <RUN_REF refname=\"MS050201.WGS_21\"/>\n        <RUN_REF refname=\"MS050301.WGS_21\"/>\n        <RUN_REF refname=\"MS050402.WGS_21\"/>\n        <RUN_REF refname=\"MS050502.WGS_21\"/>\n        <RUN_REF refname=\"MS050602.WGS_21\"/>\n        <RUN_REF refname=\"MS050802.WGS_21\"/>\n        <RUN_REF refname=\"MS050901.WGS_21\"/>\n        <RUN_REF refname=\"MS051002.WGS_21\"/>\n        <RUN_REF refname=\"MS051202.WGS_21\"/>\n        <RUN_REF refname=\"MS051302.WGS_21\"/>\n        <RUN_REF refname=\"MS051402.WGS_21\"/>\n        <RUN_REF refname=\"MS051502.WGS_21\"/>\n        <RUN_REF refname=\"MS051602.WGS_21\"/>\n        <RUN_REF refname=\"MS051702.WGS_21\"/>\n        <RUN_REF refname=\"MS051802.WGS_21\"/>\n        <RUN_REF refname=\"MS051902.WGS_21\"/>\n        <RUN_REF refname=\"MS052001.WGS_21\"/>\n        <RUN_REF refname=\"MS052102.WGS_21\"/>\n        <RUN_REF refname=\"MS052202.WGS_21\"/>\n        <RUN_REF refname=\"MS052302.WGS_21\"/>\n        <RUN_REF refname=\"MS052501.WGS_21\"/>\n        <RUN_REF refname=\"MS052601.WGS_21\"/>\n        <RUN_REF refname=\"MS052702.WGS_21\"/>\n        <RUN_REF refname=\"MS052802.WGS_21\"/>\n        <RUN_REF refname=\"MS052902.WGS_21\"/>\n        <RUN_REF refname=\"MS053002.WGS_21\"/>\n        <POLICY_REF accession=\"EGAP00001000252\"/>\n        <DATASET_ATTRIBUTES>\n            <DATASET_ATTRIBUTE>\n                <TAG></TAG>\n                <VALUE></VALUE>\n            </DATASET_ATTRIBUTE>\n        </DATASET_ATTRIBUTES>\n    </DATASET>\n</DATASETS>\n",
+      "json" : "{\n  \"xmlRootElement\" : null,\n  \"datasetTypeIds\" : [ \"0\", \"3\", \"7\", \"13\" ],\n  \"datasetTypes\" : [ \"Whole genome sequencing\", \"Transcriptome profiling by high-throughput sequencing\", \"Methylation profiling by high-throughput sequencing\", \"Chip-Seq\" ],\n  \"policyId\" : \"EGAP00001000252\",\n  \"runsReferences\" : [ \"612fcd7198e25200019e54b8\", \"612fcd7398e25200019e54be\", \"612fcd7598e25200019e54c4\", \"612fcd7898e25200019e54ca\", \"612fcd7a98e25200019e54d0\", \"612fcd7c98e25200019e54d6\", \"612fcd8098e25200019e54dc\", \"612fcd8298e25200019e54e2\", \"612fcd8498e25200019e54e8\", \"612fcd8798e25200019e54ee\", \"612fcd8998e25200019e54f4\", \"612fcd8c98e25200019e54fa\", \"612fcd8e98e25200019e5500\", \"612fcd8f98e25200019e5506\", \"612fcd9198e25200019e550c\", \"612fcd9398e25200019e5512\", \"612fcd9698e25200019e5518\", \"612fcd9898e25200019e551e\", \"612fcd9a98e25200019e5524\", \"612fcd9d98e25200019e552a\", \"612fcd9f98e25200019e5530\", \"612fcda198e25200019e5536\", \"612fcda398e25200019e553c\", \"612fcda598e25200019e5542\", \"612fcda798e25200019e5548\", \"612fcda898e25200019e554e\", \"612fcdaa98e25200019e5554\", \"612fcdac98e25200019e555a\", \"612fcdaf98e25200019e5560\", \"612fcdb198e25200019e5566\", \"612fcdb398e25200019e556c\", \"612fcdb598e25200019e5572\", \"612fcdb898e25200019e5578\", \"612fcdba98e25200019e557e\", \"612fcdbc98e25200019e5584\", \"612fcdbe98e25200019e558a\", \"612fcdc198e25200019e5590\", \"612fcdc398e25200019e5596\", \"612fcdc698e25200019e559c\", \"612fcdc898e25200019e55a2\", \"612fcdca98e25200019e55a8\", \"612fcdcc98e25200019e55ae\", \"612fcdce98e25200019e55b4\", \"612fcdd098e25200019e55ba\", \"612fcdd298e25200019e55c0\", \"612fcdd498e25200019e55c6\", \"612fcdd698e25200019e55cc\", \"612fcdd898e25200019e55d2\", \"612fcdda98e25200019e55d8\", \"612fcddc98e25200019e55de\", \"612fcdde98e25200019e55e4\", \"612fcde198e25200019e55ea\", \"612fcde498e25200019e55f0\", \"612fcde698e25200019e55f6\", \"612fcde898e25200019e55fc\", \"612fcdea98e25200019e5602\", \"612fcdec98e25200019e5608\", \"612fcdee98e25200019e560e\", \"612fcdf098e25200019e5614\", \"612fcdf298e25200019e561a\", \"612fcdf498e25200019e5620\", \"612fcdf698e25200019e5626\", \"612fcdf998e25200019e562c\", \"612fcdfb98e25200019e5632\", \"612fcdfd98e25200019e5638\", \"612fce0098e25200019e563e\", \"612fce0298e25200019e5644\", \"612fce0598e25200019e564a\", \"612fce0698e25200019e5650\", \"612fce0998e25200019e5656\", \"612fce0b98e25200019e565a\", \"612fce0c98e25200019e565e\", \"612fce0e98e25200019e5662\", \"612fce1098e25200019e5666\", \"612fce1198e25200019e566a\", \"612fce1298e25200019e566e\", \"612fce1498e25200019e5672\", \"612fce1698e25200019e5676\", \"612fce1798e25200019e567a\", \"612fce1898e25200019e567e\", \"612fce1b98e25200019e5682\", \"612fce1c98e25200019e5686\", \"612fce1e98e25200019e568a\", \"612fce1f98e25200019e568e\", \"612fce2198e25200019e5692\", \"612fce2298e25200019e5696\", \"612fce2398e25200019e569a\", \"612fce2598e25200019e569e\", \"612fce2698e25200019e56a2\", \"612fce2898e25200019e56a6\", \"612fce2998e25200019e56aa\", \"612fce2b98e25200019e56ae\", \"612fce2c98e25200019e56b2\", \"612fce2d98e25200019e56b6\", \"612fce2f98e25200019e56ba\", \"612fce3098e25200019e56be\", \"612fce3298e25200019e56c2\", \"612fce3398e25200019e56c6\", \"612fce3598e25200019e56ca\", \"612fce3698e25200019e56ce\", \"612fce3898e25200019e56d2\", \"612fce3a98e25200019e56d6\", \"612fce3d98e25200019e56da\", \"612fce4098e25200019e56de\", \"612fce4198e25200019e56e2\" ],\n  \"analysisReferences\" : null,\n  \"title\" : \"McGill EMC Community projects Release 7 for cell line \\\"SaOS-2\\\"\",\n  \"description\" : \"WGBS and WGS sequencing for... Complete reference epigenome (as defined by IHEC) of a SaOS-2 cell line with osteosarcoma.  \",\n  \"datasetLinks\" : [ ],\n  \"attributes\" : [ {\n    \"tag\" : \"\",\n    \"value\" : \"\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"id\" : null,\n  \"ebiId\" : null,\n  \"submissionId\" : null,\n  \"eraSubmissionId\" : null,\n  \"userId\" : null,\n  \"submitterId\" : null,\n  \"status\" : null,\n  \"version\" : 1,\n  \"creationTime\" : null,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : [ \"612fce4298e25200019e56e3\" ],\n  \"validationErrorMessages\" : null,\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"ebiSubmissionDetailsIds\" : null,\n  \"lastEbiSubmissionDetailsId\" : null,\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"McGill_EMC_Barreiro1_21\",\n  \"egaAccessionId\" : null,\n  \"centerName\" : null\n}",
+      "alias" : "McGill_EMC_Barreiro1_21",
+      "egaAccessionId" : null,
+      "centerName" : "MCGILL-EDCC"
+    } ]
+  }
+}

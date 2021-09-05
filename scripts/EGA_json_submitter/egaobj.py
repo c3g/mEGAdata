@@ -125,7 +125,9 @@ class Submission(EgaObj):
     def submit(self):
         self._validate_or_submit(action="SUBMIT")
 
-    # The VALIDATE and SUBMIT operation to prod would hang (no response received, but everything was VALIDATED/SUBMITTED...)
+    # The VALIDATE and SUBMIT operation to prod would hang (no response received) but everything was indeed VALIDATED/SUBMITTED...
+    # After 7.5 minutes, the following error was received back:
+    # requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response',))
     def _validate_or_submit(self, action="VALIDATE"):
         if action not in ("VALIDATE", "SUBMIT"):
             raise Exception(f"For Submissions, only VALIDATE or SUBMIT actions are permitted.")

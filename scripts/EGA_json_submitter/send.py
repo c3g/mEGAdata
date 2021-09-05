@@ -105,7 +105,7 @@ def record_obj_registry():
         try:
             f = open(f"{globals.config['directories']['response_dir']}obj_registry/{str(obj_type)}.json", "w")
         except:
-            logging.error(f"Couldn't open file to write {str(obj_type)}s from object registry.")
+            logging.error(f"Couldn't open file to write {str(obj_type)} from object registry.")
         f.write("[\n")
         for obj in globals.obj_registry[obj_type]:
             f.write(str(obj) + ",\n")

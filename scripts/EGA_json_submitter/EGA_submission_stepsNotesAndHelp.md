@@ -115,6 +115,23 @@ Use the EgaCryptor logs to update the spreadsheets with md5sums and encrypted_md
 Some JSONs (such as Sample and Experiment) can be prepared manually from the source spreadsheets with minimal effort since their numbers are small.  
 Many objects (Policy, DAC, Study) can be reused from previous a Submission.
 
+EpiRR pulls all of its metadata from EGA.  As such, even though EGA does not require it, additional sample and donor metadata, beyond what EGA explicitly requires should be included in the EGA submission as tag-value information.  The lengthy exeperiment metadata stuff that is included in mEGAdata submissions does not need to be sent to EGA (only mEGAdata and therefore the IHEC DP).  See sample JSONs for examples.
+
+### Create directories for your submission.
+The following directories will hold the elements of your submission and responses.  They must be created manually for each submission project:
+json_templates
+    |-> ProjectDir
+        |-> datasets
+        |-> experiments
+        |-> samples
+        |-> submissions
+response_jsons
+    |-> ProjectDir
+        |-> curlAllEGAObjects
+        |-> obj_registry
+        |-> record-EGA-objects
+        |-> record-EGA-SUBMITTED
+
 
 ## Submission workflow (the only one that will work):
 1. Use PROD Submitter Portal for testing.
