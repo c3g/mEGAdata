@@ -1,20 +1,3 @@
-
-### Will need to delete this stuff.  
-dbrownlee@Heliotrope:~/receivedData/EMC_community/EMC1$ rsync -thP *.md5 *.gpg *.log davidbr@ihec-data.vhost38:/ihec_data/share/2021_EMCforEGA/EMC1
-
-
-When sending JSON objects to EGA, like with this:  
-curl -X POST path/submissions/{submissionId}/studies -d '{JSON Object, see Study}'  
-The {submissionId} is found in the response header from the Submission that was sent.  For example:  
-```bash
-  "response" : {
-    "numTotalResults" : 2,
-    "resultType" : "eu.crg.ega.microservice.dto.submitter.SubmissionData",
-    "result" : [ {
-      "id" : "6009ba3198e25200016df7dc",
-```
-This last id (6009ba...) is the correct one.
-
 ## Further points to document:
 * Objects need to be submitted in a particular order (so that subsequent objects can reference them.)
 * Do not Validate / Submit one object at a time.  For referential integrity, only Validate / Submit as part of a Submission subset.
@@ -108,4 +91,17 @@ mysqldump mEGAdata > megadata-community-inserted-with-metadata.sql
 * Clean up EMC_Community_json directory - division between input templates and output JSONs.
   * Put the all_file_ega_inbox.json somewhere useful.
 * In settings.ini, merge / deconvolute session / submission sections.
+
+## Note:
+When sending JSON objects to EGA, like with this:  
+curl -X POST path/submissions/{submissionId}/studies -d '{JSON Object, see Study}'  
+The {submissionId} is found in the response header from the Submission that was sent.  For example:  
+```bash
+  "response" : {
+    "numTotalResults" : 2,
+    "resultType" : "eu.crg.ega.microservice.dto.submitter.SubmissionData",
+    "result" : [ {
+      "id" : "6009ba3198e25200016df7dc",
+```
+This last id (6009ba...) is the correct one.
 
