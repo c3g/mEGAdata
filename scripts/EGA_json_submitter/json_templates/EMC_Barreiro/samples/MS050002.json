@@ -21,6 +21,15 @@
     {
       "tag": "donor_ethnicity",
       "value": "African American"
-    }
+    },
+    { "tag": "biomaterial_type", "value": "Primary cells"},
+    { "tag": "tissue_type", "value": "Blood"},
+    { "tag": "disease", "value": "Non-infected"},
+    { "tag": "phenotype", "value": "Non-infected"},
+    { "tag": "cell_type", "value": "Macrophage"},
+    { "tag": "donor_age", "value": "43"},
+    { "tag": "donor_age_unit", "value": "Years"},
+    { "tag": "donor_health_status", "value": "Healthy"},
+    { "tag": "donor_sex", "value": "Male"}
   ]
 }

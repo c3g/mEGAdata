@@ -10,7 +10,7 @@ import peewee
 from models import Dataset, Sample, ExperimentType, Run, RunFile, DatasetToReleaseSet, ReleaseSet
 
 # Generate a relationMapping.ods from the mEGAdata DB, for a given dataset.release_status (R1, R2, R3, etc.)
-# This relationMapping.ods is an unnormalizion of the dataset, sample, experiment, run and run_files tables and serves as an input for submissions to EGA.
+# This relationMapping.ods is an unnormalization of the dataset, sample, experiment, run and run_files tables and serves as an input for submissions to EGA.
 # Must prepend file1_FileName and file2_FileName manually with path to file on EGA ftp server.
 
 def main():

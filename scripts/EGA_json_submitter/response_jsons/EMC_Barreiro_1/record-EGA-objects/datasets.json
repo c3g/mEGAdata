@@ -1,0 +1,609 @@
+{
+  "header" : {
+    "apiVersion" : "v1",
+    "code" : "200",
+    "service" : "submitterportal",
+    "developerMessage" : "",
+    "userMessage" : "OK",
+    "errorCode" : "1",
+    "docLink" : "https://ega-archive.org",
+    "errorStack" : ""
+  },
+  "response" : {
+    "numTotalResults" : 1,
+    "resultType" : "eu.crg.ega.microservice.dto.submitter.DatasetData",
+    "result" : [ {
+      "xmlRootElement" : {
+        "dataset" : [ {
+          "identifiers" : null,
+          "alias" : "McGill_EMC_Barreiro1",
+          "centerName" : "MCGILL-EDCC",
+          "brokerName" : "EGA",
+          "accession" : null,
+          "title" : "Genetic drivers of epigenetic and transcriptional variation of human immune responses to infection (WGS and WGBS)",
+          "description" : "WGS and WGBS data from monocyte-derived macrophages that were infected with Influenza A virus strain PR8WT, or a matching non-infected control.",
+          "datasettype" : [ "WHOLE_GENOME_SEQUENCING" ],
+          "runref" : [ {
+            "identifiers" : null,
+            "refname" : "MS049301.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049302.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049401.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049402.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049501.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049502.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049601.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049602.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049701.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049702.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049801.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049802.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049901.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049902.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050001.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050002.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050101.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050102.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050201.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050202.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050301.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050302.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050401.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050402.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050501.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050502.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050601.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050602.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050801.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050802.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050901.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050902.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051001.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051002.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051201.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051202.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051301.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051302.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051401.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051402.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051501.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051502.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051601.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051602.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051701.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051702.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051801.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051802.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051901.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051902.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052001.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052002.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052101.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052102.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052201.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052202.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052301.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052302.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052501.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052502.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052601.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052602.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052701.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052702.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052801.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052802.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052901.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052902.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053001.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053002.BS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049302.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049402.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049502.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049602.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049701.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049802.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049902.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050002.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050102.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050201.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050301.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050402.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050502.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050602.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050802.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050901.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051002.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051202.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051302.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051402.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051502.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051602.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051702.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051802.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051902.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052001.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052102.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052202.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052302.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052501.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052601.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052702.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052802.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052902.WGS",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053002.WGS",
+            "refcenter" : null,
+            "accession" : null
+          } ],
+          "analysisref" : [ ],
+          "policyref" : {
+            "identifiers" : null,
+            "refname" : null,
+            "refcenter" : null,
+            "accession" : "EGAP00001000252"
+          },
+          "datasetlinks" : null,
+          "datasetattributes" : {
+            "datasetattribute" : [ {
+              "tag" : "",
+              "value" : "",
+              "units" : null
+            } ]
+          }
+        } ]
+      },
+      "datasetTypeIds" : [ "0" ],
+      "datasetTypes" : [ "Whole genome sequencing" ],
+      "policyId" : "EGAP00001000252",
+      "runsReferences" : [ "619b421798e252000107d80f", "619b421b98e252000107d815", "619b421d98e252000107d81b", "619b421f98e252000107d821", "619b422298e252000107d827", "619b422598e252000107d82d", "619b422c98e252000107d833", "619b422e98e252000107d839", "619b423098e252000107d83f", "619b423298e252000107d845", "619b423598e252000107d84b", "619b423798e252000107d851", "619b423998e252000107d857", "619b423b98e252000107d85d", "619b423f98e252000107d863", "619b424198e252000107d869", "619b424598e252000107d86f", "619b424698e252000107d875", "619b424b98e252000107d87b", "619b424e98e252000107d881", "619b425298e252000107d887", "619b425498e252000107d88d", "619b425698e252000107d893", "619b425998e252000107d899", "619b425b98e252000107d89f", "619b425d98e252000107d8a5", "619b426098e252000107d8ab", "619b426298e252000107d8b1", "619b426498e252000107d8b7", "619b426698e252000107d8bd", "619b426a98e252000107d8c3", "619b426c98e252000107d8c9", "619b426e98e252000107d8cf", "619b427198e252000107d8d5", "619b427398e252000107d8db", "619b427598e252000107d8e1", "619b427798e252000107d8e7", "619b427998e252000107d8ed", "619b427c98e252000107d8f3", "619b427e98e252000107d8f9", "619b428098e252000107d8ff", "619b428298e252000107d905", "619b428498e252000107d90b", "619b428698e252000107d911", "619b428a98e252000107d917", "619b428f98e252000107d91d", "619b429198e252000107d923", "619b429398e252000107d929", "619b429698e252000107d92f", "619b429898e252000107d935", "619b429a98e252000107d93b", "619b429d98e252000107d941", "619b429f98e252000107d947", "619b42a198e252000107d94d", "619b42a598e252000107d953", "619b42a898e252000107d959", "619b42ab98e252000107d95f", "619b42ae98e252000107d965", "619b42b098e252000107d96b", "619b42b398e252000107d972", "619b42b598e252000107d978", "619b42b798e252000107d97e", "619b42b998e252000107d984", "619b42bb98e252000107d98a", "619b42be98e252000107d990", "619b42c198e252000107d996", "619b42c398e252000107d99c", "619b42c598e252000107d9a2", "619b42c898e252000107d9a8", "619b42ca98e252000107d9ae", "619b42cc98e252000107d9b2", "619b42cd98e252000107d9b6", "619b42cf98e252000107d9ba", "619b42d098e252000107d9be", "619b42d298e252000107d9c2", "619b42d498e252000107d9c6", "619b42d598e252000107d9ca", "619b42d798e252000107d9ce", "619b42d898e252000107d9d2", "619b42da98e252000107d9d6", "619b42dc98e252000107d9da", "619b42dd98e252000107d9de", "619b42de98e252000107d9e2", "619b42e098e252000107d9e6", "619b42e298e252000107d9ea", "619b42e398e252000107d9ee", "619b42e698e252000107d9f2", "619b42e898e252000107d9f6", "619b42e998e252000107d9fa", "619b42eb98e252000107d9fe", "619b42ed98e252000107da02", "619b42ee98e252000107da06", "619b42f098e252000107da0a", "619b42f198e252000107da0e", "619b42f398e252000107da12", "619b42f498e252000107da16", "619b42f698e252000107da1a", "619b42f898e252000107da1e", "619b42fa98e252000107da22", "619b42fb98e252000107da26", "619b42fd98e252000107da2a", "619b430098e252000107da2e", "619b430198e252000107da32", "619b430398e252000107da36", "619b430498e252000107da3a" ],
+      "analysisReferences" : null,
+      "title" : "Genetic drivers of epigenetic and transcriptional variation of human immune responses to infection (WGS and WGBS)",
+      "description" : "WGS and WGBS data from monocyte-derived macrophages that were infected with Influenza A virus strain PR8WT, or a matching non-infected control.",
+      "datasetLinks" : [ ],
+      "attributes" : [ {
+        "tag" : "",
+        "value" : "",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "619b430698e252000107da3c",
+      "ebiId" : null,
+      "submissionId" : "619b421398e252000107d809",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "VALIDATED",
+      "version" : 1,
+      "creationTime" : 1637565190233,
+      "editionTime" : null,
+      "firstPublic" : null,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : [ ],
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : null,
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<DATASETS>\n    <DATASET alias=\"McGill_EMC_Barreiro1\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE>Genetic drivers of epigenetic and transcriptional variation of human immune responses to infection (WGS and WGBS)</TITLE>\n        <DESCRIPTION>WGS and WGBS data from monocyte-derived macrophages that were infected with Influenza A virus strain PR8WT, or a matching non-infected control.</DESCRIPTION>\n        <DATASET_TYPE>Whole genome sequencing</DATASET_TYPE>\n        <RUN_REF refname=\"MS049301.BS\"/>\n        <RUN_REF refname=\"MS049302.BS\"/>\n        <RUN_REF refname=\"MS049401.BS\"/>\n        <RUN_REF refname=\"MS049402.BS\"/>\n        <RUN_REF refname=\"MS049501.BS\"/>\n        <RUN_REF refname=\"MS049502.BS\"/>\n        <RUN_REF refname=\"MS049601.BS\"/>\n        <RUN_REF refname=\"MS049602.BS\"/>\n        <RUN_REF refname=\"MS049701.BS\"/>\n        <RUN_REF refname=\"MS049702.BS\"/>\n        <RUN_REF refname=\"MS049801.BS\"/>\n        <RUN_REF refname=\"MS049802.BS\"/>\n        <RUN_REF refname=\"MS049901.BS\"/>\n        <RUN_REF refname=\"MS049902.BS\"/>\n        <RUN_REF refname=\"MS050001.BS\"/>\n        <RUN_REF refname=\"MS050002.BS\"/>\n        <RUN_REF refname=\"MS050101.BS\"/>\n        <RUN_REF refname=\"MS050102.BS\"/>\n        <RUN_REF refname=\"MS050201.BS\"/>\n        <RUN_REF refname=\"MS050202.BS\"/>\n        <RUN_REF refname=\"MS050301.BS\"/>\n        <RUN_REF refname=\"MS050302.BS\"/>\n        <RUN_REF refname=\"MS050401.BS\"/>\n        <RUN_REF refname=\"MS050402.BS\"/>\n        <RUN_REF refname=\"MS050501.BS\"/>\n        <RUN_REF refname=\"MS050502.BS\"/>\n        <RUN_REF refname=\"MS050601.BS\"/>\n        <RUN_REF refname=\"MS050602.BS\"/>\n        <RUN_REF refname=\"MS050801.BS\"/>\n        <RUN_REF refname=\"MS050802.BS\"/>\n        <RUN_REF refname=\"MS050901.BS\"/>\n        <RUN_REF refname=\"MS050902.BS\"/>\n        <RUN_REF refname=\"MS051001.BS\"/>\n        <RUN_REF refname=\"MS051002.BS\"/>\n        <RUN_REF refname=\"MS051201.BS\"/>\n        <RUN_REF refname=\"MS051202.BS\"/>\n        <RUN_REF refname=\"MS051301.BS\"/>\n        <RUN_REF refname=\"MS051302.BS\"/>\n        <RUN_REF refname=\"MS051401.BS\"/>\n        <RUN_REF refname=\"MS051402.BS\"/>\n        <RUN_REF refname=\"MS051501.BS\"/>\n        <RUN_REF refname=\"MS051502.BS\"/>\n        <RUN_REF refname=\"MS051601.BS\"/>\n        <RUN_REF refname=\"MS051602.BS\"/>\n        <RUN_REF refname=\"MS051701.BS\"/>\n        <RUN_REF refname=\"MS051702.BS\"/>\n        <RUN_REF refname=\"MS051801.BS\"/>\n        <RUN_REF refname=\"MS051802.BS\"/>\n        <RUN_REF refname=\"MS051901.BS\"/>\n        <RUN_REF refname=\"MS051902.BS\"/>\n        <RUN_REF refname=\"MS052001.BS\"/>\n        <RUN_REF refname=\"MS052002.BS\"/>\n        <RUN_REF refname=\"MS052101.BS\"/>\n        <RUN_REF refname=\"MS052102.BS\"/>\n        <RUN_REF refname=\"MS052201.BS\"/>\n        <RUN_REF refname=\"MS052202.BS\"/>\n        <RUN_REF refname=\"MS052301.BS\"/>\n        <RUN_REF refname=\"MS052302.BS\"/>\n        <RUN_REF refname=\"MS052501.BS\"/>\n        <RUN_REF refname=\"MS052502.BS\"/>\n        <RUN_REF refname=\"MS052601.BS\"/>\n        <RUN_REF refname=\"MS052602.BS\"/>\n        <RUN_REF refname=\"MS052701.BS\"/>\n        <RUN_REF refname=\"MS052702.BS\"/>\n        <RUN_REF refname=\"MS052801.BS\"/>\n        <RUN_REF refname=\"MS052802.BS\"/>\n        <RUN_REF refname=\"MS052901.BS\"/>\n        <RUN_REF refname=\"MS052902.BS\"/>\n        <RUN_REF refname=\"MS053001.BS\"/>\n        <RUN_REF refname=\"MS053002.BS\"/>\n        <RUN_REF refname=\"MS049302.WGS\"/>\n        <RUN_REF refname=\"MS049402.WGS\"/>\n        <RUN_REF refname=\"MS049502.WGS\"/>\n        <RUN_REF refname=\"MS049602.WGS\"/>\n        <RUN_REF refname=\"MS049701.WGS\"/>\n        <RUN_REF refname=\"MS049802.WGS\"/>\n        <RUN_REF refname=\"MS049902.WGS\"/>\n        <RUN_REF refname=\"MS050002.WGS\"/>\n        <RUN_REF refname=\"MS050102.WGS\"/>\n        <RUN_REF refname=\"MS050201.WGS\"/>\n        <RUN_REF refname=\"MS050301.WGS\"/>\n        <RUN_REF refname=\"MS050402.WGS\"/>\n        <RUN_REF refname=\"MS050502.WGS\"/>\n        <RUN_REF refname=\"MS050602.WGS\"/>\n        <RUN_REF refname=\"MS050802.WGS\"/>\n        <RUN_REF refname=\"MS050901.WGS\"/>\n        <RUN_REF refname=\"MS051002.WGS\"/>\n        <RUN_REF refname=\"MS051202.WGS\"/>\n        <RUN_REF refname=\"MS051302.WGS\"/>\n        <RUN_REF refname=\"MS051402.WGS\"/>\n        <RUN_REF refname=\"MS051502.WGS\"/>\n        <RUN_REF refname=\"MS051602.WGS\"/>\n        <RUN_REF refname=\"MS051702.WGS\"/>\n        <RUN_REF refname=\"MS051802.WGS\"/>\n        <RUN_REF refname=\"MS051902.WGS\"/>\n        <RUN_REF refname=\"MS052001.WGS\"/>\n        <RUN_REF refname=\"MS052102.WGS\"/>\n        <RUN_REF refname=\"MS052202.WGS\"/>\n        <RUN_REF refname=\"MS052302.WGS\"/>\n        <RUN_REF refname=\"MS052501.WGS\"/>\n        <RUN_REF refname=\"MS052601.WGS\"/>\n        <RUN_REF refname=\"MS052702.WGS\"/>\n        <RUN_REF refname=\"MS052802.WGS\"/>\n        <RUN_REF refname=\"MS052902.WGS\"/>\n        <RUN_REF refname=\"MS053002.WGS\"/>\n        <POLICY_REF accession=\"EGAP00001000252\"/>\n        <DATASET_ATTRIBUTES>\n            <DATASET_ATTRIBUTE>\n                <TAG></TAG>\n                <VALUE></VALUE>\n            </DATASET_ATTRIBUTE>\n        </DATASET_ATTRIBUTES>\n    </DATASET>\n</DATASETS>\n",
+      "json" : "{\n  \"xmlRootElement\" : null,\n  \"datasetTypeIds\" : [ \"0\" ],\n  \"datasetTypes\" : [ \"Whole genome sequencing\" ],\n  \"policyId\" : \"EGAP00001000252\",\n  \"runsReferences\" : [ \"619b421798e252000107d80f\", \"619b421b98e252000107d815\", \"619b421d98e252000107d81b\", \"619b421f98e252000107d821\", \"619b422298e252000107d827\", \"619b422598e252000107d82d\", \"619b422c98e252000107d833\", \"619b422e98e252000107d839\", \"619b423098e252000107d83f\", \"619b423298e252000107d845\", \"619b423598e252000107d84b\", \"619b423798e252000107d851\", \"619b423998e252000107d857\", \"619b423b98e252000107d85d\", \"619b423f98e252000107d863\", \"619b424198e252000107d869\", \"619b424598e252000107d86f\", \"619b424698e252000107d875\", \"619b424b98e252000107d87b\", \"619b424e98e252000107d881\", \"619b425298e252000107d887\", \"619b425498e252000107d88d\", \"619b425698e252000107d893\", \"619b425998e252000107d899\", \"619b425b98e252000107d89f\", \"619b425d98e252000107d8a5\", \"619b426098e252000107d8ab\", \"619b426298e252000107d8b1\", \"619b426498e252000107d8b7\", \"619b426698e252000107d8bd\", \"619b426a98e252000107d8c3\", \"619b426c98e252000107d8c9\", \"619b426e98e252000107d8cf\", \"619b427198e252000107d8d5\", \"619b427398e252000107d8db\", \"619b427598e252000107d8e1\", \"619b427798e252000107d8e7\", \"619b427998e252000107d8ed\", \"619b427c98e252000107d8f3\", \"619b427e98e252000107d8f9\", \"619b428098e252000107d8ff\", \"619b428298e252000107d905\", \"619b428498e252000107d90b\", \"619b428698e252000107d911\", \"619b428a98e252000107d917\", \"619b428f98e252000107d91d\", \"619b429198e252000107d923\", \"619b429398e252000107d929\", \"619b429698e252000107d92f\", \"619b429898e252000107d935\", \"619b429a98e252000107d93b\", \"619b429d98e252000107d941\", \"619b429f98e252000107d947\", \"619b42a198e252000107d94d\", \"619b42a598e252000107d953\", \"619b42a898e252000107d959\", \"619b42ab98e252000107d95f\", \"619b42ae98e252000107d965\", \"619b42b098e252000107d96b\", \"619b42b398e252000107d972\", \"619b42b598e252000107d978\", \"619b42b798e252000107d97e\", \"619b42b998e252000107d984\", \"619b42bb98e252000107d98a\", \"619b42be98e252000107d990\", \"619b42c198e252000107d996\", \"619b42c398e252000107d99c\", \"619b42c598e252000107d9a2\", \"619b42c898e252000107d9a8\", \"619b42ca98e252000107d9ae\", \"619b42cc98e252000107d9b2\", \"619b42cd98e252000107d9b6\", \"619b42cf98e252000107d9ba\", \"619b42d098e252000107d9be\", \"619b42d298e252000107d9c2\", \"619b42d498e252000107d9c6\", \"619b42d598e252000107d9ca\", \"619b42d798e252000107d9ce\", \"619b42d898e252000107d9d2\", \"619b42da98e252000107d9d6\", \"619b42dc98e252000107d9da\", \"619b42dd98e252000107d9de\", \"619b42de98e252000107d9e2\", \"619b42e098e252000107d9e6\", \"619b42e298e252000107d9ea\", \"619b42e398e252000107d9ee\", \"619b42e698e252000107d9f2\", \"619b42e898e252000107d9f6\", \"619b42e998e252000107d9fa\", \"619b42eb98e252000107d9fe\", \"619b42ed98e252000107da02\", \"619b42ee98e252000107da06\", \"619b42f098e252000107da0a\", \"619b42f198e252000107da0e\", \"619b42f398e252000107da12\", \"619b42f498e252000107da16\", \"619b42f698e252000107da1a\", \"619b42f898e252000107da1e\", \"619b42fa98e252000107da22\", \"619b42fb98e252000107da26\", \"619b42fd98e252000107da2a\", \"619b430098e252000107da2e\", \"619b430198e252000107da32\", \"619b430398e252000107da36\", \"619b430498e252000107da3a\" ],\n  \"analysisReferences\" : null,\n  \"title\" : \"Genetic drivers of epigenetic and transcriptional variation of human immune responses to infection (WGS and WGBS)\",\n  \"description\" : \"WGS and WGBS data from monocyte-derived macrophages that were infected with Influenza A virus strain PR8WT, or a matching non-infected control.\",\n  \"datasetLinks\" : [ ],\n  \"attributes\" : [ {\n    \"tag\" : \"\",\n    \"value\" : \"\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"id\" : null,\n  \"ebiId\" : null,\n  \"submissionId\" : null,\n  \"eraSubmissionId\" : null,\n  \"userId\" : null,\n  \"submitterId\" : null,\n  \"status\" : null,\n  \"version\" : 1,\n  \"creationTime\" : null,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : [ \"619b430598e252000107da3b\" ],\n  \"validationErrorMessages\" : null,\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"ebiSubmissionDetailsIds\" : null,\n  \"lastEbiSubmissionDetailsId\" : null,\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"McGill_EMC_Barreiro1\",\n  \"egaAccessionId\" : null,\n  \"centerName\" : null\n}",
+      "alias" : "McGill_EMC_Barreiro1",
+      "egaAccessionId" : null,
+      "centerName" : "MCGILL-EDCC"
+    } ]
+  }
+}

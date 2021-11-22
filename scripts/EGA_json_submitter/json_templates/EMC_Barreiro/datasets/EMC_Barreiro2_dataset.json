@@ -1,10 +1,10 @@
 {
-    "alias" : "McGill_EMC_Barreiro2",
-    "datasetTypeIds" : [ "0", "3", "7", "13" ],
+    "alias" : "EMC_Barreiro_2",
+    "datasetTypeIds" : [ "3", "10", "13" ],
     "policyId" : "",
     "runsReferences" : [],
-    "title" : "McGill EMC Community projects Release 7 for cell line \"SaOS-2\"",
-    "description" : "WGBS and WGS sequencing for... Complete reference epigenome (as defined by IHEC) of a SaOS-2 cell line with osteosarcoma.  ",
+    "title" : "Genetic drivers of epigenetic and transcriptional variation of human immune responses to infection (RNA-seq, ATAC-seq and ChIPmentation)",
+    "description" : "RNA-seq, ATAC-seq and ChIPmentation data from monocyte-derived macrophages that were infected with Influenza A virus strain PR8WT, or a matching non-infected control.",
     "datasetLinks" : [ ],
     "attributes" : [
         {

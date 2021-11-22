@@ -5,75 +5,55 @@ MS049701.BS.204.6.pair1.fastq.gz
 was originally 204.3.pair2.fastq.gz
 (was originally a typo)
 
-Need a summary of the dataset, for description purposes.  Asked Alain for a bunch of metadata.
+Alain provided a bunch of new metadata.  This is only integrated into the EGA templates so far, but will need to be added to allEMC_Barreiro.ods at some point, destined for the mEGAdata.
 
-experiments->BS.json -> designDescription is required.  Used "See http://epigenomesportal.ca/edcc/doc/" for now...  Not good enough.
+Mock-infections?
+
+Is there some problem with writing the submissionVALIDATEDResponse.json (can't overwrite or something?)
+
+EMC_Barreiro_1
+==============
+SubmissionID: 619b421398e252000107d809
+"egaAccessionId" : "EGAD00001008359"
+
+
+Steps and timeline of EGA submissions
+=====================================
+Due to its large size (~13TB) in excess of EGA ftp server capacity (~10TB), the Barreiro submission needs to be divided into two separate submissions (meaning all four of the steps below must be performed twice).  So far, step 2 of the first of two submissions has been completed.
+
+EGA helpdesk (ega-helpdesk@ebi.ac.uk) should to be contacted after each step, made aware of the progress and asked to speed things up on their end, if possible.  Bear in mind the 5h time zone difference (they are located in Barcelona, on the beach).  They usually answer within 24 hours, but don't work weekends.
+
+Sequence of steps:
+1. EMC uploads files to EGA storage server. (~2 days at current bandwidth)
+2. Wait for files to be recognized and addressable through EGA submitter portal. (~2 days)
+3. Perform programmatic submission. (Fast.  If json metadata is complete and accurate, only an hour or two for testing and verification.  Any bugs cause delays).
+4. EGA archives the data files (and removes them from the ftp server). (~2-4 days(?), but this time lag can be very unpredictable).
+[Repeat for second submission]
+
+
+Hello EGA,
+
+It has been a while since we last communicated.  I hope all is well on your end.
+
+When last we spoke (a while ago) I mentioned a data submission I was trying to complete before going on parental leave.  Well, surprises happened and the submission was just now submitted to your server last night.  This is the first of two submissions I am trying to complete (limited ftp upload space meant that two, rather than one, submissions were necessary).
+
+Due to some urgency (and delays) on our end, you mentioned that you could prioritize the processing/archiving of the large data files in your system.  This would free up ftp space for the second submission.
+
+The submission details are:
+account: ega-box-209
+Submission Description: Genetic drivers of epigenetic and transcriptional variation...
+SubmissionID: 619b421398e252000107d809
+"egaAccessionId" : "EGAD00001008359",
+
+So, if you can, please prioritize processing/archiving of this submission to liberate the ftp upload server space for the second submission.
+
+Alternatively, if you could temporarily increase our ftp upload server space allowance to about 15TB total, I could begin work on the second submission right away.
+
+Many thanks for your help,
+-David Brownlee
 
 
 
 
-(scripts-venv) assez@heap:~/projects/megadata/scripts/EGA_json_submitter$ python send.py --validate pass
-Traceback (most recent call last):
-  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 706, in urlopen
-    chunked=chunked,
-  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 445, in _make_request
-    six.raise_from(e, None)
-  File "<string>", line 3, in raise_from
-  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 440, in _make_request
-    httplib_response = conn.getresponse()
-  File "/usr/lib/python3.6/http/client.py", line 1373, in getresponse
-    response.begin()
-  File "/usr/lib/python3.6/http/client.py", line 311, in begin
-    version, status, reason = self._read_status()
-  File "/usr/lib/python3.6/http/client.py", line 280, in _read_status
-    raise RemoteDisconnected("Remote end closed connection without"
-http.client.RemoteDisconnected: Remote end closed connection without response
 
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
-    timeout=timeout
-  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 756, in urlopen
-    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
-  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 531, in increment
-    raise six.reraise(type(error), error, _stacktrace)
-  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/packages/six.py", line 734, in reraise
-    raise value.with_traceback(tb)
-  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 706, in urlopen
-    chunked=chunked,
-  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 445, in _make_request
-    six.raise_from(e, None)
-  File "<string>", line 3, in raise_from
-  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 440, in _make_request
-    httplib_response = conn.getresponse()
-  File "/usr/lib/python3.6/http/client.py", line 1373, in getresponse
-    response.begin()
-  File "/usr/lib/python3.6/http/client.py", line 311, in begin
-    version, status, reason = self._read_status()
-  File "/usr/lib/python3.6/http/client.py", line 280, in _read_status
-    raise RemoteDisconnected("Remote end closed connection without"
-urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response',))
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "send.py", line 129, in <module>
-    main()
-  File "send.py", line 66, in main
-    globals.mySub.validate()
-  File "/home/assez/projects/megadata/scripts/EGA_json_submitter/egaobj.py", line 124, in validate
-    self._validate_or_submit(action="VALIDATE")
-  File "/home/assez/projects/megadata/scripts/EGA_json_submitter/egaobj.py", line 135, in _validate_or_submit
-    r = requests.put(url, headers=json.loads(globals.config["global"]["headers"]))
-  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/requests/api.py", line 134, in put
-    return request('put', url, data=data, **kwargs)
-  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/requests/api.py", line 61, in request
-    return session.request(method=method, url=url, **kwargs)
-  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/requests/sessions.py", line 542, in request
-    resp = self.send(prep, **send_kwargs)
-  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/requests/sessions.py", line 655, in send
-    r = adapter.send(request, **kwargs)
-  File "/home/assez/projects/megadata/scripts/scripts-venv/lib/python3.6/site-packages/requests/adapters.py", line 498, in send
-    raise ConnectionError(err, request=request)
-requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response',))
+204, 216, 210.
