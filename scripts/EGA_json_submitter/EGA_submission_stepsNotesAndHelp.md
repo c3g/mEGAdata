@@ -84,7 +84,8 @@ Transfer all files (except the original, unencrypted .fast.qz) files with:
 mput *.gpg
 mput *.md5
 
-(mput *.gpg *.md5)?
+Or in one single command:
+mput *.gpg *.md5
 
 With ncftp:
 #!/bin/bash
