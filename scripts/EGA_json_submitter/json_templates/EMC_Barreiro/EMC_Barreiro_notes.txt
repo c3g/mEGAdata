@@ -28,8 +28,7 @@ EMC_Barreiro2
 Because submission2 must reference submission1 samples, prepopulate the sub2 obj_registry with the sub1 aliases (and ids).  Use json_templates/EMC_Barreiro/reference_Barreiro1_samples_from_Barreiro2_submisison.py
 
 SubmissionID: = 61a454dc98e2520001080024
-"egaAccessionId" : ""
-
+"egaAccessionId" : "EGAD00001008422"
 
 Steps and timeline of EGA submissions
 =====================================
