@@ -10,6 +10,14 @@ Mock-infections?
 
 Is there some problem with writing the submissionVALIDATEDResponse.json (can't overwrite or something?)
 
+The following samples were originally ethnicity `African American`, but had to be reclassified as `European American`:
+MS050201
+MS050202
+MS050901
+MS050902
+MS051001
+MS051002
+
 EMC_Barreiro_1
 ==============
 SubmissionID: 619b421398e252000107d809
@@ -18,6 +26,9 @@ SubmissionID: 619b421398e252000107d809
 EMC_Barreiro2
 =============
 Because submission2 must reference submission1 samples, prepopulate the sub2 obj_registry with the sub1 aliases (and ids).  Use json_templates/EMC_Barreiro/reference_Barreiro1_samples_from_Barreiro2_submisison.py
+
+SubmissionID: = 61a454dc98e2520001080024
+"egaAccessionId" : ""
 
 
 Steps and timeline of EGA submissions
@@ -28,7 +39,7 @@ EGA helpdesk (ega-helpdesk@ebi.ac.uk) should to be contacted after each step, ma
 
 Sequence of steps:
 1. EMC uploads files to EGA storage server. (~2 days at current bandwidth)
-2. Wait for files to be recognized and addressable through EGA submitter portal. (~2 days)
+2. Wait for files to be recognized and addressable through EGA submitter portal. (~few hours)
 3. Perform programmatic submission. (Fast.  If json metadata is complete and accurate, only an hour or two for testing and verification.  Any bugs cause delays).
 4. EGA archives the data files (and removes them from the ftp server). (~2-4 days(?), but this time lag can be very unpredictable).
 [Repeat for second submission]
@@ -57,7 +68,7 @@ Many thanks for your help,
 
 
 Slack update 22-Nov
-
+===================
 Hello all,
 
 Review of the Barreiro EGA submission situation:
@@ -76,4 +87,19 @@ As previously mentioned, the path to completion is:
 . Wait for raw files to be recognized by the submitter portal interface.
 . Perform a programmatic submission of the second half.  Upon successful submission, the second immutable and referenceable dataset accession will be issued immediately.
 .  EGA can then perform the archival and publication of the raw data on their own time.
+
+
+Slack update 28-Nov
+===================
+Hi Danielle,
+
+I hacked away a bit over the weekend and the second half of the Barreiro data has now passed the VALIDATED step at EGA.  If we need a referable accession number (for the journal articles), would could (but please don't) hit the SUBMIT button.  This now completes the EGA submission step for the EMC_Barreiro data [notwithstanding uncovered metadata errors].
+
+Other points:
+. The nature of the metadata errors still must the identified, and its impact ascertained.
+. I found some EGA documentation that says that metadata that has been SUBMITTED to EGA cannot be edited.  Modifications must go through the EGA helpdesk (and are probably painful).  Deletion of previous submissions and subsequent resubmission may be an [easier] option.
+. The EGA submission was always the priority, but now that it is effectively ready, the scale and scope of your future work on this dataset needs to be identified (mEGAdata warehousing, EpiRR submission, IHEC data hub preparation).  Though scripts do exists for most of these steps, they are more involved and probably lower priority.  Someone needs to decide who will do this more complicated and lengthy work, and what its timeline is.
+. A git commit (to branch importSpreadsheetData) has been made.
+
+We should probably talk early this week (possibly Monday), at least briefly.
 

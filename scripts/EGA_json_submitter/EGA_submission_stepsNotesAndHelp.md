@@ -186,3 +186,20 @@ response_jsons
 * Currently, there are only hg19-aligned tracks.  MM or Paul will realign everything to hg38 (timeline circa mid-end May). 
 * EpiRR submission.
 * IHEC DP hub generation has already been scripted (back during the EMC hg38 realignment project) so IDP submission will be relatively straightforward.  However, new submissions need to follow schema V2.0.
+
+
+## Modifying Submitted EGA objects - Yes, it is possible.
+As well for future reference, all submitted objects cannot be modified via the
+submitter portal, but they can be changed in WEBIN via their XML file. (Only
+the array dataset information cannot be changed by the user, for that we need
+to modify the database directly).
+
+To make this change in the WEBIN, please log in using the following link:
+https://www.ebi.ac.uk/ena/submit/webin/login
+
+Then click on the "Report" of the object you want to modify (in this case:
+Sample), search for the Sample ID and click on "Action" and the option "Edit
+XML" will be displayed. Then the XML file can be modified. I hope this can be
+helpful for further submissions, but please feel free to contact us if you
+have any questions. Also, we can do a double-check for you after the
+modification.
