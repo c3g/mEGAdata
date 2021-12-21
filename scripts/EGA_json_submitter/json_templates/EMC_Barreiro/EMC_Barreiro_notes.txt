@@ -18,10 +18,16 @@ MS050902
 MS051001
 MS051002
 
+This line was extraneous and removed from the relationMapping file.  It refers to two H3K4me1 files that were mistakenly copied and named to H3K27ac.  Since the correct run info was sent first (prior numerical order), no harm was done.
+McGill_EMC_Barreiro2	EMC_Barreiro2_dataset.json		MS050101	MS050101.json		MS050101.Chipmentation_H3K27ac	Chipmentation_H3K27ac.json		MS050101.Chipmentation_H3K27ac		EMC_Barreiro/H3K27ac/MS050101.Chipmentation_H3K27ac.289.1.pair1.fastq.gz	ec1594f84676273f415b1cfea21eb1d3	a7744395928b49e4a8385ff16afb830d		EMC_Barreiro/H3K27ac/MS050101.Chipmentation_H3K27ac.289.1.pair2.fastq.gz	5d08dcab00f58b495d1edf1a4e9ea20a	4802c4f434438259ef04709e5df9b291
+
+
+
 EMC_Barreiro_1
 ==============
 SubmissionID: 619b421398e252000107d809
 "egaAccessionId" : "EGAD00001008359"
+"egaAccessionId" : "EGAD00001008422"
 
 EMC_Barreiro2
 =============

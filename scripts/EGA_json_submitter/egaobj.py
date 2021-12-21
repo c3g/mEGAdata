@@ -237,7 +237,7 @@ class Sample(EgaObj):
         # Ensure unique aliases submitted to EGA.  Append an autoincrement to the alias during testing.
         self.data["alias"] = utils.alias_increment(alias)
         logging.debug(f"Instantiated Sample: {self.data['alias']}")
-        # if not already in globals.obj_registry.samples, append and send.
+        # if not already in globals.obj_registry.samples, append and send.  Samples should be reused.
         if not self._is_in_registry():
             globals.obj_registry[f"{_type_to_api(self)}"].append(self)
             logging.debug(f"Sample {self.data['alias']} added to global list.")
@@ -277,7 +277,7 @@ class Experiment(EgaObj):
         # Maybe pass in a Sample as a param rather than a string for lookup....
         self.data["sampleId"] = Sample.get_by_alias(sample_alias).data["id"]
         logging.debug(f"Instantiated Experiment: {self.data['alias']}")
-        # if not already in globals.obj_registry.experiments, append and send.
+        # if not already in globals.obj_registry.experiments, append and send.  Unless the new Green Arrow method is implemented, repeated Experiment aliases should be made to generate an error.
         if not self._is_in_registry():
             globals.obj_registry[f"{_type_to_api(self)}"].append(self)
             logging.debug(f"Experiment {self.data['alias']} added to global list.")
@@ -304,7 +304,7 @@ class Run(EgaObj):
         files.append(file2.data)
         self.data["files"] = files
         logging.debug(f"Instantiated Run: {self.data['alias']}")
-        # if not already in globals.obj_registry.runs, append and send.
+        # if not already in globals.obj_registry.runs, append and send.  Repeated Run aliases should always be made to generate an error (unlike the current code).
         if not self._is_in_registry():
             globals.obj_registry[f"{_type_to_api(self)}"].append(self)
             logging.debug(f"Run {self.data['alias']} added to global list.")
