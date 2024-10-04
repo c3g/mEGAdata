@@ -1,0 +1,110 @@
+EMC_Barreiro notes
+==================
+
+MS049701.BS.204.6.pair1.fastq.gz was originally 204.3.pair2.fastq.gz
+(was originally a typo).
+
+Alain provided a bunch of new metadata.  This is only integrated into the EGA templates so far, but will need to be added to allEMC_Barreiro.ods at some point, destined for the mEGAdata.
+
+Mock-infections?
+
+Is there some problem with writing the submissionVALIDATEDResponse.json (can't overwrite or something?)
+
+The following samples were originally ethnicity `African American`, but had to be reclassified as `European American`:
+MS050201
+MS050202
+MS050901
+MS050902
+MS051001
+MS051002
+
+This line was extraneous and removed from the relationMapping file.  It refers to two H3K4me1 files that were mistakenly copied and named to H3K27ac.  Since the correct run info was sent first (prior numerical order), no harm was done.
+McGill_EMC_Barreiro2	EMC_Barreiro2_dataset.json		MS050101	MS050101.json		MS050101.Chipmentation_H3K27ac	Chipmentation_H3K27ac.json		MS050101.Chipmentation_H3K27ac		EMC_Barreiro/H3K27ac/MS050101.Chipmentation_H3K27ac.289.1.pair1.fastq.gz	ec1594f84676273f415b1cfea21eb1d3	a7744395928b49e4a8385ff16afb830d		EMC_Barreiro/H3K27ac/MS050101.Chipmentation_H3K27ac.289.1.pair2.fastq.gz	5d08dcab00f58b495d1edf1a4e9ea20a	4802c4f434438259ef04709e5df9b291
+
+
+
+EMC_Barreiro_1
+==============
+SubmissionID: 619b421398e252000107d809
+"egaAccessionId" : "EGAD00001008359"
+"egaAccessionId" : "EGAD00001008422"
+
+EMC_Barreiro2
+=============
+Because submission2 must reference submission1 samples, prepopulate the sub2 obj_registry with the sub1 aliases (and ids).  Use json_templates/EMC_Barreiro/reference_Barreiro1_samples_from_Barreiro2_submisison.py
+
+SubmissionID: = 61a454dc98e2520001080024
+"egaAccessionId" : "EGAD00001008422"
+
+Steps and timeline of EGA submissions
+=====================================
+Due to its large size (~13TB) in excess of EGA ftp server capacity (~10TB), the Barreiro submission needs to be divided into two separate submissions (meaning all four of the steps below must be performed twice).  So far, step 2 of the first of two submissions has been completed.
+
+EGA helpdesk (ega-helpdesk@ebi.ac.uk) should to be contacted after each step, made aware of the progress and asked to speed things up on their end, if possible.  Bear in mind the 5h time zone difference (they are located in Barcelona, on the beach).  They usually answer within 24 hours, but don't work weekends.
+
+Sequence of steps:
+1. EMC uploads files to EGA storage server. (~2 days at current bandwidth)
+2. Wait for files to be recognized and addressable through EGA submitter portal. (~few hours)
+3. Perform programmatic submission. (Fast.  If json metadata is complete and accurate, only an hour or two for testing and verification.  Any bugs cause delays).
+4. EGA archives the data files (and removes them from the ftp server). (~2-4 days(?), but this time lag can be very unpredictable).
+[Repeat for second submission]
+
+
+Hello EGA,
+
+It has been a while since we last communicated.  I hope all is well on your end.
+
+When last we spoke (a while ago) I mentioned a data submission I was trying to complete before going on parental leave.  Well, surprises happened and the submission was just now submitted to your server last night.  This is the first of two submissions I am trying to complete (limited ftp upload space meant that two, rather than one, submissions were necessary).
+
+Due to some urgency (and delays) on our end, you mentioned that you could prioritize the processing/archiving of the large data files in your system.  This would free up ftp space for the second submission.
+
+The submission details are:
+account: ega-box-209
+Submission Description: Genetic drivers of epigenetic and transcriptional variation...
+SubmissionID: 619b421398e252000107d809
+"egaAccessionId" : "EGAD00001008359",
+
+So, if you can, please prioritize processing/archiving of this submission to liberate the ftp upload server space for the second submission.
+
+Alternatively, if you could temporarily increase our ftp upload server space allowance to about 15TB total, I could begin work on the second submission right away.
+
+Many thanks for your help,
+-David Brownlee
+
+
+Slack update 22-Nov
+===================
+Hello all,
+
+Review of the Barreiro EGA submission situation:
+Due to the large data size (exceeding the 10TB limit of the ftp upload server account), the Barreiro data had to be divided into two submissions.  The good news is that the first of the two submissions was completed over the weekend.
+
+Other progress made:
+* Alain's latest (and final) metadata integrated into all JSON templates.
+* git commit (repo: mEGAdata, branch: importSpreadsheetData)
+* An email was sent to EGA requesting they prioritize the archiving of the data files to create space for the upload of the second half.
+
+Though not yet visible or discovereable through the EGA website, the immutable and referenceable dataset accession of the first half is: EGAD00001008359
+
+As previously mentioned, the path to completion is: 
+. Wait for EGA to archive the raw data files and liberate ftp upload server account space.  (The email requesting priority treatment was sent.)
+. Upload second half of raw data files.
+. Wait for raw files to be recognized by the submitter portal interface.
+. Perform a programmatic submission of the second half.  Upon successful submission, the second immutable and referenceable dataset accession will be issued immediately.
+.  EGA can then perform the archival and publication of the raw data on their own time.
+
+
+Slack update 28-Nov
+===================
+Hi Danielle,
+
+I hacked away a bit over the weekend and the second half of the Barreiro data has now passed the VALIDATED step at EGA.  If we need a referable accession number (for the journal articles), would could (but please don't) hit the SUBMIT button.  This now completes the EGA submission step for the EMC_Barreiro data [notwithstanding uncovered metadata errors].
+
+Other points:
+. The nature of the metadata errors still must the identified, and its impact ascertained.
+. I found some EGA documentation that says that metadata that has been SUBMITTED to EGA cannot be edited.  Modifications must go through the EGA helpdesk (and are probably painful).  Deletion of previous submissions and subsequent resubmission may be an [easier] option.
+. The EGA submission was always the priority, but now that it is effectively ready, the scale and scope of your future work on this dataset needs to be identified (mEGAdata warehousing, EpiRR submission, IHEC data hub preparation).  Though scripts do exists for most of these steps, they are more involved and probably lower priority.  Someone needs to decide who will do this more complicated and lengthy work, and what its timeline is.
+. A git commit (to branch importSpreadsheetData) has been made.
+
+We should probably talk early this week (possibly Monday), at least briefly.
+

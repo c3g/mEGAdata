@@ -1,0 +1,16 @@
+{
+    "alias": "",
+    "title": "",
+    "instrumentModelId": "50",
+    "librarySourceId": "2",
+    "librarySelectionId": "14",
+    "libraryStrategyId": "3",
+    "designDescription": "TruSeq Stranded Total RNA Sample Preparation Kit (Illumina)",
+    "libraryName": "RNA-Seq",
+    "libraryConstructionProtocol": "TruSeq Stranded Total RNA Sample Preparation Kit (Illumina)",
+    "libraryLayoutId": "0",
+    "pairedNominalLength": 0,
+    "pairedNominalSdev": 0,
+    "sampleId": "",
+    "studyId": ""
+  }

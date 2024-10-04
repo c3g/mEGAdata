@@ -1,0 +1,1964 @@
+{
+  "header" : {
+    "apiVersion" : "v1",
+    "code" : "200",
+    "service" : "submitterportal",
+    "developerMessage" : "",
+    "userMessage" : "OK",
+    "errorCode" : "1",
+    "docLink" : "https://ega-archive.org",
+    "errorStack" : ""
+  },
+  "response" : {
+    "numTotalResults" : 1,
+    "resultType" : "eu.crg.ega.microservice.dto.submitter.DatasetData",
+    "result" : [ {
+      "xmlRootElement" : {
+        "dataset" : [ {
+          "identifiers" : null,
+          "alias" : "McGill_EMC_Barreiro2",
+          "centerName" : "MCGILL-EDCC",
+          "brokerName" : "EGA",
+          "accession" : null,
+          "title" : "Genetic drivers of epigenetic and transcriptional variation of human immune responses to infection (RNA-seq, ATAC-seq and ChIPmentation)",
+          "description" : "RNA-seq, ATAC-seq and ChIPmentation data from monocyte-derived macrophages that were infected with Influenza A virus strain PR8WT, or a matching non-infected control.",
+          "datasettype" : [ "TRANSCRIPTOME_PROFILING_BY_HIGH_THROUGHPUT_SEQUENCING", "GENOMIC_VARIANT_CALLING", "CHIP_SEQ" ],
+          "runref" : [ {
+            "identifiers" : null,
+            "refname" : "MS049301.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049302.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049401.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049402.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049501.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049502.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049601.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049602.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049701.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049702.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049801.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049802.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049901.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049902.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050001.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050002.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050101.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050102.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050201.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050202.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050301.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050302.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050401.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050402.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050501.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050502.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050601.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050602.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050801.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050802.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050901.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050902.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051001.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051002.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051201.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051202.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051301.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051302.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051401.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051402.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051501.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051502.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051601.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051602.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051701.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051702.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051801.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051802.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051901.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051902.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052001.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052002.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052101.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052102.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052201.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052202.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052301.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052302.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052501.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052502.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052601.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052602.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052701.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052702.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052801.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052802.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052901.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052902.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053001.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053002.ATACSeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049301.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049302.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049401.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049402.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049501.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049502.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049701.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049702.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049901.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050001.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050002.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050101.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050101.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050102.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050201.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050202.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050301.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050302.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050401.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050402.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050501.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050502.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050601.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050602.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050801.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050802.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050901.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050902.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051001.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051002.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051201.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051202.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051301.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051302.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051401.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051402.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051501.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051502.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051601.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051602.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051701.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051702.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051901.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051902.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052001.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052002.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052101.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052102.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052201.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052202.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052501.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052502.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052701.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052702.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052801.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052802.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053001.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053002.Chipmentation_H3K27ac",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049501.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049502.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049701.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049702.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049901.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049902.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050001.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050002.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050101.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050102.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050201.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050202.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050301.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050302.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050401.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050402.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050501.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050502.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050601.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050602.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050801.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050802.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050901.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050902.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051001.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051002.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051201.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051202.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051301.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051302.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051401.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051402.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051501.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051502.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051601.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051602.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051701.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051702.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051901.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051902.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052001.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052002.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052101.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052102.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052201.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052202.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052301.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052302.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052501.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052502.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052701.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052702.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052801.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052802.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053001.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053002.Chipmentation_H3K27me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049301.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049302.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049401.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049402.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049501.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049502.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049701.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049702.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049901.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049902.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050001.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050002.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050101.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050102.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050201.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050202.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050301.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050302.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050401.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050402.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050501.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050502.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050601.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050602.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050801.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050802.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050901.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050902.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051001.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051002.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051201.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051202.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051301.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051302.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051401.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051402.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051501.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051502.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051601.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051602.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051701.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051702.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051901.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051902.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052001.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052002.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052101.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052102.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052201.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052202.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052301.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052302.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052501.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052502.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052701.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052702.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052801.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052802.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053001.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053002.Chipmentation_H3K4me1",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049501.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049502.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049701.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049702.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049901.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049902.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050001.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050002.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050101.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050102.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050201.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050202.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050301.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050302.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050401.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050402.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050501.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050502.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050601.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050602.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050801.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050802.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050901.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050902.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051001.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051002.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051201.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051202.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051301.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051302.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051401.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051402.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051501.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051502.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051601.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051602.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051701.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051702.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051901.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051902.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052001.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052002.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052101.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052102.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052201.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052202.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052501.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052502.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052701.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052702.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052801.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052802.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053001.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053002.Chipmentation_H3K4me3",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049201.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049202.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049301.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049302.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049401.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049402.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049501.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049502.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049601.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049602.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049701.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049702.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049801.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049802.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049901.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS049902.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050001.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050002.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050101.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050102.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050201.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050202.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050301.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050302.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050401.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050402.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050501.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050502.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050601.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050602.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050701.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050702.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050801.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050802.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050901.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS050902.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051001.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051002.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051101.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051102.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051201.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051202.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051301.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051302.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051401.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051402.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051501.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051502.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051601.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051602.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051701.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051702.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051801.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051802.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051901.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS051902.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052001.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052002.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052101.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052102.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052201.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052202.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052301.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052302.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052401.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052402.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052501.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052502.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052601.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052602.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052701.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052702.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052801.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052802.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052901.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS052902.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053001.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          }, {
+            "identifiers" : null,
+            "refname" : "MS053002.RNASeq",
+            "refcenter" : null,
+            "accession" : null
+          } ],
+          "analysisref" : [ ],
+          "policyref" : {
+            "identifiers" : null,
+            "refname" : null,
+            "refcenter" : null,
+            "accession" : "EGAP00001000252"
+          },
+          "datasetlinks" : null,
+          "datasetattributes" : {
+            "datasetattribute" : [ {
+              "tag" : "",
+              "value" : "",
+              "units" : null
+            } ]
+          }
+        } ]
+      },
+      "datasetTypeIds" : [ "3", "10", "13" ],
+      "datasetTypes" : [ "Transcriptome profiling by high-throughput sequencing", "Genomic variant calling", "Chip-Seq" ],
+      "policyId" : "EGAP00001000252",
+      "runsReferences" : [ "61a454df98e2520001080028", "61a454e198e252000108002c", "61a454e298e2520001080030", "61a454e498e2520001080034", "61a454e598e2520001080038", "61a454e798e252000108003c", "61a454e898e2520001080040", "61a454ea98e2520001080044", "61a454eb98e2520001080048", "61a454ed98e252000108004c", "61a454ee98e2520001080050", "61a454f098e2520001080054", "61a454f298e2520001080058", "61a454f498e252000108005c", "61a454f598e2520001080060", "61a454f798e2520001080064", "61a454f998e2520001080068", "61a454fb98e252000108006c", "61a454fc98e2520001080070", "61a454fd98e2520001080074", "61a454ff98e2520001080078", "61a4550098e252000108007c", "61a4550198e2520001080080", "61a4550498e2520001080084", "61a4550598e2520001080088", "61a4550798e252000108008c", "61a4550998e2520001080090", "61a4550a98e2520001080094", "61a4550c98e2520001080098", "61a4550d98e252000108009c", "61a4550f98e25200010800a0", "61a4551198e25200010800a4", "61a4551298e25200010800a8", "61a4551498e25200010800ac", "61a4551598e25200010800b0", "61a4551698e25200010800b4", "61a4551898e25200010800b8", "61a4551998e25200010800bc", "61a4551b98e25200010800c0", "61a4551c98e25200010800c4", "61a4551d98e25200010800c8", "61a4551f98e25200010800cc", "61a4552098e25200010800d0", "61a4552398e25200010800d4", "61a4552498e25200010800d8", "61a4552698e25200010800dc", "61a4552798e25200010800e0", "61a4552898e25200010800e4", "61a4552a98e25200010800e8", "61a4552b98e25200010800ec", "61a4552d98e25200010800f0", "61a4552f98e25200010800f4", "61a4553198e25200010800f8", "61a4553398e25200010800fc", "61a4553498e2520001080100", "61a4553598e2520001080104", "61a4553798e2520001080108", "61a4553898e252000108010c", "61a4553998e2520001080110", "61a4553b98e2520001080114", "61a4553c98e2520001080118", "61a4553f98e252000108011c", "61a4554098e2520001080120", "61a4554198e2520001080124", "61a4554398e2520001080128", "61a4554498e252000108012c", "61a4554698e2520001080130", "61a4554798e2520001080134", "61a4554898e2520001080138", "61a4554a98e252000108013c", "61a4554b98e2520001080140", "61a4554c98e2520001080144", "61a4554e98e2520001080148", "61a4554f98e252000108014c", "61a4555298e2520001080150", "61a4555398e2520001080154", "61a4555598e2520001080158", "61a4555698e252000108015c", "61a4555798e2520001080160", "61a4555998e2520001080164", "61a4555a98e2520001080168", "61a4555c98e252000108016c", "61a4555c98e252000108016c", "61a4555e98e2520001080170", "61a4555f98e2520001080174", "61a4556198e2520001080178", "61a4556298e252000108017c", "61a4556498e2520001080180", "61a4556598e2520001080184", "61a4556798e2520001080188", "61a4556898e252000108018c", "61a4556a98e2520001080190", "61a4556b98e2520001080194", "61a4556d98e2520001080198", "61a4556e98e252000108019c", "61a4556f98e25200010801a0", "61a4557198e25200010801a4", "61a4557398e25200010801a8", "61a4557498e25200010801ac", "61a4557698e25200010801b0", "61a4557798e25200010801b4", "61a4557998e25200010801b8", "61a4557b98e25200010801bc", "61a4557c98e25200010801c0", "61a4557d98e25200010801c4", "61a4557f98e25200010801c8", "61a4558098e25200010801cc", "61a4558198e25200010801d0", "61a4558398e25200010801d4", "61a4558498e25200010801d8", "61a4558598e25200010801dc", "61a4558698e25200010801e0", "61a4558998e25200010801e4", "61a4558a98e25200010801e8", "61a4558c98e25200010801ec", "61a4558d98e25200010801f0", "61a4558f98e25200010801f4", "61a4559298e25200010801f8", "61a4559398e25200010801fc", "61a4559498e2520001080200", "61a4559598e2520001080204", "61a4559798e2520001080208", "61a4559898e252000108020c", "61a4559998e2520001080210", "61a4559b98e2520001080214", "61a4559c98e2520001080218", "61a4559d98e252000108021c", "61a4559f98e2520001080220", "61a455a198e2520001080224", "61a455a398e2520001080228", "61a455a498e252000108022c", "61a455a698e2520001080230", "61a455a798e2520001080234", "61a455a998e2520001080238", "61a455aa98e252000108023c", "61a455ab98e2520001080240", "61a455ad98e2520001080244", "61a455ae98e2520001080248", "61a455b098e252000108024c", "61a455b198e2520001080250", "61a455b498e2520001080254", "61a455b798e2520001080258", "61a455b898e252000108025c", "61a455b998e2520001080260", "61a455bb98e2520001080264", "61a455bc98e2520001080268", "61a455bd98e252000108026c", "61a455be98e2520001080270", "61a455c098e2520001080274", "61a455c198e2520001080278", "61a455c398e252000108027c", "61a455c498e2520001080280", "61a455c698e2520001080284", "61a455c898e2520001080288", "61a455c998e252000108028c", "61a455cb98e2520001080290", "61a455cc98e2520001080294", "61a455cd98e2520001080298", "61a455cf98e252000108029c", "61a455d098e25200010802a0", "61a455d198e25200010802a4", "61a455d298e25200010802a8", "61a455d498e25200010802ac", "61a455d698e25200010802b0", "61a455d798e25200010802b4", "61a455d898e25200010802b8", "61a455da98e25200010802bc", "61a455db98e25200010802c0", "61a455dd98e25200010802c4", "61a455de98e25200010802c8", "61a455e098e25200010802cc", "61a455e298e25200010802d0", "61a455e398e25200010802d4", "61a455e598e25200010802d8", "61a455e798e25200010802dc", "61a455e898e25200010802e0", "61a455ea98e25200010802e4", "61a455eb98e25200010802e8", "61a455ed98e25200010802ec", "61a455ee98e25200010802f0", "61a455f098e25200010802f4", "61a455f198e25200010802f8", "61a455f498e25200010802fc", "61a455f598e2520001080300", "61a455f698e2520001080304", "61a455f898e2520001080308", "61a455f998e252000108030c", "61a455fa98e2520001080310", "61a455fc98e2520001080314", "61a455fd98e2520001080318", "61a455ff98e252000108031c", "61a4560098e2520001080320", "61a4560198e2520001080324", "61a4560398e2520001080328", "61a4560498e252000108032c", "61a4560698e2520001080330", "61a4560798e2520001080334", "61a4560998e2520001080338", "61a4560a98e252000108033c", "61a4560c98e2520001080340", "61a4560e98e2520001080344", "61a4560f98e2520001080348", "61a4561198e252000108034c", "61a4561298e2520001080350", "61a4561398e2520001080354", "61a4561598e2520001080358", "61a4561698e252000108035c", "61a4561798e2520001080360", "61a4561998e2520001080364", "61a4561a98e2520001080368", "61a4561c98e252000108036c", "61a4561d98e2520001080370", "61a4561f98e2520001080374", "61a4562098e2520001080378", "61a4562298e252000108037c", "61a4562398e2520001080380", "61a4562598e2520001080384", "61a4562698e2520001080388", "61a4562798e252000108038c", "61a4562998e2520001080390", "61a4562a98e2520001080394", "61a4562b98e2520001080398", "61a4562d98e252000108039c", "61a4562e98e25200010803a0", "61a4563198e25200010803a4", "61a4563298e25200010803a8", "61a4563498e25200010803ac", "61a4563598e25200010803b0", "61a4563698e25200010803b4", "61a4563898e25200010803b8", "61a4563998e25200010803bc", "61a4563b98e25200010803c0", "61a4563d98e25200010803c4", "61a4563f98e25200010803c8", "61a4564198e25200010803cc", "61a4564398e25200010803d0", "61a4564498e25200010803d4", "61a4564698e25200010803d8", "61a4564798e25200010803dc", "61a4564898e25200010803e0", "61a4564a98e25200010803e4", "61a4564b98e25200010803e8", "61a4564d98e25200010803ec", "61a4564e98e25200010803f0", "61a4565098e25200010803f4", "61a4565198e25200010803f8", "61a4565298e25200010803fc", "61a4565498e2520001080400", "61a4565598e2520001080404", "61a4565698e2520001080408", "61a4565898e252000108040c", "61a4565a98e2520001080410", "61a4565c98e2520001080414", "61a4565d98e2520001080418", "61a4565e98e252000108041c", "61a4566098e2520001080420", "61a4566298e2520001080424", "61a4566398e2520001080428", "61a4566498e252000108042c", "61a4566698e2520001080430", "61a4566898e2520001080434", "61a4566a98e2520001080438", "61a4566c98e252000108043c", "61a4566e98e2520001080440", "61a4566f98e2520001080444", "61a4567098e2520001080448", "61a4567298e252000108044c", "61a4567398e2520001080450", "61a4567598e2520001080454", "61a4567698e2520001080458", "61a4567898e252000108045c", "61a4567a98e2520001080460", "61a4567b98e2520001080464", "61a4567d98e2520001080468", "61a4567e98e252000108046c", "61a4567f98e2520001080470", "61a4568198e2520001080474", "61a4568298e2520001080478", "61a4568398e252000108047c", "61a4568598e2520001080480", "61a4568698e2520001080484", "61a4568898e2520001080488", "61a4568998e252000108048c", "61a4568a98e2520001080490", "61a4568c98e2520001080494", "61a4568d98e2520001080498", "61a4568e98e252000108049c", "61a4569098e25200010804a0", "61a4569198e25200010804a4", "61a4569398e25200010804a8", "61a4569498e25200010804ac", "61a4569698e25200010804b0", "61a4569798e25200010804b4", "61a4569998e25200010804b8", "61a4569a98e25200010804bc", "61a4569c98e25200010804c0", "61a4569d98e25200010804c4", "61a4569e98e25200010804c8", "61a456a098e25200010804ce", "61a456a298e25200010804d4", "61a456a498e25200010804d8", "61a456a598e25200010804dc", "61a456a698e25200010804e1", "61a456a798e25200010804e5", "61a456a998e25200010804e9", "61a456aa98e25200010804ed", "61a456ab98e25200010804f1", "61a456ae98e25200010804f5", "61a456b098e25200010804f9", "61a456b298e25200010804fd", "61a456b398e2520001080501", "61a456b498e2520001080505", "61a456b698e2520001080509", "61a456b798e252000108050d", "61a456b998e2520001080511", "61a456ba98e2520001080515", "61a456bb98e2520001080519", "61a456bd98e252000108051d", "61a456be98e2520001080521", "61a456c098e2520001080525", "61a456c198e2520001080529", "61a456c298e252000108052d", "61a456c498e2520001080531", "61a456c598e2520001080535", "61a456c798e2520001080539", "61a456c898e252000108053d", "61a456ca98e2520001080541", "61a456cb98e2520001080545", "61a456ce98e252000108054b", "61a456d098e2520001080551", "61a456d198e2520001080555", "61a456d298e2520001080559", "61a456d498e252000108055d", "61a456d598e2520001080561", "61a456d898e2520001080565", "61a456d998e2520001080569", "61a456db98e252000108056f", "61a456dd98e2520001080575", "61a456de98e2520001080579", "61a456e098e252000108057d", "61a456e198e2520001080581", "61a456e298e2520001080585", "61a456e498e2520001080589", "61a456e698e252000108058d", "61a456e798e2520001080591", "61a456e898e2520001080595", "61a456ea98e2520001080599", "61a456eb98e252000108059d", "61a456ec98e25200010805a1", "61a456ee98e25200010805a5", "61a456ef98e25200010805a9", "61a456f098e25200010805ad", "61a456f298e25200010805b1", "61a456f398e25200010805b5", "61a456f598e25200010805b9", "61a456f698e25200010805bd", "61a456f798e25200010805c1", "61a456f998e25200010805c5", "61a456fa98e25200010805c9", "61a456fb98e25200010805cd", "61a456fd98e25200010805d1", "61a456ff98e25200010805d5", "61a4570198e25200010805db", "61a4570298e25200010805e1", "61a4570498e25200010805e5", "61a4570598e25200010805e9", "61a4570798e25200010805ed", "61a4570898e25200010805f1", "61a4570a98e25200010805f5", "61a4570b98e25200010805f9", "61a4570c98e25200010805fd", "61a4570e98e2520001080601", "61a4570f98e2520001080605", "61a4571198e2520001080609", "61a4571298e252000108060d", "61a4571398e2520001080611" ],
+      "analysisReferences" : null,
+      "title" : "Genetic drivers of epigenetic and transcriptional variation of human immune responses to infection (RNA-seq, ATAC-seq and ChIPmentation)",
+      "description" : "RNA-seq, ATAC-seq and ChIPmentation data from monocyte-derived macrophages that were infected with Influenza A virus strain PR8WT, or a matching non-infected control.",
+      "datasetLinks" : [ ],
+      "attributes" : [ {
+        "tag" : "",
+        "value" : "",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "61a4571698e2520001080613",
+      "ebiId" : null,
+      "submissionId" : "61a454dc98e2520001080024",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "VALIDATED",
+      "version" : 1,
+      "creationTime" : 1638160150614,
+      "editionTime" : null,
+      "firstPublic" : null,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : [ ],
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : null,
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<DATASETS>\n    <DATASET alias=\"McGill_EMC_Barreiro2\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE>Genetic drivers of epigenetic and transcriptional variation of human immune responses to infection (RNA-seq, ATAC-seq and ChIPmentation)</TITLE>\n        <DESCRIPTION>RNA-seq, ATAC-seq and ChIPmentation data from monocyte-derived macrophages that were infected with Influenza A virus strain PR8WT, or a matching non-infected control.</DESCRIPTION>\n        <DATASET_TYPE>Transcriptome profiling by high-throughput sequencing</DATASET_TYPE>\n        <DATASET_TYPE>Genomic variant calling</DATASET_TYPE>\n        <DATASET_TYPE>Chip-Seq</DATASET_TYPE>\n        <RUN_REF refname=\"MS049301.ATACSeq\"/>\n        <RUN_REF refname=\"MS049302.ATACSeq\"/>\n        <RUN_REF refname=\"MS049401.ATACSeq\"/>\n        <RUN_REF refname=\"MS049402.ATACSeq\"/>\n        <RUN_REF refname=\"MS049501.ATACSeq\"/>\n        <RUN_REF refname=\"MS049502.ATACSeq\"/>\n        <RUN_REF refname=\"MS049601.ATACSeq\"/>\n        <RUN_REF refname=\"MS049602.ATACSeq\"/>\n        <RUN_REF refname=\"MS049701.ATACSeq\"/>\n        <RUN_REF refname=\"MS049702.ATACSeq\"/>\n        <RUN_REF refname=\"MS049801.ATACSeq\"/>\n        <RUN_REF refname=\"MS049802.ATACSeq\"/>\n        <RUN_REF refname=\"MS049901.ATACSeq\"/>\n        <RUN_REF refname=\"MS049902.ATACSeq\"/>\n        <RUN_REF refname=\"MS050001.ATACSeq\"/>\n        <RUN_REF refname=\"MS050002.ATACSeq\"/>\n        <RUN_REF refname=\"MS050101.ATACSeq\"/>\n        <RUN_REF refname=\"MS050102.ATACSeq\"/>\n        <RUN_REF refname=\"MS050201.ATACSeq\"/>\n        <RUN_REF refname=\"MS050202.ATACSeq\"/>\n        <RUN_REF refname=\"MS050301.ATACSeq\"/>\n        <RUN_REF refname=\"MS050302.ATACSeq\"/>\n        <RUN_REF refname=\"MS050401.ATACSeq\"/>\n        <RUN_REF refname=\"MS050402.ATACSeq\"/>\n        <RUN_REF refname=\"MS050501.ATACSeq\"/>\n        <RUN_REF refname=\"MS050502.ATACSeq\"/>\n        <RUN_REF refname=\"MS050601.ATACSeq\"/>\n        <RUN_REF refname=\"MS050602.ATACSeq\"/>\n        <RUN_REF refname=\"MS050801.ATACSeq\"/>\n        <RUN_REF refname=\"MS050802.ATACSeq\"/>\n        <RUN_REF refname=\"MS050901.ATACSeq\"/>\n        <RUN_REF refname=\"MS050902.ATACSeq\"/>\n        <RUN_REF refname=\"MS051001.ATACSeq\"/>\n        <RUN_REF refname=\"MS051002.ATACSeq\"/>\n        <RUN_REF refname=\"MS051201.ATACSeq\"/>\n        <RUN_REF refname=\"MS051202.ATACSeq\"/>\n        <RUN_REF refname=\"MS051301.ATACSeq\"/>\n        <RUN_REF refname=\"MS051302.ATACSeq\"/>\n        <RUN_REF refname=\"MS051401.ATACSeq\"/>\n        <RUN_REF refname=\"MS051402.ATACSeq\"/>\n        <RUN_REF refname=\"MS051501.ATACSeq\"/>\n        <RUN_REF refname=\"MS051502.ATACSeq\"/>\n        <RUN_REF refname=\"MS051601.ATACSeq\"/>\n        <RUN_REF refname=\"MS051602.ATACSeq\"/>\n        <RUN_REF refname=\"MS051701.ATACSeq\"/>\n        <RUN_REF refname=\"MS051702.ATACSeq\"/>\n        <RUN_REF refname=\"MS051801.ATACSeq\"/>\n        <RUN_REF refname=\"MS051802.ATACSeq\"/>\n        <RUN_REF refname=\"MS051901.ATACSeq\"/>\n        <RUN_REF refname=\"MS051902.ATACSeq\"/>\n        <RUN_REF refname=\"MS052001.ATACSeq\"/>\n        <RUN_REF refname=\"MS052002.ATACSeq\"/>\n        <RUN_REF refname=\"MS052101.ATACSeq\"/>\n        <RUN_REF refname=\"MS052102.ATACSeq\"/>\n        <RUN_REF refname=\"MS052201.ATACSeq\"/>\n        <RUN_REF refname=\"MS052202.ATACSeq\"/>\n        <RUN_REF refname=\"MS052301.ATACSeq\"/>\n        <RUN_REF refname=\"MS052302.ATACSeq\"/>\n        <RUN_REF refname=\"MS052501.ATACSeq\"/>\n        <RUN_REF refname=\"MS052502.ATACSeq\"/>\n        <RUN_REF refname=\"MS052601.ATACSeq\"/>\n        <RUN_REF refname=\"MS052602.ATACSeq\"/>\n        <RUN_REF refname=\"MS052701.ATACSeq\"/>\n        <RUN_REF refname=\"MS052702.ATACSeq\"/>\n        <RUN_REF refname=\"MS052801.ATACSeq\"/>\n        <RUN_REF refname=\"MS052802.ATACSeq\"/>\n        <RUN_REF refname=\"MS052901.ATACSeq\"/>\n        <RUN_REF refname=\"MS052902.ATACSeq\"/>\n        <RUN_REF refname=\"MS053001.ATACSeq\"/>\n        <RUN_REF refname=\"MS053002.ATACSeq\"/>\n        <RUN_REF refname=\"MS049301.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS049302.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS049401.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS049402.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS049501.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS049502.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS049701.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS049702.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS049901.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050001.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050002.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050101.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050101.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050102.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050201.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050202.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050301.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050302.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050401.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050402.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050501.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050502.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050601.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050602.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050801.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050802.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050901.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS050902.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS051001.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS051002.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS051201.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS051202.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS051301.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS051302.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS051401.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS051402.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS051501.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS051502.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS051601.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS051602.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS051701.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS051702.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS051901.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS051902.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS052001.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS052002.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS052101.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS052102.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS052201.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS052202.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS052501.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS052502.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS052701.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS052702.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS052801.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS052802.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS053001.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS053002.Chipmentation_H3K27ac\"/>\n        <RUN_REF refname=\"MS049501.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS049502.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS049701.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS049702.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS049901.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS049902.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050001.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050002.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050101.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050102.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050201.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050202.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050301.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050302.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050401.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050402.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050501.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050502.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050601.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050602.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050801.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050802.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050901.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS050902.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS051001.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS051002.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS051201.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS051202.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS051301.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS051302.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS051401.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS051402.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS051501.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS051502.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS051601.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS051602.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS051701.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS051702.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS051901.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS051902.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS052001.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS052002.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS052101.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS052102.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS052201.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS052202.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS052301.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS052302.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS052501.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS052502.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS052701.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS052702.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS052801.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS052802.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS053001.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS053002.Chipmentation_H3K27me3\"/>\n        <RUN_REF refname=\"MS049301.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS049302.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS049401.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS049402.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS049501.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS049502.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS049701.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS049702.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS049901.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS049902.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050001.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050002.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050101.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050102.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050201.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050202.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050301.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050302.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050401.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050402.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050501.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050502.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050601.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050602.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050801.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050802.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050901.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS050902.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS051001.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS051002.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS051201.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS051202.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS051301.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS051302.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS051401.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS051402.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS051501.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS051502.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS051601.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS051602.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS051701.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS051702.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS051901.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS051902.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS052001.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS052002.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS052101.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS052102.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS052201.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS052202.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS052301.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS052302.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS052501.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS052502.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS052701.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS052702.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS052801.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS052802.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS053001.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS053002.Chipmentation_H3K4me1\"/>\n        <RUN_REF refname=\"MS049501.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS049502.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS049701.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS049702.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS049901.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS049902.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050001.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050002.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050101.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050102.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050201.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050202.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050301.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050302.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050401.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050402.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050501.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050502.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050601.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050602.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050801.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050802.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050901.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS050902.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS051001.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS051002.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS051201.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS051202.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS051301.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS051302.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS051401.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS051402.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS051501.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS051502.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS051601.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS051602.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS051701.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS051702.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS051901.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS051902.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS052001.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS052002.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS052101.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS052102.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS052201.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS052202.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS052501.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS052502.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS052701.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS052702.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS052801.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS052802.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS053001.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS053002.Chipmentation_H3K4me3\"/>\n        <RUN_REF refname=\"MS049201.RNASeq\"/>\n        <RUN_REF refname=\"MS049202.RNASeq\"/>\n        <RUN_REF refname=\"MS049301.RNASeq\"/>\n        <RUN_REF refname=\"MS049302.RNASeq\"/>\n        <RUN_REF refname=\"MS049401.RNASeq\"/>\n        <RUN_REF refname=\"MS049402.RNASeq\"/>\n        <RUN_REF refname=\"MS049501.RNASeq\"/>\n        <RUN_REF refname=\"MS049502.RNASeq\"/>\n        <RUN_REF refname=\"MS049601.RNASeq\"/>\n        <RUN_REF refname=\"MS049602.RNASeq\"/>\n        <RUN_REF refname=\"MS049701.RNASeq\"/>\n        <RUN_REF refname=\"MS049702.RNASeq\"/>\n        <RUN_REF refname=\"MS049801.RNASeq\"/>\n        <RUN_REF refname=\"MS049802.RNASeq\"/>\n        <RUN_REF refname=\"MS049901.RNASeq\"/>\n        <RUN_REF refname=\"MS049902.RNASeq\"/>\n        <RUN_REF refname=\"MS050001.RNASeq\"/>\n        <RUN_REF refname=\"MS050002.RNASeq\"/>\n        <RUN_REF refname=\"MS050101.RNASeq\"/>\n        <RUN_REF refname=\"MS050102.RNASeq\"/>\n        <RUN_REF refname=\"MS050201.RNASeq\"/>\n        <RUN_REF refname=\"MS050202.RNASeq\"/>\n        <RUN_REF refname=\"MS050301.RNASeq\"/>\n        <RUN_REF refname=\"MS050302.RNASeq\"/>\n        <RUN_REF refname=\"MS050401.RNASeq\"/>\n        <RUN_REF refname=\"MS050402.RNASeq\"/>\n        <RUN_REF refname=\"MS050501.RNASeq\"/>\n        <RUN_REF refname=\"MS050502.RNASeq\"/>\n        <RUN_REF refname=\"MS050601.RNASeq\"/>\n        <RUN_REF refname=\"MS050602.RNASeq\"/>\n        <RUN_REF refname=\"MS050701.RNASeq\"/>\n        <RUN_REF refname=\"MS050702.RNASeq\"/>\n        <RUN_REF refname=\"MS050801.RNASeq\"/>\n        <RUN_REF refname=\"MS050802.RNASeq\"/>\n        <RUN_REF refname=\"MS050901.RNASeq\"/>\n        <RUN_REF refname=\"MS050902.RNASeq\"/>\n        <RUN_REF refname=\"MS051001.RNASeq\"/>\n        <RUN_REF refname=\"MS051002.RNASeq\"/>\n        <RUN_REF refname=\"MS051101.RNASeq\"/>\n        <RUN_REF refname=\"MS051102.RNASeq\"/>\n        <RUN_REF refname=\"MS051201.RNASeq\"/>\n        <RUN_REF refname=\"MS051202.RNASeq\"/>\n        <RUN_REF refname=\"MS051301.RNASeq\"/>\n        <RUN_REF refname=\"MS051302.RNASeq\"/>\n        <RUN_REF refname=\"MS051401.RNASeq\"/>\n        <RUN_REF refname=\"MS051402.RNASeq\"/>\n        <RUN_REF refname=\"MS051501.RNASeq\"/>\n        <RUN_REF refname=\"MS051502.RNASeq\"/>\n        <RUN_REF refname=\"MS051601.RNASeq\"/>\n        <RUN_REF refname=\"MS051602.RNASeq\"/>\n        <RUN_REF refname=\"MS051701.RNASeq\"/>\n        <RUN_REF refname=\"MS051702.RNASeq\"/>\n        <RUN_REF refname=\"MS051801.RNASeq\"/>\n        <RUN_REF refname=\"MS051802.RNASeq\"/>\n        <RUN_REF refname=\"MS051901.RNASeq\"/>\n        <RUN_REF refname=\"MS051902.RNASeq\"/>\n        <RUN_REF refname=\"MS052001.RNASeq\"/>\n        <RUN_REF refname=\"MS052002.RNASeq\"/>\n        <RUN_REF refname=\"MS052101.RNASeq\"/>\n        <RUN_REF refname=\"MS052102.RNASeq\"/>\n        <RUN_REF refname=\"MS052201.RNASeq\"/>\n        <RUN_REF refname=\"MS052202.RNASeq\"/>\n        <RUN_REF refname=\"MS052301.RNASeq\"/>\n        <RUN_REF refname=\"MS052302.RNASeq\"/>\n        <RUN_REF refname=\"MS052401.RNASeq\"/>\n        <RUN_REF refname=\"MS052402.RNASeq\"/>\n        <RUN_REF refname=\"MS052501.RNASeq\"/>\n        <RUN_REF refname=\"MS052502.RNASeq\"/>\n        <RUN_REF refname=\"MS052601.RNASeq\"/>\n        <RUN_REF refname=\"MS052602.RNASeq\"/>\n        <RUN_REF refname=\"MS052701.RNASeq\"/>\n        <RUN_REF refname=\"MS052702.RNASeq\"/>\n        <RUN_REF refname=\"MS052801.RNASeq\"/>\n        <RUN_REF refname=\"MS052802.RNASeq\"/>\n        <RUN_REF refname=\"MS052901.RNASeq\"/>\n        <RUN_REF refname=\"MS052902.RNASeq\"/>\n        <RUN_REF refname=\"MS053001.RNASeq\"/>\n        <RUN_REF refname=\"MS053002.RNASeq\"/>\n        <POLICY_REF accession=\"EGAP00001000252\"/>\n        <DATASET_ATTRIBUTES>\n            <DATASET_ATTRIBUTE>\n                <TAG></TAG>\n                <VALUE></VALUE>\n            </DATASET_ATTRIBUTE>\n        </DATASET_ATTRIBUTES>\n    </DATASET>\n</DATASETS>\n",
+      "json" : "{\n  \"xmlRootElement\" : null,\n  \"datasetTypeIds\" : [ \"3\", \"10\", \"13\" ],\n  \"datasetTypes\" : [ \"Transcriptome profiling by high-throughput sequencing\", \"Genomic variant calling\", \"Chip-Seq\" ],\n  \"policyId\" : \"EGAP00001000252\",\n  \"runsReferences\" : [ \"61a454df98e2520001080028\", \"61a454e198e252000108002c\", \"61a454e298e2520001080030\", \"61a454e498e2520001080034\", \"61a454e598e2520001080038\", \"61a454e798e252000108003c\", \"61a454e898e2520001080040\", \"61a454ea98e2520001080044\", \"61a454eb98e2520001080048\", \"61a454ed98e252000108004c\", \"61a454ee98e2520001080050\", \"61a454f098e2520001080054\", \"61a454f298e2520001080058\", \"61a454f498e252000108005c\", \"61a454f598e2520001080060\", \"61a454f798e2520001080064\", \"61a454f998e2520001080068\", \"61a454fb98e252000108006c\", \"61a454fc98e2520001080070\", \"61a454fd98e2520001080074\", \"61a454ff98e2520001080078\", \"61a4550098e252000108007c\", \"61a4550198e2520001080080\", \"61a4550498e2520001080084\", \"61a4550598e2520001080088\", \"61a4550798e252000108008c\", \"61a4550998e2520001080090\", \"61a4550a98e2520001080094\", \"61a4550c98e2520001080098\", \"61a4550d98e252000108009c\", \"61a4550f98e25200010800a0\", \"61a4551198e25200010800a4\", \"61a4551298e25200010800a8\", \"61a4551498e25200010800ac\", \"61a4551598e25200010800b0\", \"61a4551698e25200010800b4\", \"61a4551898e25200010800b8\", \"61a4551998e25200010800bc\", \"61a4551b98e25200010800c0\", \"61a4551c98e25200010800c4\", \"61a4551d98e25200010800c8\", \"61a4551f98e25200010800cc\", \"61a4552098e25200010800d0\", \"61a4552398e25200010800d4\", \"61a4552498e25200010800d8\", \"61a4552698e25200010800dc\", \"61a4552798e25200010800e0\", \"61a4552898e25200010800e4\", \"61a4552a98e25200010800e8\", \"61a4552b98e25200010800ec\", \"61a4552d98e25200010800f0\", \"61a4552f98e25200010800f4\", \"61a4553198e25200010800f8\", \"61a4553398e25200010800fc\", \"61a4553498e2520001080100\", \"61a4553598e2520001080104\", \"61a4553798e2520001080108\", \"61a4553898e252000108010c\", \"61a4553998e2520001080110\", \"61a4553b98e2520001080114\", \"61a4553c98e2520001080118\", \"61a4553f98e252000108011c\", \"61a4554098e2520001080120\", \"61a4554198e2520001080124\", \"61a4554398e2520001080128\", \"61a4554498e252000108012c\", \"61a4554698e2520001080130\", \"61a4554798e2520001080134\", \"61a4554898e2520001080138\", \"61a4554a98e252000108013c\", \"61a4554b98e2520001080140\", \"61a4554c98e2520001080144\", \"61a4554e98e2520001080148\", \"61a4554f98e252000108014c\", \"61a4555298e2520001080150\", \"61a4555398e2520001080154\", \"61a4555598e2520001080158\", \"61a4555698e252000108015c\", \"61a4555798e2520001080160\", \"61a4555998e2520001080164\", \"61a4555a98e2520001080168\", \"61a4555c98e252000108016c\", \"61a4555c98e252000108016c\", \"61a4555e98e2520001080170\", \"61a4555f98e2520001080174\", \"61a4556198e2520001080178\", \"61a4556298e252000108017c\", \"61a4556498e2520001080180\", \"61a4556598e2520001080184\", \"61a4556798e2520001080188\", \"61a4556898e252000108018c\", \"61a4556a98e2520001080190\", \"61a4556b98e2520001080194\", \"61a4556d98e2520001080198\", \"61a4556e98e252000108019c\", \"61a4556f98e25200010801a0\", \"61a4557198e25200010801a4\", \"61a4557398e25200010801a8\", \"61a4557498e25200010801ac\", \"61a4557698e25200010801b0\", \"61a4557798e25200010801b4\", \"61a4557998e25200010801b8\", \"61a4557b98e25200010801bc\", \"61a4557c98e25200010801c0\", \"61a4557d98e25200010801c4\", \"61a4557f98e25200010801c8\", \"61a4558098e25200010801cc\", \"61a4558198e25200010801d0\", \"61a4558398e25200010801d4\", \"61a4558498e25200010801d8\", \"61a4558598e25200010801dc\", \"61a4558698e25200010801e0\", \"61a4558998e25200010801e4\", \"61a4558a98e25200010801e8\", \"61a4558c98e25200010801ec\", \"61a4558d98e25200010801f0\", \"61a4558f98e25200010801f4\", \"61a4559298e25200010801f8\", \"61a4559398e25200010801fc\", \"61a4559498e2520001080200\", \"61a4559598e2520001080204\", \"61a4559798e2520001080208\", \"61a4559898e252000108020c\", \"61a4559998e2520001080210\", \"61a4559b98e2520001080214\", \"61a4559c98e2520001080218\", \"61a4559d98e252000108021c\", \"61a4559f98e2520001080220\", \"61a455a198e2520001080224\", \"61a455a398e2520001080228\", \"61a455a498e252000108022c\", \"61a455a698e2520001080230\", \"61a455a798e2520001080234\", \"61a455a998e2520001080238\", \"61a455aa98e252000108023c\", \"61a455ab98e2520001080240\", \"61a455ad98e2520001080244\", \"61a455ae98e2520001080248\", \"61a455b098e252000108024c\", \"61a455b198e2520001080250\", \"61a455b498e2520001080254\", \"61a455b798e2520001080258\", \"61a455b898e252000108025c\", \"61a455b998e2520001080260\", \"61a455bb98e2520001080264\", \"61a455bc98e2520001080268\", \"61a455bd98e252000108026c\", \"61a455be98e2520001080270\", \"61a455c098e2520001080274\", \"61a455c198e2520001080278\", \"61a455c398e252000108027c\", \"61a455c498e2520001080280\", \"61a455c698e2520001080284\", \"61a455c898e2520001080288\", \"61a455c998e252000108028c\", \"61a455cb98e2520001080290\", \"61a455cc98e2520001080294\", \"61a455cd98e2520001080298\", \"61a455cf98e252000108029c\", \"61a455d098e25200010802a0\", \"61a455d198e25200010802a4\", \"61a455d298e25200010802a8\", \"61a455d498e25200010802ac\", \"61a455d698e25200010802b0\", \"61a455d798e25200010802b4\", \"61a455d898e25200010802b8\", \"61a455da98e25200010802bc\", \"61a455db98e25200010802c0\", \"61a455dd98e25200010802c4\", \"61a455de98e25200010802c8\", \"61a455e098e25200010802cc\", \"61a455e298e25200010802d0\", \"61a455e398e25200010802d4\", \"61a455e598e25200010802d8\", \"61a455e798e25200010802dc\", \"61a455e898e25200010802e0\", \"61a455ea98e25200010802e4\", \"61a455eb98e25200010802e8\", \"61a455ed98e25200010802ec\", \"61a455ee98e25200010802f0\", \"61a455f098e25200010802f4\", \"61a455f198e25200010802f8\", \"61a455f498e25200010802fc\", \"61a455f598e2520001080300\", \"61a455f698e2520001080304\", \"61a455f898e2520001080308\", \"61a455f998e252000108030c\", \"61a455fa98e2520001080310\", \"61a455fc98e2520001080314\", \"61a455fd98e2520001080318\", \"61a455ff98e252000108031c\", \"61a4560098e2520001080320\", \"61a4560198e2520001080324\", \"61a4560398e2520001080328\", \"61a4560498e252000108032c\", \"61a4560698e2520001080330\", \"61a4560798e2520001080334\", \"61a4560998e2520001080338\", \"61a4560a98e252000108033c\", \"61a4560c98e2520001080340\", \"61a4560e98e2520001080344\", \"61a4560f98e2520001080348\", \"61a4561198e252000108034c\", \"61a4561298e2520001080350\", \"61a4561398e2520001080354\", \"61a4561598e2520001080358\", \"61a4561698e252000108035c\", \"61a4561798e2520001080360\", \"61a4561998e2520001080364\", \"61a4561a98e2520001080368\", \"61a4561c98e252000108036c\", \"61a4561d98e2520001080370\", \"61a4561f98e2520001080374\", \"61a4562098e2520001080378\", \"61a4562298e252000108037c\", \"61a4562398e2520001080380\", \"61a4562598e2520001080384\", \"61a4562698e2520001080388\", \"61a4562798e252000108038c\", \"61a4562998e2520001080390\", \"61a4562a98e2520001080394\", \"61a4562b98e2520001080398\", \"61a4562d98e252000108039c\", \"61a4562e98e25200010803a0\", \"61a4563198e25200010803a4\", \"61a4563298e25200010803a8\", \"61a4563498e25200010803ac\", \"61a4563598e25200010803b0\", \"61a4563698e25200010803b4\", \"61a4563898e25200010803b8\", \"61a4563998e25200010803bc\", \"61a4563b98e25200010803c0\", \"61a4563d98e25200010803c4\", \"61a4563f98e25200010803c8\", \"61a4564198e25200010803cc\", \"61a4564398e25200010803d0\", \"61a4564498e25200010803d4\", \"61a4564698e25200010803d8\", \"61a4564798e25200010803dc\", \"61a4564898e25200010803e0\", \"61a4564a98e25200010803e4\", \"61a4564b98e25200010803e8\", \"61a4564d98e25200010803ec\", \"61a4564e98e25200010803f0\", \"61a4565098e25200010803f4\", \"61a4565198e25200010803f8\", \"61a4565298e25200010803fc\", \"61a4565498e2520001080400\", \"61a4565598e2520001080404\", \"61a4565698e2520001080408\", \"61a4565898e252000108040c\", \"61a4565a98e2520001080410\", \"61a4565c98e2520001080414\", \"61a4565d98e2520001080418\", \"61a4565e98e252000108041c\", \"61a4566098e2520001080420\", \"61a4566298e2520001080424\", \"61a4566398e2520001080428\", \"61a4566498e252000108042c\", \"61a4566698e2520001080430\", \"61a4566898e2520001080434\", \"61a4566a98e2520001080438\", \"61a4566c98e252000108043c\", \"61a4566e98e2520001080440\", \"61a4566f98e2520001080444\", \"61a4567098e2520001080448\", \"61a4567298e252000108044c\", \"61a4567398e2520001080450\", \"61a4567598e2520001080454\", \"61a4567698e2520001080458\", \"61a4567898e252000108045c\", \"61a4567a98e2520001080460\", \"61a4567b98e2520001080464\", \"61a4567d98e2520001080468\", \"61a4567e98e252000108046c\", \"61a4567f98e2520001080470\", \"61a4568198e2520001080474\", \"61a4568298e2520001080478\", \"61a4568398e252000108047c\", \"61a4568598e2520001080480\", \"61a4568698e2520001080484\", \"61a4568898e2520001080488\", \"61a4568998e252000108048c\", \"61a4568a98e2520001080490\", \"61a4568c98e2520001080494\", \"61a4568d98e2520001080498\", \"61a4568e98e252000108049c\", \"61a4569098e25200010804a0\", \"61a4569198e25200010804a4\", \"61a4569398e25200010804a8\", \"61a4569498e25200010804ac\", \"61a4569698e25200010804b0\", \"61a4569798e25200010804b4\", \"61a4569998e25200010804b8\", \"61a4569a98e25200010804bc\", \"61a4569c98e25200010804c0\", \"61a4569d98e25200010804c4\", \"61a4569e98e25200010804c8\", \"61a456a098e25200010804ce\", \"61a456a298e25200010804d4\", \"61a456a498e25200010804d8\", \"61a456a598e25200010804dc\", \"61a456a698e25200010804e1\", \"61a456a798e25200010804e5\", \"61a456a998e25200010804e9\", \"61a456aa98e25200010804ed\", \"61a456ab98e25200010804f1\", \"61a456ae98e25200010804f5\", \"61a456b098e25200010804f9\", \"61a456b298e25200010804fd\", \"61a456b398e2520001080501\", \"61a456b498e2520001080505\", \"61a456b698e2520001080509\", \"61a456b798e252000108050d\", \"61a456b998e2520001080511\", \"61a456ba98e2520001080515\", \"61a456bb98e2520001080519\", \"61a456bd98e252000108051d\", \"61a456be98e2520001080521\", \"61a456c098e2520001080525\", \"61a456c198e2520001080529\", \"61a456c298e252000108052d\", \"61a456c498e2520001080531\", \"61a456c598e2520001080535\", \"61a456c798e2520001080539\", \"61a456c898e252000108053d\", \"61a456ca98e2520001080541\", \"61a456cb98e2520001080545\", \"61a456ce98e252000108054b\", \"61a456d098e2520001080551\", \"61a456d198e2520001080555\", \"61a456d298e2520001080559\", \"61a456d498e252000108055d\", \"61a456d598e2520001080561\", \"61a456d898e2520001080565\", \"61a456d998e2520001080569\", \"61a456db98e252000108056f\", \"61a456dd98e2520001080575\", \"61a456de98e2520001080579\", \"61a456e098e252000108057d\", \"61a456e198e2520001080581\", \"61a456e298e2520001080585\", \"61a456e498e2520001080589\", \"61a456e698e252000108058d\", \"61a456e798e2520001080591\", \"61a456e898e2520001080595\", \"61a456ea98e2520001080599\", \"61a456eb98e252000108059d\", \"61a456ec98e25200010805a1\", \"61a456ee98e25200010805a5\", \"61a456ef98e25200010805a9\", \"61a456f098e25200010805ad\", \"61a456f298e25200010805b1\", \"61a456f398e25200010805b5\", \"61a456f598e25200010805b9\", \"61a456f698e25200010805bd\", \"61a456f798e25200010805c1\", \"61a456f998e25200010805c5\", \"61a456fa98e25200010805c9\", \"61a456fb98e25200010805cd\", \"61a456fd98e25200010805d1\", \"61a456ff98e25200010805d5\", \"61a4570198e25200010805db\", \"61a4570298e25200010805e1\", \"61a4570498e25200010805e5\", \"61a4570598e25200010805e9\", \"61a4570798e25200010805ed\", \"61a4570898e25200010805f1\", \"61a4570a98e25200010805f5\", \"61a4570b98e25200010805f9\", \"61a4570c98e25200010805fd\", \"61a4570e98e2520001080601\", \"61a4570f98e2520001080605\", \"61a4571198e2520001080609\", \"61a4571298e252000108060d\", \"61a4571398e2520001080611\" ],\n  \"analysisReferences\" : null,\n  \"title\" : \"Genetic drivers of epigenetic and transcriptional variation of human immune responses to infection (RNA-seq, ATAC-seq and ChIPmentation)\",\n  \"description\" : \"RNA-seq, ATAC-seq and ChIPmentation data from monocyte-derived macrophages that were infected with Influenza A virus strain PR8WT, or a matching non-infected control.\",\n  \"datasetLinks\" : [ ],\n  \"attributes\" : [ {\n    \"tag\" : \"\",\n    \"value\" : \"\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"id\" : null,\n  \"ebiId\" : null,\n  \"submissionId\" : null,\n  \"eraSubmissionId\" : null,\n  \"userId\" : null,\n  \"submitterId\" : null,\n  \"status\" : null,\n  \"version\" : 1,\n  \"creationTime\" : null,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : [ \"61a4571598e2520001080612\" ],\n  \"validationErrorMessages\" : null,\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"ebiSubmissionDetailsIds\" : null,\n  \"lastEbiSubmissionDetailsId\" : null,\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"McGill_EMC_Barreiro2\",\n  \"egaAccessionId\" : null,\n  \"centerName\" : null\n}",
+      "alias" : "McGill_EMC_Barreiro2",
+      "egaAccessionId" : null,
+      "centerName" : "MCGILL-EDCC"
+    } ]
+  }
+}

@@ -1,0 +1,1545 @@
+{
+  "header" : {
+    "apiVersion" : "v1",
+    "code" : "200",
+    "service" : "submitterportal",
+    "developerMessage" : "",
+    "userMessage" : "OK",
+    "errorCode" : "1",
+    "docLink" : "https://ega-archive.org",
+    "errorStack" : ""
+  },
+  "response" : {
+    "numTotalResults" : 8,
+    "resultType" : "eu.crg.ega.microservice.dto.submitter.SampleData",
+    "result" : [ {
+      "xmlRootElement" : {
+        "sample" : [ {
+          "identifiers" : null,
+          "alias" : "MS049201",
+          "centerName" : "MCGILL-EDCC",
+          "brokerName" : "EGA",
+          "accession" : null,
+          "title" : "",
+          "samplename" : {
+            "taxonid" : 9606,
+            "scientificname" : "Homo sapiens",
+            "commonname" : "Human",
+            "displayName" : null
+          },
+          "description" : "",
+          "samplelinks" : null,
+          "sampleattributes" : {
+            "sampleattribute" : [ {
+              "tag" : "subject_id",
+              "value" : "MS049201",
+              "units" : null
+            }, {
+              "tag" : "gender",
+              "value" : "male",
+              "units" : null
+            }, {
+              "tag" : "organism_part",
+              "value" : "Monocyte-derived macrophages",
+              "units" : null
+            }, {
+              "tag" : "phenotype",
+              "value" : "Flu",
+              "units" : null
+            }, {
+              "tag" : "sample_age",
+              "value" : "47",
+              "units" : null
+            }, {
+              "tag" : "donor_ID",
+              "value" : "McGill0492",
+              "units" : null
+            }, {
+              "tag" : "donor_ethnicity",
+              "value" : "African American",
+              "units" : null
+            }, {
+              "tag" : "biomaterial_type",
+              "value" : "Primary cells",
+              "units" : null
+            }, {
+              "tag" : "tissue_type",
+              "value" : "Blood",
+              "units" : null
+            }, {
+              "tag" : "disease",
+              "value" : "Flu-infected",
+              "units" : null
+            }, {
+              "tag" : "phenotype",
+              "value" : "Flu-infected",
+              "units" : null
+            }, {
+              "tag" : "cell_type",
+              "value" : "Macrophage",
+              "units" : null
+            }, {
+              "tag" : "donor_age",
+              "value" : "47",
+              "units" : null
+            }, {
+              "tag" : "donor_age_unit",
+              "value" : "Years",
+              "units" : null
+            }, {
+              "tag" : "donor_health_status",
+              "value" : "Healthy",
+              "units" : null
+            }, {
+              "tag" : "donor_sex",
+              "value" : "Male",
+              "units" : null
+            } ]
+          }
+        } ]
+      },
+      "title" : "",
+      "description" : "",
+      "caseOrControlId" : "",
+      "caseOrControl" : null,
+      "genderId" : "1",
+      "gender" : "male",
+      "organismPart" : "Monocyte-derived macrophages",
+      "cellLine" : "",
+      "region" : "",
+      "phenotype" : "Flu",
+      "subjectId" : "MS049201",
+      "anonymizedName" : null,
+      "bioSampleId" : null,
+      "sampleAge" : null,
+      "sampleDetail" : null,
+      "attributes" : [ {
+        "tag" : "donor_ID",
+        "value" : "McGill0492",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_ethnicity",
+        "value" : "African American",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_type",
+        "value" : "Primary cells",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "tissue_type",
+        "value" : "Blood",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease",
+        "value" : "Flu-infected",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "phenotype",
+        "value" : "Flu-infected",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "cell_type",
+        "value" : "Macrophage",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age",
+        "value" : "47",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age_unit",
+        "value" : "Years",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_health_status",
+        "value" : "Healthy",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_sex",
+        "value" : "Male",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "61a4569f98e25200010804ca",
+      "ebiId" : null,
+      "submissionId" : "61a454dc98e2520001080024",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "VALIDATED",
+      "version" : 1,
+      "creationTime" : 1638160031627,
+      "editionTime" : null,
+      "firstPublic" : null,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : [ ],
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : null,
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<SAMPLE_SET>\n    <SAMPLE alias=\"MS049201\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE></TITLE>\n        <SAMPLE_NAME>\n            <TAXON_ID>9606</TAXON_ID>\n            <SCIENTIFIC_NAME>Homo sapiens</SCIENTIFIC_NAME>\n            <COMMON_NAME>Human</COMMON_NAME>\n        </SAMPLE_NAME>\n        <DESCRIPTION></DESCRIPTION>\n        <SAMPLE_ATTRIBUTES>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>subject_id</TAG>\n                <VALUE>MS049201</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>gender</TAG>\n                <VALUE>male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>organism_part</TAG>\n                <VALUE>Monocyte-derived macrophages</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Flu</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_age</TAG>\n                <VALUE>47</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ID</TAG>\n                <VALUE>McGill0492</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ethnicity</TAG>\n                <VALUE>African American</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_type</TAG>\n                <VALUE>Primary cells</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>tissue_type</TAG>\n                <VALUE>Blood</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease</TAG>\n                <VALUE>Flu-infected</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Flu-infected</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_type</TAG>\n                <VALUE>Macrophage</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age</TAG>\n                <VALUE>47</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age_unit</TAG>\n                <VALUE>Years</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_health_status</TAG>\n                <VALUE>Healthy</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_sex</TAG>\n                <VALUE>Male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n        </SAMPLE_ATTRIBUTES>\n    </SAMPLE>\n</SAMPLE_SET>\n",
+      "json" : "{\n  \"xmlRootElement\" : null,\n  \"title\" : \"\",\n  \"description\" : \"\",\n  \"caseOrControlId\" : \"\",\n  \"caseOrControl\" : null,\n  \"genderId\" : \"1\",\n  \"gender\" : \"male\",\n  \"organismPart\" : \"Monocyte-derived macrophages\",\n  \"cellLine\" : \"\",\n  \"region\" : \"\",\n  \"phenotype\" : \"Flu\",\n  \"subjectId\" : \"MS049201\",\n  \"anonymizedName\" : \"\",\n  \"bioSampleId\" : \"\",\n  \"sampleAge\" : \"47\",\n  \"sampleDetail\" : \"\",\n  \"attributes\" : [ {\n    \"tag\" : \"donor_ID\",\n    \"value\" : \"McGill0492\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_ethnicity\",\n    \"value\" : \"African American\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_type\",\n    \"value\" : \"Primary cells\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"tissue_type\",\n    \"value\" : \"Blood\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease\",\n    \"value\" : \"Flu-infected\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"phenotype\",\n    \"value\" : \"Flu-infected\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"cell_type\",\n    \"value\" : \"Macrophage\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age\",\n    \"value\" : \"47\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age_unit\",\n    \"value\" : \"Years\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_health_status\",\n    \"value\" : \"Healthy\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_sex\",\n    \"value\" : \"Male\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"id\" : null,\n  \"ebiId\" : null,\n  \"submissionId\" : null,\n  \"eraSubmissionId\" : null,\n  \"userId\" : null,\n  \"submitterId\" : null,\n  \"status\" : null,\n  \"version\" : 1,\n  \"creationTime\" : null,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : [ \"61a4569f98e25200010804c9\" ],\n  \"validationErrorMessages\" : null,\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"ebiSubmissionDetailsIds\" : null,\n  \"lastEbiSubmissionDetailsId\" : null,\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"MS049201\",\n  \"egaAccessionId\" : null,\n  \"centerName\" : null\n}",
+      "alias" : "MS049201",
+      "egaAccessionId" : null,
+      "centerName" : "MCGILL-EDCC"
+    }, {
+      "xmlRootElement" : {
+        "sample" : [ {
+          "identifiers" : null,
+          "alias" : "MS049202",
+          "centerName" : "MCGILL-EDCC",
+          "brokerName" : "EGA",
+          "accession" : null,
+          "title" : "",
+          "samplename" : {
+            "taxonid" : 9606,
+            "scientificname" : "Homo sapiens",
+            "commonname" : "Human",
+            "displayName" : null
+          },
+          "description" : "",
+          "samplelinks" : null,
+          "sampleattributes" : {
+            "sampleattribute" : [ {
+              "tag" : "subject_id",
+              "value" : "MS049202",
+              "units" : null
+            }, {
+              "tag" : "gender",
+              "value" : "male",
+              "units" : null
+            }, {
+              "tag" : "organism_part",
+              "value" : "Monocyte-derived macrophages",
+              "units" : null
+            }, {
+              "tag" : "phenotype",
+              "value" : "NI",
+              "units" : null
+            }, {
+              "tag" : "sample_age",
+              "value" : "47",
+              "units" : null
+            }, {
+              "tag" : "donor_ID",
+              "value" : "McGill0492",
+              "units" : null
+            }, {
+              "tag" : "donor_ethnicity",
+              "value" : "African American",
+              "units" : null
+            }, {
+              "tag" : "biomaterial_type",
+              "value" : "Primary cells",
+              "units" : null
+            }, {
+              "tag" : "tissue_type",
+              "value" : "Blood",
+              "units" : null
+            }, {
+              "tag" : "disease",
+              "value" : "Non-infected",
+              "units" : null
+            }, {
+              "tag" : "phenotype",
+              "value" : "Non-infected",
+              "units" : null
+            }, {
+              "tag" : "cell_type",
+              "value" : "Macrophage",
+              "units" : null
+            }, {
+              "tag" : "donor_age",
+              "value" : "47",
+              "units" : null
+            }, {
+              "tag" : "donor_age_unit",
+              "value" : "Years",
+              "units" : null
+            }, {
+              "tag" : "donor_health_status",
+              "value" : "Healthy",
+              "units" : null
+            }, {
+              "tag" : "donor_sex",
+              "value" : "Male",
+              "units" : null
+            } ]
+          }
+        } ]
+      },
+      "title" : "",
+      "description" : "",
+      "caseOrControlId" : "",
+      "caseOrControl" : null,
+      "genderId" : "1",
+      "gender" : "male",
+      "organismPart" : "Monocyte-derived macrophages",
+      "cellLine" : "",
+      "region" : "",
+      "phenotype" : "NI",
+      "subjectId" : "MS049202",
+      "anonymizedName" : null,
+      "bioSampleId" : null,
+      "sampleAge" : null,
+      "sampleDetail" : null,
+      "attributes" : [ {
+        "tag" : "donor_ID",
+        "value" : "McGill0492",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_ethnicity",
+        "value" : "African American",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_type",
+        "value" : "Primary cells",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "tissue_type",
+        "value" : "Blood",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease",
+        "value" : "Non-infected",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "phenotype",
+        "value" : "Non-infected",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "cell_type",
+        "value" : "Macrophage",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age",
+        "value" : "47",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age_unit",
+        "value" : "Years",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_health_status",
+        "value" : "Healthy",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_sex",
+        "value" : "Male",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "61a456a198e25200010804d0",
+      "ebiId" : null,
+      "submissionId" : "61a454dc98e2520001080024",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "VALIDATED",
+      "version" : 1,
+      "creationTime" : 1638160033616,
+      "editionTime" : null,
+      "firstPublic" : null,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : [ ],
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : null,
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<SAMPLE_SET>\n    <SAMPLE alias=\"MS049202\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE></TITLE>\n        <SAMPLE_NAME>\n            <TAXON_ID>9606</TAXON_ID>\n            <SCIENTIFIC_NAME>Homo sapiens</SCIENTIFIC_NAME>\n            <COMMON_NAME>Human</COMMON_NAME>\n        </SAMPLE_NAME>\n        <DESCRIPTION></DESCRIPTION>\n        <SAMPLE_ATTRIBUTES>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>subject_id</TAG>\n                <VALUE>MS049202</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>gender</TAG>\n                <VALUE>male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>organism_part</TAG>\n                <VALUE>Monocyte-derived macrophages</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>NI</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_age</TAG>\n                <VALUE>47</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ID</TAG>\n                <VALUE>McGill0492</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ethnicity</TAG>\n                <VALUE>African American</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_type</TAG>\n                <VALUE>Primary cells</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>tissue_type</TAG>\n                <VALUE>Blood</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease</TAG>\n                <VALUE>Non-infected</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Non-infected</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_type</TAG>\n                <VALUE>Macrophage</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age</TAG>\n                <VALUE>47</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age_unit</TAG>\n                <VALUE>Years</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_health_status</TAG>\n                <VALUE>Healthy</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_sex</TAG>\n                <VALUE>Male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n        </SAMPLE_ATTRIBUTES>\n    </SAMPLE>\n</SAMPLE_SET>\n",
+      "json" : "{\n  \"xmlRootElement\" : null,\n  \"title\" : \"\",\n  \"description\" : \"\",\n  \"caseOrControlId\" : \"\",\n  \"caseOrControl\" : null,\n  \"genderId\" : \"1\",\n  \"gender\" : \"male\",\n  \"organismPart\" : \"Monocyte-derived macrophages\",\n  \"cellLine\" : \"\",\n  \"region\" : \"\",\n  \"phenotype\" : \"NI\",\n  \"subjectId\" : \"MS049202\",\n  \"anonymizedName\" : \"\",\n  \"bioSampleId\" : \"\",\n  \"sampleAge\" : \"47\",\n  \"sampleDetail\" : \"\",\n  \"attributes\" : [ {\n    \"tag\" : \"donor_ID\",\n    \"value\" : \"McGill0492\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_ethnicity\",\n    \"value\" : \"African American\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_type\",\n    \"value\" : \"Primary cells\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"tissue_type\",\n    \"value\" : \"Blood\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease\",\n    \"value\" : \"Non-infected\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"phenotype\",\n    \"value\" : \"Non-infected\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"cell_type\",\n    \"value\" : \"Macrophage\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age\",\n    \"value\" : \"47\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age_unit\",\n    \"value\" : \"Years\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_health_status\",\n    \"value\" : \"Healthy\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_sex\",\n    \"value\" : \"Male\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"id\" : null,\n  \"ebiId\" : null,\n  \"submissionId\" : null,\n  \"eraSubmissionId\" : null,\n  \"userId\" : null,\n  \"submitterId\" : null,\n  \"status\" : null,\n  \"version\" : 1,\n  \"creationTime\" : null,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : [ \"61a456a198e25200010804cf\" ],\n  \"validationErrorMessages\" : null,\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"ebiSubmissionDetailsIds\" : null,\n  \"lastEbiSubmissionDetailsId\" : null,\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"MS049202\",\n  \"egaAccessionId\" : null,\n  \"centerName\" : null\n}",
+      "alias" : "MS049202",
+      "egaAccessionId" : null,
+      "centerName" : "MCGILL-EDCC"
+    }, {
+      "xmlRootElement" : {
+        "sample" : [ {
+          "identifiers" : null,
+          "alias" : "MS050701",
+          "centerName" : "MCGILL-EDCC",
+          "brokerName" : "EGA",
+          "accession" : null,
+          "title" : "",
+          "samplename" : {
+            "taxonid" : 9606,
+            "scientificname" : "Homo sapiens",
+            "commonname" : "Human",
+            "displayName" : null
+          },
+          "description" : "",
+          "samplelinks" : null,
+          "sampleattributes" : {
+            "sampleattribute" : [ {
+              "tag" : "subject_id",
+              "value" : "MS050701",
+              "units" : null
+            }, {
+              "tag" : "gender",
+              "value" : "male",
+              "units" : null
+            }, {
+              "tag" : "organism_part",
+              "value" : "Monocyte-derived macrophages",
+              "units" : null
+            }, {
+              "tag" : "phenotype",
+              "value" : "Flu",
+              "units" : null
+            }, {
+              "tag" : "sample_age",
+              "value" : "18",
+              "units" : null
+            }, {
+              "tag" : "donor_ID",
+              "value" : "McGill0507",
+              "units" : null
+            }, {
+              "tag" : "donor_ethnicity",
+              "value" : "African American",
+              "units" : null
+            }, {
+              "tag" : "biomaterial_type",
+              "value" : "Primary cells",
+              "units" : null
+            }, {
+              "tag" : "tissue_type",
+              "value" : "Blood",
+              "units" : null
+            }, {
+              "tag" : "disease",
+              "value" : "Flu-infected",
+              "units" : null
+            }, {
+              "tag" : "phenotype",
+              "value" : "Flu-infected",
+              "units" : null
+            }, {
+              "tag" : "cell_type",
+              "value" : "Macrophage",
+              "units" : null
+            }, {
+              "tag" : "donor_age",
+              "value" : "18",
+              "units" : null
+            }, {
+              "tag" : "donor_age_unit",
+              "value" : "Years",
+              "units" : null
+            }, {
+              "tag" : "donor_health_status",
+              "value" : "Healthy",
+              "units" : null
+            }, {
+              "tag" : "donor_sex",
+              "value" : "Male",
+              "units" : null
+            } ]
+          }
+        } ]
+      },
+      "title" : "",
+      "description" : "",
+      "caseOrControlId" : "",
+      "caseOrControl" : null,
+      "genderId" : "1",
+      "gender" : "male",
+      "organismPart" : "Monocyte-derived macrophages",
+      "cellLine" : "",
+      "region" : "",
+      "phenotype" : "Flu",
+      "subjectId" : "MS050701",
+      "anonymizedName" : null,
+      "bioSampleId" : null,
+      "sampleAge" : null,
+      "sampleDetail" : null,
+      "attributes" : [ {
+        "tag" : "donor_ID",
+        "value" : "McGill0507",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_ethnicity",
+        "value" : "African American",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_type",
+        "value" : "Primary cells",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "tissue_type",
+        "value" : "Blood",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease",
+        "value" : "Flu-infected",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "phenotype",
+        "value" : "Flu-infected",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "cell_type",
+        "value" : "Macrophage",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age",
+        "value" : "18",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age_unit",
+        "value" : "Years",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_health_status",
+        "value" : "Healthy",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_sex",
+        "value" : "Male",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "61a456cc98e2520001080547",
+      "ebiId" : null,
+      "submissionId" : "61a454dc98e2520001080024",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "VALIDATED",
+      "version" : 1,
+      "creationTime" : 1638160076702,
+      "editionTime" : null,
+      "firstPublic" : null,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : [ ],
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : null,
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<SAMPLE_SET>\n    <SAMPLE alias=\"MS050701\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE></TITLE>\n        <SAMPLE_NAME>\n            <TAXON_ID>9606</TAXON_ID>\n            <SCIENTIFIC_NAME>Homo sapiens</SCIENTIFIC_NAME>\n            <COMMON_NAME>Human</COMMON_NAME>\n        </SAMPLE_NAME>\n        <DESCRIPTION></DESCRIPTION>\n        <SAMPLE_ATTRIBUTES>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>subject_id</TAG>\n                <VALUE>MS050701</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>gender</TAG>\n                <VALUE>male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>organism_part</TAG>\n                <VALUE>Monocyte-derived macrophages</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Flu</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_age</TAG>\n                <VALUE>18</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ID</TAG>\n                <VALUE>McGill0507</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ethnicity</TAG>\n                <VALUE>African American</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_type</TAG>\n                <VALUE>Primary cells</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>tissue_type</TAG>\n                <VALUE>Blood</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease</TAG>\n                <VALUE>Flu-infected</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Flu-infected</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_type</TAG>\n                <VALUE>Macrophage</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age</TAG>\n                <VALUE>18</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age_unit</TAG>\n                <VALUE>Years</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_health_status</TAG>\n                <VALUE>Healthy</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_sex</TAG>\n                <VALUE>Male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n        </SAMPLE_ATTRIBUTES>\n    </SAMPLE>\n</SAMPLE_SET>\n",
+      "json" : "{\n  \"xmlRootElement\" : null,\n  \"title\" : \"\",\n  \"description\" : \"\",\n  \"caseOrControlId\" : \"\",\n  \"caseOrControl\" : null,\n  \"genderId\" : \"1\",\n  \"gender\" : \"male\",\n  \"organismPart\" : \"Monocyte-derived macrophages\",\n  \"cellLine\" : \"\",\n  \"region\" : \"\",\n  \"phenotype\" : \"Flu\",\n  \"subjectId\" : \"MS050701\",\n  \"anonymizedName\" : \"\",\n  \"bioSampleId\" : \"\",\n  \"sampleAge\" : \"18\",\n  \"sampleDetail\" : \"\",\n  \"attributes\" : [ {\n    \"tag\" : \"donor_ID\",\n    \"value\" : \"McGill0507\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_ethnicity\",\n    \"value\" : \"African American\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_type\",\n    \"value\" : \"Primary cells\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"tissue_type\",\n    \"value\" : \"Blood\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease\",\n    \"value\" : \"Flu-infected\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"phenotype\",\n    \"value\" : \"Flu-infected\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"cell_type\",\n    \"value\" : \"Macrophage\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age\",\n    \"value\" : \"18\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age_unit\",\n    \"value\" : \"Years\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_health_status\",\n    \"value\" : \"Healthy\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_sex\",\n    \"value\" : \"Male\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"id\" : null,\n  \"ebiId\" : null,\n  \"submissionId\" : null,\n  \"eraSubmissionId\" : null,\n  \"userId\" : null,\n  \"submitterId\" : null,\n  \"status\" : null,\n  \"version\" : 1,\n  \"creationTime\" : null,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : [ \"61a456cc98e2520001080546\" ],\n  \"validationErrorMessages\" : null,\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"ebiSubmissionDetailsIds\" : null,\n  \"lastEbiSubmissionDetailsId\" : null,\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"MS050701\",\n  \"egaAccessionId\" : null,\n  \"centerName\" : null\n}",
+      "alias" : "MS050701",
+      "egaAccessionId" : null,
+      "centerName" : "MCGILL-EDCC"
+    }, {
+      "xmlRootElement" : {
+        "sample" : [ {
+          "identifiers" : null,
+          "alias" : "MS050702",
+          "centerName" : "MCGILL-EDCC",
+          "brokerName" : "EGA",
+          "accession" : null,
+          "title" : "",
+          "samplename" : {
+            "taxonid" : 9606,
+            "scientificname" : "Homo sapiens",
+            "commonname" : "Human",
+            "displayName" : null
+          },
+          "description" : "",
+          "samplelinks" : null,
+          "sampleattributes" : {
+            "sampleattribute" : [ {
+              "tag" : "subject_id",
+              "value" : "MS050702",
+              "units" : null
+            }, {
+              "tag" : "gender",
+              "value" : "male",
+              "units" : null
+            }, {
+              "tag" : "organism_part",
+              "value" : "Monocyte-derived macrophages",
+              "units" : null
+            }, {
+              "tag" : "phenotype",
+              "value" : "NI",
+              "units" : null
+            }, {
+              "tag" : "sample_age",
+              "value" : "18",
+              "units" : null
+            }, {
+              "tag" : "donor_ID",
+              "value" : "McGill0507",
+              "units" : null
+            }, {
+              "tag" : "donor_ethnicity",
+              "value" : "African American",
+              "units" : null
+            }, {
+              "tag" : "biomaterial_type",
+              "value" : "Primary cells",
+              "units" : null
+            }, {
+              "tag" : "tissue_type",
+              "value" : "Blood",
+              "units" : null
+            }, {
+              "tag" : "disease",
+              "value" : "Non-infected",
+              "units" : null
+            }, {
+              "tag" : "phenotype",
+              "value" : "Non-infected",
+              "units" : null
+            }, {
+              "tag" : "cell_type",
+              "value" : "Macrophage",
+              "units" : null
+            }, {
+              "tag" : "donor_age",
+              "value" : "18",
+              "units" : null
+            }, {
+              "tag" : "donor_age_unit",
+              "value" : "Years",
+              "units" : null
+            }, {
+              "tag" : "donor_health_status",
+              "value" : "Healthy",
+              "units" : null
+            }, {
+              "tag" : "donor_sex",
+              "value" : "Male",
+              "units" : null
+            } ]
+          }
+        } ]
+      },
+      "title" : "",
+      "description" : "",
+      "caseOrControlId" : "",
+      "caseOrControl" : null,
+      "genderId" : "1",
+      "gender" : "male",
+      "organismPart" : "Monocyte-derived macrophages",
+      "cellLine" : "",
+      "region" : "",
+      "phenotype" : "NI",
+      "subjectId" : "MS050702",
+      "anonymizedName" : null,
+      "bioSampleId" : null,
+      "sampleAge" : null,
+      "sampleDetail" : null,
+      "attributes" : [ {
+        "tag" : "donor_ID",
+        "value" : "McGill0507",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_ethnicity",
+        "value" : "African American",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_type",
+        "value" : "Primary cells",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "tissue_type",
+        "value" : "Blood",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease",
+        "value" : "Non-infected",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "phenotype",
+        "value" : "Non-infected",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "cell_type",
+        "value" : "Macrophage",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age",
+        "value" : "18",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age_unit",
+        "value" : "Years",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_health_status",
+        "value" : "Healthy",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_sex",
+        "value" : "Male",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "61a456ce98e252000108054d",
+      "ebiId" : null,
+      "submissionId" : "61a454dc98e2520001080024",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "VALIDATED",
+      "version" : 1,
+      "creationTime" : 1638160078959,
+      "editionTime" : null,
+      "firstPublic" : null,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : [ ],
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : null,
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<SAMPLE_SET>\n    <SAMPLE alias=\"MS050702\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE></TITLE>\n        <SAMPLE_NAME>\n            <TAXON_ID>9606</TAXON_ID>\n            <SCIENTIFIC_NAME>Homo sapiens</SCIENTIFIC_NAME>\n            <COMMON_NAME>Human</COMMON_NAME>\n        </SAMPLE_NAME>\n        <DESCRIPTION></DESCRIPTION>\n        <SAMPLE_ATTRIBUTES>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>subject_id</TAG>\n                <VALUE>MS050702</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>gender</TAG>\n                <VALUE>male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>organism_part</TAG>\n                <VALUE>Monocyte-derived macrophages</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>NI</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_age</TAG>\n                <VALUE>18</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ID</TAG>\n                <VALUE>McGill0507</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ethnicity</TAG>\n                <VALUE>African American</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_type</TAG>\n                <VALUE>Primary cells</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>tissue_type</TAG>\n                <VALUE>Blood</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease</TAG>\n                <VALUE>Non-infected</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Non-infected</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_type</TAG>\n                <VALUE>Macrophage</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age</TAG>\n                <VALUE>18</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age_unit</TAG>\n                <VALUE>Years</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_health_status</TAG>\n                <VALUE>Healthy</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_sex</TAG>\n                <VALUE>Male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n        </SAMPLE_ATTRIBUTES>\n    </SAMPLE>\n</SAMPLE_SET>\n",
+      "json" : "{\n  \"xmlRootElement\" : null,\n  \"title\" : \"\",\n  \"description\" : \"\",\n  \"caseOrControlId\" : \"\",\n  \"caseOrControl\" : null,\n  \"genderId\" : \"1\",\n  \"gender\" : \"male\",\n  \"organismPart\" : \"Monocyte-derived macrophages\",\n  \"cellLine\" : \"\",\n  \"region\" : \"\",\n  \"phenotype\" : \"NI\",\n  \"subjectId\" : \"MS050702\",\n  \"anonymizedName\" : \"\",\n  \"bioSampleId\" : \"\",\n  \"sampleAge\" : \"18\",\n  \"sampleDetail\" : \"\",\n  \"attributes\" : [ {\n    \"tag\" : \"donor_ID\",\n    \"value\" : \"McGill0507\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_ethnicity\",\n    \"value\" : \"African American\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_type\",\n    \"value\" : \"Primary cells\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"tissue_type\",\n    \"value\" : \"Blood\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease\",\n    \"value\" : \"Non-infected\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"phenotype\",\n    \"value\" : \"Non-infected\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"cell_type\",\n    \"value\" : \"Macrophage\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age\",\n    \"value\" : \"18\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age_unit\",\n    \"value\" : \"Years\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_health_status\",\n    \"value\" : \"Healthy\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_sex\",\n    \"value\" : \"Male\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"id\" : null,\n  \"ebiId\" : null,\n  \"submissionId\" : null,\n  \"eraSubmissionId\" : null,\n  \"userId\" : null,\n  \"submitterId\" : null,\n  \"status\" : null,\n  \"version\" : 1,\n  \"creationTime\" : null,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : [ \"61a456ce98e252000108054c\" ],\n  \"validationErrorMessages\" : null,\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"ebiSubmissionDetailsIds\" : null,\n  \"lastEbiSubmissionDetailsId\" : null,\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"MS050702\",\n  \"egaAccessionId\" : null,\n  \"centerName\" : null\n}",
+      "alias" : "MS050702",
+      "egaAccessionId" : null,
+      "centerName" : "MCGILL-EDCC"
+    }, {
+      "xmlRootElement" : {
+        "sample" : [ {
+          "identifiers" : null,
+          "alias" : "MS051101",
+          "centerName" : "MCGILL-EDCC",
+          "brokerName" : "EGA",
+          "accession" : null,
+          "title" : "",
+          "samplename" : {
+            "taxonid" : 9606,
+            "scientificname" : "Homo sapiens",
+            "commonname" : "Human",
+            "displayName" : null
+          },
+          "description" : "",
+          "samplelinks" : null,
+          "sampleattributes" : {
+            "sampleattribute" : [ {
+              "tag" : "subject_id",
+              "value" : "MS051101",
+              "units" : null
+            }, {
+              "tag" : "gender",
+              "value" : "male",
+              "units" : null
+            }, {
+              "tag" : "organism_part",
+              "value" : "Monocyte-derived macrophages",
+              "units" : null
+            }, {
+              "tag" : "phenotype",
+              "value" : "Flu",
+              "units" : null
+            }, {
+              "tag" : "sample_age",
+              "value" : "49",
+              "units" : null
+            }, {
+              "tag" : "donor_ID",
+              "value" : "McGill0511",
+              "units" : null
+            }, {
+              "tag" : "donor_ethnicity",
+              "value" : "European American",
+              "units" : null
+            }, {
+              "tag" : "biomaterial_type",
+              "value" : "Primary cells",
+              "units" : null
+            }, {
+              "tag" : "tissue_type",
+              "value" : "Blood",
+              "units" : null
+            }, {
+              "tag" : "disease",
+              "value" : "Flu-infected",
+              "units" : null
+            }, {
+              "tag" : "phenotype",
+              "value" : "Flu-infected",
+              "units" : null
+            }, {
+              "tag" : "cell_type",
+              "value" : "Macrophage",
+              "units" : null
+            }, {
+              "tag" : "donor_age",
+              "value" : "49",
+              "units" : null
+            }, {
+              "tag" : "donor_age_unit",
+              "value" : "Years",
+              "units" : null
+            }, {
+              "tag" : "donor_health_status",
+              "value" : "Healthy",
+              "units" : null
+            }, {
+              "tag" : "donor_sex",
+              "value" : "Male",
+              "units" : null
+            } ]
+          }
+        } ]
+      },
+      "title" : "",
+      "description" : "",
+      "caseOrControlId" : "",
+      "caseOrControl" : null,
+      "genderId" : "1",
+      "gender" : "male",
+      "organismPart" : "Monocyte-derived macrophages",
+      "cellLine" : "",
+      "region" : "",
+      "phenotype" : "Flu",
+      "subjectId" : "MS051101",
+      "anonymizedName" : null,
+      "bioSampleId" : null,
+      "sampleAge" : null,
+      "sampleDetail" : null,
+      "attributes" : [ {
+        "tag" : "donor_ID",
+        "value" : "McGill0511",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_ethnicity",
+        "value" : "European American",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_type",
+        "value" : "Primary cells",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "tissue_type",
+        "value" : "Blood",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease",
+        "value" : "Flu-infected",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "phenotype",
+        "value" : "Flu-infected",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "cell_type",
+        "value" : "Macrophage",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age",
+        "value" : "49",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age_unit",
+        "value" : "Years",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_health_status",
+        "value" : "Healthy",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_sex",
+        "value" : "Male",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "61a456da98e252000108056b",
+      "ebiId" : null,
+      "submissionId" : "61a454dc98e2520001080024",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "VALIDATED",
+      "version" : 1,
+      "creationTime" : 1638160090243,
+      "editionTime" : null,
+      "firstPublic" : null,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : [ ],
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : null,
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<SAMPLE_SET>\n    <SAMPLE alias=\"MS051101\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE></TITLE>\n        <SAMPLE_NAME>\n            <TAXON_ID>9606</TAXON_ID>\n            <SCIENTIFIC_NAME>Homo sapiens</SCIENTIFIC_NAME>\n            <COMMON_NAME>Human</COMMON_NAME>\n        </SAMPLE_NAME>\n        <DESCRIPTION></DESCRIPTION>\n        <SAMPLE_ATTRIBUTES>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>subject_id</TAG>\n                <VALUE>MS051101</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>gender</TAG>\n                <VALUE>male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>organism_part</TAG>\n                <VALUE>Monocyte-derived macrophages</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Flu</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_age</TAG>\n                <VALUE>49</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ID</TAG>\n                <VALUE>McGill0511</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ethnicity</TAG>\n                <VALUE>European American</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_type</TAG>\n                <VALUE>Primary cells</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>tissue_type</TAG>\n                <VALUE>Blood</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease</TAG>\n                <VALUE>Flu-infected</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Flu-infected</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_type</TAG>\n                <VALUE>Macrophage</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age</TAG>\n                <VALUE>49</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age_unit</TAG>\n                <VALUE>Years</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_health_status</TAG>\n                <VALUE>Healthy</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_sex</TAG>\n                <VALUE>Male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n        </SAMPLE_ATTRIBUTES>\n    </SAMPLE>\n</SAMPLE_SET>\n",
+      "json" : "{\n  \"xmlRootElement\" : null,\n  \"title\" : \"\",\n  \"description\" : \"\",\n  \"caseOrControlId\" : \"\",\n  \"caseOrControl\" : null,\n  \"genderId\" : \"1\",\n  \"gender\" : \"male\",\n  \"organismPart\" : \"Monocyte-derived macrophages\",\n  \"cellLine\" : \"\",\n  \"region\" : \"\",\n  \"phenotype\" : \"Flu\",\n  \"subjectId\" : \"MS051101\",\n  \"anonymizedName\" : \"\",\n  \"bioSampleId\" : \"\",\n  \"sampleAge\" : \"49\",\n  \"sampleDetail\" : \"\",\n  \"attributes\" : [ {\n    \"tag\" : \"donor_ID\",\n    \"value\" : \"McGill0511\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_ethnicity\",\n    \"value\" : \"European American\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_type\",\n    \"value\" : \"Primary cells\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"tissue_type\",\n    \"value\" : \"Blood\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease\",\n    \"value\" : \"Flu-infected\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"phenotype\",\n    \"value\" : \"Flu-infected\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"cell_type\",\n    \"value\" : \"Macrophage\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age\",\n    \"value\" : \"49\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age_unit\",\n    \"value\" : \"Years\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_health_status\",\n    \"value\" : \"Healthy\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_sex\",\n    \"value\" : \"Male\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"id\" : null,\n  \"ebiId\" : null,\n  \"submissionId\" : null,\n  \"eraSubmissionId\" : null,\n  \"userId\" : null,\n  \"submitterId\" : null,\n  \"status\" : null,\n  \"version\" : 1,\n  \"creationTime\" : null,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : [ \"61a456da98e252000108056a\" ],\n  \"validationErrorMessages\" : null,\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"ebiSubmissionDetailsIds\" : null,\n  \"lastEbiSubmissionDetailsId\" : null,\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"MS051101\",\n  \"egaAccessionId\" : null,\n  \"centerName\" : null\n}",
+      "alias" : "MS051101",
+      "egaAccessionId" : null,
+      "centerName" : "MCGILL-EDCC"
+    }, {
+      "xmlRootElement" : {
+        "sample" : [ {
+          "identifiers" : null,
+          "alias" : "MS051102",
+          "centerName" : "MCGILL-EDCC",
+          "brokerName" : "EGA",
+          "accession" : null,
+          "title" : "",
+          "samplename" : {
+            "taxonid" : 9606,
+            "scientificname" : "Homo sapiens",
+            "commonname" : "Human",
+            "displayName" : null
+          },
+          "description" : "",
+          "samplelinks" : null,
+          "sampleattributes" : {
+            "sampleattribute" : [ {
+              "tag" : "subject_id",
+              "value" : "MS051102",
+              "units" : null
+            }, {
+              "tag" : "gender",
+              "value" : "male",
+              "units" : null
+            }, {
+              "tag" : "organism_part",
+              "value" : "Monocyte-derived macrophages",
+              "units" : null
+            }, {
+              "tag" : "phenotype",
+              "value" : "NI",
+              "units" : null
+            }, {
+              "tag" : "sample_age",
+              "value" : "49",
+              "units" : null
+            }, {
+              "tag" : "donor_ID",
+              "value" : "McGill0511",
+              "units" : null
+            }, {
+              "tag" : "donor_ethnicity",
+              "value" : "European American",
+              "units" : null
+            }, {
+              "tag" : "biomaterial_type",
+              "value" : "Primary cells",
+              "units" : null
+            }, {
+              "tag" : "tissue_type",
+              "value" : "Blood",
+              "units" : null
+            }, {
+              "tag" : "disease",
+              "value" : "Non-infected",
+              "units" : null
+            }, {
+              "tag" : "phenotype",
+              "value" : "Non-infected",
+              "units" : null
+            }, {
+              "tag" : "cell_type",
+              "value" : "Macrophage",
+              "units" : null
+            }, {
+              "tag" : "donor_age",
+              "value" : "49",
+              "units" : null
+            }, {
+              "tag" : "donor_age_unit",
+              "value" : "Years",
+              "units" : null
+            }, {
+              "tag" : "donor_health_status",
+              "value" : "Healthy",
+              "units" : null
+            }, {
+              "tag" : "donor_sex",
+              "value" : "Male",
+              "units" : null
+            } ]
+          }
+        } ]
+      },
+      "title" : "",
+      "description" : "",
+      "caseOrControlId" : "",
+      "caseOrControl" : null,
+      "genderId" : "1",
+      "gender" : "male",
+      "organismPart" : "Monocyte-derived macrophages",
+      "cellLine" : "",
+      "region" : "",
+      "phenotype" : "NI",
+      "subjectId" : "MS051102",
+      "anonymizedName" : null,
+      "bioSampleId" : null,
+      "sampleAge" : null,
+      "sampleDetail" : null,
+      "attributes" : [ {
+        "tag" : "donor_ID",
+        "value" : "McGill0511",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_ethnicity",
+        "value" : "European American",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_type",
+        "value" : "Primary cells",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "tissue_type",
+        "value" : "Blood",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease",
+        "value" : "Non-infected",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "phenotype",
+        "value" : "Non-infected",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "cell_type",
+        "value" : "Macrophage",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age",
+        "value" : "49",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age_unit",
+        "value" : "Years",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_health_status",
+        "value" : "Healthy",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_sex",
+        "value" : "Male",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "61a456dc98e2520001080571",
+      "ebiId" : null,
+      "submissionId" : "61a454dc98e2520001080024",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "VALIDATED",
+      "version" : 1,
+      "creationTime" : 1638160092431,
+      "editionTime" : null,
+      "firstPublic" : null,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : [ ],
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : null,
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<SAMPLE_SET>\n    <SAMPLE alias=\"MS051102\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE></TITLE>\n        <SAMPLE_NAME>\n            <TAXON_ID>9606</TAXON_ID>\n            <SCIENTIFIC_NAME>Homo sapiens</SCIENTIFIC_NAME>\n            <COMMON_NAME>Human</COMMON_NAME>\n        </SAMPLE_NAME>\n        <DESCRIPTION></DESCRIPTION>\n        <SAMPLE_ATTRIBUTES>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>subject_id</TAG>\n                <VALUE>MS051102</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>gender</TAG>\n                <VALUE>male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>organism_part</TAG>\n                <VALUE>Monocyte-derived macrophages</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>NI</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_age</TAG>\n                <VALUE>49</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ID</TAG>\n                <VALUE>McGill0511</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ethnicity</TAG>\n                <VALUE>European American</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_type</TAG>\n                <VALUE>Primary cells</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>tissue_type</TAG>\n                <VALUE>Blood</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease</TAG>\n                <VALUE>Non-infected</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Non-infected</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_type</TAG>\n                <VALUE>Macrophage</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age</TAG>\n                <VALUE>49</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age_unit</TAG>\n                <VALUE>Years</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_health_status</TAG>\n                <VALUE>Healthy</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_sex</TAG>\n                <VALUE>Male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n        </SAMPLE_ATTRIBUTES>\n    </SAMPLE>\n</SAMPLE_SET>\n",
+      "json" : "{\n  \"xmlRootElement\" : null,\n  \"title\" : \"\",\n  \"description\" : \"\",\n  \"caseOrControlId\" : \"\",\n  \"caseOrControl\" : null,\n  \"genderId\" : \"1\",\n  \"gender\" : \"male\",\n  \"organismPart\" : \"Monocyte-derived macrophages\",\n  \"cellLine\" : \"\",\n  \"region\" : \"\",\n  \"phenotype\" : \"NI\",\n  \"subjectId\" : \"MS051102\",\n  \"anonymizedName\" : \"\",\n  \"bioSampleId\" : \"\",\n  \"sampleAge\" : \"49\",\n  \"sampleDetail\" : \"\",\n  \"attributes\" : [ {\n    \"tag\" : \"donor_ID\",\n    \"value\" : \"McGill0511\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_ethnicity\",\n    \"value\" : \"European American\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_type\",\n    \"value\" : \"Primary cells\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"tissue_type\",\n    \"value\" : \"Blood\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease\",\n    \"value\" : \"Non-infected\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"phenotype\",\n    \"value\" : \"Non-infected\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"cell_type\",\n    \"value\" : \"Macrophage\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age\",\n    \"value\" : \"49\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age_unit\",\n    \"value\" : \"Years\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_health_status\",\n    \"value\" : \"Healthy\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_sex\",\n    \"value\" : \"Male\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"id\" : null,\n  \"ebiId\" : null,\n  \"submissionId\" : null,\n  \"eraSubmissionId\" : null,\n  \"userId\" : null,\n  \"submitterId\" : null,\n  \"status\" : null,\n  \"version\" : 1,\n  \"creationTime\" : null,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : [ \"61a456dc98e2520001080570\" ],\n  \"validationErrorMessages\" : null,\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"ebiSubmissionDetailsIds\" : null,\n  \"lastEbiSubmissionDetailsId\" : null,\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"MS051102\",\n  \"egaAccessionId\" : null,\n  \"centerName\" : null\n}",
+      "alias" : "MS051102",
+      "egaAccessionId" : null,
+      "centerName" : "MCGILL-EDCC"
+    }, {
+      "xmlRootElement" : {
+        "sample" : [ {
+          "identifiers" : null,
+          "alias" : "MS052401",
+          "centerName" : "MCGILL-EDCC",
+          "brokerName" : "EGA",
+          "accession" : null,
+          "title" : "",
+          "samplename" : {
+            "taxonid" : 9606,
+            "scientificname" : "Homo sapiens",
+            "commonname" : "Human",
+            "displayName" : null
+          },
+          "description" : "",
+          "samplelinks" : null,
+          "sampleattributes" : {
+            "sampleattribute" : [ {
+              "tag" : "subject_id",
+              "value" : "MS052401",
+              "units" : null
+            }, {
+              "tag" : "gender",
+              "value" : "male",
+              "units" : null
+            }, {
+              "tag" : "organism_part",
+              "value" : "Monocyte-derived macrophages",
+              "units" : null
+            }, {
+              "tag" : "phenotype",
+              "value" : "Flu",
+              "units" : null
+            }, {
+              "tag" : "sample_age",
+              "value" : "16",
+              "units" : null
+            }, {
+              "tag" : "donor_ID",
+              "value" : "McGill0524",
+              "units" : null
+            }, {
+              "tag" : "donor_ethnicity",
+              "value" : "European American",
+              "units" : null
+            }, {
+              "tag" : "biomaterial_type",
+              "value" : "Primary cells",
+              "units" : null
+            }, {
+              "tag" : "tissue_type",
+              "value" : "Blood",
+              "units" : null
+            }, {
+              "tag" : "disease",
+              "value" : "Flu-infected",
+              "units" : null
+            }, {
+              "tag" : "phenotype",
+              "value" : "Flu-infected",
+              "units" : null
+            }, {
+              "tag" : "cell_type",
+              "value" : "Macrophage",
+              "units" : null
+            }, {
+              "tag" : "donor_age",
+              "value" : "16",
+              "units" : null
+            }, {
+              "tag" : "donor_age_unit",
+              "value" : "Years",
+              "units" : null
+            }, {
+              "tag" : "donor_health_status",
+              "value" : "Healthy",
+              "units" : null
+            }, {
+              "tag" : "donor_sex",
+              "value" : "Male",
+              "units" : null
+            } ]
+          }
+        } ]
+      },
+      "title" : "",
+      "description" : "",
+      "caseOrControlId" : "",
+      "caseOrControl" : null,
+      "genderId" : "1",
+      "gender" : "male",
+      "organismPart" : "Monocyte-derived macrophages",
+      "cellLine" : "",
+      "region" : "",
+      "phenotype" : "Flu",
+      "subjectId" : "MS052401",
+      "anonymizedName" : null,
+      "bioSampleId" : null,
+      "sampleAge" : null,
+      "sampleDetail" : null,
+      "attributes" : [ {
+        "tag" : "donor_ID",
+        "value" : "McGill0524",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_ethnicity",
+        "value" : "European American",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_type",
+        "value" : "Primary cells",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "tissue_type",
+        "value" : "Blood",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease",
+        "value" : "Flu-infected",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "phenotype",
+        "value" : "Flu-infected",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "cell_type",
+        "value" : "Macrophage",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age",
+        "value" : "16",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age_unit",
+        "value" : "Years",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_health_status",
+        "value" : "Healthy",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_sex",
+        "value" : "Male",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "61a456ff98e25200010805d7",
+      "ebiId" : null,
+      "submissionId" : "61a454dc98e2520001080024",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "VALIDATED",
+      "version" : 1,
+      "creationTime" : 1638160127828,
+      "editionTime" : null,
+      "firstPublic" : null,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : [ ],
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : null,
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<SAMPLE_SET>\n    <SAMPLE alias=\"MS052401\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE></TITLE>\n        <SAMPLE_NAME>\n            <TAXON_ID>9606</TAXON_ID>\n            <SCIENTIFIC_NAME>Homo sapiens</SCIENTIFIC_NAME>\n            <COMMON_NAME>Human</COMMON_NAME>\n        </SAMPLE_NAME>\n        <DESCRIPTION></DESCRIPTION>\n        <SAMPLE_ATTRIBUTES>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>subject_id</TAG>\n                <VALUE>MS052401</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>gender</TAG>\n                <VALUE>male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>organism_part</TAG>\n                <VALUE>Monocyte-derived macrophages</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Flu</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_age</TAG>\n                <VALUE>16</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ID</TAG>\n                <VALUE>McGill0524</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ethnicity</TAG>\n                <VALUE>European American</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_type</TAG>\n                <VALUE>Primary cells</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>tissue_type</TAG>\n                <VALUE>Blood</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease</TAG>\n                <VALUE>Flu-infected</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Flu-infected</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_type</TAG>\n                <VALUE>Macrophage</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age</TAG>\n                <VALUE>16</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age_unit</TAG>\n                <VALUE>Years</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_health_status</TAG>\n                <VALUE>Healthy</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_sex</TAG>\n                <VALUE>Male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n        </SAMPLE_ATTRIBUTES>\n    </SAMPLE>\n</SAMPLE_SET>\n",
+      "json" : "{\n  \"xmlRootElement\" : null,\n  \"title\" : \"\",\n  \"description\" : \"\",\n  \"caseOrControlId\" : \"\",\n  \"caseOrControl\" : null,\n  \"genderId\" : \"1\",\n  \"gender\" : \"male\",\n  \"organismPart\" : \"Monocyte-derived macrophages\",\n  \"cellLine\" : \"\",\n  \"region\" : \"\",\n  \"phenotype\" : \"Flu\",\n  \"subjectId\" : \"MS052401\",\n  \"anonymizedName\" : \"\",\n  \"bioSampleId\" : \"\",\n  \"sampleAge\" : \"16\",\n  \"sampleDetail\" : \"\",\n  \"attributes\" : [ {\n    \"tag\" : \"donor_ID\",\n    \"value\" : \"McGill0524\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_ethnicity\",\n    \"value\" : \"European American\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_type\",\n    \"value\" : \"Primary cells\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"tissue_type\",\n    \"value\" : \"Blood\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease\",\n    \"value\" : \"Flu-infected\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"phenotype\",\n    \"value\" : \"Flu-infected\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"cell_type\",\n    \"value\" : \"Macrophage\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age\",\n    \"value\" : \"16\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age_unit\",\n    \"value\" : \"Years\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_health_status\",\n    \"value\" : \"Healthy\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_sex\",\n    \"value\" : \"Male\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"id\" : null,\n  \"ebiId\" : null,\n  \"submissionId\" : null,\n  \"eraSubmissionId\" : null,\n  \"userId\" : null,\n  \"submitterId\" : null,\n  \"status\" : null,\n  \"version\" : 1,\n  \"creationTime\" : null,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : [ \"61a456ff98e25200010805d6\" ],\n  \"validationErrorMessages\" : null,\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"ebiSubmissionDetailsIds\" : null,\n  \"lastEbiSubmissionDetailsId\" : null,\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"MS052401\",\n  \"egaAccessionId\" : null,\n  \"centerName\" : null\n}",
+      "alias" : "MS052401",
+      "egaAccessionId" : null,
+      "centerName" : "MCGILL-EDCC"
+    }, {
+      "xmlRootElement" : {
+        "sample" : [ {
+          "identifiers" : null,
+          "alias" : "MS052402",
+          "centerName" : "MCGILL-EDCC",
+          "brokerName" : "EGA",
+          "accession" : null,
+          "title" : "",
+          "samplename" : {
+            "taxonid" : 9606,
+            "scientificname" : "Homo sapiens",
+            "commonname" : "Human",
+            "displayName" : null
+          },
+          "description" : "",
+          "samplelinks" : null,
+          "sampleattributes" : {
+            "sampleattribute" : [ {
+              "tag" : "subject_id",
+              "value" : "MS052402",
+              "units" : null
+            }, {
+              "tag" : "gender",
+              "value" : "male",
+              "units" : null
+            }, {
+              "tag" : "organism_part",
+              "value" : "Monocyte-derived macrophages",
+              "units" : null
+            }, {
+              "tag" : "phenotype",
+              "value" : "NI",
+              "units" : null
+            }, {
+              "tag" : "sample_age",
+              "value" : "16",
+              "units" : null
+            }, {
+              "tag" : "donor_ID",
+              "value" : "McGill0524",
+              "units" : null
+            }, {
+              "tag" : "donor_ethnicity",
+              "value" : "European American",
+              "units" : null
+            }, {
+              "tag" : "biomaterial_type",
+              "value" : "Primary cells",
+              "units" : null
+            }, {
+              "tag" : "tissue_type",
+              "value" : "Blood",
+              "units" : null
+            }, {
+              "tag" : "disease",
+              "value" : "Non-infected",
+              "units" : null
+            }, {
+              "tag" : "phenotype",
+              "value" : "Non-infected",
+              "units" : null
+            }, {
+              "tag" : "cell_type",
+              "value" : "Macrophage",
+              "units" : null
+            }, {
+              "tag" : "donor_age",
+              "value" : "16",
+              "units" : null
+            }, {
+              "tag" : "donor_age_unit",
+              "value" : "Years",
+              "units" : null
+            }, {
+              "tag" : "donor_health_status",
+              "value" : "Healthy",
+              "units" : null
+            }, {
+              "tag" : "donor_sex",
+              "value" : "Male",
+              "units" : null
+            } ]
+          }
+        } ]
+      },
+      "title" : "",
+      "description" : "",
+      "caseOrControlId" : "",
+      "caseOrControl" : null,
+      "genderId" : "1",
+      "gender" : "male",
+      "organismPart" : "Monocyte-derived macrophages",
+      "cellLine" : "",
+      "region" : "",
+      "phenotype" : "NI",
+      "subjectId" : "MS052402",
+      "anonymizedName" : null,
+      "bioSampleId" : null,
+      "sampleAge" : null,
+      "sampleDetail" : null,
+      "attributes" : [ {
+        "tag" : "donor_ID",
+        "value" : "McGill0524",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_ethnicity",
+        "value" : "European American",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_type",
+        "value" : "Primary cells",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "tissue_type",
+        "value" : "Blood",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease",
+        "value" : "Non-infected",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "phenotype",
+        "value" : "Non-infected",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "cell_type",
+        "value" : "Macrophage",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age",
+        "value" : "16",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age_unit",
+        "value" : "Years",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_health_status",
+        "value" : "Healthy",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_sex",
+        "value" : "Male",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "61a4570198e25200010805dd",
+      "ebiId" : null,
+      "submissionId" : "61a454dc98e2520001080024",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "VALIDATED",
+      "version" : 1,
+      "creationTime" : 1638160129811,
+      "editionTime" : null,
+      "firstPublic" : null,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : [ ],
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : null,
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<SAMPLE_SET>\n    <SAMPLE alias=\"MS052402\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE></TITLE>\n        <SAMPLE_NAME>\n            <TAXON_ID>9606</TAXON_ID>\n            <SCIENTIFIC_NAME>Homo sapiens</SCIENTIFIC_NAME>\n            <COMMON_NAME>Human</COMMON_NAME>\n        </SAMPLE_NAME>\n        <DESCRIPTION></DESCRIPTION>\n        <SAMPLE_ATTRIBUTES>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>subject_id</TAG>\n                <VALUE>MS052402</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>gender</TAG>\n                <VALUE>male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>organism_part</TAG>\n                <VALUE>Monocyte-derived macrophages</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>NI</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_age</TAG>\n                <VALUE>16</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ID</TAG>\n                <VALUE>McGill0524</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ethnicity</TAG>\n                <VALUE>European American</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_type</TAG>\n                <VALUE>Primary cells</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>tissue_type</TAG>\n                <VALUE>Blood</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease</TAG>\n                <VALUE>Non-infected</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Non-infected</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_type</TAG>\n                <VALUE>Macrophage</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age</TAG>\n                <VALUE>16</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age_unit</TAG>\n                <VALUE>Years</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_health_status</TAG>\n                <VALUE>Healthy</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_sex</TAG>\n                <VALUE>Male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n        </SAMPLE_ATTRIBUTES>\n    </SAMPLE>\n</SAMPLE_SET>\n",
+      "json" : "{\n  \"xmlRootElement\" : null,\n  \"title\" : \"\",\n  \"description\" : \"\",\n  \"caseOrControlId\" : \"\",\n  \"caseOrControl\" : null,\n  \"genderId\" : \"1\",\n  \"gender\" : \"male\",\n  \"organismPart\" : \"Monocyte-derived macrophages\",\n  \"cellLine\" : \"\",\n  \"region\" : \"\",\n  \"phenotype\" : \"NI\",\n  \"subjectId\" : \"MS052402\",\n  \"anonymizedName\" : \"\",\n  \"bioSampleId\" : \"\",\n  \"sampleAge\" : \"16\",\n  \"sampleDetail\" : \"\",\n  \"attributes\" : [ {\n    \"tag\" : \"donor_ID\",\n    \"value\" : \"McGill0524\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_ethnicity\",\n    \"value\" : \"European American\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_type\",\n    \"value\" : \"Primary cells\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"tissue_type\",\n    \"value\" : \"Blood\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease\",\n    \"value\" : \"Non-infected\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"phenotype\",\n    \"value\" : \"Non-infected\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"cell_type\",\n    \"value\" : \"Macrophage\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age\",\n    \"value\" : \"16\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age_unit\",\n    \"value\" : \"Years\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_health_status\",\n    \"value\" : \"Healthy\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_sex\",\n    \"value\" : \"Male\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"id\" : null,\n  \"ebiId\" : null,\n  \"submissionId\" : null,\n  \"eraSubmissionId\" : null,\n  \"userId\" : null,\n  \"submitterId\" : null,\n  \"status\" : null,\n  \"version\" : 1,\n  \"creationTime\" : null,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : [ \"61a4570198e25200010805dc\" ],\n  \"validationErrorMessages\" : null,\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"ebiSubmissionDetailsIds\" : null,\n  \"lastEbiSubmissionDetailsId\" : null,\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"MS052402\",\n  \"egaAccessionId\" : null,\n  \"centerName\" : null\n}",
+      "alias" : "MS052402",
+      "egaAccessionId" : null,
+      "centerName" : "MCGILL-EDCC"
+    } ]
+  }
+}

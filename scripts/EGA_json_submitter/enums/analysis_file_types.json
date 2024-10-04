@@ -1,0 +1,173 @@
+{
+  "header" : {
+    "apiVersion" : "v1",
+    "code" : "200",
+    "service" : "submitterportal",
+    "developerMessage" : "",
+    "userMessage" : "OK",
+    "errorCode" : "1",
+    "docLink" : "https://ega-archive.org",
+    "errorStack" : ""
+  },
+  "response" : {
+    "numTotalResults" : 26,
+    "resultType" : "eu.crg.ega.microservice.dto.submitter.FileTypeData",
+    "result" : [ {
+      "tag" : "21",
+      "value" : "agp",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "2",
+      "value" : "bai",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "1",
+      "value" : "bam",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "7",
+      "value" : "bcf",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "10",
+      "value" : "bed",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "19",
+      "value" : "BioNano_native",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "15",
+      "value" : "chromosome_list",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "4",
+      "value" : "crai",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "3",
+      "value" : "cram",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "12",
+      "value" : "fasta",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "13",
+      "value" : "fastq",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "14",
+      "value" : "flatfile",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "11",
+      "value" : "gff",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "23",
+      "value" : "info",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "20",
+      "value" : "Kallisto_native",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "24",
+      "value" : "manifest",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "25",
+      "value" : "other",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "18",
+      "value" : "phenotype_file",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "17",
+      "value" : "readme_file",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "16",
+      "value" : "sample_list",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "0",
+      "value" : "tab",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "8",
+      "value" : "tabix",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "22",
+      "value" : "unlocalised_list",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "5",
+      "value" : "vcf",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "6",
+      "value" : "vcf_aggregate",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    }, {
+      "tag" : "9",
+      "value" : "wig",
+      "csvColumnNames" : null,
+      "directoryName" : false,
+      "numFiles" : null
+    } ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+    "alias": "",
+    "title": "",
+    "description": "",
+    "caseOrControlId": "3",
+    "genderId": "1",
+    "organismPart": "Lung",
+    "cellLine": "A549",
+    "region": "",
+    "phenotype": "Lung Adenocarcinoma",
+    "subjectId": "McGill0490",
+    "anonymizedName": "",
+    "bioSampleId": "",
+    "sampleAge": "",
+    "sampleDetail": "",
+    "attributes": [
+      {"tag": "taxon_id", "value": "9606"},
+      {"tag": "phenotype", "value": "Lung Adenocarcinoma"},
+      {"tag": "biomaterial_type", "value": "Cell Line"},
+      {"tag": "line", "value": "A549"},
+      {"tag": "lineage", "value": "lung epithelial"},
+      {"tag": "differentiation_stage", "value": "Undifferentiated"},
+      {"tag": "differentiation_method", "value": "NA"},
+      {"tag": "medium", "value": "F12K (10% fetal bovine serum)"},
+      {"tag": "sex", "value": "Male"},
+      {"tag": "batch", "value": "NA"},
+      {"tag": "sample_ontology_uri", "value": "EFO:0005288"},
+      {"tag": "disease_ontology_uri", "value": "NCIT:C3512"},
+      {"tag": "disease", "value": "Non-small Cell Lung Adenocarcinoma"},
+      {"tag": "culture", "value": "24-days-3D-culture"}
+    ]
+  }

@@ -1,0 +1,16 @@
+{
+    "alias": "",
+    "title": "",
+    "instrumentModelId": "50",
+    "librarySourceId": "0",
+    "librarySelectionId": "29",
+    "libraryStrategyId": "10",
+    "designDescription": "Omni-ATAC Protocol",
+    "libraryName": "ATACSeq",
+    "libraryConstructionProtocol": "Omni-ATAC Protocol",
+    "libraryLayoutId": "0",
+    "pairedNominalLength": 0,
+    "pairedNominalSdev": 0,
+    "sampleId": "",
+    "studyId": ""
+  }

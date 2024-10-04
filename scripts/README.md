@@ -38,3 +38,6 @@ ihec_metrics_report.py - A stats report about the .bw & .bb files.
 generate_ihec_data_hub.py > yourHubName.json
 
 The *.sql files are used to specify particular projects (useful when generating project-specific stats) (see run_and_log.sh for their usage).
+
+
+Note about configuring mysql without password to run run_and_log.sh.  Maybe add it to run_and_log.sh itself.

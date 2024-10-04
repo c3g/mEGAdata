@@ -1,0 +1,1029 @@
+{
+  "header" : {
+    "apiVersion" : "v1",
+    "code" : "200",
+    "service" : "submitterportal",
+    "developerMessage" : "",
+    "userMessage" : "OK",
+    "errorCode" : "1",
+    "docLink" : "https://ega-archive.org",
+    "errorStack" : ""
+  },
+  "response" : {
+    "numTotalResults" : 8,
+    "resultType" : "eu.crg.ega.microservice.dto.submitter.SampleData",
+    "result" : [ {
+      "xmlRootElement" : null,
+      "title" : "",
+      "description" : "",
+      "caseOrControlId" : "3",
+      "caseOrControl" : "NA",
+      "genderId" : "0",
+      "gender" : "female",
+      "organismPart" : "Retina, eye",
+      "cellLine" : "hTERT RPE-1",
+      "region" : "",
+      "phenotype" : "Healthy",
+      "subjectId" : "McGill0491",
+      "anonymizedName" : null,
+      "bioSampleId" : null,
+      "sampleAge" : null,
+      "sampleDetail" : null,
+      "attributes" : [ {
+        "tag" : "taxon_id",
+        "value" : "9606",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_type",
+        "value" : "Cell Line",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "line",
+        "value" : "hTERT RPE-1",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "lineage",
+        "value" : "Retina, eye; pigmented epithelium",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "differentiation_stage",
+        "value" : "Terminally differentiated",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "differentiation_method",
+        "value" : "Not applicable",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "passage",
+        "value" : "16",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "medium",
+        "value" : "DMEM (Dulbecco's Modified Eagle Medium) with 4.5g/L D-Glucose, L-Glutamine, 110mg/L Sodium Pyruvate, Phenol Red.",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "sex",
+        "value" : "Female",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "batch",
+        "value" : "NA",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "sample_ontology_uri",
+        "value" : "CLO:4290",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease_ontology_uri",
+        "value" : "NCIM:C0549184",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease",
+        "value" : "None",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_provider",
+        "value" : "ATCC, authenticated by STR",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "cell_type",
+        "value" : "hTERT immortalized human retinal pigmented epithelial cell",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "6094353598e2520001af3d78",
+      "ebiId" : null,
+      "submissionId" : "609434f498e2520001af3cbe",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "SUBMITTED",
+      "version" : 1,
+      "creationTime" : 1620325685707,
+      "editionTime" : 1620326743751,
+      "firstPublic" : 1620326743751,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : null,
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : [ "609438a098e2520001af3e4c" ],
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" standalone=\"yes\"?>\n<SAMPLE_SET>\n    <SAMPLE alias=\"MS049101\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE></TITLE>\n        <SAMPLE_NAME>\n            <TAXON_ID>9606</TAXON_ID>\n            <SCIENTIFIC_NAME>Homo sapiens</SCIENTIFIC_NAME>\n            <COMMON_NAME>Human</COMMON_NAME>\n        </SAMPLE_NAME>\n        <DESCRIPTION></DESCRIPTION>\n        <SAMPLE_ATTRIBUTES>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>subject_id</TAG>\n                <VALUE>McGill0491</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>case_or_control</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>gender</TAG>\n                <VALUE>female</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>organism_part</TAG>\n                <VALUE>Retina, eye</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_line</TAG>\n                <VALUE>hTERT RPE-1</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Healthy</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>taxon_id</TAG>\n                <VALUE>9606</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Healthy</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_type</TAG>\n                <VALUE>Cell Line</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>line</TAG>\n                <VALUE>hTERT RPE-1</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>lineage</TAG>\n                <VALUE>Retina, eye; pigmented epithelium</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>differentiation_stage</TAG>\n                <VALUE>Terminally differentiated</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>differentiation_method</TAG>\n                <VALUE>Not applicable</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>passage</TAG>\n                <VALUE>16</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>medium</TAG>\n                <VALUE>DMEM (Dulbecco's Modified Eagle Medium) with 4.5g/L D-Glucose, L-Glutamine, 110mg/L Sodium Pyruvate, Phenol Red.</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sex</TAG>\n                <VALUE>Female</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>batch</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_ontology_uri</TAG>\n                <VALUE>CLO:4290</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease_ontology_uri</TAG>\n                <VALUE>NCIM:C0549184</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease</TAG>\n                <VALUE>None</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_provider</TAG>\n                <VALUE>ATCC, authenticated by STR</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_type</TAG>\n                <VALUE>hTERT immortalized human retinal pigmented epithelial cell</VALUE>\n            </SAMPLE_ATTRIBUTE>\n        </SAMPLE_ATTRIBUTES>\n    </SAMPLE>\n</SAMPLE_SET>\n",
+      "json" : "{\n  \"id\" : \"6094353598e2520001af3d78\",\n  \"ebiId\" : null,\n  \"submissionId\" : \"609434f498e2520001af3cbe\",\n  \"userId\" : \"5539055fe4b0780d14fa0243\",\n  \"submitterId\" : \"ega-box-209\",\n  \"status\" : \"SUBMITTED\",\n  \"version\" : 1,\n  \"creationTime\" : 1620325685707,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : null,\n  \"validationErrorMessages\" : [ ],\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"validationInProgress\" : false,\n  \"ebiSubmissionDetailsIds\" : [ \"609438a098e2520001af3e4c\" ],\n  \"lastEbiSubmissionDetailsId\" : \"609438a098e2520001af3e4c\",\n  \"eraSubmissionId\" : null,\n  \"xmlRootElement\" : {\n    \"sample\" : [ {\n      \"identifiers\" : null,\n      \"alias\" : \"MS049101\",\n      \"centerName\" : \"MCGILL-EDCC\",\n      \"brokerName\" : \"EGA\",\n      \"accession\" : null,\n      \"title\" : \"\",\n      \"samplename\" : {\n        \"taxonid\" : 9606,\n        \"scientificname\" : \"Homo sapiens\",\n        \"commonname\" : \"Human\",\n        \"displayName\" : null\n      },\n      \"description\" : \"\",\n      \"samplelinks\" : null,\n      \"sampleattributes\" : {\n        \"sampleattribute\" : [ {\n          \"tag\" : \"subject_id\",\n          \"value\" : \"McGill0491\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"case_or_control\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"gender\",\n          \"value\" : \"female\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"organism_part\",\n          \"value\" : \"Retina, eye\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"cell_line\",\n          \"value\" : \"hTERT RPE-1\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"phenotype\",\n          \"value\" : \"Healthy\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"taxon_id\",\n          \"value\" : \"9606\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"phenotype\",\n          \"value\" : \"Healthy\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"biomaterial_type\",\n          \"value\" : \"Cell Line\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"line\",\n          \"value\" : \"hTERT RPE-1\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"lineage\",\n          \"value\" : \"Retina, eye; pigmented epithelium\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"differentiation_stage\",\n          \"value\" : \"Terminally differentiated\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"differentiation_method\",\n          \"value\" : \"Not applicable\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"passage\",\n          \"value\" : \"16\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"medium\",\n          \"value\" : \"DMEM (Dulbecco's Modified Eagle Medium) with 4.5g/L D-Glucose, L-Glutamine, 110mg/L Sodium Pyruvate, Phenol Red.\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sex\",\n          \"value\" : \"Female\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"batch\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sample_ontology_uri\",\n          \"value\" : \"CLO:4290\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"disease_ontology_uri\",\n          \"value\" : \"NCIM:C0549184\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"disease\",\n          \"value\" : \"None\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"biomaterial_provider\",\n          \"value\" : \"ATCC, authenticated by STR\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"cell_type\",\n          \"value\" : \"hTERT immortalized human retinal pigmented epithelial cell\",\n          \"units\" : null\n        } ]\n      }\n    } ]\n  },\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"MS049101\",\n  \"egaAccessionId\" : \"EGAN00003140974\",\n  \"title\" : \"\",\n  \"description\" : \"\",\n  \"caseOrControlId\" : \"3\",\n  \"caseOrControl\" : \"NA\",\n  \"genderId\" : \"0\",\n  \"gender\" : \"female\",\n  \"organismPart\" : \"Retina, eye\",\n  \"cellLine\" : \"hTERT RPE-1\",\n  \"region\" : \"\",\n  \"phenotype\" : \"Healthy\",\n  \"subjectId\" : \"McGill0491\",\n  \"attributes\" : [ {\n    \"tag\" : \"taxon_id\",\n    \"value\" : \"9606\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"phenotype\",\n    \"value\" : \"Healthy\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_type\",\n    \"value\" : \"Cell Line\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"line\",\n    \"value\" : \"hTERT RPE-1\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"lineage\",\n    \"value\" : \"Retina, eye; pigmented epithelium\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"differentiation_stage\",\n    \"value\" : \"Terminally differentiated\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"differentiation_method\",\n    \"value\" : \"Not applicable\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"passage\",\n    \"value\" : \"16\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"medium\",\n    \"value\" : \"DMEM (Dulbecco's Modified Eagle Medium) with 4.5g/L D-Glucose, L-Glutamine, 110mg/L Sodium Pyruvate, Phenol Red.\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"sex\",\n    \"value\" : \"Female\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"batch\",\n    \"value\" : \"NA\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"sample_ontology_uri\",\n    \"value\" : \"CLO:4290\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease_ontology_uri\",\n    \"value\" : \"NCIM:C0549184\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease\",\n    \"value\" : \"None\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_provider\",\n    \"value\" : \"ATCC, authenticated by STR\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"cell_type\",\n    \"value\" : \"hTERT immortalized human retinal pigmented epithelial cell\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"centerName\" : \"MCGILL-EDCC\"\n}",
+      "alias" : "MS049101",
+      "egaAccessionId" : "EGAN00003140974",
+      "centerName" : "MCGILL-EDCC"
+    }, {
+      "xmlRootElement" : null,
+      "title" : "",
+      "description" : "",
+      "caseOrControlId" : "3",
+      "caseOrControl" : "NA",
+      "genderId" : "0",
+      "gender" : "female",
+      "organismPart" : "Retina, eye",
+      "cellLine" : "hTERT RPE-1 expressing JAZF1-SUZ12 oncogenic fusion protein",
+      "region" : "",
+      "phenotype" : "Healthy",
+      "subjectId" : "McGill0491",
+      "anonymizedName" : null,
+      "bioSampleId" : null,
+      "sampleAge" : null,
+      "sampleDetail" : null,
+      "attributes" : [ {
+        "tag" : "taxon_id",
+        "value" : "9606",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_type",
+        "value" : "Cell Line",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "line",
+        "value" : "hTERT RPE-1 expressing JAZF1-SUZ12 oncogenic fusion protein",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "lineage",
+        "value" : "Retina, eye; pigmented epithelium",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "differentiation_stage",
+        "value" : "Terminally differentiated",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "differentiation_method",
+        "value" : "Not applicable",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "passage",
+        "value" : "17",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "medium",
+        "value" : "DMEM (Dulbecco's Modified Eagle Medium) with 4.5g/L D-Glucose, L-Glutamine, 110mg/L Sodium Pyruvate, Phenol Red.",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "sex",
+        "value" : "Female",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "batch",
+        "value" : "NA",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "sample_ontology_uri",
+        "value" : "CLO:4290",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease_ontology_uri",
+        "value" : "NCIM:C0549184",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease",
+        "value" : "None",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_provider",
+        "value" : "Engineered by CRISPR-Cas9 in Jacques Cote  Laboratory, Parent cell line from ATCC",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "cell_type",
+        "value" : "hTERT immortalized human retinal pigmented epithelial cell",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "6094355698e2520001af3dd4",
+      "ebiId" : null,
+      "submissionId" : "609434f498e2520001af3cbe",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "SUBMITTED",
+      "version" : 1,
+      "creationTime" : 1620325718474,
+      "editionTime" : 1620326743751,
+      "firstPublic" : 1620326743751,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : null,
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : [ "609438a098e2520001af3e4c" ],
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" standalone=\"yes\"?>\n<SAMPLE_SET>\n    <SAMPLE alias=\"MS049103\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE></TITLE>\n        <SAMPLE_NAME>\n            <TAXON_ID>9606</TAXON_ID>\n            <SCIENTIFIC_NAME>Homo sapiens</SCIENTIFIC_NAME>\n            <COMMON_NAME>Human</COMMON_NAME>\n        </SAMPLE_NAME>\n        <DESCRIPTION></DESCRIPTION>\n        <SAMPLE_ATTRIBUTES>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>subject_id</TAG>\n                <VALUE>McGill0491</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>case_or_control</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>gender</TAG>\n                <VALUE>female</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>organism_part</TAG>\n                <VALUE>Retina, eye</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_line</TAG>\n                <VALUE>hTERT RPE-1 expressing JAZF1-SUZ12 oncogenic fusion protein</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Healthy</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>taxon_id</TAG>\n                <VALUE>9606</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Healthy</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_type</TAG>\n                <VALUE>Cell Line</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>line</TAG>\n                <VALUE>hTERT RPE-1 expressing JAZF1-SUZ12 oncogenic fusion protein</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>lineage</TAG>\n                <VALUE>Retina, eye; pigmented epithelium</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>differentiation_stage</TAG>\n                <VALUE>Terminally differentiated</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>differentiation_method</TAG>\n                <VALUE>Not applicable</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>passage</TAG>\n                <VALUE>17</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>medium</TAG>\n                <VALUE>DMEM (Dulbecco's Modified Eagle Medium) with 4.5g/L D-Glucose, L-Glutamine, 110mg/L Sodium Pyruvate, Phenol Red.</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sex</TAG>\n                <VALUE>Female</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>batch</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_ontology_uri</TAG>\n                <VALUE>CLO:4290</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease_ontology_uri</TAG>\n                <VALUE>NCIM:C0549184</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease</TAG>\n                <VALUE>None</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_provider</TAG>\n                <VALUE>Engineered by CRISPR-Cas9 in Jacques Cote  Laboratory, Parent cell line from ATCC</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_type</TAG>\n                <VALUE>hTERT immortalized human retinal pigmented epithelial cell</VALUE>\n            </SAMPLE_ATTRIBUTE>\n        </SAMPLE_ATTRIBUTES>\n    </SAMPLE>\n</SAMPLE_SET>\n",
+      "json" : "{\n  \"id\" : \"6094355698e2520001af3dd4\",\n  \"ebiId\" : null,\n  \"submissionId\" : \"609434f498e2520001af3cbe\",\n  \"userId\" : \"5539055fe4b0780d14fa0243\",\n  \"submitterId\" : \"ega-box-209\",\n  \"status\" : \"SUBMITTED\",\n  \"version\" : 1,\n  \"creationTime\" : 1620325718474,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : null,\n  \"validationErrorMessages\" : [ ],\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"validationInProgress\" : false,\n  \"ebiSubmissionDetailsIds\" : [ \"609438a098e2520001af3e4c\" ],\n  \"lastEbiSubmissionDetailsId\" : \"609438a098e2520001af3e4c\",\n  \"eraSubmissionId\" : null,\n  \"xmlRootElement\" : {\n    \"sample\" : [ {\n      \"identifiers\" : null,\n      \"alias\" : \"MS049103\",\n      \"centerName\" : \"MCGILL-EDCC\",\n      \"brokerName\" : \"EGA\",\n      \"accession\" : null,\n      \"title\" : \"\",\n      \"samplename\" : {\n        \"taxonid\" : 9606,\n        \"scientificname\" : \"Homo sapiens\",\n        \"commonname\" : \"Human\",\n        \"displayName\" : null\n      },\n      \"description\" : \"\",\n      \"samplelinks\" : null,\n      \"sampleattributes\" : {\n        \"sampleattribute\" : [ {\n          \"tag\" : \"subject_id\",\n          \"value\" : \"McGill0491\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"case_or_control\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"gender\",\n          \"value\" : \"female\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"organism_part\",\n          \"value\" : \"Retina, eye\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"cell_line\",\n          \"value\" : \"hTERT RPE-1 expressing JAZF1-SUZ12 oncogenic fusion protein\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"phenotype\",\n          \"value\" : \"Healthy\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"taxon_id\",\n          \"value\" : \"9606\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"phenotype\",\n          \"value\" : \"Healthy\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"biomaterial_type\",\n          \"value\" : \"Cell Line\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"line\",\n          \"value\" : \"hTERT RPE-1 expressing JAZF1-SUZ12 oncogenic fusion protein\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"lineage\",\n          \"value\" : \"Retina, eye; pigmented epithelium\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"differentiation_stage\",\n          \"value\" : \"Terminally differentiated\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"differentiation_method\",\n          \"value\" : \"Not applicable\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"passage\",\n          \"value\" : \"17\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"medium\",\n          \"value\" : \"DMEM (Dulbecco's Modified Eagle Medium) with 4.5g/L D-Glucose, L-Glutamine, 110mg/L Sodium Pyruvate, Phenol Red.\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sex\",\n          \"value\" : \"Female\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"batch\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sample_ontology_uri\",\n          \"value\" : \"CLO:4290\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"disease_ontology_uri\",\n          \"value\" : \"NCIM:C0549184\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"disease\",\n          \"value\" : \"None\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"biomaterial_provider\",\n          \"value\" : \"Engineered by CRISPR-Cas9 in Jacques Cote  Laboratory, Parent cell line from ATCC\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"cell_type\",\n          \"value\" : \"hTERT immortalized human retinal pigmented epithelial cell\",\n          \"units\" : null\n        } ]\n      }\n    } ]\n  },\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"MS049103\",\n  \"egaAccessionId\" : \"EGAN00003140975\",\n  \"title\" : \"\",\n  \"description\" : \"\",\n  \"caseOrControlId\" : \"3\",\n  \"caseOrControl\" : \"NA\",\n  \"genderId\" : \"0\",\n  \"gender\" : \"female\",\n  \"organismPart\" : \"Retina, eye\",\n  \"cellLine\" : \"hTERT RPE-1 expressing JAZF1-SUZ12 oncogenic fusion protein\",\n  \"region\" : \"\",\n  \"phenotype\" : \"Healthy\",\n  \"subjectId\" : \"McGill0491\",\n  \"attributes\" : [ {\n    \"tag\" : \"taxon_id\",\n    \"value\" : \"9606\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"phenotype\",\n    \"value\" : \"Healthy\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_type\",\n    \"value\" : \"Cell Line\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"line\",\n    \"value\" : \"hTERT RPE-1 expressing JAZF1-SUZ12 oncogenic fusion protein\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"lineage\",\n    \"value\" : \"Retina, eye; pigmented epithelium\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"differentiation_stage\",\n    \"value\" : \"Terminally differentiated\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"differentiation_method\",\n    \"value\" : \"Not applicable\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"passage\",\n    \"value\" : \"17\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"medium\",\n    \"value\" : \"DMEM (Dulbecco's Modified Eagle Medium) with 4.5g/L D-Glucose, L-Glutamine, 110mg/L Sodium Pyruvate, Phenol Red.\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"sex\",\n    \"value\" : \"Female\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"batch\",\n    \"value\" : \"NA\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"sample_ontology_uri\",\n    \"value\" : \"CLO:4290\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease_ontology_uri\",\n    \"value\" : \"NCIM:C0549184\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease\",\n    \"value\" : \"None\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_provider\",\n    \"value\" : \"Engineered by CRISPR-Cas9 in Jacques Cote  Laboratory, Parent cell line from ATCC\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"cell_type\",\n    \"value\" : \"hTERT immortalized human retinal pigmented epithelial cell\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"centerName\" : \"MCGILL-EDCC\"\n}",
+      "alias" : "MS049103",
+      "egaAccessionId" : "EGAN00003140975",
+      "centerName" : "MCGILL-EDCC"
+    }, {
+      "xmlRootElement" : null,
+      "title" : "",
+      "description" : "",
+      "caseOrControlId" : "3",
+      "caseOrControl" : "NA",
+      "genderId" : "1",
+      "gender" : "male",
+      "organismPart" : "Lung",
+      "cellLine" : "A549",
+      "region" : "",
+      "phenotype" : "Lung Adenocarcinoma",
+      "subjectId" : "McGill0490",
+      "anonymizedName" : null,
+      "bioSampleId" : null,
+      "sampleAge" : null,
+      "sampleDetail" : null,
+      "attributes" : [ {
+        "tag" : "taxon_id",
+        "value" : "9606",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_type",
+        "value" : "Cell Line",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "line",
+        "value" : "A549",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "lineage",
+        "value" : "lung epithelial",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "differentiation_stage",
+        "value" : "Undifferentiated",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "differentiation_method",
+        "value" : "NA",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "medium",
+        "value" : "F12K (10% fetal bovine serum)",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "sex",
+        "value" : "Male",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "batch",
+        "value" : "NA",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "sample_ontology_uri",
+        "value" : "EFO:0005288",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease_ontology_uri",
+        "value" : "NCIT:C3512",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease",
+        "value" : "Non-small Cell Lung Adenocarcinoma",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "culture",
+        "value" : "24-days-3D-culture",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "6094351198e2520001af3d12",
+      "ebiId" : null,
+      "submissionId" : "609434f498e2520001af3cbe",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "SUBMITTED",
+      "version" : 1,
+      "creationTime" : 1620325649417,
+      "editionTime" : 1620326743751,
+      "firstPublic" : 1620326743751,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : null,
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : [ "609438a098e2520001af3e4c" ],
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" standalone=\"yes\"?>\n<SAMPLE_SET>\n    <SAMPLE alias=\"MS049002\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE></TITLE>\n        <SAMPLE_NAME>\n            <TAXON_ID>9606</TAXON_ID>\n            <SCIENTIFIC_NAME>Homo sapiens</SCIENTIFIC_NAME>\n            <COMMON_NAME>Human</COMMON_NAME>\n        </SAMPLE_NAME>\n        <DESCRIPTION></DESCRIPTION>\n        <SAMPLE_ATTRIBUTES>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>subject_id</TAG>\n                <VALUE>McGill0490</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>case_or_control</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>gender</TAG>\n                <VALUE>male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>organism_part</TAG>\n                <VALUE>Lung</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_line</TAG>\n                <VALUE>A549</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Lung Adenocarcinoma</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>taxon_id</TAG>\n                <VALUE>9606</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Lung Adenocarcinoma</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_type</TAG>\n                <VALUE>Cell Line</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>line</TAG>\n                <VALUE>A549</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>lineage</TAG>\n                <VALUE>lung epithelial</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>differentiation_stage</TAG>\n                <VALUE>Undifferentiated</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>differentiation_method</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>medium</TAG>\n                <VALUE>F12K (10% fetal bovine serum)</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sex</TAG>\n                <VALUE>Male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>batch</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_ontology_uri</TAG>\n                <VALUE>EFO:0005288</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease_ontology_uri</TAG>\n                <VALUE>NCIT:C3512</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease</TAG>\n                <VALUE>Non-small Cell Lung Adenocarcinoma</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>culture</TAG>\n                <VALUE>24-days-3D-culture</VALUE>\n            </SAMPLE_ATTRIBUTE>\n        </SAMPLE_ATTRIBUTES>\n    </SAMPLE>\n</SAMPLE_SET>\n",
+      "json" : "{\n  \"id\" : \"6094351198e2520001af3d12\",\n  \"ebiId\" : null,\n  \"submissionId\" : \"609434f498e2520001af3cbe\",\n  \"userId\" : \"5539055fe4b0780d14fa0243\",\n  \"submitterId\" : \"ega-box-209\",\n  \"status\" : \"SUBMITTED\",\n  \"version\" : 1,\n  \"creationTime\" : 1620325649417,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : null,\n  \"validationErrorMessages\" : [ ],\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"validationInProgress\" : false,\n  \"ebiSubmissionDetailsIds\" : [ \"609438a098e2520001af3e4c\" ],\n  \"lastEbiSubmissionDetailsId\" : \"609438a098e2520001af3e4c\",\n  \"eraSubmissionId\" : null,\n  \"xmlRootElement\" : {\n    \"sample\" : [ {\n      \"identifiers\" : null,\n      \"alias\" : \"MS049002\",\n      \"centerName\" : \"MCGILL-EDCC\",\n      \"brokerName\" : \"EGA\",\n      \"accession\" : null,\n      \"title\" : \"\",\n      \"samplename\" : {\n        \"taxonid\" : 9606,\n        \"scientificname\" : \"Homo sapiens\",\n        \"commonname\" : \"Human\",\n        \"displayName\" : null\n      },\n      \"description\" : \"\",\n      \"samplelinks\" : null,\n      \"sampleattributes\" : {\n        \"sampleattribute\" : [ {\n          \"tag\" : \"subject_id\",\n          \"value\" : \"McGill0490\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"case_or_control\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"gender\",\n          \"value\" : \"male\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"organism_part\",\n          \"value\" : \"Lung\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"cell_line\",\n          \"value\" : \"A549\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"phenotype\",\n          \"value\" : \"Lung Adenocarcinoma\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"taxon_id\",\n          \"value\" : \"9606\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"phenotype\",\n          \"value\" : \"Lung Adenocarcinoma\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"biomaterial_type\",\n          \"value\" : \"Cell Line\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"line\",\n          \"value\" : \"A549\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"lineage\",\n          \"value\" : \"lung epithelial\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"differentiation_stage\",\n          \"value\" : \"Undifferentiated\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"differentiation_method\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"medium\",\n          \"value\" : \"F12K (10% fetal bovine serum)\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sex\",\n          \"value\" : \"Male\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"batch\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sample_ontology_uri\",\n          \"value\" : \"EFO:0005288\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"disease_ontology_uri\",\n          \"value\" : \"NCIT:C3512\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"disease\",\n          \"value\" : \"Non-small Cell Lung Adenocarcinoma\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"culture\",\n          \"value\" : \"24-days-3D-culture\",\n          \"units\" : null\n        } ]\n      }\n    } ]\n  },\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"MS049002\",\n  \"egaAccessionId\" : \"EGAN00003140976\",\n  \"title\" : \"\",\n  \"description\" : \"\",\n  \"caseOrControlId\" : \"3\",\n  \"caseOrControl\" : \"NA\",\n  \"genderId\" : \"1\",\n  \"gender\" : \"male\",\n  \"organismPart\" : \"Lung\",\n  \"cellLine\" : \"A549\",\n  \"region\" : \"\",\n  \"phenotype\" : \"Lung Adenocarcinoma\",\n  \"subjectId\" : \"McGill0490\",\n  \"attributes\" : [ {\n    \"tag\" : \"taxon_id\",\n    \"value\" : \"9606\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"phenotype\",\n    \"value\" : \"Lung Adenocarcinoma\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_type\",\n    \"value\" : \"Cell Line\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"line\",\n    \"value\" : \"A549\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"lineage\",\n    \"value\" : \"lung epithelial\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"differentiation_stage\",\n    \"value\" : \"Undifferentiated\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"differentiation_method\",\n    \"value\" : \"NA\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"medium\",\n    \"value\" : \"F12K (10% fetal bovine serum)\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"sex\",\n    \"value\" : \"Male\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"batch\",\n    \"value\" : \"NA\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"sample_ontology_uri\",\n    \"value\" : \"EFO:0005288\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease_ontology_uri\",\n    \"value\" : \"NCIT:C3512\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease\",\n    \"value\" : \"Non-small Cell Lung Adenocarcinoma\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"culture\",\n    \"value\" : \"24-days-3D-culture\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"centerName\" : \"MCGILL-EDCC\"\n}",
+      "alias" : "MS049002",
+      "egaAccessionId" : "EGAN00003140976",
+      "centerName" : "MCGILL-EDCC"
+    }, {
+      "xmlRootElement" : null,
+      "title" : "",
+      "description" : "",
+      "caseOrControlId" : "3",
+      "caseOrControl" : "NA",
+      "genderId" : "0",
+      "gender" : "female",
+      "organismPart" : "Osteoblast",
+      "cellLine" : "SaOS-2",
+      "region" : "",
+      "phenotype" : "Osteosarcoma",
+      "subjectId" : "McGill0489",
+      "anonymizedName" : null,
+      "bioSampleId" : null,
+      "sampleAge" : "11",
+      "sampleDetail" : null,
+      "attributes" : [ {
+        "tag" : "taxon_id",
+        "value" : "9606",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age",
+        "value" : "11",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_age_unit",
+        "value" : "years",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_health_status",
+        "value" : "Unknown",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_ethnicity",
+        "value" : "Caucasian",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "donor_sex",
+        "value" : "female",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_type",
+        "value" : "Cell Line",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "line",
+        "value" : "SaOS-2",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "lineage",
+        "value" : "Osteoblast",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "medium",
+        "value" : "McCoy 5A; 15% FBS; 1% Pen/Strep",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "sex",
+        "value" : "Female",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "sample_ontology_uri",
+        "value" : "http://purl.obolibrary.org/obo/CLO_0008947",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease_ontology_uri",
+        "value" : "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&code=C9145",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease",
+        "value" : "osteosarcoma",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "differentiation_stage",
+        "value" : "Undifferentiated",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "cell_type",
+        "value" : "SaOS-2",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "project_name",
+        "value" : "EMC1",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "609434f698e2520001af3cc0",
+      "ebiId" : null,
+      "submissionId" : "609434f498e2520001af3cbe",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "SUBMITTED",
+      "version" : 1,
+      "creationTime" : 1620325622185,
+      "editionTime" : 1620326743751,
+      "firstPublic" : 1620326743751,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : null,
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : [ "609438a098e2520001af3e4c" ],
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" standalone=\"yes\"?>\n<SAMPLE_SET>\n    <SAMPLE alias=\"MS048901\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE></TITLE>\n        <SAMPLE_NAME>\n            <TAXON_ID>9606</TAXON_ID>\n            <SCIENTIFIC_NAME>Homo sapiens</SCIENTIFIC_NAME>\n            <COMMON_NAME>Human</COMMON_NAME>\n        </SAMPLE_NAME>\n        <DESCRIPTION></DESCRIPTION>\n        <SAMPLE_ATTRIBUTES>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>subject_id</TAG>\n                <VALUE>McGill0489</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>case_or_control</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>gender</TAG>\n                <VALUE>female</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>organism_part</TAG>\n                <VALUE>Osteoblast</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_line</TAG>\n                <VALUE>SaOS-2</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Osteosarcoma</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_age</TAG>\n                <VALUE>11</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>taxon_id</TAG>\n                <VALUE>9606</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Osteosarcoma</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age</TAG>\n                <VALUE>11</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_age_unit</TAG>\n                <VALUE>years</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_health_status</TAG>\n                <VALUE>Unknown</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_ethnicity</TAG>\n                <VALUE>Caucasian</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>donor_sex</TAG>\n                <VALUE>female</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_type</TAG>\n                <VALUE>Cell Line</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>line</TAG>\n                <VALUE>SaOS-2</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>lineage</TAG>\n                <VALUE>Osteoblast</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>medium</TAG>\n                <VALUE>McCoy 5A; 15% FBS; 1% Pen/Strep</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sex</TAG>\n                <VALUE>Female</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_ontology_uri</TAG>\n                <VALUE>http://purl.obolibrary.org/obo/CLO_0008947</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease_ontology_uri</TAG>\n                <VALUE>https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&amp;code=C9145</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease</TAG>\n                <VALUE>osteosarcoma</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>differentiation_stage</TAG>\n                <VALUE>Undifferentiated</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_type</TAG>\n                <VALUE>SaOS-2</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>project_name</TAG>\n                <VALUE>EMC1</VALUE>\n            </SAMPLE_ATTRIBUTE>\n        </SAMPLE_ATTRIBUTES>\n    </SAMPLE>\n</SAMPLE_SET>\n",
+      "json" : "{\n  \"id\" : \"609434f698e2520001af3cc0\",\n  \"ebiId\" : null,\n  \"submissionId\" : \"609434f498e2520001af3cbe\",\n  \"userId\" : \"5539055fe4b0780d14fa0243\",\n  \"submitterId\" : \"ega-box-209\",\n  \"status\" : \"SUBMITTED\",\n  \"version\" : 1,\n  \"creationTime\" : 1620325622185,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : null,\n  \"validationErrorMessages\" : [ ],\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"validationInProgress\" : false,\n  \"ebiSubmissionDetailsIds\" : [ \"609438a098e2520001af3e4c\" ],\n  \"lastEbiSubmissionDetailsId\" : \"609438a098e2520001af3e4c\",\n  \"eraSubmissionId\" : null,\n  \"xmlRootElement\" : {\n    \"sample\" : [ {\n      \"identifiers\" : null,\n      \"alias\" : \"MS048901\",\n      \"centerName\" : \"MCGILL-EDCC\",\n      \"brokerName\" : \"EGA\",\n      \"accession\" : null,\n      \"title\" : \"\",\n      \"samplename\" : {\n        \"taxonid\" : 9606,\n        \"scientificname\" : \"Homo sapiens\",\n        \"commonname\" : \"Human\",\n        \"displayName\" : null\n      },\n      \"description\" : \"\",\n      \"samplelinks\" : null,\n      \"sampleattributes\" : {\n        \"sampleattribute\" : [ {\n          \"tag\" : \"subject_id\",\n          \"value\" : \"McGill0489\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"case_or_control\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"gender\",\n          \"value\" : \"female\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"organism_part\",\n          \"value\" : \"Osteoblast\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"cell_line\",\n          \"value\" : \"SaOS-2\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"phenotype\",\n          \"value\" : \"Osteosarcoma\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sample_age\",\n          \"value\" : \"11\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"taxon_id\",\n          \"value\" : \"9606\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"phenotype\",\n          \"value\" : \"Osteosarcoma\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"donor_age\",\n          \"value\" : \"11\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"donor_age_unit\",\n          \"value\" : \"years\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"donor_health_status\",\n          \"value\" : \"Unknown\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"donor_ethnicity\",\n          \"value\" : \"Caucasian\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"donor_sex\",\n          \"value\" : \"female\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"biomaterial_type\",\n          \"value\" : \"Cell Line\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"line\",\n          \"value\" : \"SaOS-2\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"lineage\",\n          \"value\" : \"Osteoblast\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"medium\",\n          \"value\" : \"McCoy 5A; 15% FBS; 1% Pen/Strep\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sex\",\n          \"value\" : \"Female\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sample_ontology_uri\",\n          \"value\" : \"http://purl.obolibrary.org/obo/CLO_0008947\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"disease_ontology_uri\",\n          \"value\" : \"https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&code=C9145\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"disease\",\n          \"value\" : \"osteosarcoma\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"differentiation_stage\",\n          \"value\" : \"Undifferentiated\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"cell_type\",\n          \"value\" : \"SaOS-2\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"project_name\",\n          \"value\" : \"EMC1\",\n          \"units\" : null\n        } ]\n      }\n    } ]\n  },\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"MS048901\",\n  \"egaAccessionId\" : \"EGAN00003140977\",\n  \"title\" : \"\",\n  \"description\" : \"\",\n  \"caseOrControlId\" : \"3\",\n  \"caseOrControl\" : \"NA\",\n  \"genderId\" : \"0\",\n  \"gender\" : \"female\",\n  \"organismPart\" : \"Osteoblast\",\n  \"cellLine\" : \"SaOS-2\",\n  \"region\" : \"\",\n  \"phenotype\" : \"Osteosarcoma\",\n  \"subjectId\" : \"McGill0489\",\n  \"attributes\" : [ {\n    \"tag\" : \"taxon_id\",\n    \"value\" : \"9606\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"phenotype\",\n    \"value\" : \"Osteosarcoma\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age\",\n    \"value\" : \"11\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_age_unit\",\n    \"value\" : \"years\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_health_status\",\n    \"value\" : \"Unknown\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_ethnicity\",\n    \"value\" : \"Caucasian\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"donor_sex\",\n    \"value\" : \"female\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_type\",\n    \"value\" : \"Cell Line\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"line\",\n    \"value\" : \"SaOS-2\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"lineage\",\n    \"value\" : \"Osteoblast\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"medium\",\n    \"value\" : \"McCoy 5A; 15% FBS; 1% Pen/Strep\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"sex\",\n    \"value\" : \"Female\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"sample_ontology_uri\",\n    \"value\" : \"http://purl.obolibrary.org/obo/CLO_0008947\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease_ontology_uri\",\n    \"value\" : \"https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&code=C9145\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease\",\n    \"value\" : \"osteosarcoma\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"differentiation_stage\",\n    \"value\" : \"Undifferentiated\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"cell_type\",\n    \"value\" : \"SaOS-2\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"project_name\",\n    \"value\" : \"EMC1\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"centerName\" : \"MCGILL-EDCC\"\n}",
+      "alias" : "MS048901",
+      "egaAccessionId" : "EGAN00003140977",
+      "centerName" : "MCGILL-EDCC"
+    }, {
+      "xmlRootElement" : null,
+      "title" : "",
+      "description" : "",
+      "caseOrControlId" : "3",
+      "caseOrControl" : "NA",
+      "genderId" : "1",
+      "gender" : "male",
+      "organismPart" : "Lung",
+      "cellLine" : "A549",
+      "region" : "",
+      "phenotype" : "Lung Adenocarcinoma",
+      "subjectId" : "McGill0490",
+      "anonymizedName" : null,
+      "bioSampleId" : null,
+      "sampleAge" : null,
+      "sampleDetail" : null,
+      "attributes" : [ {
+        "tag" : "taxon_id",
+        "value" : "9606",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_type",
+        "value" : "Cell Line",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "line",
+        "value" : "A549",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "lineage",
+        "value" : "lung epithelial",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "differentiation_stage",
+        "value" : "Undifferentiated",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "differentiation_method",
+        "value" : "NA",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "medium",
+        "value" : "F12K (10% fetal bovine serum)",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "sex",
+        "value" : "Male",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "batch",
+        "value" : "NA",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "sample_ontology_uri",
+        "value" : "EFO:0005288",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease_ontology_uri",
+        "value" : "NCIT:C3512",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease",
+        "value" : "Non-small Cell Lung Adenocarcinoma",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "culture",
+        "value" : "10-days-3D-culture",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "6094350698e2520001af3cf0",
+      "ebiId" : null,
+      "submissionId" : "609434f498e2520001af3cbe",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "SUBMITTED",
+      "version" : 1,
+      "creationTime" : 1620325638952,
+      "editionTime" : 1620326743751,
+      "firstPublic" : 1620326743751,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : null,
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : [ "609438a098e2520001af3e4c" ],
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" standalone=\"yes\"?>\n<SAMPLE_SET>\n    <SAMPLE alias=\"MS049001\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE></TITLE>\n        <SAMPLE_NAME>\n            <TAXON_ID>9606</TAXON_ID>\n            <SCIENTIFIC_NAME>Homo sapiens</SCIENTIFIC_NAME>\n            <COMMON_NAME>Human</COMMON_NAME>\n        </SAMPLE_NAME>\n        <DESCRIPTION></DESCRIPTION>\n        <SAMPLE_ATTRIBUTES>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>subject_id</TAG>\n                <VALUE>McGill0490</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>case_or_control</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>gender</TAG>\n                <VALUE>male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>organism_part</TAG>\n                <VALUE>Lung</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_line</TAG>\n                <VALUE>A549</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Lung Adenocarcinoma</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>taxon_id</TAG>\n                <VALUE>9606</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Lung Adenocarcinoma</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_type</TAG>\n                <VALUE>Cell Line</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>line</TAG>\n                <VALUE>A549</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>lineage</TAG>\n                <VALUE>lung epithelial</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>differentiation_stage</TAG>\n                <VALUE>Undifferentiated</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>differentiation_method</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>medium</TAG>\n                <VALUE>F12K (10% fetal bovine serum)</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sex</TAG>\n                <VALUE>Male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>batch</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_ontology_uri</TAG>\n                <VALUE>EFO:0005288</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease_ontology_uri</TAG>\n                <VALUE>NCIT:C3512</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease</TAG>\n                <VALUE>Non-small Cell Lung Adenocarcinoma</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>culture</TAG>\n                <VALUE>10-days-3D-culture</VALUE>\n            </SAMPLE_ATTRIBUTE>\n        </SAMPLE_ATTRIBUTES>\n    </SAMPLE>\n</SAMPLE_SET>\n",
+      "json" : "{\n  \"id\" : \"6094350698e2520001af3cf0\",\n  \"ebiId\" : null,\n  \"submissionId\" : \"609434f498e2520001af3cbe\",\n  \"userId\" : \"5539055fe4b0780d14fa0243\",\n  \"submitterId\" : \"ega-box-209\",\n  \"status\" : \"SUBMITTED\",\n  \"version\" : 1,\n  \"creationTime\" : 1620325638952,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : null,\n  \"validationErrorMessages\" : [ ],\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"validationInProgress\" : false,\n  \"ebiSubmissionDetailsIds\" : [ \"609438a098e2520001af3e4c\" ],\n  \"lastEbiSubmissionDetailsId\" : \"609438a098e2520001af3e4c\",\n  \"eraSubmissionId\" : null,\n  \"xmlRootElement\" : {\n    \"sample\" : [ {\n      \"identifiers\" : null,\n      \"alias\" : \"MS049001\",\n      \"centerName\" : \"MCGILL-EDCC\",\n      \"brokerName\" : \"EGA\",\n      \"accession\" : null,\n      \"title\" : \"\",\n      \"samplename\" : {\n        \"taxonid\" : 9606,\n        \"scientificname\" : \"Homo sapiens\",\n        \"commonname\" : \"Human\",\n        \"displayName\" : null\n      },\n      \"description\" : \"\",\n      \"samplelinks\" : null,\n      \"sampleattributes\" : {\n        \"sampleattribute\" : [ {\n          \"tag\" : \"subject_id\",\n          \"value\" : \"McGill0490\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"case_or_control\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"gender\",\n          \"value\" : \"male\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"organism_part\",\n          \"value\" : \"Lung\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"cell_line\",\n          \"value\" : \"A549\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"phenotype\",\n          \"value\" : \"Lung Adenocarcinoma\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"taxon_id\",\n          \"value\" : \"9606\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"phenotype\",\n          \"value\" : \"Lung Adenocarcinoma\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"biomaterial_type\",\n          \"value\" : \"Cell Line\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"line\",\n          \"value\" : \"A549\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"lineage\",\n          \"value\" : \"lung epithelial\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"differentiation_stage\",\n          \"value\" : \"Undifferentiated\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"differentiation_method\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"medium\",\n          \"value\" : \"F12K (10% fetal bovine serum)\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sex\",\n          \"value\" : \"Male\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"batch\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sample_ontology_uri\",\n          \"value\" : \"EFO:0005288\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"disease_ontology_uri\",\n          \"value\" : \"NCIT:C3512\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"disease\",\n          \"value\" : \"Non-small Cell Lung Adenocarcinoma\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"culture\",\n          \"value\" : \"10-days-3D-culture\",\n          \"units\" : null\n        } ]\n      }\n    } ]\n  },\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"MS049001\",\n  \"egaAccessionId\" : \"EGAN00003140978\",\n  \"title\" : \"\",\n  \"description\" : \"\",\n  \"caseOrControlId\" : \"3\",\n  \"caseOrControl\" : \"NA\",\n  \"genderId\" : \"1\",\n  \"gender\" : \"male\",\n  \"organismPart\" : \"Lung\",\n  \"cellLine\" : \"A549\",\n  \"region\" : \"\",\n  \"phenotype\" : \"Lung Adenocarcinoma\",\n  \"subjectId\" : \"McGill0490\",\n  \"attributes\" : [ {\n    \"tag\" : \"taxon_id\",\n    \"value\" : \"9606\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"phenotype\",\n    \"value\" : \"Lung Adenocarcinoma\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_type\",\n    \"value\" : \"Cell Line\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"line\",\n    \"value\" : \"A549\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"lineage\",\n    \"value\" : \"lung epithelial\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"differentiation_stage\",\n    \"value\" : \"Undifferentiated\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"differentiation_method\",\n    \"value\" : \"NA\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"medium\",\n    \"value\" : \"F12K (10% fetal bovine serum)\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"sex\",\n    \"value\" : \"Male\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"batch\",\n    \"value\" : \"NA\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"sample_ontology_uri\",\n    \"value\" : \"EFO:0005288\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease_ontology_uri\",\n    \"value\" : \"NCIT:C3512\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease\",\n    \"value\" : \"Non-small Cell Lung Adenocarcinoma\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"culture\",\n    \"value\" : \"10-days-3D-culture\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"centerName\" : \"MCGILL-EDCC\"\n}",
+      "alias" : "MS049001",
+      "egaAccessionId" : "EGAN00003140978",
+      "centerName" : "MCGILL-EDCC"
+    }, {
+      "xmlRootElement" : null,
+      "title" : "",
+      "description" : "",
+      "caseOrControlId" : "3",
+      "caseOrControl" : "NA",
+      "genderId" : "0",
+      "gender" : "female",
+      "organismPart" : "Retina, eye",
+      "cellLine" : "hTERT RPE-1 expressing EPC1-PHF1 oncogenic fusion protein",
+      "region" : "",
+      "phenotype" : "Healthy",
+      "subjectId" : "McGill0491",
+      "anonymizedName" : null,
+      "bioSampleId" : null,
+      "sampleAge" : null,
+      "sampleDetail" : null,
+      "attributes" : [ {
+        "tag" : "taxon_id",
+        "value" : "9606",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_type",
+        "value" : "Cell Line",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "line",
+        "value" : "hTERT RPE-1 expressing EPC1-PHF1 oncogenic fusion protein",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "lineage",
+        "value" : "Retina, eye; pigmented epithelium",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "differentiation_stage",
+        "value" : "Terminally differentiated",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "differentiation_method",
+        "value" : "Not applicable",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "passage",
+        "value" : "17",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "medium",
+        "value" : "DMEM (Dulbecco's Modified Eagle Medium) with 4.5g/L D-Glucose, L-Glutamine, 110mg/L Sodium Pyruvate, Phenol Red.",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "sex",
+        "value" : "Female",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "batch",
+        "value" : "NA",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "sample_ontology_uri",
+        "value" : "CLO:4290",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease_ontology_uri",
+        "value" : "NCIM:C0549184",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease",
+        "value" : "None",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_provider",
+        "value" : "Engineered by CRISPR-Cas9 in Jacques Cote  Laboratory, Parent cell line from ATCC",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "cell_type",
+        "value" : "hTERT immortalized human retinal pigmented epithelial cell",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "6094354698e2520001af3da6",
+      "ebiId" : null,
+      "submissionId" : "609434f498e2520001af3cbe",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "SUBMITTED",
+      "version" : 1,
+      "creationTime" : 1620325702008,
+      "editionTime" : 1620326743751,
+      "firstPublic" : 1620326743751,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : null,
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : [ "609438a098e2520001af3e4c" ],
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" standalone=\"yes\"?>\n<SAMPLE_SET>\n    <SAMPLE alias=\"MS049102\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE></TITLE>\n        <SAMPLE_NAME>\n            <TAXON_ID>9606</TAXON_ID>\n            <SCIENTIFIC_NAME>Homo sapiens</SCIENTIFIC_NAME>\n            <COMMON_NAME>Human</COMMON_NAME>\n        </SAMPLE_NAME>\n        <DESCRIPTION></DESCRIPTION>\n        <SAMPLE_ATTRIBUTES>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>subject_id</TAG>\n                <VALUE>McGill0491</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>case_or_control</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>gender</TAG>\n                <VALUE>female</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>organism_part</TAG>\n                <VALUE>Retina, eye</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_line</TAG>\n                <VALUE>hTERT RPE-1 expressing EPC1-PHF1 oncogenic fusion protein</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Healthy</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>taxon_id</TAG>\n                <VALUE>9606</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Healthy</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_type</TAG>\n                <VALUE>Cell Line</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>line</TAG>\n                <VALUE>hTERT RPE-1 expressing EPC1-PHF1 oncogenic fusion protein</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>lineage</TAG>\n                <VALUE>Retina, eye; pigmented epithelium</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>differentiation_stage</TAG>\n                <VALUE>Terminally differentiated</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>differentiation_method</TAG>\n                <VALUE>Not applicable</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>passage</TAG>\n                <VALUE>17</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>medium</TAG>\n                <VALUE>DMEM (Dulbecco's Modified Eagle Medium) with 4.5g/L D-Glucose, L-Glutamine, 110mg/L Sodium Pyruvate, Phenol Red.</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sex</TAG>\n                <VALUE>Female</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>batch</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_ontology_uri</TAG>\n                <VALUE>CLO:4290</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease_ontology_uri</TAG>\n                <VALUE>NCIM:C0549184</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease</TAG>\n                <VALUE>None</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_provider</TAG>\n                <VALUE>Engineered by CRISPR-Cas9 in Jacques Cote  Laboratory, Parent cell line from ATCC</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_type</TAG>\n                <VALUE>hTERT immortalized human retinal pigmented epithelial cell</VALUE>\n            </SAMPLE_ATTRIBUTE>\n        </SAMPLE_ATTRIBUTES>\n    </SAMPLE>\n</SAMPLE_SET>\n",
+      "json" : "{\n  \"id\" : \"6094354698e2520001af3da6\",\n  \"ebiId\" : null,\n  \"submissionId\" : \"609434f498e2520001af3cbe\",\n  \"userId\" : \"5539055fe4b0780d14fa0243\",\n  \"submitterId\" : \"ega-box-209\",\n  \"status\" : \"SUBMITTED\",\n  \"version\" : 1,\n  \"creationTime\" : 1620325702008,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : null,\n  \"validationErrorMessages\" : [ ],\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"validationInProgress\" : false,\n  \"ebiSubmissionDetailsIds\" : [ \"609438a098e2520001af3e4c\" ],\n  \"lastEbiSubmissionDetailsId\" : \"609438a098e2520001af3e4c\",\n  \"eraSubmissionId\" : null,\n  \"xmlRootElement\" : {\n    \"sample\" : [ {\n      \"identifiers\" : null,\n      \"alias\" : \"MS049102\",\n      \"centerName\" : \"MCGILL-EDCC\",\n      \"brokerName\" : \"EGA\",\n      \"accession\" : null,\n      \"title\" : \"\",\n      \"samplename\" : {\n        \"taxonid\" : 9606,\n        \"scientificname\" : \"Homo sapiens\",\n        \"commonname\" : \"Human\",\n        \"displayName\" : null\n      },\n      \"description\" : \"\",\n      \"samplelinks\" : null,\n      \"sampleattributes\" : {\n        \"sampleattribute\" : [ {\n          \"tag\" : \"subject_id\",\n          \"value\" : \"McGill0491\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"case_or_control\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"gender\",\n          \"value\" : \"female\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"organism_part\",\n          \"value\" : \"Retina, eye\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"cell_line\",\n          \"value\" : \"hTERT RPE-1 expressing EPC1-PHF1 oncogenic fusion protein\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"phenotype\",\n          \"value\" : \"Healthy\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"taxon_id\",\n          \"value\" : \"9606\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"phenotype\",\n          \"value\" : \"Healthy\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"biomaterial_type\",\n          \"value\" : \"Cell Line\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"line\",\n          \"value\" : \"hTERT RPE-1 expressing EPC1-PHF1 oncogenic fusion protein\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"lineage\",\n          \"value\" : \"Retina, eye; pigmented epithelium\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"differentiation_stage\",\n          \"value\" : \"Terminally differentiated\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"differentiation_method\",\n          \"value\" : \"Not applicable\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"passage\",\n          \"value\" : \"17\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"medium\",\n          \"value\" : \"DMEM (Dulbecco's Modified Eagle Medium) with 4.5g/L D-Glucose, L-Glutamine, 110mg/L Sodium Pyruvate, Phenol Red.\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sex\",\n          \"value\" : \"Female\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"batch\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sample_ontology_uri\",\n          \"value\" : \"CLO:4290\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"disease_ontology_uri\",\n          \"value\" : \"NCIM:C0549184\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"disease\",\n          \"value\" : \"None\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"biomaterial_provider\",\n          \"value\" : \"Engineered by CRISPR-Cas9 in Jacques Cote  Laboratory, Parent cell line from ATCC\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"cell_type\",\n          \"value\" : \"hTERT immortalized human retinal pigmented epithelial cell\",\n          \"units\" : null\n        } ]\n      }\n    } ]\n  },\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"MS049102\",\n  \"egaAccessionId\" : \"EGAN00003140979\",\n  \"title\" : \"\",\n  \"description\" : \"\",\n  \"caseOrControlId\" : \"3\",\n  \"caseOrControl\" : \"NA\",\n  \"genderId\" : \"0\",\n  \"gender\" : \"female\",\n  \"organismPart\" : \"Retina, eye\",\n  \"cellLine\" : \"hTERT RPE-1 expressing EPC1-PHF1 oncogenic fusion protein\",\n  \"region\" : \"\",\n  \"phenotype\" : \"Healthy\",\n  \"subjectId\" : \"McGill0491\",\n  \"attributes\" : [ {\n    \"tag\" : \"taxon_id\",\n    \"value\" : \"9606\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"phenotype\",\n    \"value\" : \"Healthy\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_type\",\n    \"value\" : \"Cell Line\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"line\",\n    \"value\" : \"hTERT RPE-1 expressing EPC1-PHF1 oncogenic fusion protein\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"lineage\",\n    \"value\" : \"Retina, eye; pigmented epithelium\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"differentiation_stage\",\n    \"value\" : \"Terminally differentiated\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"differentiation_method\",\n    \"value\" : \"Not applicable\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"passage\",\n    \"value\" : \"17\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"medium\",\n    \"value\" : \"DMEM (Dulbecco's Modified Eagle Medium) with 4.5g/L D-Glucose, L-Glutamine, 110mg/L Sodium Pyruvate, Phenol Red.\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"sex\",\n    \"value\" : \"Female\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"batch\",\n    \"value\" : \"NA\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"sample_ontology_uri\",\n    \"value\" : \"CLO:4290\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease_ontology_uri\",\n    \"value\" : \"NCIM:C0549184\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease\",\n    \"value\" : \"None\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_provider\",\n    \"value\" : \"Engineered by CRISPR-Cas9 in Jacques Cote  Laboratory, Parent cell line from ATCC\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"cell_type\",\n    \"value\" : \"hTERT immortalized human retinal pigmented epithelial cell\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"centerName\" : \"MCGILL-EDCC\"\n}",
+      "alias" : "MS049102",
+      "egaAccessionId" : "EGAN00003140979",
+      "centerName" : "MCGILL-EDCC"
+    }, {
+      "xmlRootElement" : null,
+      "title" : "",
+      "description" : "",
+      "caseOrControlId" : "3",
+      "caseOrControl" : "NA",
+      "genderId" : "1",
+      "gender" : "male",
+      "organismPart" : "Lung",
+      "cellLine" : "A549",
+      "region" : "",
+      "phenotype" : "Lung Adenocarcinoma",
+      "subjectId" : "McGill0490",
+      "anonymizedName" : null,
+      "bioSampleId" : null,
+      "sampleAge" : null,
+      "sampleDetail" : null,
+      "attributes" : [ {
+        "tag" : "taxon_id",
+        "value" : "9606",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_type",
+        "value" : "Cell Line",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "line",
+        "value" : "A549",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "lineage",
+        "value" : "lung epithelial",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "differentiation_stage",
+        "value" : "Undifferentiated",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "differentiation_method",
+        "value" : "NA",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "medium",
+        "value" : "F12K (10% fetal bovine serum)",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "sex",
+        "value" : "Male",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "batch",
+        "value" : "NA",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "sample_ontology_uri",
+        "value" : "EFO:0005288",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease_ontology_uri",
+        "value" : "NCIT:C3512",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease",
+        "value" : "Non-small Cell Lung Adenocarcinoma",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "culture",
+        "value" : "3-days-3D-culture",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "6094352a98e2520001af3d56",
+      "ebiId" : null,
+      "submissionId" : "609434f498e2520001af3cbe",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "SUBMITTED",
+      "version" : 1,
+      "creationTime" : 1620325674331,
+      "editionTime" : 1620326743751,
+      "firstPublic" : 1620326743751,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : null,
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : [ "609438a098e2520001af3e4c" ],
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" standalone=\"yes\"?>\n<SAMPLE_SET>\n    <SAMPLE alias=\"MS049004\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE></TITLE>\n        <SAMPLE_NAME>\n            <TAXON_ID>9606</TAXON_ID>\n            <SCIENTIFIC_NAME>Homo sapiens</SCIENTIFIC_NAME>\n            <COMMON_NAME>Human</COMMON_NAME>\n        </SAMPLE_NAME>\n        <DESCRIPTION></DESCRIPTION>\n        <SAMPLE_ATTRIBUTES>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>subject_id</TAG>\n                <VALUE>McGill0490</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>case_or_control</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>gender</TAG>\n                <VALUE>male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>organism_part</TAG>\n                <VALUE>Lung</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_line</TAG>\n                <VALUE>A549</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Lung Adenocarcinoma</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>taxon_id</TAG>\n                <VALUE>9606</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Lung Adenocarcinoma</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_type</TAG>\n                <VALUE>Cell Line</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>line</TAG>\n                <VALUE>A549</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>lineage</TAG>\n                <VALUE>lung epithelial</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>differentiation_stage</TAG>\n                <VALUE>Undifferentiated</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>differentiation_method</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>medium</TAG>\n                <VALUE>F12K (10% fetal bovine serum)</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sex</TAG>\n                <VALUE>Male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>batch</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_ontology_uri</TAG>\n                <VALUE>EFO:0005288</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease_ontology_uri</TAG>\n                <VALUE>NCIT:C3512</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease</TAG>\n                <VALUE>Non-small Cell Lung Adenocarcinoma</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>culture</TAG>\n                <VALUE>3-days-3D-culture</VALUE>\n            </SAMPLE_ATTRIBUTE>\n        </SAMPLE_ATTRIBUTES>\n    </SAMPLE>\n</SAMPLE_SET>\n",
+      "json" : "{\n  \"id\" : \"6094352a98e2520001af3d56\",\n  \"ebiId\" : null,\n  \"submissionId\" : \"609434f498e2520001af3cbe\",\n  \"userId\" : \"5539055fe4b0780d14fa0243\",\n  \"submitterId\" : \"ega-box-209\",\n  \"status\" : \"SUBMITTED\",\n  \"version\" : 1,\n  \"creationTime\" : 1620325674331,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : null,\n  \"validationErrorMessages\" : [ ],\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"validationInProgress\" : false,\n  \"ebiSubmissionDetailsIds\" : [ \"609438a098e2520001af3e4c\" ],\n  \"lastEbiSubmissionDetailsId\" : \"609438a098e2520001af3e4c\",\n  \"eraSubmissionId\" : null,\n  \"xmlRootElement\" : {\n    \"sample\" : [ {\n      \"identifiers\" : null,\n      \"alias\" : \"MS049004\",\n      \"centerName\" : \"MCGILL-EDCC\",\n      \"brokerName\" : \"EGA\",\n      \"accession\" : null,\n      \"title\" : \"\",\n      \"samplename\" : {\n        \"taxonid\" : 9606,\n        \"scientificname\" : \"Homo sapiens\",\n        \"commonname\" : \"Human\",\n        \"displayName\" : null\n      },\n      \"description\" : \"\",\n      \"samplelinks\" : null,\n      \"sampleattributes\" : {\n        \"sampleattribute\" : [ {\n          \"tag\" : \"subject_id\",\n          \"value\" : \"McGill0490\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"case_or_control\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"gender\",\n          \"value\" : \"male\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"organism_part\",\n          \"value\" : \"Lung\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"cell_line\",\n          \"value\" : \"A549\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"phenotype\",\n          \"value\" : \"Lung Adenocarcinoma\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"taxon_id\",\n          \"value\" : \"9606\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"phenotype\",\n          \"value\" : \"Lung Adenocarcinoma\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"biomaterial_type\",\n          \"value\" : \"Cell Line\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"line\",\n          \"value\" : \"A549\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"lineage\",\n          \"value\" : \"lung epithelial\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"differentiation_stage\",\n          \"value\" : \"Undifferentiated\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"differentiation_method\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"medium\",\n          \"value\" : \"F12K (10% fetal bovine serum)\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sex\",\n          \"value\" : \"Male\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"batch\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sample_ontology_uri\",\n          \"value\" : \"EFO:0005288\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"disease_ontology_uri\",\n          \"value\" : \"NCIT:C3512\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"disease\",\n          \"value\" : \"Non-small Cell Lung Adenocarcinoma\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"culture\",\n          \"value\" : \"3-days-3D-culture\",\n          \"units\" : null\n        } ]\n      }\n    } ]\n  },\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"MS049004\",\n  \"egaAccessionId\" : \"EGAN00003140980\",\n  \"title\" : \"\",\n  \"description\" : \"\",\n  \"caseOrControlId\" : \"3\",\n  \"caseOrControl\" : \"NA\",\n  \"genderId\" : \"1\",\n  \"gender\" : \"male\",\n  \"organismPart\" : \"Lung\",\n  \"cellLine\" : \"A549\",\n  \"region\" : \"\",\n  \"phenotype\" : \"Lung Adenocarcinoma\",\n  \"subjectId\" : \"McGill0490\",\n  \"attributes\" : [ {\n    \"tag\" : \"taxon_id\",\n    \"value\" : \"9606\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"phenotype\",\n    \"value\" : \"Lung Adenocarcinoma\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_type\",\n    \"value\" : \"Cell Line\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"line\",\n    \"value\" : \"A549\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"lineage\",\n    \"value\" : \"lung epithelial\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"differentiation_stage\",\n    \"value\" : \"Undifferentiated\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"differentiation_method\",\n    \"value\" : \"NA\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"medium\",\n    \"value\" : \"F12K (10% fetal bovine serum)\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"sex\",\n    \"value\" : \"Male\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"batch\",\n    \"value\" : \"NA\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"sample_ontology_uri\",\n    \"value\" : \"EFO:0005288\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease_ontology_uri\",\n    \"value\" : \"NCIT:C3512\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease\",\n    \"value\" : \"Non-small Cell Lung Adenocarcinoma\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"culture\",\n    \"value\" : \"3-days-3D-culture\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"centerName\" : \"MCGILL-EDCC\"\n}",
+      "alias" : "MS049004",
+      "egaAccessionId" : "EGAN00003140980",
+      "centerName" : "MCGILL-EDCC"
+    }, {
+      "xmlRootElement" : null,
+      "title" : "",
+      "description" : "",
+      "caseOrControlId" : "3",
+      "caseOrControl" : "NA",
+      "genderId" : "1",
+      "gender" : "male",
+      "organismPart" : "Lung",
+      "cellLine" : "A549",
+      "region" : "",
+      "phenotype" : "Lung Adenocarcinoma",
+      "subjectId" : "McGill0490",
+      "anonymizedName" : null,
+      "bioSampleId" : null,
+      "sampleAge" : null,
+      "sampleDetail" : null,
+      "attributes" : [ {
+        "tag" : "taxon_id",
+        "value" : "9606",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "biomaterial_type",
+        "value" : "Cell Line",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "line",
+        "value" : "A549",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "lineage",
+        "value" : "lung epithelial",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "differentiation_stage",
+        "value" : "Undifferentiated",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "differentiation_method",
+        "value" : "NA",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "medium",
+        "value" : "F12K (10% fetal bovine serum)",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "sex",
+        "value" : "Male",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "batch",
+        "value" : "NA",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "sample_ontology_uri",
+        "value" : "EFO:0005288",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease_ontology_uri",
+        "value" : "NCIT:C3512",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "disease",
+        "value" : "Non-small Cell Lung Adenocarcinoma",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      }, {
+        "tag" : "culture",
+        "value" : "2D-monoculture",
+        "label" : null,
+        "unit" : null,
+        "group" : null
+      } ],
+      "id" : "6094351e98e2520001af3d34",
+      "ebiId" : null,
+      "submissionId" : "609434f498e2520001af3cbe",
+      "eraSubmissionId" : null,
+      "userId" : "5539055fe4b0780d14fa0243",
+      "submitterId" : "ega-box-209",
+      "status" : "SUBMITTED",
+      "version" : 1,
+      "creationTime" : 1620325662547,
+      "editionTime" : 1620326743751,
+      "firstPublic" : 1620326743751,
+      "submissionCommandIds" : null,
+      "validationErrorMessages" : null,
+      "submissionInfoMessages" : null,
+      "submissionErrorMessages" : null,
+      "validationResult" : false,
+      "ebiSubmissionDetailsIds" : [ "609438a098e2520001af3e4c" ],
+      "lastEbiSubmissionDetailsId" : null,
+      "xml" : "<?xml version=\"1.0\" standalone=\"yes\"?>\n<SAMPLE_SET>\n    <SAMPLE alias=\"MS049003\" center_name=\"MCGILL-EDCC\" broker_name=\"EGA\">\n        <TITLE></TITLE>\n        <SAMPLE_NAME>\n            <TAXON_ID>9606</TAXON_ID>\n            <SCIENTIFIC_NAME>Homo sapiens</SCIENTIFIC_NAME>\n            <COMMON_NAME>Human</COMMON_NAME>\n        </SAMPLE_NAME>\n        <DESCRIPTION></DESCRIPTION>\n        <SAMPLE_ATTRIBUTES>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>subject_id</TAG>\n                <VALUE>McGill0490</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>case_or_control</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>gender</TAG>\n                <VALUE>male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>organism_part</TAG>\n                <VALUE>Lung</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>cell_line</TAG>\n                <VALUE>A549</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Lung Adenocarcinoma</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>taxon_id</TAG>\n                <VALUE>9606</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>phenotype</TAG>\n                <VALUE>Lung Adenocarcinoma</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>biomaterial_type</TAG>\n                <VALUE>Cell Line</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>line</TAG>\n                <VALUE>A549</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>lineage</TAG>\n                <VALUE>lung epithelial</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>differentiation_stage</TAG>\n                <VALUE>Undifferentiated</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>differentiation_method</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>medium</TAG>\n                <VALUE>F12K (10% fetal bovine serum)</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sex</TAG>\n                <VALUE>Male</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>batch</TAG>\n                <VALUE>NA</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>sample_ontology_uri</TAG>\n                <VALUE>EFO:0005288</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease_ontology_uri</TAG>\n                <VALUE>NCIT:C3512</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>disease</TAG>\n                <VALUE>Non-small Cell Lung Adenocarcinoma</VALUE>\n            </SAMPLE_ATTRIBUTE>\n            <SAMPLE_ATTRIBUTE>\n                <TAG>culture</TAG>\n                <VALUE>2D-monoculture</VALUE>\n            </SAMPLE_ATTRIBUTE>\n        </SAMPLE_ATTRIBUTES>\n    </SAMPLE>\n</SAMPLE_SET>\n",
+      "json" : "{\n  \"id\" : \"6094351e98e2520001af3d34\",\n  \"ebiId\" : null,\n  \"submissionId\" : \"609434f498e2520001af3cbe\",\n  \"userId\" : \"5539055fe4b0780d14fa0243\",\n  \"submitterId\" : \"ega-box-209\",\n  \"status\" : \"SUBMITTED\",\n  \"version\" : 1,\n  \"creationTime\" : 1620325662547,\n  \"editionTime\" : null,\n  \"firstPublic\" : null,\n  \"submissionCommandIds\" : null,\n  \"validationErrorMessages\" : [ ],\n  \"submissionInfoMessages\" : null,\n  \"submissionErrorMessages\" : null,\n  \"validationResult\" : false,\n  \"validationInProgress\" : false,\n  \"ebiSubmissionDetailsIds\" : [ \"609438a098e2520001af3e4c\" ],\n  \"lastEbiSubmissionDetailsId\" : \"609438a098e2520001af3e4c\",\n  \"eraSubmissionId\" : null,\n  \"xmlRootElement\" : {\n    \"sample\" : [ {\n      \"identifiers\" : null,\n      \"alias\" : \"MS049003\",\n      \"centerName\" : \"MCGILL-EDCC\",\n      \"brokerName\" : \"EGA\",\n      \"accession\" : null,\n      \"title\" : \"\",\n      \"samplename\" : {\n        \"taxonid\" : 9606,\n        \"scientificname\" : \"Homo sapiens\",\n        \"commonname\" : \"Human\",\n        \"displayName\" : null\n      },\n      \"description\" : \"\",\n      \"samplelinks\" : null,\n      \"sampleattributes\" : {\n        \"sampleattribute\" : [ {\n          \"tag\" : \"subject_id\",\n          \"value\" : \"McGill0490\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"case_or_control\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"gender\",\n          \"value\" : \"male\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"organism_part\",\n          \"value\" : \"Lung\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"cell_line\",\n          \"value\" : \"A549\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"phenotype\",\n          \"value\" : \"Lung Adenocarcinoma\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"taxon_id\",\n          \"value\" : \"9606\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"phenotype\",\n          \"value\" : \"Lung Adenocarcinoma\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"biomaterial_type\",\n          \"value\" : \"Cell Line\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"line\",\n          \"value\" : \"A549\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"lineage\",\n          \"value\" : \"lung epithelial\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"differentiation_stage\",\n          \"value\" : \"Undifferentiated\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"differentiation_method\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"medium\",\n          \"value\" : \"F12K (10% fetal bovine serum)\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sex\",\n          \"value\" : \"Male\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"batch\",\n          \"value\" : \"NA\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"sample_ontology_uri\",\n          \"value\" : \"EFO:0005288\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"disease_ontology_uri\",\n          \"value\" : \"NCIT:C3512\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"disease\",\n          \"value\" : \"Non-small Cell Lung Adenocarcinoma\",\n          \"units\" : null\n        }, {\n          \"tag\" : \"culture\",\n          \"value\" : \"2D-monoculture\",\n          \"units\" : null\n        } ]\n      }\n    } ]\n  },\n  \"xml\" : null,\n  \"json\" : null,\n  \"alias\" : \"MS049003\",\n  \"egaAccessionId\" : \"EGAN00003140981\",\n  \"title\" : \"\",\n  \"description\" : \"\",\n  \"caseOrControlId\" : \"3\",\n  \"caseOrControl\" : \"NA\",\n  \"genderId\" : \"1\",\n  \"gender\" : \"male\",\n  \"organismPart\" : \"Lung\",\n  \"cellLine\" : \"A549\",\n  \"region\" : \"\",\n  \"phenotype\" : \"Lung Adenocarcinoma\",\n  \"subjectId\" : \"McGill0490\",\n  \"attributes\" : [ {\n    \"tag\" : \"taxon_id\",\n    \"value\" : \"9606\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"phenotype\",\n    \"value\" : \"Lung Adenocarcinoma\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"biomaterial_type\",\n    \"value\" : \"Cell Line\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"line\",\n    \"value\" : \"A549\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"lineage\",\n    \"value\" : \"lung epithelial\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"differentiation_stage\",\n    \"value\" : \"Undifferentiated\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"differentiation_method\",\n    \"value\" : \"NA\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"medium\",\n    \"value\" : \"F12K (10% fetal bovine serum)\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"sex\",\n    \"value\" : \"Male\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"batch\",\n    \"value\" : \"NA\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"sample_ontology_uri\",\n    \"value\" : \"EFO:0005288\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease_ontology_uri\",\n    \"value\" : \"NCIT:C3512\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"disease\",\n    \"value\" : \"Non-small Cell Lung Adenocarcinoma\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  }, {\n    \"tag\" : \"culture\",\n    \"value\" : \"2D-monoculture\",\n    \"label\" : null,\n    \"unit\" : null,\n    \"group\" : null\n  } ],\n  \"centerName\" : \"MCGILL-EDCC\"\n}",
+      "alias" : "MS049003",
+      "egaAccessionId" : "EGAN00003140981",
+      "centerName" : "MCGILL-EDCC"
+    } ]
+  }
+}

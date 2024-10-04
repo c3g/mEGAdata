@@ -1,0 +1,205 @@
+# EGA submission notes, steps & help
+
+The current location of *useful* submission documentation is here:  
+https://ega-archive.org/submission/quickguide  
+The SP UI docs and videos also apply to the the JSON API.  
+Its submission portal:  
+https://ega-archive.org/submitter-portal/#/
+
+
+**Warning: some docs are repeated or deprecated:**
+The older submission mechanism (though it still seems to work) is here:  
+https://www.ebi.ac.uk/ega/submission  
+An even older submission method where you submit through ENA (though it still works for some EGA things) is here:  
+https://www.ebi.ac.uk/ena/browser/guides  
+And its submission portal:  
+https://www.ebi.ac.uk/ena/submit/sra/#home  
+
+
+### Additional resources
+* Most recent enums are here:
+https://ega-archive.org/submission/programmatic_submissions/how-to-use-the-api#enumApiDetails
+* In the old XML schemas, some fields contain descriptions that explain the purpose and expected input of the fields, similar to how a data dictionary would.  
+ftp://ftp.ebi.ac.uk/pub/databases/ena/doc/xsd/sra_1_5/ 
+
+### A blogger's account of submitting to EGA (somewhat useful and somewhat humourous).  
+https://gavinband.github.io/bioinformatics/data/2019/05/01/Me_versus_the_European_Genome_Phenome_Archive.html
+
+
+# Submission Steps
+
+## 1) Change file names:
+Use the standard file name format:
+Sample.Assay.Lane.Run.pair[Read1|Read2].fastq.gz
+ie. MS048901.Chipmentation_H3K27ac.212.1.pair1.fastq.gz
+When renaming files, keep a mapping file alongside the original file names for traceability.
+
+The Lane, Run and Read information can be found in the .fastq.gz header with:
+$ zcat file.fastq.gz | head -1
+@A00266:289:HMC3LDSXX:1:1101:2085:1000 2:N:0:TGGATCTG
+Header format:
+@<instrument>:<run number>:<flowcell ID>:<lane>:<tile>:<x-pos>:<y-pos> <read>:<is filtered>:<control number>:<sample number>
+
+## 2) Encrypt the files:
+Resources & links:
+
+### EGAcryptor < version 2
+The EGACryptor will work with Openjdk-8.  
+Follow the install directions at:  
+https://ega-archive.org/submission/tools/egacryptor  
+
+The JCE policy files for unlimited encryption strength need to be manually placed here (or somewhere comparable):  
+/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/policy/unlimited
+
+Run the EgaCryptor on the CWD:  
+java -jar /usr/local/bin/EgaCryptor/EgaCryptor.jar -file * &
+
+### EGAcryptor >= version 2
+On beluga, once the EgaCryptor.zip (version 2.0 or above) is downloaded (and unzipped), everything is ready to go.  There is no need to intall a JCE policy file.  It is important, however, to specify the memory parameters for java to use.
+```bash
+module load java/1.8.0_192
+```
+The following batch script can be used to encrypt the files:
+```bash
+#!/bin/bash
+#SBATCH --time=6-23:59:59
+#SBATCH --account=ctb-bourqueg-ac
+#SBATCH --mem=8G
+java -Xms2g -Xmx8g -jar /lustre03/project/6007512/C3G/projects/EGA_Barreiro/EGACryptor/EGA-Cryptor-2.0.0/ega-cryptor-2.0.0.jar -i /lustre03/project/6007512/C3G/projects/EGA_Barreiro/ATACseq -o /home/davidbr/scratch/EMC_Barreiro/ATACseq
+```
+
+
+## 3) Upload the files:
+To transfer files to EGA, use:  
+ftp ftp.ega.ebi.ac.uk  
+Username : ega-box-209  
+Password : tFM3Lf3E  
+
+Once an ftp connection is established, enter the following commands to define the connection:  
+binary  
+prompt  
+pass  
+
+Transfer all files (except the original, unencrypted .fast.qz) files with:
+mput *.gpg
+mput *.md5
+
+Or in one single command:
+mput *.gpg *.md5
+
+With ncftp:
+#!/bin/bash
+#SBATCH --time=23:59:59
+#SBATCH --account=ctb-bourqueg-ac
+#SBATCH --mem=2G
+/home/davidbr/ncftp/ncftp-3.2.6/bin/ncftp -u ega-box-209 -p tFM3Lf3E ftp.ega.ebi.ac.uk
+type binary
+lcd /lustre04/scratch/davidbr/EMC_Barreiro/renamed/ATACseq
+cd EMC_Barreiro/ATACseq
+put MS049301.ATACSeq.81.1.pair1.fastq.gz.gpg.md5
+
+
+### Future work:
+* Register/Send the File objects prior to working on the JSONs?  
+
+## 4) Retrieve md5sums and encrypted md5sums.
+Use the EgaCryptor logs to update the spreadsheets with md5sums and encrypted_md5sums.  This involves straightforward text manipulation in an editor (to get one line per file).  Turn the EgaCryptor log into a .tsv with following columns: Filename, md5sum, encrypted_md5sum.  Then some importing, sorting and copy paste in spreadsheets solves the rest.
+
+## 5) Ingest metadata into mEGAdata DB
+### Tools for metadata ingestion
+* scripts/spreadsheet_importation/importEMCSpreadsheet.py - Ingests .ods into mEGAdata DB.  
+* scripts/spreadsheet_importation/import_experiment_metadata.py - Ingests experiment_metadata into mEGAdata DB.  
+
+## 6) Prepare and send the JSONs
+
+### JSON preparation
+Some JSONs (such as Sample and Experiment) can be prepared manually from the source spreadsheets with minimal effort since their numbers are small.  
+Many objects (Policy, DAC, Study) can be reused from previous a Submission.
+
+EpiRR pulls all of its metadata from EGA.  As such, even though EGA does not require it, additional sample and donor metadata, beyond what EGA explicitly requires should be included in the EGA submission as tag-value information.  The lengthy exeperiment metadata stuff that is included in mEGAdata submissions does not need to be sent to EGA (only mEGAdata and therefore the IHEC DP).  See sample JSONs for examples.
+
+### Create directories for your submission.
+The following directories will hold the elements of your submission and responses.  They must be created manually for each submission project:
+json_templates
+    |-> ProjectDir
+        |-> datasets
+        |-> experiments
+        |-> samples
+        |-> submissions
+response_jsons
+    |-> ProjectDir
+        |-> curlAllEGAObjects
+        |-> obj_registry
+        |-> record-EGA-objects
+        |-> record-EGA-SUBMITTED
+
+
+## Submission workflow (the only one that will work):
+1. Use PROD Submitter Portal for testing.
+2. Send all objects - leave in DRAFT status.
+3. VALIDATE all objects together as part of a Submission subset.  Can check SP UI error console for errors.
+4. When any and all errors resolved, SUBMIT all objects as part of a Submission subset.
+5. [Don't VALIDATE or SUBMIT objects individually - referential integrity gets confused unless they are VALIDATED/SUBMITTED as part of a Submission subset.]
+
+
+## Milestones reached, so far.
+* All metadata sufficient for mEGAdata and EGA has now been collected and verified.  Many iterations were required.
+* Ingestion of all metadata from .ods into mEGAdata automated through maintainable scripts.
+* Sample and Experiment objects all Sent, Validated and Submitted (to test server).
+* Proof of JSON submission workflow accomplished, including File objects and Validation/Submission through Submission subsets (on prod server).
+* Quick check of Experiment JSONs and updates to spreadsheet import to reflect MM's latest changes - experiment_property_id's assigned for new fields.  release_set and release_set_to_dataset entries added.
+* Generate the relations.ods from mEGAdata DB (as csv).  Initial version done.
+* INSERTs into dataset_to_release_set and release_set tables.
+* Link the Study into the Submission - reuse "EMC".
+* DAC - Find Id and link in.  Reuse from previous Submisison.
+* Policy - Find Id and link in.  Reuse from previous Submisison.
+* Send Run objects (reusing old files existent on test server first).
+* Refactored relationsMapping.ods to include templates. - DONE!
+* Create and Send Datasets objects: EMC1, EMC2, EMC3.
+    * Test with validate and submit, delete.
+* Test the delete functions on the test SP. (especially for interrupted Submissions) - working well, though SP glitches during large deletes.  Multiple deletes solve this, but some code should compensate, or raise a message.  Delete whole Submission through the UI works best.
+* Retrieval and updates of EGA accessions back into mEGAdata DB (can only be performed after SUBMISSION, but can be done on test SP).  
+* Test on prod - going well, sort of.
+* Test the absorb_EGA_accession.py script at scale on prod.
+
+
+## Moving forward:
+* Mapping on abacus through symlinks of processed file names to MS00xxx names (McGill Sample format) (abacus account has already been obtained). (This task is independant.)
+* Need md5s of public_files.
+
+* Tell EGA to deploy the release. - DONE!
+* EpiRR submission.
+
+* Document. (One page done, so far.  It might be enough.)
+
+
+## Difficulties encountered, unmentioned in ega-archive API documentation, though resolved thanks to the ega-helpdesk@ebi.ac.uk.
+* No JSON API test server URL mentioned in documentation.
+* No mention of globalExperimentId or how to use it with JSON API.
+* Test server not aware of files uploaded to prod ftp server (must test File and Run objects on PROD).
+* Some SP UI constraints apply to the JSON API as well. (In retrospect, this should probably be assumed.)
+* Objects cannot be Validated / Submitted individually, though the API supports this.  Objects must be Validated / Submitted as part of a Submission subset.  Individual Validation / Submission != collective Validation / Submission.
+* Send, Validate & Submit Samples and Experiments.  Submission then shows up as status=SUBMITTED and SUBMITTED Objects are supposed to be immutable.  However, it is not immutable and further Samples or Experiments can still be sent.  So some SUBMITTED objects are immutable and others aren't.
+
+
+## Future works
+* Currently, there are only hg19-aligned tracks.  MM or Paul will realign everything to hg38 (timeline circa mid-end May). 
+* EpiRR submission.
+* IHEC DP hub generation has already been scripted (back during the EMC hg38 realignment project) so IDP submission will be relatively straightforward.  However, new submissions need to follow schema V2.0.
+
+
+## Modifying Submitted EGA objects - Yes, it is possible.
+As well for future reference, all submitted objects cannot be modified via the
+submitter portal, but they can be changed in WEBIN via their XML file. (Only
+the array dataset information cannot be changed by the user, for that we need
+to modify the database directly).
+
+To make this change in the WEBIN, please log in using the following link:
+https://www.ebi.ac.uk/ena/submit/webin/login
+
+Then click on the "Report" of the object you want to modify (in this case:
+Sample), search for the Sample ID and click on "Action" and the option "Edit
+XML" will be displayed. Then the XML file can be modified. I hope this can be
+helpful for further submissions, but please feel free to contact us if you
+have any questions. Also, we can do a double-check for you after the
+modification.
