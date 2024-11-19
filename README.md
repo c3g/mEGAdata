@@ -1,5 +1,26 @@
-# mEGAdata: EGA submission made easy
+# mEGAdata: EGA submissions made easy
 
+## Purpose
+A web interface for composing EGA submissions.
+
+Within scripts/EGA_json_submitter is a programatic (scripted) tool to submit to EGA.  It parses source data in spreadsheets and submits to EGA through the API (now probably deprecated).  It was used to submit the EMC_Community (1, 2 & 3) and EMC_Barreiro datasets.
+
+Includes scripts to generate the 2020 IHEC data hub for the hg38-realigned EMC data.
+
+The database contains the metadata for the following projects:
+* EMC_Asthma
+* EMC_BluePrint
+* EMC_BrainBank
+* EMC_CageKid
+* EMC_iPSC
+* EMC_Leukemia
+* EMC_Mature_Adipocytes
+* EMC_Mitochondrial_Disease
+* EMC_MSCs
+* EMC_SARDs
+* EMC_Temporal_Change
+
+## Installation
 ### Required Software
 These need to be installed beforehand:
 
